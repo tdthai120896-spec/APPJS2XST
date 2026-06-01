@@ -185,21 +185,7 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
   </div>
 </div>
 
-                                {/* Zalo ẩn */}
-    <div 
-      onClick={() => {
-        // Chuỗi mã hóa Base64 cho sđt 0387182528
-        const encoded = "MDM4NzE4MjUyOA1==";
-        const phone = atob(encoded);
-        window.open(`https://zalo.me/0387182518`, "_blank");
-      }}
-      className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-[#111622] py-2 text-[9px] font-bold text-blue-400 border border-blue-500/20 transition-colors cursor-pointer"
-    >
-      <Phone className="h-3.5 w-3.5" /> 
-      Zalo
-    </div>
-  </div>
-</div>
+                            
 
                     </div>
                 </div>
