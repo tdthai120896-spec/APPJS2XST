@@ -1,107 +1,122 @@
 import React, { useState } from 'react'
-import { ShoppingBag, Eye } from 'lucide-react'
+import { ShoppingBag, Eye } from 'lucide-react' 
 import PurchaseModal from './PurchaseModal'
-import GameDetailModal from './GameDetailModal'
+import GameDetailModal from './GameDetailModal' // <-- ĐÃ SỬA: Thay thế GameModal cũ bằng GameDetailModal của bạn
 
 function GameCard({ game, onAddToCart }) {
-  const [showPurchase, setShowPurchase] = useState(false);
-  const [showDetail, setShowDetail] = useState(false);
-  const [showToast, setShowToast] = useState(false); // 1. Thêm state thông báo
-
-  // 2. Hàm xử lý khi bấm nút Giỏ hàng
-  const handleAddToCartInternal = (e) => {
-    e.stopPropagation(); // Chặn mở Modal khi bấm nút
-    if (onAddToCart) {
-      onAddToCart(game); // Gọi hàm add vào giỏ chính
-
-      // Hiển thị thông báo text
-      setShowToast(true);
-
-      // Tự động ẩn sau 1.2 giây
-      setTimeout(() => {
-        setShowToast(false);
-      }, 1200);
-    }
-  };
+  const [showPurchase, setShowPurchase] = useState(false); // Trạng thái mở Modal mua hàng
+  const [showDetail, setShowDetail] = useState(false);     // Trạng thái mở Modal chi tiết game
 
   return (
     <>
-      {/* 3. POPUP THÔNG BÁO DẠNG TEXT THUẦN (Hiện đè lên mọi thứ) */}
-      {showToast && (
-        <div className="fixed top-[15%]  left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000005] pointer-events-none animate-in zoom-in fade-in duration-300">
-          <div className="flex items-center justify-center bg-cyan-500 px-5 py-2.5 md:px-7 md:py-3 rounded-full shadow-[0_0_40px_rgba(6,182,212,0.5)] border border-white/20">
-            <span className="text-black font-black text-[10px] md:text-xs uppercase tracking-[0.2em] leading-none whitespace-nowrap">
-              ● Đã thêm vào giỏ hàng
-            </span>
-          </div>
-        </div>
-      )}
-
-      <div
-        className="relative group cursor-pointer w-[calc((100%-12px)/2)] md:w-[calc((100%-48px)/5)] shrink-0 snap-start"
-        onClick={() => setShowDetail(true)}
+      <div 
+        className="relative group cursor-pointer w-[200px] md:w-[240px] shrink-0 h-full"
+        onClick={() => {
+          setShowDetail(true); // Click vào thẻ sẽ mở chi tiết game độc lập
+        }}
       >
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-600 rounded-[1rem] md:rounded-[1.4rem] blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+        {/* Viền phát sáng tổng thể của Thẻ Game khi hover */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-600 rounded-[1.2rem] md:rounded-[1.6rem] blur-md opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
-        <article className="relative w-full h-full overflow-hidden rounded-[1rem] md:rounded-[1.4rem] border border-white/10 bg-[#05080c] backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-cyan-400/30 flex flex-col">
-
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-t-[1rem] md:rounded-t-[1.4rem] isolate bg-[#05080c] shrink-0">
-            <img src={game.poster} alt={game.title} className="h-full w-full object-cover transition-transform duration-700 ease-out scale-[1.01] group-hover:scale-[1.05] transform-gpu" />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300" />
-
-            {/* Icon mắt */}
+        <article className="relative w-full h-full overflow-hidden rounded-[1.2rem] md:rounded-[1.6rem] border border-white/10 bg-[#05080c] backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-1.5 group-hover:border-cyan-400/30 flex flex-col">
+          
+          {/* Ảnh Poster Game & Biểu tượng Con mắt Hover */}
+          <div className="relative aspect-[16/9] w-full overflow-hidden bg-white/5">
+            <img 
+              src={game.poster} 
+              alt={game.title} 
+              className="h-full w-full object-cover transition-transform duration-700 ease-out scale-[1.01] group-hover:scale-[1.06] transform-gpu" 
+              style={{ 
+                backfaceVisibility: 'hidden', 
+                WebkitBackfaceVisibility: 'hidden', 
+                willChange: 'transform',
+                imageRendering: '-webkit-optimize-contrast'
+              }}
+            />
+            
+            {/* Lớp phủ tối nhẹ khi hover */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300" />
+            
+            {/* BIỂU TƯỢNG CON MẮT XANH LAM NEON */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
-              <div className="p-2 rounded-full bg-blue-600/20 border border-blue-500 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.6)] backdrop-blur-sm hover:bg-blue-500 hover:text-white transition-all duration-200">
-                <Eye className="h-4 w-4 stroke-[2.5]" />
+              <div 
+                className="p-3 rounded-full bg-blue-600/20 border border-blue-500 text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.8)] backdrop-blur-sm hover:bg-blue-500 hover:text-white hover:border-blue-400 transition-all duration-200"
+                onClick={(e) => {
+                  e.stopPropagation(); // Ngăn sự kiện click lan ra thẻ cha
+                  setShowDetail(true); // Mở xem chi tiết game
+                }}
+                title="Xem chi tiết game"
+              >
+                <Eye className="h-6 w-6 md:h-7 md:w-7 stroke-[2.5]" />
               </div>
             </div>
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#05070a] via-transparent to-transparent pointer-events-none" />
           </div>
 
-          <div className="p-2.5 md:p-3 flex flex-col flex-grow justify-between gap-2.5">
+          {/* Phần thông tin chữ và nút bấm phía dưới */}
+          <div className="p-3 md:p-4 flex flex-col flex-grow justify-between">
             <div>
-              <h3 className="text-white font-bold truncate text-[11px] md:text-xs mb-0.5 uppercase tracking-tight group-hover:text-cyan-400 transition-colors">
+              {/* Tên Game */}
+              <h3 className="text-white font-bold truncate text-xs md:text-sm mb-1 md:mb-1.5 uppercase italic tracking-tighter group-hover:text-cyan-400 transition-colors">
                 {game.title}
               </h3>
-              <div className="flex items-center justify-between mt-1 mb-0.5">
-                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider truncate max-w-[50%]">{game.genre}</span>
-                <span className="text-cyan-400 font-black text-[11px] md:text-xs tracking-wide">{game.price}</span>
+              
+              {/* Giá tiền */}
+              <div className="mb-2 md:mb-2.5">
+                <span className="text-cyan-400 font-black text-xs md:text-sm tracking-wide">{game.price}</span>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch gap-1.5 w-full mt-auto">
-              {/* NÚT GIỎ HÀNG ĐÃ CẬP NHẬT HÀM */}
+            {/* Cụm nút bấm: Tối ưu chống tràn tuyệt đối */}
+            <div className="flex flex-col md:flex-row items-stretch gap-2 w-full mt-auto">
+              
+              {/* NÚT THÊM VÀO GIỎ */}
               <button
-                onClick={handleAddToCartInternal}
-                className="flex items-center justify-center gap-1 py-1.5 px-1.5 rounded-full bg-blue-600/10 border border-blue-500/40 text-blue-400 hover:text-white hover:bg-blue-500 transition-all duration-300 active:scale-95 w-full sm:flex-1 min-w-0"
+                onClick={(e) => {
+                  e.stopPropagation(); // Ngăn sự kiện click lan ra thẻ cha
+                  if (onAddToCart) onAddToCart(game);
+                }}
+                className="flex items-center justify-center gap-1 py-1.5 px-2 md:py-2 md:px-2 rounded-full bg-blue-600/20 border border-blue-500 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)] hover:text-white hover:bg-blue-500 hover:border-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all duration-300 active:scale-95 w-full md:flex-1 min-w-0"
+                title="Thêm vào giỏ hàng"
               >
-                <ShoppingBag className="h-3 w-3 stroke-[2.5] shrink-0" />
-                <span className="text-[9px] font-bold uppercase tracking-tighter truncate">Giỏ</span>
+                <ShoppingBag className="h-3 w-3 md:h-3.5 md:w-3.5 stroke-[2.5] shrink-0" />
+                <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-tighter truncate">Giỏ hàng</span>
               </button>
 
-              <div className="relative group/btn BuyButton w-full sm:flex-1">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur opacity-20 group-hover/btn:opacity-60 transition duration-300"></div>
+              {/* NÚT MUA NGAY */}
+              <div className="relative group/btn BuyButton w-full md:flex-1">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur opacity-30 group-hover/btn:opacity-80 transition duration-300"></div>
                 <button
-                  onClick={(e) => { e.stopPropagation(); setShowPurchase(true); }}
-                  className="relative w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black py-1.5 px-1.5 rounded-full text-[9px] font-black uppercase transition-transform active:scale-95 text-center block truncate tracking-tighter"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Ngăn sự kiện click lan ra thẻ cha
+                    setShowPurchase(true); // Kích hoạt mở PurchaseModal xịn
+                  }}
+                  className="relative w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black py-1.5 px-2 md:py-2 md:px-2 rounded-full text-[9px] md:text-[10px] font-black uppercase transition-transform active:scale-95 text-center block truncate tracking-tighter"
                 >
-                  Mua
+                  Mua ngay
                 </button>
               </div>
+
             </div>
           </div>
         </article>
       </div>
 
-      {showPurchase && <PurchaseModal game={game} onClose={() => setShowPurchase(false)} />}
+      {/* MODAL THANH TOÁN CHÍNH THỨC (Gọi độc lập từ bên trong) */}
+      {showPurchase && (
+        <PurchaseModal 
+          game={game} 
+          onClose={() => setShowPurchase(false)} 
+        />
+      )}
 
+      {/* MODAL CHI TIẾT GAME (Gọi file GameDetailModal.jsx riêng biệt của bạn) */}
       {showDetail && (
-        <GameDetailModal
-          game={game}
-          onClose={() => setShowDetail(false)}
-          onBuyNow={() => { setShowDetail(false); setShowPurchase(true); }}
-          onAddToCart={onAddToCart}
+        <GameDetailModal 
+          game={game} 
+          onClose={() => setShowDetail(false)} 
+          onBuyNow={() => setShowPurchase(true)} // <-- ĐÃ SỬA: Truyền prop onBuyNow để nút Mua ngay bên trong modal chi tiết kích hoạt được PurchaseModal ngoài này
         />
       )}
     </>
