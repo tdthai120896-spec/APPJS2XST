@@ -47,7 +47,6 @@ function FloatingContactWidget() {
   href="#"
   onClick={(e) => {
     e.preventDefault();
-    // Chuỗi Base64 đã mã hóa
     const encoded = "MDM4NzE4MjUxOA=="; 
     const phone = atob(encoded);
     window.open(`https://zalo.me/0387182518`, "_blank");
