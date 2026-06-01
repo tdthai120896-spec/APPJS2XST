@@ -42,8 +42,6 @@ function FloatingContactWidget() {
       {/* MENU CON (Zalo, Messenger, Call) */}
       <div className={`flex flex-col items-end gap-4 mb-4 transition-all duration-300 ease-out ${activeMenuClasses}`}>
         
-        // 1. Chuyển sđt của bạn sang Base64
-// Ví dụ sđt 0387182518 -> btoa("0387182518") -> "MDM4NzE4MjUxOA=="
 
 <a 
   href="#"
