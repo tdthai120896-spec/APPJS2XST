@@ -165,9 +165,26 @@ function Cart({ cartItems, onRemove }) {
                   <a href="https://m.me/yourpage" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 font-bold text-xs uppercase hover:bg-blue-600 hover:text-white transition-all text-center">
                     <Facebook className="w-3.5 h-3.5" /> Messenger
                   </a>
-                  <a href="https://zalo.me/0387182518" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-600/10 border border-emerald-500/20 text-emerald-400 font-bold text-xs uppercase hover:bg-emerald-600 hover:text-white transition-all text-center">
-                    <Phone className="w-3.5 h-3.5" /> Zalo
-                  </a>
+                  <div className="grid grid-cols-3 gap-1.5 mb-2">
+  <div className="relative group/btn">
+    <div className="absolute -inset-0.5 bg-blue-600 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
+    
+    {/* Sử dụng div thay vì a để ẩn liên kết trong F12 */}
+    <div 
+      onClick={() => {
+        // Chuỗi mã hóa Base64 cho sđt 0387182528
+        const encoded = "MDM4NzE4MjUyOA==";
+        const phone = atob(encoded);
+        window.open(`https://zalo.me/0387182518`, "_blank");
+      }}
+      className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-[#111622] py-2 text-[9px] font-bold text-blue-400 border border-blue-500/20 transition-colors cursor-pointer"
+    >
+      <Phone className="h-3.5 w-3.5" /> 
+      Zalo
+    </div>
+  </div>
+</div>
+
                 </div>
               </div>
             )}
