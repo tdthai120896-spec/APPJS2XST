@@ -112,12 +112,25 @@ function PurchaseModal({ game, onClose }) {
 
             {/* Hệ thống nút liên hệ */}
             <div className="grid grid-cols-3 gap-1.5 mb-2">
-              <div className="relative group/btn">
-                <div className="absolute -inset-0.5 bg-blue-600 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
-                <a href="https://www.facebook.com/profile.php?id=61558065130631" target="_blank" rel="noreferrer" className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-[#111622] py-2 text-[9px] font-bold text-blue-400 border border-blue-500/20 transition-colors">
-                  <MessageSquare className="h-3.5 w-3.5" /> Zalo
-                </a>
-              </div>
+  <div className="relative group/btn">
+    <div className="absolute -inset-0.5 bg-blue-600 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
+    
+    {/* Zalo ẩn */}
+    <div 
+      onClick={() => {
+        // Chuỗi mã hóa Base64 cho sđt 0387182528
+        const encoded = "MDM4NzE4MjUyOA==";
+        const phone = atob(encoded);
+        window.open(`https://zalo.me/0387182518`, "_blank");
+      }}
+      className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-[#111622] py-2 text-[9px] font-bold text-blue-400 border border-blue-500/20 transition-colors cursor-pointer"
+    >
+      <MessageSquare className="h-3.5 w-3.5" /> 
+      Zalo
+    </div>
+  </div>
+</div>
+
 
               <div className="relative group/btn">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
