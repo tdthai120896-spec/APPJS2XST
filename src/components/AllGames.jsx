@@ -65,7 +65,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
           {/* Khung hiển thị danh sách gợi ý nhanh khi gõ */}
           {suggestions.length > 0 && (
             <div className="absolute top-full left-0 right-0 mt-3 bg-[#0b101a]/98 border border-cyan-500/40 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-xl" style={{ zIndex: 9999 }}>
-              <div className="max-h-[380px] overflow-y-auto custom-scrollbar">
+              <div className="max-h-[350px] overflow-y-auto custom-scrollbar">
                 {suggestions.map((game) => (
                   <button
                     key={game.title}
@@ -96,7 +96,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
       {filteredGamesList.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2.5 gap-y-6 md:gap-x-6 md:gap-y-8 grid-auto-rows-max">
           {filteredGamesList.map((game, index) => (
-            <div key={index} className="h-[200px] md:h-[240px] w-full flex flex-col overflow-hidden">
+            <div key={index} className="h-[240px] md:h-[240px] w-full flex flex-col overflow-hidden">
               <GameCard game={game} onAddToCart={onAddToCart} />
             </div>
           ))}
