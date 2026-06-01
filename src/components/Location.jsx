@@ -60,7 +60,7 @@ export default function Location() {
                         <div className="flex flex-col gap-4">
                             {/* NÚT ZALO */}
                             <a
-                                href="https://zalo.me/0387182518"
+                                href="https://www.facebook.com/people/Andy-Tran/61558065130631/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-between p-4 rounded-xl bg-[#0b0e14]/90 border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-300 group shadow-lg hover:shadow-[0_0_20px_rgba(34,211,238,0.1)]"
@@ -90,7 +90,7 @@ export default function Location() {
 
                             {/* NÚT GỌI ĐIỆN */}
                             <a
-                                href="tel:0387182518"
+                                href="https://www.facebook.com/people/Andy-Tran/61558065130631/"
                                 className="flex items-center justify-between p-4 rounded-xl bg-[#0b0e14]/90 border border-white/10 hover:border-emerald-400/50 transition-all duration-300 group shadow-lg hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]"
                             >
                                 <span className="bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg group-hover:text-emerald-200 transition-colors">
