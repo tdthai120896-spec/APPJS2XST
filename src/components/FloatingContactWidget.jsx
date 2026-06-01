@@ -44,7 +44,7 @@ function FloatingContactWidget() {
         
         {/* NÚT ZALO */}
         <a 
-          href="https://zalo.me/0387182518" // Thay số điện thoại Zalo của bạn
+          href="https://www.facebook.com/profile.php?id=61558065130631" // Thay số điện thoại Zalo của bạn
           target="_blank" 
           rel="noopener noreferrer"
           className="flex items-center gap-3 group/item"
@@ -75,7 +75,7 @@ function FloatingContactWidget() {
 
         {/* NÚT GỌI ĐIỆN */}
         <a 
-          href="tel:0387182518" // Thay số hotline của bạn
+          href="https://www.facebook.com/profile.php?id=61558065130631" // Thay số hotline của bạn
           className="flex items-center gap-3 group/item"
         >
           <span className="bg-[#0b0e14]/90 backdrop-blur-md border border-emerald-500/40 text-emerald-400 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all duration-300 group-hover/item:border-emerald-400 group-hover/item:text-emerald-300">

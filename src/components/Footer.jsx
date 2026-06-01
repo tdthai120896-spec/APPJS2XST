@@ -19,11 +19,11 @@ function Footer() {
             <div className="mb-3 text-sm font-semibold text-white">Contact & Support</div>
             <ul className="space-y-3 text-sm text-white/65">
               {/* Link Zalo: thay 09xxxx bằng số điện thoại của bạn */}
-              <a href="https://zalo.me/0387182518" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#00d2ff] transition-colors cursor-pointer">
+              <a href="https://www.facebook.com/profile.php?id=61558065130631" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#00d2ff] transition-colors cursor-pointer">
                 <Phone className="h-4 w-4 text-[#00d2ff]" /> Zalo
               </a>
               {/* Link Messenger: thay username bằng ID page hoặc username của bạn */}
-              <a href="https://m.me/61558065130631" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-blue-400 transition-colors cursor-pointer">
+              <a href="https://www.facebook.com/profile.php?id=61558065130631" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-blue-400 transition-colors cursor-pointer">
                 <MessageSquare className="h-4 w-4 text-blue-400" /> Messenger
               </a>
             </ul>
