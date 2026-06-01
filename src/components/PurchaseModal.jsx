@@ -125,7 +125,7 @@ function PurchaseModal({ game, onClose }) {
       }}
       className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-[#111622] py-2 text-[9px] font-bold text-blue-400 border border-blue-500/20 transition-colors cursor-pointer"
     >
-      <MessageSquare className="h-3.5 w-3.5" /> 
+      <MessageCircle className="h-3.5 w-3.5" /> 
       Zalo
     </div>
   </div>
