@@ -49,6 +49,17 @@ const NavigationBar = ({ currentView, handleNavigation }) => {
           Liên Hệ
         </button>
 
+        <button 
+          onClick={() => handleNavigation('AllGames')} 
+          className={`text-[11px] sm:text-sm font-black uppercase italic tracking-wide px-2.5 sm:px-4 py-2 rounded-full transition-all duration-300 flex-1 sm:flex-none text-center border ${
+            currentView === 'AllGames' 
+              ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.6)]' 
+              : 'text-gray-400 hover:text-white border-transparent'
+          }`}
+        >
+          Tất cả games
+        </button>
+
       </nav>
     </div>
   );

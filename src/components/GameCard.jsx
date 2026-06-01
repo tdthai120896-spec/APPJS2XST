@@ -10,7 +10,7 @@ function GameCard({ game, onAddToCart }) {
   return (
     <>
       <div 
-        className="relative group cursor-pointer w-[200px] md:w-[240px] shrink-0 h-full"
+        className="relative group cursor-pointer w-full h-full min-h-0" //relative group cursor-pointer w-[200px] md:w-[240px] shrink-0 h-full
         onClick={() => {
           setShowDetail(true); // Click vào thẻ sẽ mở chi tiết game độc lập
         }}

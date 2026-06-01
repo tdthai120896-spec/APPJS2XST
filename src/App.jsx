@@ -10,6 +10,7 @@ import PurchaseModal from './components/PurchaseModal'
 import Cart from './components/Cart'
 import AboutSection from './components/AboutSection'
 import Location from './components/Location'
+import AllGames from './components/AllGames'
 
 // KIỂM TRA DÒNG NÀY: Nếu file nằm trong folder components thì dùng './components/NavigationBar'
 import NavigationBar from './components/NavigationBar'
@@ -124,11 +125,11 @@ function App() {
             <>
               <Hero searchTerm={searchTerm} handleSearch={handleSearch} suggestions={suggestions} handleOpenModal={handleOpenModal} />
               <div className="space-y-24 pb-20 flex-grow">
-                <MarqueeGames 
-  games={marqueeGames} 
-  onGameClick={handleOpenModal} 
-  onAddToCart={handleAddToCart} 
-/>
+                <MarqueeGames
+                  games={marqueeGames}
+                  onGameClick={handleOpenModal}
+                  onAddToCart={handleAddToCart}
+                />
                 <section className="relative space-y-24">
                   {categories.map((cat) => (
                     <CategoryShelf key={cat.key} category={cat} onGameClick={handleOpenModal} onAddToCart={handleAddToCart} onBuyNow={handleOpenPurchaseModal} />
@@ -153,6 +154,21 @@ function App() {
           {currentView === 'contact' && (
             <div className="flex-grow px-4 md:px-10 py-12 max-w-7xl mx-auto w-full">
               <Location />
+            </div>
+          )}
+
+          {currentView === 'AllGames' && (
+            <div className="flex-grow px-4 md:px-10 py-12 max-w-7xl mx-auto w-full">
+              <AllGames
+                onAddToCart={handleAddToCart}
+                onBackToHome={() => setCurrentView('home')}
+
+                // Truyền tiếp các biến quản lý tìm kiếm đang có sẵn ở App.jsx của bạn qua đây:
+                searchTerm={searchTerm}
+                handleSearch={handleSearch}
+                suggestions={suggestions}
+                handleOpenModal={handleOpenModal} // Hoặc tên hàm mở modal chi tiết game trên máy bạn
+              />
             </div>
           )}
 
