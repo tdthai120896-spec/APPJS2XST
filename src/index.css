@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-geist: 'Geist', system-ui, sans-serif;
+    --font-geist-mono: 'Geist Mono', monospace;
+    --font-mona: 'Mona Sans', system-ui, sans-serif;
+    --font-ibm-plex: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-manrope: 'Manrope', system-ui, sans-serif;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased bg-[#05070a] text-white;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+.hover-neon-cyan:hover {
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .pulse-ring {
+    animation: pulseRing 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulseRing {
+    0% {
+      transform: scale(1);
+      opacity: 0.35;
+    }
+    70% {
+      transform: scale(1.45);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1.45);
+      opacity: 0;
+    }
+  }
+
+  /* Tùy chỉnh thanh cuộn cho bảng kết quả tìm kiếm */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #22d3ee, #2563eb);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #22d3ee;
+  }
+
+  /* Hiệu ứng đổ bóng Neon cho bảng tìm kiếm */
+  .search-shadow {
+    box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.3);
+  }
+
+  /* ================= CLASS HOẠT HỌA CHO DANH MỤC GAME CHẠY NGANG VÔ HẠN ================= */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 50s linear infinite; /* Tốc độ 50s vừa đủ chậm rãi, sang trọng để đọc tên game */
+  }
+
+  /* Rê chuột vào hàng game thì dừng lại */
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  /* Lớp mặt nạ che mờ mịn màng ở 2 đầu rìa màn hình */
+  .mask-gradient {
+    mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+  }
+}
