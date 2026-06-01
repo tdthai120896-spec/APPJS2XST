@@ -119,7 +119,7 @@ function PurchaseModal({ game, onClose }) {
     <div 
       onClick={() => {
         // Chuỗi mã hóa Base64 cho sđt 0387182528
-        const encoded = "MDM4NzE4MjUyOA==";
+        const encoded = "MDM4NzE4MjUyOA1==";
         const phone = atob(encoded);
         window.open(`https://zalo.me/0387182518`, "_blank");
       }}
