@@ -131,7 +131,7 @@ function PurchaseModal({ game, onClose }) {
   </div>
 </div>
 
-
+            <div>
               <div className="relative group/btn">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
                 <a href="https://www.facebook.com/profile.php?id=61558065130631" target="_blank" rel="noreferrer" className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-[#111622] py-2 text-[9px] font-bold text-white border border-white/10 transition-colors">
