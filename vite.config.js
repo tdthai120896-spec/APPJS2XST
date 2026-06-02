@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  // Giữ nguyên đường dẫn tương đối để chạy được cả Github Pages và Netlify
   base: './', 
   optimizeDeps: {
     exclude: [],
@@ -10,14 +11,17 @@ export default defineConfig({
     holdUntilCrawlEnd: true
   },
   build: {
-    // Ép mọi thứ xuất ra chuẩn chỉ, không băm nhỏ file tùy tiện
-    cssCodeSplit: false, 
+    // ➔ CHỐT HẠ: Tắt tính năng tự động chèn mã Polyfill cho Module (Nguyên nhân chính gây lỗi MIME trên Netlify)
+    polyfillModulePreload: false,
+    cssCodeSplit: false,
     rollupOptions: {
       output: {
-        // Gom toàn bộ code JS vào đúng 1 file index duy nhất để loại bỏ hoàn toàn rủi ro MIME
+        // Gom gọn gàng để tránh lỗi nhận diện file nhị phân
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name].[ext]',
+        // Ép định dạng đầu ra là 'iife' hoặc 'es' nhưng không tự phán đoán MIME
+        format: 'es'
       }
     }
   },
