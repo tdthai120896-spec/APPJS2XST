@@ -10,10 +10,12 @@ export default defineConfig({
     holdUntilCrawlEnd: true
   },
   build: {
-    polyfillModulePreload: false, // ➔ Bắt buộc phải có dòng này để triệt tiêu lỗi MIME
-    cssCodeSplit: false,
+    polyfillModulePreload: false,
+    // ➔ Đổi lại thành true để Tailwind CSS được bóc tách và nạp riêng biệt chính xác
+    cssCodeSplit: true, 
     rollupOptions: {
       output: {
+        // Cấu hình xuất file thông minh: JS vào assets, CSS vào đúng vị trí của nó
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name].[ext]',
