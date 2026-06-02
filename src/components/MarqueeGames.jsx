@@ -1,4 +1,4 @@
-// MarqueeGames.jsx - FIX LỖI ADD GIỎ HÀNG 100%
+// MarqueeGames.jsx - FIX KÍCH THƯỚC CHUẨN GAMECARD VÀ NÚT GIỎ MÀU XANH
 import React, { useState } from 'react'
 import { Flame, ShoppingBag, Eye } from 'lucide-react'
 import PurchaseModal from './PurchaseModal'
@@ -29,16 +29,14 @@ function MarqueeGames({ games, onAddToCart }) {
         {showToast && (
           <div className="fixed top-[15%] left-1/2 -translate-x-1/2 z-[1000005] pointer-events-none animate-in zoom-in fade-in duration-300">
             <div className="flex items-center gap-3 bg-cyan-500 px-5 py-2.5 md:px-7 md:py-3 rounded-full shadow-[0_0_40px_rgba(6,182,212,0.5)] border border-white/20">
-              {/* Icon nhỏ gọn, sắc nét */}
               <ShoppingBag className="w-4 h-4 md:w-5 md:h-5 text-black stroke-[2.5]" />
-
-              {/* Chữ font Black, dãn cách rộng nhìn rất sang */}
               <span className="text-black font-black text-[10px] md:text-xs uppercase tracking-[0.15em] whitespace-nowrap leading-none">
                 Đã thêm vào giỏ hàng
               </span>
             </div>
           </div>
         )}
+        
         <div className="mx-auto max-w-7xl px-6 md:px-8 mb-6">
           <div className="flex items-center gap-2">
             <div className="p-1.5 bg-cyan-500/10 rounded-xl text-cyan-400 border border-cyan-500/20 animate-pulse">
@@ -55,72 +53,89 @@ function MarqueeGames({ games, onAddToCart }) {
         <div className="relative w-full overflow-hidden select-none mask-gradient pt-2 pb-4">
           <div className="animate-marquee flex gap-6">
             {games.map((game, index) => (
+              /* ĐÃ FIX KÍCH THƯỚC KHUNG BỌC CHO ĐỒNG BỘ 1:1 VỚI GAMECARD */
               <div
                 key={`marquee-${game.title}-${index}`}
                 onClick={() => setSelectedDetailGame(game)}
-                className="shrink-0 w-[200px] md:w-[240px] cursor-pointer group/marquee-item bg-[#0b101a]/60 rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-cyan-400/50 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(6,182,212,0.3)] flex flex-col justify-between"
+                className="shrink-0 w-[160px] sm:w-[200px] md:w-[280px] relative group cursor-pointer min-h-0 flex flex-col"
               >
-                <div>
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-white/5">
-                    {/* GIỮ NGUYÊN POSTER CỦA BẠN */}
+                {/* Viền phát sáng tổng thể của Thẻ Game khi hover */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-600 rounded-[1.2rem] md:rounded-[1.6rem] blur-md opacity-0 group-hover:opacity-100 transition duration-500"></div>
+
+                {/* Thẻ chứa nội dung */}
+                <article className="relative w-full h-full overflow-hidden rounded-[1.2rem] md:rounded-[1.6rem] border border-white/10 bg-[#05080c] backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-1.5 group-hover:border-cyan-400/30 flex flex-col">
+                  
+                  {/* 1. KHỐI ẢNH POSTER (Cố định tỉ lệ 16:9 không méo hình) */}
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-white/5 shrink-0">
                     <img
                       src={game.poster}
                       alt={game.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover/marquee-item:scale-110"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out scale-[1.01] group-hover:scale-[1.06] transform-gpu"
+                      style={{ 
+                        backfaceVisibility: 'hidden', 
+                        WebkitBackfaceVisibility: 'hidden', 
+                        willChange: 'transform',
+                        imageRendering: '-webkit-optimize-contrast'
+                      }}
                     />
 
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover/marquee-item:opacity-100 transition-all duration-300 backdrop-blur-[2px]">
-                      <div className="relative w-12 h-12 flex items-center justify-center transition-all duration-500 transform scale-50 group-hover/marquee-item:scale-100">
-                        <div className="absolute inset-0 rounded-full bg-cyan-500/20 blur-md group-hover/marquee-item:animate-pulse"></div>
-                        <div className="relative w-full h-full rounded-full bg-white/10 border border-white/20 flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.4)] group-hover/marquee-item:border-cyan-400/50 group-hover/marquee-item:shadow-[0_0_25px_rgba(6,182,212,0.8)] transition-all duration-300">
-                          <Eye className="w-6 h-6 text-white group-hover/marquee-item:text-cyan-400 transition-colors duration-300 stroke-[2.5]" />
+                    {/* Hiệu ứng lớp phủ & Con mắt Neon khi Hover */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+                      <div className="relative w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
+                        <div className="p-3 rounded-full bg-blue-600/20 border border-blue-500 text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.8)] backdrop-blur-sm hover:bg-blue-500 hover:text-white hover:border-blue-400 transition-all duration-200">
+                          <Eye className="w-6 h-6 md:h-7 md:w-7 stroke-[2.5]" />
                         </div>
                       </div>
                     </div>
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b101a] via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#05070a] via-transparent to-transparent pointer-events-none" />
                   </div>
 
-                  <div className="p-3 pb-1">
-                    <h4 className="font-black text-sm text-gray-200 uppercase tracking-tight truncate group-hover/marquee-item:text-cyan-400 transition-colors">
-                      {game.title}
-                    </h4>
-                    <div className="flex items-center justify-between mt-1">
-                      <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">{game.genre}</span>
-                      <span className="text-xs font-black text-cyan-400">{game.price}</span>
+                  {/* 2. KHỐI THÔNG TIN CHỮ (Khóa cứng chiều cao bằng GameCard để thẳng hàng) */}
+                  <div className="p-3 pt-2.5 pb-2 md:p-4 md:pt-3 flex flex-col justify-between h-[84px] md:h-[96px] shrink-0 min-w-0">
+                    <div className="min-w-0 w-full flex flex-col justify-between h-full">
+                      <h3 className="text-white font-bold text-xs md:text-sm uppercase italic tracking-tighter group-hover:text-cyan-400 transition-colors block max-w-full line-clamp-2 h-8 md:h-10 leading-tight overflow-hidden">
+                        {game.title}
+                      </h3>
+                      <div className="mt-1">
+                        <span className="text-cyan-400 font-black text-xs md:text-sm tracking-wide block">{game.price}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="p-3 pt-0 mt-2 flex items-center gap-1.5 w-full">
-                  <button
-                    onClick={(e) => handleAddAction(e, game)} // ĐÃ SỬA: Gọi hàm add giỏ hàng chính xác
-                    className="flex items-center justify-center gap-1 py-1.5 px-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all flex-1 min-w-0"
-                  >
-                    <ShoppingBag className="h-3 w-3 stroke-[2.5]" />
-                    <span className="text-[9px] font-bold uppercase">Giỏ</span>
-                  </button>
-
-                  <div className="relative group/btn BuyButton flex-1 min-w-0">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur opacity-20 group-hover/btn:opacity-60 transition duration-300"></div>
+                  {/* 3. CỤM NÚT BẤM HÀNH ĐỘNG (Đổi nút Giỏ hàng sang màu xanh lam giống hệt GameCard) */}
+                  <div className="px-3 pb-4 md:px-4 md:pb-5 mt-auto flex flex-col sm:flex-row gap-2 shrink-0">
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedPurchaseGame(game);
-                      }}
-                      className="relative w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black py-1.5 px-2 rounded-full text-[9px] font-black uppercase transition-transform active:scale-95 text-center"
+                      onClick={(e) => handleAddAction(e, game)}
+                      className="flex items-center justify-center gap-1 py-1.5 px-2 md:py-2 md:px-2 rounded-full bg-blue-600/20 border border-blue-500 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)] hover:text-white hover:bg-blue-500 hover:border-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all duration-300 active:scale-95 w-full sm:flex-1 min-w-0 shrink-0"
+                      title="Thêm vào giỏ hàng"
                     >
-                      Mua
+                      <ShoppingBag className="h-3 w-3 md:h-3.5 md:w-3.5 stroke-[2.5] shrink-0" />
+                      <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-tighter truncate">Giỏ hàng</span>
                     </button>
+
+                    <div className="relative group/btn BuyButton w-full sm:flex-1 shrink-0">
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur opacity-30 group-hover/btn:opacity-80 transition duration-300"></div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedPurchaseGame(game);
+                        }}
+                        className="relative w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black py-1.5 px-2 md:py-2 md:px-2 rounded-full text-[9px] md:text-[10px] font-black uppercase transition-transform active:scale-95 text-center block truncate tracking-tighter"
+                      >
+                        Mua ngay
+                      </button>
+                    </div>
                   </div>
-                </div>
+
+                </article>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* MODAL CHI TIẾT - ĐÃ SỬA: Thêm onAddToCart */}
+      {/* MODAL CHI TIẾT */}
       {selectedDetailGame && (
         <GameDetailModal
           game={selectedDetailGame}
@@ -129,7 +144,7 @@ function MarqueeGames({ games, onAddToCart }) {
             setSelectedDetailGame(null);
             setSelectedPurchaseGame(selectedDetailGame);
           }}
-          onAddToCart={onAddToCart} // QUAN TRỌNG: Phải có dòng này mới add được trong modal
+          onAddToCart={onAddToCart}
         />
       )}
 

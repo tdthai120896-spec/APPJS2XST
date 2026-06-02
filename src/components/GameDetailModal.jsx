@@ -169,23 +169,29 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                                     </a>
                                 </div>
 
-                                {/* Zalo ẩn */}
-    <div 
-      onClick={() => {
-        // Chuỗi mã hóa Base64 cho sđt 0387182528
-        const encoded = "MDM4NzE4MjUyOA1==";
-        const phone = atob(encoded);
-        window.open(`https://zalo.me/0387182518`, "_blank");
-      }}
-      className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-[#111622] py-2 text-[9px] font-bold text-blue-400 border border-blue-500/20 transition-colors cursor-pointer"
-    >
-      <MeagageSquare className="h-3.5 w-3.5" /> 
-      Zalo
-    </div>
-  </div>
-</div>
+                                <div className="relative group/btn">
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
+                                    <a
+                                        href="https://zalo.me/0387182518"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="relative flex items-center justify-center gap-1 sm:gap-1.5 px-1 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-emerald-600/10 hover:bg-emerald-600 border border-emerald-600/30 text-emerald-400 hover:text-white text-[9px] sm:text-[11px] font-bold uppercase tracking-wider transition-all"
+                                    >
+                                        <Phone className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" /> Zalo Chat
+                                    </a>
+                                </div>
 
-                            
+                                <div className="relative group/btn">
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
+                                    <a
+                                        href="tel:0387182518"
+                                        className="relative flex items-center justify-center gap-1 sm:gap-1.5 px-1 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-gradient-to-br from-[#00d2ff] to-cyan-500 text-[#031018] hover:brightness-110 font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition-all"
+                                    >
+                                        <Phone className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" /> Call
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
