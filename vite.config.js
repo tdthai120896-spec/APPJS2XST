@@ -3,18 +3,15 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  // Giữ nguyên đường dẫn tương đối để chạy tốt trên cả Netlify và GitHub
-  base: './', 
+  base: './', // Giữ nguyên để nhận diện đúng thư mục trên Netlify
   optimizeDeps: {
     exclude: [],
     entries: ['./src/**/*.{js,jsx,ts,tsx}'],
     holdUntilCrawlEnd: true
   },
   build: {
-    // ➔ CHỐT HẠ 1: Tắt module preload để không bị lỗi MIME type trên Netlify
-    polyfillModulePreload: false,
-    // ➔ CHỐT HẠ 2: Xóa bỏ hoàn toàn phần ép tên file thủ công (rollupOptions) cũ 
-    // Để Vite tự động quản lý xuất file JS/CSS đồng bộ 100%, không lo mất giao diện
+    // Không dùng rollupOptions ép tên file nữa, để Vite tự sinh hash cho cả JS lẫn CSS đồng bộ
+    polyfillModulePreload: false, // Chặn đứng lỗi MIME gốc trên Netlify
   },
   server: {
     port: 3000,
