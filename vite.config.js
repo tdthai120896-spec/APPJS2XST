@@ -3,23 +3,21 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  // 🛠️ FIX 1: Đổi sang './' (đường dẫn tương đối) giúp dự án chạy được ở bất kỳ hosting nào (Netlify, Vercel, GitHub) mà không bị trắng trang
   base: './', 
   optimizeDeps: {
-    // Exclude packages that shouldn't be pre-bundled
     exclude: [],
-    // Entries point for dependency pre-bundling
     entries: ['./src/**/*.{js,jsx,ts,tsx}'],
-    // Hold the first optimizeDeps run until all dependencies are discovered
     holdUntilCrawlEnd: true
   },
   build: {
-    // 🛠️ FIX 2: Ép Rollup xuất file kèm định dạng .js rõ ràng để trình duyệt không hiểu lầm thành "application/octet-stream"
+    // Ép mọi thứ xuất ra chuẩn chỉ, không băm nhỏ file tùy tiện
+    cssCodeSplit: false, 
     rollupOptions: {
       output: {
-        entryFileNames: 'assets/[name]-[hash].js',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
+        // Gom toàn bộ code JS vào đúng 1 file index duy nhất để loại bỏ hoàn toàn rủi ro MIME
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]',
       }
     }
   },
