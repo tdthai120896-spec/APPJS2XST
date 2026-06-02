@@ -16,7 +16,7 @@ export const RAW_GAMES = {
   'Action': [
     { title: "Black Myth: Wukong", genre: "Action RPG", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg" },
     { title: "Spider-Man Remastered", genre: "Action", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/header.jpg" },
-    { title: "God of War Ragnarök", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/header.jpg" },
+    { title: "God of War Ragnarok", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/header.jpg" },
     { title: "Ghost of Tsushima", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg" },
     { title: "Sekiro: Shadows Die Twice", genre: "Souls-like", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg" },
     { title: "Red Dead Redemption 2", genre: "Action", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" },
