@@ -1,6 +1,6 @@
 name: Node.js Build
 
-# Kích hoạt khi có hành động push hoặc pull request vào nhánh main (hoặc master)
+# Kích hoạt khi có hành động push hoặc pull request vào nhánh main (hoặc master
 on:
   push:
     branches: [ "main", "master" ]
