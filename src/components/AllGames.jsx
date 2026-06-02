@@ -95,13 +95,8 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
       {filteredGamesList.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-3 gap-y-6 md:gap-x-6 md:gap-y-8 grid-auto-rows-max">
           {filteredGamesList.map((game, index) => (
-<<<<<<< HEAD
-            /* 🛠️ FIX ĐỒNG BỘ: h-[295px] (Mobile) và md:h-[285px] (PC) 
-               Đoạn này đã ôm khít khịt vừa vặn với chiều cao thực tế của GameCard */
+            /* 🛠️ ĐÃ FIX LỖI MERGE: Giữ lại class chiều cao mới h-[295px] và md:h-[285px] ôm khít khịt GameCard */
             <div key={index} className="h-[295px] md:h-[285px] w-full flex flex-col rounded-[1.2rem] md:rounded-[1.6rem] overflow-hidden">
-=======
-            <div key={index} className="h-[260px] md:h-[240px] w-full flex flex-col overflow-hidden">
->>>>>>> bfcd1d9f0cb02eef0023ae65e2b9967f02029ffa
               <GameCard game={game} onAddToCart={onAddToCart} />
             </div>
           ))}
