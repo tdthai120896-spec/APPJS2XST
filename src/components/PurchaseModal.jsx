@@ -142,7 +142,7 @@ function PurchaseModal({ game, onClose }) {
               <div className="relative group/btn">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
                 <a href="https://www.facebook.com/profile.php?id=61558065130631" className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-gradient-to-br from-[#00d2ff] to-cyan-500 py-2 text-[9px] font-bold text-[#031018] hover:brightness-110 transition-all">
-                  <Phone className="h-3.5 w-3.5" /> Gọi
+                  <Phone className="h-3.5 w-3.5" /> Call
                 </a>
               </div>
             </div>
