@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  // Giữ nguyên đường dẫn tương đối để chạy tốt trên cả Netlify và GitHub
   base: './', 
   optimizeDeps: {
     exclude: [],
@@ -10,18 +11,10 @@ export default defineConfig({
     holdUntilCrawlEnd: true
   },
   build: {
+    // ➔ CHỐT HẠ 1: Tắt module preload để không bị lỗi MIME type trên Netlify
     polyfillModulePreload: false,
-    // ➔ Đổi lại thành true để Tailwind CSS được bóc tách và nạp riêng biệt chính xác
-    cssCodeSplit: true, 
-    rollupOptions: {
-      output: {
-        // Cấu hình xuất file thông minh: JS vào assets, CSS vào đúng vị trí của nó
-        entryFileNames: 'assets/[name].js',
-        chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]',
-        format: 'es'
-      }
-    }
+    // ➔ CHỐT HẠ 2: Xóa bỏ hoàn toàn phần ép tên file thủ công (rollupOptions) cũ 
+    // Để Vite tự động quản lý xuất file JS/CSS đồng bộ 100%, không lo mất giao diện
   },
   server: {
     port: 3000,
