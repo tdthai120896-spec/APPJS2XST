@@ -17,7 +17,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps: "deployment".outputs.page_url }}
+      url: ${{ steps: "deployment".outputs.page_url }} # ❌ Sai ở đây (dấu hai chấm đặt sai vị trí)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
