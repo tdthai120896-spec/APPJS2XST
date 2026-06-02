@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  base: '/offline-steam/', // ➔ THÊM DÒNG NÀY: Giúp định tuyến đúng đường dẫn trên GitHub Pages, tránh lỗi màn hình trắng
   optimizeDeps: {
     // Exclude packages that shouldn't be pre-bundled
     exclude: [],
