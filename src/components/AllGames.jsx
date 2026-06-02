@@ -3,7 +3,6 @@ import { Search, ChevronRight } from 'lucide-react';
 import GameCard from './GameCard'; 
 import { RAW_GAMES } from '../gamesData'; 
 
-// 🛠️ ĐÃ BỔ SUNG PROPS: searchTerm, handleSearch, suggestions, handleOpenModal từ file Hero sang
 function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggestions, handleOpenModal }) {
   
   // Hàm xử lý gộp toàn bộ game từ mọi danh mục và loại bỏ những game bị lặp tên (title)
@@ -27,7 +26,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
 
   const gamesList = getAllUniqueGames();
 
-  // 🛠️ LOGIC BỔ SUNG: Lọc danh sách lưới game phía dưới theo ô tìm kiếm (nếu đang gõ)
+  // LOGIC: Lọc danh sách lưới game phía dưới theo ô tìm kiếm (nếu đang gõ)
   const filteredGamesList = gamesList.filter(game => 
     game.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -47,7 +46,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
         </button>
       </div>
 
-      {/* 🛠️ KHUNG THANH TÌM KIẾM ĐÃ CHUYỂN SANG VÀ TỐI ƯU DIỆN TÍCH CHO TRANG ALLGAMES */}
+      {/* KHUNG THANH TÌM KIẾM CHO TRANG ALLGAMES */}
       <div className="relative z-50 w-full max-w-xl mx-auto mb-10 group px-1">
         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-25 group-hover:opacity-100 transition duration-500"></div>
         <div className="relative">
@@ -62,7 +61,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
             onChange={handleSearch}
           />
 
-          {/* Khung hiển thị danh sách gợi ý nhanh khi gõ */}
+          {/* Khung hiển thị danh sách gợi ý nhanh khi gõ */}
           {suggestions.length > 0 && (
             <div className="absolute top-full left-0 right-0 mt-3 bg-[#0b101a]/98 border border-cyan-500/40 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-xl" style={{ zIndex: 9999 }}>
               <div className="max-h-[350px] overflow-y-auto custom-scrollbar">
@@ -92,11 +91,13 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
         </div>
       </div>
 
-      {/* Lưới hiển thị danh sách thẻ game (Sửa triệt để chiều cao chống đè mobile) */}
+      {/* Lưới hiển thị danh sách thẻ game */}
       {filteredGamesList.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2.5 gap-y-6 md:gap-x-6 md:gap-y-8 grid-auto-rows-max">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-3 gap-y-6 md:gap-x-6 md:gap-y-8 grid-auto-rows-max">
           {filteredGamesList.map((game, index) => (
-            <div key={index} className="h-[200px] md:h-[240px] w-full flex flex-col overflow-hidden">
+            /* 🛠️ FIX ĐỒNG BỘ: h-[295px] (Mobile) và md:h-[285px] (PC) 
+               Đoạn này đã ôm khít khịt vừa vặn với chiều cao thực tế của GameCard */
+            <div key={index} className="h-[295px] md:h-[285px] w-full flex flex-col rounded-[1.2rem] md:rounded-[1.6rem] overflow-hidden">
               <GameCard game={game} onAddToCart={onAddToCart} />
             </div>
           ))}

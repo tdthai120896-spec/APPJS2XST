@@ -130,7 +130,7 @@ function App() {
                   onGameClick={handleOpenModal}
                   onAddToCart={handleAddToCart}
                 />
-                <section className="relative space-y-24">
+                <section className="relative space-y-12">
                   {categories.map((cat) => (
                     <CategoryShelf key={cat.key} category={cat} onGameClick={handleOpenModal} onAddToCart={handleAddToCart} onBuyNow={handleOpenPurchaseModal} />
                   ))}
