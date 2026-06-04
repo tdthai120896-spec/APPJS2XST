@@ -114,7 +114,7 @@ function PurchaseModal({ game, onClose }) {
             <div className="grid grid-cols-3 gap-1.5 mb-2">
               <div className="relative group/btn">
                 <div className="absolute -inset-0.5 bg-blue-600 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
-                <a href="https://zalo.me/0387182518" target="_blank" rel="noreferrer" className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-[#111622] py-2 text-[9px] font-bold text-blue-400 border border-blue-500/20 transition-colors">
+                <a href="https://www.facebook.com/profile.php?id=61558065130631" target="_blank" rel="noreferrer" className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-[#111622] py-2 text-[9px] font-bold text-blue-400 border border-blue-500/20 transition-colors">
                   <MessageSquare className="h-3.5 w-3.5" /> Zalo
                 </a>
               </div>
@@ -128,7 +128,7 @@ function PurchaseModal({ game, onClose }) {
 
               <div className="relative group/btn">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
-                <a href="tel:0387182518" className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-gradient-to-br from-[#00d2ff] to-cyan-500 py-2 text-[9px] font-bold text-[#031018] hover:brightness-110 transition-all">
+                <a href="https://www.facebook.com/profile.php?id=61558065130631" className="relative flex flex-col items-center justify-center w-full gap-0.5 rounded-xl bg-gradient-to-br from-[#00d2ff] to-cyan-500 py-2 text-[9px] font-bold text-[#031018] hover:brightness-110 transition-all">
                   <Phone className="h-3.5 w-3.5" /> Gọi
                 </a>
               </div>
