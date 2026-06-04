@@ -142,7 +142,7 @@ export const RAW_GAMES = {
     { title: "State of Decay 2", genre: "Survival", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/495420/header.jpg" }
   ],
   'Sports & Racing': [
-    { title: "EA SPORTS FC 26", genre: "Sports", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/header.jpg" },
+    { title: "EA SPORTS FC 26", genre: "Sports", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3110290/header.jpg" },
     { title: "EA SPORTS FC 25", genre: "Sports", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/header.jpg" },
     { title: "Forza Horizon 6", genre: "Racing", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/header.jpg" },
     { title: "Forza Horizon 5", genre: "Racing", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/header.jpg" },
