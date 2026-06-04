@@ -38,7 +38,15 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal }) {
         </h1>
 
         <p className="text-gray-200 text-base md:text-lg max-w-xl mx-auto mb-6">
-          Trải nghiệm siêu phẩm AAA bản quyền. Đồng giá <span className="text-cyan-400 font-black underline decoration-cyan-400/30 underline-offset-4">30.000đ</span>.
+          <span className="block mb-1 md:mb-2">
+            Trải nghiệm siêu phẩm AAA bản quyền.
+          </span>
+          <span className="block">
+            {' '}
+            <span className="text-xl md:text-2xl text-yellow-400 font-black animate-pulse drop-shadow-[0_0_12px_rgba(250,204,21,0.8)]">
+              ✨ <span className="underline decoration-yellow-400/40 underline-offset-4">Đồng giá 30.000đ</span> ✨
+            </span>
+          </span>
         </p>
 
         <div className="grid grid-cols-3 gap-2 max-w-md mx-auto mb-8 p-1.5 rounded-xl bg-black/40 border border-white/5 backdrop-blur-md text-[10px] md:text-xs font-bold text-white/60 uppercase tracking-wider">
