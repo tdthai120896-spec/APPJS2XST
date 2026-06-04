@@ -64,7 +64,10 @@ function GameCard({ game, onAddToCart }) {
               <h3 className="text-white font-bold text-xs md:text-sm uppercase italic tracking-tighter group-hover:text-cyan-400 transition-colors block max-w-full line-clamp-2 h-8 md:h-10 leading-tight overflow-hidden">
                 {game.title}
               </h3>
-              
+              {/* Thể loại game - Nó sẽ nằm ngay dưới đây */}
+              <span className="text-[9px] md:text-[10px] text-blue-400/70 uppercase tracking-wider mt-0.5 truncate block">
+                {game.genre}
+              </span>
               {/* Khối giá tiền độc lập ở dưới, luôn thẳng hàng tăm tắp */}
               <div className="mt-1">
                 <span className="text-cyan-400 font-black text-xs md:text-sm tracking-wide block">{game.price}</span>
