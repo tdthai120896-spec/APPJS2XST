@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect, useCallback } from 'react'
 import CategoryShelf from './components/CategoryShelf'
 import Footer from './components/Footer'
 import FloatingContactWidget from './components/FloatingContactWidget'
+import FloatingAllGames from './components/FloatingAllGames'
 import GuideSection from './components/GuideSection'
 import Hero from './components/Hero'
 import MarqueeGames from './components/MarqueeGames'
@@ -118,7 +119,13 @@ function App() {
 
         {/* COMPONENT THANH ĐIỀU HƯỚNG */}
         <NavigationBar currentView={currentView} handleNavigation={handleNavigation} />
-
+        {/* 🛠️ GỌI NÚT NỔI Ở ĐÂY */}
+        {currentView !== 'AllGames' && (
+          <FloatingAllGames
+            onClick={() => handleNavigation('AllGames')}
+            totalGames="500" // Bạn có thể thay bằng độ dài mảng game thực tế nếu muốn
+          />
+        )}
         <div className="relative z-10 flex flex-col min-h-screen pt-20 md:pt-14">
 
           {currentView === 'home' && (

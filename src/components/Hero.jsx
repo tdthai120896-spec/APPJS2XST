@@ -1,9 +1,10 @@
 import React from 'react'
-import { Sparkles, Users, Layers, ShieldCheck, Search, ChevronRight } from 'lucide-react'
+import { Sparkles, Users, Layers, ShieldCheck, Search, ChevronRight, Gamepad2 } from 'lucide-react' // 🛠️ Đã import thêm Gamepad2 icon
 
-function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal }) {
+// 🛠️ ĐÃ THÊM PROPS `handleNavigation` VÀO ĐÂY ĐỂ CÓ THỂ CHUYỂN TRANG
+function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNavigation }) {
   return (
-    <section className="relative h-[800px] md:h-[850px] w-full flex flex-col items-center justify-center text-center">
+    <section className="relative h-[850px] md:h-[900px] w-full flex flex-col items-center justify-center text-center pb-10">
       <div className="absolute inset-0 z-0">
         <img
           src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/library_hero.jpg"
@@ -14,7 +15,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal }) {
       </div>
 
       {/* BANNER ƯU ĐÃI SIÊU BỰ */}
-      <div className="w-full max-w-5xl px-4 md:px-8 mb-8 z-20 animate-pulse">
+      <div className="w-full max-w-5xl px-4 md:px-8 mb-8 z-20 animate-pulse mt-12 md:mt-16">
         <div className="relative group/promo">
           <div className="absolute -inset-1.5 bg-gradient-to-r from-yellow-500 via-orange-600 to-amber-500 rounded-3xl blur-xl opacity-50 group-hover/promo:opacity-100 transition duration-1000"></div>
           <div className="relative bg-gradient-to-r from-amber-950/90 via-[#0a0c10]/95 to-orange-950/90 border-2 border-amber-400/50 p-6 md:p-8 rounded-3xl shadow-[0_0_50px_rgba(245,158,11,0.25)] flex flex-col items-center justify-center">
@@ -31,7 +32,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal }) {
         </div>
       </div>
 
-      {/* KHUNG NỘI DUNG TÌM KIẾM */}
+      {/* KHUNG NỘI DUNG CHÍNH */}
       <div className="relative z-20 w-full max-w-xl mx-auto px-6">
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-3 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
           NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">STEAM</span>
@@ -42,9 +43,9 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal }) {
             Trải nghiệm siêu phẩm AAA bản quyền.
           </span>
           <span className="block">
-            {' '}
+            Đồng giá{' '}
             <span className="text-xl md:text-2xl text-yellow-400 font-black animate-pulse drop-shadow-[0_0_12px_rgba(250,204,21,0.8)]">
-              ✨ <span className="underline decoration-yellow-400/40 underline-offset-4">Đồng giá 30.000đ</span> ✨
+              ⚡ <span className="underline decoration-yellow-400/40 underline-offset-4">30.000đ</span> ⚡
             </span>
           </span>
         </p>
@@ -65,7 +66,8 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal }) {
           </div>
         </div>
 
-        <div className="relative group">
+        {/* THANH TÌM KIẾM */}
+        <div className="relative group mb-6">
           <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-25 group-hover:opacity-100 transition duration-500"></div>
           <div className="relative">
             <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none z-30">
@@ -107,6 +109,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal }) {
             )}
           </div>
         </div>
+
       </div>
     </section>
   )

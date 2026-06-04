@@ -45,20 +45,15 @@ const NavigationBar = ({ currentView, handleNavigation }) => {
           Liên Hệ
         </button>
 
-        {/* 🛠️ NÚT "TẤT CẢ GAMES" - HIỆU ỨNG NHỊP THỞ (PULSE) */}
-        {/* 🛠️ NÚT "TẤT CẢ GAMES" - HIỆU ỨNG NHỊP THỞ (PULSE) */}
         <button
           onClick={() => handleNavigation('AllGames')}
-          className={`text-[9px] min-[390px]:text-[10px] sm:text-sm font-black uppercase italic tracking-tighter sm:tracking-wide px-1 sm:px-4 py-1 sm:py-2 rounded-full transition-all duration-300 flex-1 sm:flex-none text-center border flex flex-col sm:flex-row items-center justify-center gap-0 sm:gap-1 leading-[1.1] sm:leading-normal ${currentView === 'AllGames'
-              ? 'bg-yellow-400/20 text-yellow-300 border-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.6)]'
-              : 'text-yellow-400 border-transparent animate-pulse drop-shadow-[0_0_10px_rgba(250,204,21,0.8)] hover:text-yellow-200 hover:scale-105'
-            }`}
+          className={`text-[11px] sm:text-sm font-black uppercase italic tracking-wide px-2.5 sm:px-4 py-2 rounded-full transition-all duration-300 flex-1 sm:flex-none text-center border whitespace-nowrap ${
+            currentView === 'AllGames'
+              ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.6)]'
+              : 'text-gray-400 hover:text-white border-transparent'
+          }`}
         >
-          <div className="flex items-center gap-0.5 sm:gap-1">
-            <span className="text-[10px] sm:text-sm">🔥</span>
-            <span>Tất cả</span>
-          </div>
-          <span>games</span>
+          Tất Cả Games
         </button>
 
       </nav>
