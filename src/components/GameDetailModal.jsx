@@ -172,7 +172,7 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                                 <div className="relative group/btn">
                                     <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
                                     <a
-                                        href="https://zalo.me/0387182518"
+                                        href="https://www.facebook.com/profile.php?id=61558065130631"
                                         target="_blank"
                                         rel="noreferrer"
                                         className="relative flex items-center justify-center gap-1 sm:gap-1.5 px-1 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-emerald-600/10 hover:bg-emerald-600 border border-emerald-600/30 text-emerald-400 hover:text-white text-[9px] sm:text-[11px] font-bold uppercase tracking-wider transition-all"
@@ -184,7 +184,7 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                                 <div className="relative group/btn">
                                     <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
                                     <a
-                                        href="tel:0387182518"
+                                        href="https://www.facebook.com/profile.php?id=61558065130631"
                                         className="relative flex items-center justify-center gap-1 sm:gap-1.5 px-1 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-gradient-to-br from-[#00d2ff] to-cyan-500 text-[#031018] hover:brightness-110 font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition-all"
                                     >
                                         <Phone className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" /> Call
