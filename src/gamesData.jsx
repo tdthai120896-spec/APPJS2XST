@@ -263,17 +263,15 @@ export const RAW_GAMES = {
     { title: "Ghost Recon Wildlands", genre: "Shooter", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/460930/header.jpg" }
   ],
     'Others': [
-    { title: "Hades II", genre: "Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/header.jpg" },
-    { title: "Dead Cells", genre: "Action Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/588650/header.jpg" },
-    { title: "Cult of the Lamb", genre: "Indie Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1313140/header.jpg" },
-    { title: "Balatro", genre: "Card Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/header.jpg" },
-    { title: "Vampire Survivors", genre: "Bullet Hell", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1794680/header.jpg" },
-    { title: "Risk of Rain 2", genre: "Action Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632360/header.jpg" },
-    { title: "Enter the Gungeon", genre: "Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/311690/header.jpg" },
-    { title: "Slay the Spire", genre: "Card Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/646570/header.jpg" },
-    // --- Đã chuyển từ Other & Other 2 vào ---
-    { title: "The Binding of Isaac", genre: "Roguelike", price: "30.000đ", poster: "" },
-    { title: "The Binding of Isaac: Rebirth", genre: "Roguelike", price: "30.000đ", poster: "" },
-    { title: "Brotato", genre: "Roguelike", price: "30.000đ", poster: "" }
+    { "title": "ABO MANDO", "genre": "Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/474770/header.jpg" },
+    { "title": "Above - VR", "genre": "Adventure/VR", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/598230/header.jpg" },
+    { "title": "Absconding Zatwor", "genre": "Action/Indie", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/385000/header.jpg" },
+    { "title": "Absoloot", "genre": "Action/Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/598230/header.jpg" },
+    { "title": "Abyss Raiders: Uncharted", "genre": "Action/Strategy", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/331730/header.jpg" },
+    { "title": "The Admin", "genre": "Simulation", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620700/header.jpg" },
+    { "title": "Adorables", "genre": "Action/Casual", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/366760/header.jpg" },
+    { "title": "The Adventurer - Episode 1: Beginning of the End", "genre": "Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/725350/header.jpg" },
+    { "title": "Adventures of Hooi", "genre": "Platformer", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/551220/header.jpg" },
+    { "title": "Adventures On The Polluted Islands", "genre": "Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/474770/header.jpg" }
   ]
 };
