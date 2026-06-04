@@ -49,7 +49,7 @@ function FloatingContactWidget() {
             e.preventDefault();
             const encoded = "MDM4NzE4MjUxOA==";
             const phone = atob(encoded);
-            window.open(`https://zalo.me/0387182518`, "_blank");
+            window.open(`https://www.facebook.com/profile.php?id=61558065130631, "_blank");
           }}
           className="flex items-center gap-3 group/item"
         >
