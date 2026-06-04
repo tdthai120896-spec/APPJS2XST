@@ -42,14 +42,20 @@ function FloatingContactWidget() {
       {/* MENU CON (Zalo, Messenger, Call) */}
       <div className={`flex flex-col items-end gap-4 mb-4 transition-all duration-300 ease-out ${activeMenuClasses}`}>
 
-        {/* NÚT ZALO */}
+      {/* NÚT ZALO */}
         <a
-          href="https://www.facebook.com/profile.php?id=61558065130631" // Thay số điện thoại Zalo của bạn
+          href="https://www.facebook.com/profile.php?id=61558065130631"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-3 group/item"
         >
-
+          <span className="bg-[#0b0e14]/90 backdrop-blur-md border border-blue-500/40 text-blue-400 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all duration-300 group-hover/item:border-blue-400 group-hover/item:text-blue-300">
+            Zalo
+          </span>
+          <div className="flex items-center justify-center w-11 h-11 rounded-full bg-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover/item:scale-110">
+            <MessageCircle className="w-5 h-5" />
+          </div>
+        </a>
 
         {/* NÚT MESSENGER */}
         <a
