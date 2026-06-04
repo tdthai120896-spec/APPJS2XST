@@ -9,6 +9,7 @@ export const CATEGORY_META = [
   { key: 'MMO/MOBA', accent: 'from-blue-400/25 to-cyan-400/10' },
   { key: 'Roguelike', accent: 'from-violet-400/25 to-fuchsia-500/10' },
   { key: 'Indie', accent: 'from-slate-400/25 to-zinc-500/10' },
+  { key: 'Other', accent: 'from-gray-400/25 to-slate-500/10' }
 ];
 
 // 2. Dữ liệu Game Mở Rộng (8-10 game/danh mục để cuộn ngang đẹp mắt)
@@ -17,6 +18,7 @@ export const RAW_GAMES = {
     { title: "Black Myth: Wukong", genre: "Action RPG", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg" },
     { title: "Spider Man Remastered", genre: "Action", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/header.jpg" },
     { title: "God of War Ragnarok", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/header.jpg" },
+    { title: "Horizon Zero Dawn", genre: "Action RPG", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1151640/header.jpg" }
     { title: "Ghost of Tsushima", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg" },
     { title: "Sekiro: Shadows Die Twice", genre: "Souls-like", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg" },
     { title: "Red Dead Redemption 2", genre: "Action", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" },
@@ -259,5 +261,19 @@ export const RAW_GAMES = {
     { title: "Back 4 Blood", genre: "Shooter", price: "30.000đ", poster: "" },
     { title: "Titanfall 2", genre: "Shooter", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1237970/header.jpg" },
     { title: "Ghost Recon Wildlands", genre: "Shooter", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/460930/header.jpg" }
+  ],
+    'Others': [
+    { title: "Hades II", genre: "Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/header.jpg" },
+    { title: "Dead Cells", genre: "Action Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/588650/header.jpg" },
+    { title: "Cult of the Lamb", genre: "Indie Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1313140/header.jpg" },
+    { title: "Balatro", genre: "Card Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/header.jpg" },
+    { title: "Vampire Survivors", genre: "Bullet Hell", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1794680/header.jpg" },
+    { title: "Risk of Rain 2", genre: "Action Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632360/header.jpg" },
+    { title: "Enter the Gungeon", genre: "Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/311690/header.jpg" },
+    { title: "Slay the Spire", genre: "Card Roguelike", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/646570/header.jpg" },
+    // --- Đã chuyển từ Other & Other 2 vào ---
+    { title: "The Binding of Isaac", genre: "Roguelike", price: "30.000đ", poster: "" },
+    { title: "The Binding of Isaac: Rebirth", genre: "Roguelike", price: "30.000đ", poster: "" },
+    { title: "Brotato", genre: "Roguelike", price: "30.000đ", poster: "" }
   ]
 };
