@@ -262,7 +262,7 @@ export const RAW_GAMES = {
     { title: "Titanfall 2", genre: "Shooter", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1237970/header.jpg" },
     { title: "Ghost Recon Wildlands", genre: "Shooter", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/460930/header.jpg" }
   ],
-    'Others': [
+    'Other': [
     { "title": "ABO MANDO", "genre": "Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/474770/header.jpg" },
     { "title": "Above - VR", "genre": "Adventure/VR", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/598230/header.jpg" },
     { "title": "Absconding Zatwor", "genre": "Action/Indie", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/385000/header.jpg" },
