@@ -159,13 +159,13 @@ function Cart({ cartItems, onRemove }) {
                     </p>
                   </div>
                   <div className="grid grid-cols-3 gap-2">
-                    <a href="https://zalo.me/0387182518" target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center py-2.5 rounded-xl bg-[#111622] text-[10px] font-bold text-blue-400 border border-blue-500/20 hover:bg-blue-500/10 transition-colors">
+                    <a href="https://www.facebook.com/profile.php?id=61558065130631" target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center py-2.5 rounded-xl bg-[#111622] text-[10px] font-bold text-blue-400 border border-blue-500/20 hover:bg-blue-500/10 transition-colors">
                       <MessageSquare className="h-4 w-4 mb-0.5" /> Zalo Shop
                     </a>
                     <a href="https://www.facebook.com/profile.php?id=61558065130631" target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center py-2.5 rounded-xl bg-[#111622] text-[10px] font-bold text-white border border-white/10 hover:bg-white/5 transition-colors">
                       <Facebook className="h-4 w-4 text-blue-400 mb-0.5" /> Messenger
                     </a>
-                    <a href="tel:0387182518" className="flex flex-col items-center justify-center py-2.5 rounded-xl bg-gradient-to-br from-[#00d2ff] to-cyan-500 text-[10px] font-black text-[#031018] hover:brightness-110 transition-all">
+                    <a href="https://www.facebook.com/profile.php?id=61558065130631" className="flex flex-col items-center justify-center py-2.5 rounded-xl bg-gradient-to-br from-[#00d2ff] to-cyan-500 text-[10px] font-black text-[#031018] hover:brightness-110 transition-all">
                       <Phone className="h-4 w-4 mb-0.5" /> Gọi Hotline
                     </a>
                   </div>
