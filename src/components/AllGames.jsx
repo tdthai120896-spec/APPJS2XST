@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Search, ChevronRight } from 'lucide-react';
-import GameCard from './GameCard'; 
-// 🛠️ ĐÃ SỬA: Import thêm CATEGORY_META từ file gamesData
-import { RAW_GAMES, CATEGORY_META } from '../gamesData'; 
+import { Search, ChevronRight, X } from 'lucide-react'; // 🛠️ Import thêm X icon
+import GameCard from './GameCard';
+import { RAW_GAMES, CATEGORY_META } from '../gamesData';
+import SearchBar from './SearchBar';
 
-function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggestions, handleOpenModal }) {
-  // 🛠️ THÊM STATE: Quản lý danh mục đang được chọn (Mặc định là 'All' - Tất cả)
+function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggestions }) { // 🛠️ Đã bỏ handleOpenModal từ props vì mình tự xử lý ở đây
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  // Hàm xử lý gộp toàn bộ game từ mọi danh mục và loại bỏ lặp
+  // 🛠️ STATE MỚI: Lưu trữ game được chọn từ ô tìm kiếm để hiển thị dạng Pop-up
+  const [searchedGame, setSearchedGame] = useState(null);
+
   const getAllUniqueGames = () => {
     if (!RAW_GAMES) return [];
     const allGamesArray = Object.values(RAW_GAMES).flat();
@@ -24,33 +25,90 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
 
   const allUniqueGamesList = getAllUniqueGames();
 
-  // 🛠️ LOGIC MỚI: Lọc game theo Danh Mục TRƯỚC, rồi mới lọc theo Thanh Tìm Kiếm SAU
   const getFilteredGames = () => {
     let baseList = [];
-    
-    // 1. Lọc theo danh mục
     if (selectedCategory === 'All') {
-      baseList = allUniqueGamesList; // Lấy tất cả
+      baseList = allUniqueGamesList;
     } else {
-      baseList = RAW_GAMES[selectedCategory] || []; // Chỉ lấy game của danh mục được chọn
+      baseList = RAW_GAMES[selectedCategory] || [];
     }
-
-    // 2. Lọc tiếp theo từ khóa tìm kiếm (nếu có)
-    return baseList.filter(game => 
+    return baseList.filter(game =>
       game.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
 
   const filteredGamesList = getFilteredGames();
 
+  // 🛠️ HÀM MỚI: Xử lý khi click vào game gợi ý
+  const handleSelectSuggestedGame = (game) => {
+    setSearchedGame(game); // Mở Pop-up chứa GameCard
+    if (handleSearch) {
+      handleSearch({ target: { value: '' } }); // Đóng danh sách gợi ý
+    }
+  };
+
   return (
-    <div className="w-full px-1 sm:px-0">
+    <div className="w-full px-1 sm:px-0 relative">
+
+      {/* 🛠️ MODAL HIỂN THỊ GAMECARD NHỎ GỌN (Chỉ hiện khi có searchedGame) */}
+      {searchedGame && (
+        <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+
+          {/* 🌟 CSS TÙY CHỈNH RIÊNG CHO HIỆU ỨNG NHỊP THỞ (NEON BREATHE) */}
+          <style>
+            {`
+              @keyframes neonBreathe {
+                0%, 100% { 
+                  opacity: 0.3; 
+                  transform: scale(0.98); 
+                  filter: blur(8px); 
+                }
+                50% { 
+                  opacity: 1; 
+                  transform: scale(1.04); 
+                  filter: blur(18px); 
+                }
+              }
+              .animate-breathe {
+                animation: neonBreathe 3s ease-in-out infinite;
+              }
+            `}
+          </style>
+
+          {/* Vùng bấm ra ngoài để đóng */}
+          <div className="absolute inset-0" onClick={() => setSearchedGame(null)}></div>
+
+          {/* KHUNG BAO NGOÀI BẢO VỆ */}
+          <div className="relative z-10 w-[160px] min-[390px]:w-[180px] sm:w-[280px] md:w-[280px] animate-in zoom-in-95 duration-200 mt-4">
+
+            {/* 🌟 ÁNH SÁNG NEON "NHỊP THỞ": Áp dụng class animate-breathe vừa tạo ở trên */}
+            <div className="absolute -inset-1.5 bg-cyan-500 rounded-[1.2rem] md:rounded-[1.6rem] animate-breathe pointer-events-none"></div>
+
+            {/* THẺ GAME CHÍNH: Nằm đè lên trên lớp ánh sáng, nền đen tuyền */}
+            <div className="relative bg-[#05080c] rounded-[1.2rem] md:rounded-[1.6rem] border border-cyan-400/50 shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+
+              <button
+                onClick={() => setSearchedGame(null)}
+                className="absolute -top-2 -right-2 md:-top-3 md:-right-3 z-50 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 md:p-1.5 shadow-lg transition-transform hover:scale-110"
+              >
+                <X className="h-3 w-3 md:h-4 md:w-4" />
+              </button>
+
+              <div className="h-[230px] min-[390px]:h-[250px] sm:h-[285px] md:h-[320px] w-full flex flex-col">
+                <GameCard game={searchedGame} onAddToCart={onAddToCart} />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
       {/* Thanh tiêu đề và nút quay lại */}
       <div className="flex justify-between items-center mb-6 border-b border-cyan-500/20 pb-4">
         <h2 className="text-base md:text-3xl font-black uppercase italic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">
           Tất cả sản phẩm ({filteredGamesList.length})
         </h2>
-        <button 
+        <button
           onClick={onBackToHome}
           className="text-[10px] md:text-xs font-black uppercase tracking-wider text-gray-400 hover:text-cyan-400 border border-gray-800 hover:border-cyan-500/40 px-3 py-1.5 rounded-full transition duration-300 bg-white/5 shrink-0"
         >
@@ -58,77 +116,35 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
         </button>
       </div>
 
-            {/* KHUNG THANH TÌM KIẾM */}
-      <div className="relative z-50 w-full max-w-xl mx-auto mb-6 group px-1">
-        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-25 group-hover:opacity-100 transition duration-500"></div>
-        <div className="relative">
-          <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none z-30">
-            <Search className="h-5 w-5 md:h-6 md:w-6 text-cyan-400" />
-          </div>
-          <input
-            type="text"
-            className="w-full bg-[#0b101a]/95 border-2 border-white/10 rounded-2xl py-4 md:py-5 pl-14 pr-6 text-white text-sm md:text-base focus:outline-none focus:border-cyan-400/50 backdrop-blur-md"
-            placeholder="Tìm tên game bạn muốn..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
+      {/* KHUNG THANH TÌM KIẾM DÙNG CHUNG */}
+      <SearchBar
+        searchTerm={searchTerm}
+        handleSearch={handleSearch}
+        suggestions={suggestions}
+        onSelectGame={handleSelectSuggestedGame}
+      />
 
-                              {/* Khung hiển thị danh sách gợi ý nhanh khi gõ */}
-          {suggestions.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-3 bg-[#0b101a]/98 border border-cyan-500/40 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-xl z-50">
-              <div className="max-h-[250px] md:max-h-[350px] overflow-y-auto custom-scrollbar">
-                {suggestions.map((game) => (
-                  <button
-                    key={game.title}
-                    onClick={() => handleOpenModal(game)}
-                    className="w-full flex items-center gap-2.5 md:gap-4 p-2.5 md:p-4 hover:bg-cyan-500/10 border-b border-white/5 last:border-0 text-left transition-all group/item"
-                  >
-                    <div className="relative h-10 w-7 md:h-14 md:w-10 shrink-0 overflow-hidden rounded-md md:rounded-lg border border-white/10 group-hover/item:border-cyan-500/50 transition-colors">
-                      <img src={game.poster} className="h-full w-full object-cover" alt="" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-black text-[10px] md:text-sm text-white uppercase italic truncate group-hover/item:text-cyan-400 transition-colors tracking-tight">
-                        {game.title}
-                      </h4>
-                      <p className="text-[8px] md:text-[10px] text-cyan-500/60 font-bold tracking-widest uppercase mt-0.5">
-                        Sẵn hàng • {game.price}
-                      </p>
-                    </div>
-                    <ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-gray-600 group-hover/item:text-cyan-400 group-hover/item:translate-x-1 transition-all" />
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* 🛠️ BỘ LỌC DANH MỤC NGANG (SCROLLABLE CATEGORY BAR) */}
-      {/* 🛠️ BỘ LỌC DANH MỤC (TỰ ĐỘNG XUỐNG HÀNG) */}
+      {/* BỘ LỌC DANH MỤC */}
       <div className="w-full mb-10">
         <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 px-1">
-          {/* Nút "Tất cả" */}
           <button
             onClick={() => setSelectedCategory('All')}
-            className={`px-4 py-2 md:px-5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest transition-all duration-300 ${
-              selectedCategory === 'All'
+            className={`px-4 py-2 md:px-5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest transition-all duration-300 ${selectedCategory === 'All'
                 ? 'bg-cyan-500 text-[#05080c] shadow-[0_0_15px_rgba(6,182,212,0.6)] border border-cyan-400'
                 : 'bg-white/5 text-gray-400 border border-white/10 hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/10'
-            }`}
+              }`}
           >
             Tất cả
           </button>
-          
-          {/* Vòng lặp in ra các danh mục từ CATEGORY_META */}
+
           {CATEGORY_META && CATEGORY_META.map((cat, index) => (
             <button
               key={index}
               onClick={() => setSelectedCategory(cat.key)}
-              className={`px-4 py-2 md:px-5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest transition-all duration-300 ${
-                selectedCategory === cat.key
+              className={`px-4 py-2 md:px-5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest transition-all duration-300 ${selectedCategory === cat.key
                   ? 'bg-cyan-500 text-[#05080c] shadow-[0_0_15px_rgba(6,182,212,0.6)] border border-cyan-400'
                   : 'bg-white/5 text-gray-400 border border-white/10 hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/10'
-              }`}
+                }`}
             >
               {cat.key}
             </button>
@@ -140,7 +156,10 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
       {filteredGamesList.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-3 gap-y-6 md:gap-x-6 md:gap-y-8 grid-auto-rows-max">
           {filteredGamesList.map((game, index) => (
-            <div key={index} className="h-[295px] md:h-[285px] w-full flex flex-col rounded-[1.2rem] md:rounded-[1.6rem] overflow-hidden">
+            <div
+              key={index}
+              className="h-[195px] min-[390px]:h-[225px] sm:h-[240px] md:h-[285px] w-full flex flex-col rounded-[1.2rem] md:rounded-[1.6rem]"
+            >
               <GameCard game={game} onAddToCart={onAddToCart} />
             </div>
           ))}

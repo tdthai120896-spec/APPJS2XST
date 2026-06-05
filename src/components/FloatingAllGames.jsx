@@ -4,7 +4,7 @@ import { Gamepad2 } from 'lucide-react';
 function FloatingAllGames({ onClick, totalGames = "500" }) {
   return (
     // 🛠️ ĐÃ SỬA: top-1/2 và -translate-y-1/2 để nằm chính giữa màn hình theo chiều dọc
-    <div className="fixed right-4 md:right-8 top-1/3 -translate-y-1/2 z-[100]">
+    <div className="fixed right-4 md:right-8 top-1/4 -translate-y-1/2 z-[100]">
       
       {/* Vầng sáng nền chớp chớp */}
       <div className="absolute -inset-1 bg-cyan-400 rounded-full blur opacity-40 animate-pulse"></div>

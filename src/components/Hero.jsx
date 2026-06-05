@@ -1,10 +1,68 @@
-import React from 'react'
-import { Sparkles, Users, Layers, ShieldCheck, Search, ChevronRight, Gamepad2 } from 'lucide-react' // 🛠️ Đã import thêm Gamepad2 icon
+import React, { useState } from 'react' // 🛠️ Đã thêm useState
+import { Sparkles, Users, Layers, ShieldCheck, Search, ChevronRight, Gamepad2, X } from 'lucide-react' // 🛠️ Đã thêm X icon
+import GameCard from './GameCard' // 🛠️ Đã import GameCard
+import SearchBar from './SearchBar';
 
-// 🛠️ ĐÃ THÊM PROPS `handleNavigation` VÀO ĐÂY ĐỂ CÓ THỂ CHUYỂN TRANG
-function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNavigation }) {
+// 🛠️ ĐÃ THÊM PROPS `onAddToCart` VÀO ĐÂY ĐỂ TRUYỀN CHO GAMECARD
+function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNavigation, onAddToCart }) {
+
+  // 🛠️ STATE MỚI: Quản lý việc hiển thị Pop-up GameCard
+  const [searchedGame, setSearchedGame] = useState(null);
+
+  // 🛠️ HÀM MỚI: Xử lý khi click vào game gợi ý
+  const handleSelectSuggestedGame = (game) => {
+    setSearchedGame(game); // Mở Pop-up chứa GameCard
+    if (handleSearch) {
+      handleSearch({ target: { value: '' } }); // Đóng danh sách gợi ý
+    }
+  };
+
   return (
     <section className="relative h-[850px] md:h-[900px] w-full flex flex-col items-center justify-center text-center pb-10">
+
+      {/* 🌟 CSS TÙY CHỈNH RIÊNG CHO HIỆU ỨNG NHỊP THỞ (NEON BREATHE) */}
+      <style>
+        {`
+          @keyframes neonBreathe {
+            0%, 100% { opacity: 0.3; transform: scale(0.98); filter: blur(8px); }
+            50% { opacity: 1; transform: scale(1.04); filter: blur(18px); }
+          }
+          .animate-breathe {
+            animation: neonBreathe 3s ease-in-out infinite;
+          }
+        `}
+      </style>
+
+      {/* 🛠️ MODAL HIỂN THỊ GAMECARD NHỎ GỌN (Giống hệt AllGames) */}
+      {searchedGame && (
+        <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200 text-left">
+          {/* Vùng bấm ra ngoài để đóng */}
+          <div className="absolute inset-0" onClick={() => setSearchedGame(null)}></div>
+
+          <div className="relative z-10 w-[160px] min-[390px]:w-[180px] sm:w-[280px] md:w-[320px] animate-in zoom-in-95 duration-200 mt-4">
+
+            {/* ÁNH SÁNG NEON "NHỊP THỞ" */}
+            <div className="absolute -inset-1.5 bg-cyan-500 rounded-[1.2rem] md:rounded-[1.6rem] animate-breathe pointer-events-none"></div>
+
+            {/* THẺ GAME CHÍNH */}
+            <div className="relative bg-[#05080c] rounded-[1.2rem] md:rounded-[1.6rem] border border-cyan-400/50 shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+              <button
+                onClick={() => setSearchedGame(null)}
+                className="absolute -top-2 -right-2 md:-top-3 md:-right-3 z-50 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 md:p-1.5 shadow-lg transition-transform hover:scale-110"
+              >
+                <X className="h-3 w-3 md:h-4 md:w-4" />
+              </button>
+
+              {/* Chiều cao thẻ đã được tối ưu để không cấn nút bấm */}
+              <div className="h-[230px] min-[390px]:h-[250px] sm:h-[285px] md:h-[320px] w-full flex flex-col">
+                <GameCard game={searchedGame} onAddToCart={onAddToCart} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ẢNH BACKGROUND */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/library_hero.jpg"
@@ -66,50 +124,13 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           </div>
         </div>
 
-        {/* THANH TÌM KIẾM */}
-        <div className="relative group mb-6">
-          <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-25 group-hover:opacity-100 transition duration-500"></div>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none z-30">
-              <Search className="h-6 w-6 text-cyan-400" />
-            </div>
-            <input
-              type="text"
-              className="w-full bg-[#0b101a]/95 border-2 border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus:outline-none focus:border-cyan-400/50 backdrop-blur-md"
-              placeholder="Tìm tên game bạn muốn..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-
-            {suggestions.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-3 bg-[#0b101a]/98 border border-cyan-500/40 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-xl" style={{ zIndex: 9999 }}>
-                <div className="max-h-[450px] overflow-y-auto custom-scrollbar">
-                  {suggestions.map((game) => (
-                    <button
-                      key={game.title}
-                      onClick={() => handleOpenModal(game)}
-                      className="w-full flex items-center gap-5 p-4 hover:bg-cyan-500/10 border-b border-white/5 last:border-0 text-left transition-all group/item"
-                    >
-                      <div className="relative h-14 w-10 shrink-0 overflow-hidden rounded-lg border border-white/10 group-hover/item:border-cyan-500/50 transition-colors">
-                        <img src={game.poster} className="h-full w-full object-cover" alt="" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-black text-white uppercase italic truncate group-hover/item:text-cyan-400 transition-colors tracking-tight">
-                          {game.title}
-                        </h4>
-                        <p className="text-[10px] text-cyan-500/60 font-bold tracking-widest uppercase">
-                          Sẵn hàng • {game.price}
-                        </p>
-                      </div>
-                      <ChevronRight className="h-5 w-5 text-gray-600 group-hover/item:text-cyan-400 group-hover/item:translate-x-1 transition-all" />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
+        {/* THANH TÌM KIẾM DÙNG CHUNG */}
+        <SearchBar
+          searchTerm={searchTerm}
+          handleSearch={handleSearch}
+          suggestions={suggestions}
+          onSelectGame={handleSelectSuggestedGame}
+        />
       </div>
     </section>
   )

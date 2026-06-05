@@ -130,7 +130,7 @@ function App() {
 
           {currentView === 'home' && (
             <>
-              <Hero searchTerm={searchTerm} handleSearch={handleSearch} suggestions={suggestions} handleOpenModal={handleOpenModal} />
+              <Hero searchTerm={searchTerm} handleSearch={handleSearch} suggestions={suggestions} handleOpenModal={handleOpenModal} onAddToCart={handleAddToCart} />
               <div className="space-y-24 pb-20 flex-grow">
                 <MarqueeGames
                   games={marqueeGames}
