@@ -89,6 +89,7 @@ function FloatingContactWidget() {
 
       {/* NÚT LIÊN HỆ TỔNG */}
       <div className="relative mr-0.5">
+        {/* Lớp ánh sáng xanh neon tỏa ra xung quanh */}
         <div className="absolute -inset-1.5 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full blur-md opacity-70 group-hover:opacity-100 group-hover:scale-105 transition duration-500 animate-pulse"></div>
 
         <button
@@ -104,6 +105,16 @@ function FloatingContactWidget() {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
+
+          {/* 🔴 CHẤM ĐỎ THÔNG BÁO NHẢY TƯNG TƯNG */}
+          {!isOpenMobile && (
+            <span className="absolute top-0 right-0 flex h-3.5 w-3.5 animate-bounce">
+              {/* Lớp màu đỏ mờ nhấp nháy phía sau (tạo cảm giác phát sóng) */}
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              {/* Chấm đỏ chính xịn xò */}
+              <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-500 border border-black/80"></span>
+            </span>
+          )}
         </button>
       </div>
     </div>

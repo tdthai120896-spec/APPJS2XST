@@ -1,7 +1,7 @@
 import React from 'react';
-import { MessageSquare, MessageCircle, Phone, MapPin, Sparkles } from 'lucide-react';
+import { MessageSquare, MessageCircle, Phone, MapPin, Globe, Radar, ChevronRight } from 'lucide-react';
 
-// Component video nền đồng bộ với AboutSection
+// Component video nền tĩnh siêu mượt
 function BoomerangVideoBg({ src, className }) {
     return (
         <div className={className ?? 'absolute inset-0 w-full h-full'}>
@@ -20,125 +20,144 @@ function BoomerangVideoBg({ src, className }) {
 
 export default function Location() {
     return (
-        <section className="relative w-full min-h-screen flex flex-col justify-between py-16 overflow-hidden rounded-3xl border border-cyan-500/10 bg-[#06060c] shadow-[0_0_50px_rgba(6,182,212,0.05)] font-['Kanit']">
+        <section className="relative w-full min-h-[90vh] flex flex-col justify-center py-20 overflow-hidden rounded-[2.5rem] border border-cyan-500/20 bg-[#05070a] shadow-lg my-10">
 
-            {/* 1. LỚP NỀN VIDEO & OVERLAY ĐỒNG BỘ */}
-            <BoomerangVideoBg
-                src="/location-bg.mp4"
-                className="absolute inset-0 w-full h-full opacity-20 mix-blend-screen pointer-events-none z-0"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#06060c]/90 via-transparent to-[#06060c] z-0" />
+            {/* 🌟 1. BACKGROUND TỐI ƯU (Nhẹ hơn) */}
+            
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#05070a_90%)] pointer-events-none z-0" />
 
-            {/* 2. QUẦNG SÁNG NEON DYNAMICS */}
-            <div className="absolute top-1/4 right-1/4 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse duration-4000 z-0" />
-            <div className="absolute bottom-1/4 left-1/4 w-[450px] h-[450px] bg-purple-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse duration-3000 z-0" />
+            {/* Quầng sáng Neon ĐÃ TẮT HIỆU ỨNG NHỊP THỞ ĐỂ CHỐNG LAG */}
+            <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none z-0" />
+            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none z-0" />
 
-            {/* 3. NỘI DUNG CHÍNH */}
-            <div className="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-8 my-auto">
+            {/* 🌟 2. NỘI DUNG CHÍNH */}
+            <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 md:px-8">
 
                 {/* Header Tiêu đề */}
                 <div className="flex flex-col items-center text-center mb-16">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/30 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(34,211,238,0.15)]">
-                        <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-pulse" /> Trung Tâm Kết Nối
+                    <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/40 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6">
+                        <Radar className="w-4 h-4 text-cyan-300 animate-spin-slow" /> Mạng lưới giao tiếp
                     </div>
-                    <h2 className="font-black uppercase text-[2.2rem] sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-b from-white via-cyan-300 to-purple-500 drop-shadow-[0_0_30px_rgba(6,182,212,0.25)] tracking-tight">
-                        Liên Hệ & Vị Trí
+                    <h2 className="font-black uppercase italic text-4xl sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 tracking-wider mb-4">
+                        Thiết Lập Kết Nối
                     </h2>
+                    <p className="text-gray-400 text-sm md:text-base font-medium max-w-2xl mx-auto">
+                        Mọi tín hiệu của bạn đều được Nexus phản hồi lập tức. Lựa chọn kênh liên lạc bảo mật bên dưới để bắt đầu truyền tải dữ liệu.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
 
-                    {/* CỘT BÊN TRÁI: THÔNG TIN LIÊN HỆ */}
-                    <div className="flex flex-col gap-6 bg-[#0d0d16]/60 backdrop-blur-md p-8 rounded-2xl border border-white/5 shadow-2xl shadow-black/80">
-                        <div>
-                            <h3 className="text-lg font-black uppercase tracking-tight text-cyan-400 mb-2">Hỗ Trợ Trực Tuyến</h3>
-                            <p className="text-cyan-100/40 text-xs font-medium leading-relaxed">
-                                Đội ngũ kỹ thuật viên Nexus Steam luôn túc trực để giải đáp và xử lý cấp tài khoản cho bạn nhanh nhất có thể.
-                            </p>
-                        </div>
-
-                        <div className="flex flex-col gap-4">
-                            {/* NÚT ZALO */}
-                            <a
-                                href="https://www.facebook.com/people/Andy-Tran/61558065130631/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-between p-4 rounded-xl bg-[#0b0e14]/90 border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-300 group shadow-lg hover:shadow-[0_0_20px_rgba(34,211,238,0.1)]"
-                            >
-                                <span className="bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg group-hover:text-cyan-200 transition-colors">
-                                    Zalo
-                                </span>
-                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-cyan-500 text-white shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-transform duration-300 group-hover:scale-110">
-                                    <MessageCircle className="w-5 h-5 fill-current" />
+                    {/* CỘT BÊN TRÁI: BẢNG KÊNH LIÊN LẠC (TỐI ƯU HOVER NHẸ NHÀNG) */}
+                    <div className="lg:col-span-5 flex flex-col gap-5">
+                        
+                        {/* ZALO CHANNEL */}
+                        <a
+                            href="https://www.facebook.com/profile.php?id=61558065130631" 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative flex items-center justify-between p-4 md:p-5 rounded-2xl bg-[#0b101a]/80 backdrop-blur-sm border border-white/5 hover:border-cyan-500/50 hover:bg-[#0d1424] transition-colors duration-300"
+                        >
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-cyan-500 opacity-30 group-hover:opacity-100 transition-opacity"></div>
+                            
+                            <div className="relative flex items-center gap-4">
+                                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-colors">
+                                    <MessageCircle className="w-6 h-6 fill-current" />
                                 </div>
-                            </a>
-
-                            {/* NÚT MESSENGER */}
-                            <a
-                                href="https://www.facebook.com/profile.php?id=61558065130631"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-between p-4 rounded-xl bg-[#0b0e14]/90 border border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 group shadow-lg hover:shadow-[0_0_20px_rgba(168,85,247,0.1)]"
-                            >
-                                <span className="bg-purple-500/10 border border-purple-500/40 text-purple-400 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg group-hover:text-purple-200 transition-colors">
-                                    Messenger
-                                </span>
-                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-500 text-white shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-transform duration-300 group-hover:scale-110">
-                                    <MessageSquare className="w-5 h-5" />
+                                <div className="flex flex-col">
+                                    <span className="text-white font-black uppercase tracking-wider text-sm group-hover:text-cyan-400 transition-colors">Zalo</span>
+                                    <span className="text-[10px] text-cyan-500/60 font-bold uppercase tracking-widest mt-0.5">Online • Phản hồi 1 phút</span>
                                 </div>
-                            </a>
+                            </div>
+                            <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-cyan-400 transition-colors" />
+                        </a>
 
-                            {/* NÚT GỌI ĐIỆN */}
-                            <a
-                                href="https://www.facebook.com/people/Andy-Tran/61558065130631/"
-                                className="flex items-center justify-between p-4 rounded-xl bg-[#0b0e14]/90 border border-white/10 hover:border-emerald-400/50 transition-all duration-300 group shadow-lg hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]"
-                            >
-                                <span className="bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg group-hover:text-emerald-200 transition-colors">
-                                    Call
-                                </span>
-                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-transform duration-300 group-hover:scale-110">
+                        {/* MESSENGER CHANNEL */}
+                        <a
+                            href="https://www.facebook.com/profile.php?id=61558065130631"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative flex items-center justify-between p-4 md:p-5 rounded-2xl bg-[#0b101a]/80 backdrop-blur-sm border border-white/5 hover:border-blue-500/50 hover:bg-[#0d1424] transition-colors duration-300"
+                        >
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 opacity-30 group-hover:opacity-100 transition-opacity"></div>
+                            
+                            <div className="relative flex items-center gap-4">
+                                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-950/60 border border-blue-500/30 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                                    <MessageSquare className="w-5 h-5 fill-current" />
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-white font-black uppercase tracking-wider text-sm group-hover:text-blue-400 transition-colors">Messenger</span>
+                                    <span className="text-[10px] text-blue-400/60 font-bold uppercase tracking-widest mt-0.5">Online • Hỗ trợ 24/7</span>
+                                </div>
+                            </div>
+                            <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-blue-400 transition-colors" />
+                        </a>
+
+                        {/* HOTLINE CHANNEL */}
+                        <a
+                            href="tel:09xxxxxxx" 
+                            className="group relative flex items-center justify-between p-4 md:p-5 rounded-2xl bg-[#0b101a]/80 backdrop-blur-sm border border-white/5 hover:border-emerald-400/50 hover:bg-[#0d1424] transition-colors duration-300"
+                        >
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500 opacity-30 group-hover:opacity-100 transition-opacity"></div>
+                            
+                            <div className="relative flex items-center gap-4">
+                                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-black transition-colors">
                                     <Phone className="w-5 h-5 fill-current" />
                                 </div>
-                            </a>
-                        </div>
+                                <div className="flex flex-col">
+                                    <span className="text-white font-black uppercase tracking-wider text-sm group-hover:text-emerald-400 transition-colors">Call</span>
+                                    <span className="text-[10px] text-emerald-400/60 font-bold uppercase tracking-widest mt-0.5">Call now</span>
+                                </div>
+                            </div>
+                            <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-emerald-400 transition-colors" />
+                        </a>
 
-                        {/* Địa chỉ */}
-                        <div className="flex items-start gap-4 pt-6 border-t border-white/5">
-                            <div className="w-10 h-10 rounded-xl bg-cyan-950/40 flex items-center justify-center text-cyan-400 border border-cyan-500/20 shrink-0">
-                                <MapPin className="w-5 h-5" />
+                        {/* BẢNG ĐỊA CHỈ TỌA ĐỘ */}
+                        <div className="mt-2 p-5 rounded-2xl bg-black/40 border border-white/5 flex items-start gap-4">
+                            <div className="relative flex h-3 w-3 mt-1 shrink-0">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-[10px] text-purple-400 font-black uppercase tracking-widest mb-1">Địa chỉ Store</span>
-                                <span className="text-sm text-cyan-100/70 font-medium leading-relaxed">
+                                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1.5 flex items-center gap-1">
+                                    <MapPin className="w-3 h-3" /> Tọa độ Core
+                                </span>
+                                <span className="text-sm md:text-base text-cyan-100 font-medium leading-relaxed">
                                     1146 Quang Trung, Phường 8,<br />Quận Gò Vấp, TP. Hồ Chí Minh
                                 </span>
                             </div>
                         </div>
                     </div>
 
-                    {/* CỘT BÊN PHẢI: BẢN ĐỒ */}
-                    <div className="relative w-full aspect-square md:aspect-auto rounded-2xl p-1.5 bg-[#0d0d16]/60 backdrop-blur-md border border-white/5 hover:border-cyan-500/30 transition-all duration-300 shadow-2xl shadow-black/80 group overflow-hidden">
-                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-cyan-500/5 to-purple-500/5 pointer-events-none z-10" />
+                    {/* CỘT BÊN PHẢI: BẢN ĐỒ (BỎ SCALE VÀ HIỆU ỨNG NẶNG ĐỂ MƯỢT MÀ) */}
+                    <div className="lg:col-span-7 relative w-full h-[350px] lg:h-auto rounded-[2rem] bg-[#0d0d16]/80 border border-white/5 p-2 group overflow-hidden flex flex-col">
+                        
+                        {/* 4 GÓC ĐỊNH VỊ (TECH CORNERS) */}
+                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-500/50 rounded-tl-[2rem] z-20 pointer-events-none group-hover:border-cyan-400 transition-colors"></div>
+                        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-cyan-500/50 rounded-tr-[2rem] z-20 pointer-events-none group-hover:border-cyan-400 transition-colors"></div>
+                        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-cyan-500/50 rounded-bl-[2rem] z-20 pointer-events-none group-hover:border-cyan-400 transition-colors"></div>
+                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-cyan-500/50 rounded-br-[2rem] z-20 pointer-events-none group-hover:border-cyan-400 transition-colors"></div>
 
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.665782782354!2d106.6401642758814!3d10.836881958074983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175298150426f4f%3A0xc3f3448f86f86b46!2zMTE0NiBRdWFuZyBUcnVuZywgUGjGsOG7nW5nIDgsIEfDsiBW4bqlcCwgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1715000000000!5m2!1svi!2s"
-                            className="w-full h-full rounded-xl filter grayscale invert-[90%] hue-rotate-[180deg] opacity-60 group-hover:opacity-100 group-hover:filter-none transition-all duration-700"
-                            style={{ border: 0 }}
-                            allowFullScreen=""
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                            title="Nexus Steam Store Location"
-                        />
+                        {/* Chữ hiển thị giả lập đang tracking */}
+                        <div className="absolute top-4 left-6 z-20 bg-black/80 px-3 py-1 rounded-md border border-cyan-500/30 flex items-center gap-2">
+                            <Globe className="w-3 h-3 text-cyan-400 animate-pulse" />
+                            <span className="text-[9px] text-cyan-400 font-bold uppercase tracking-[0.2em]">GPS Active</span>
+                        </div>
+
+                        {/* IFRAME BẢN ĐỒ (Chỉ đổi Opacity, không scale) */}
+                        <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden bg-black">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.420664034874!2d106.6276513153343!3d10.855574760694157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529b6a2b351a5%3A0x11690ada8c36f9bc!2s1146%20Quang%20Trung%2C%20Ph%Ccedil;%C6%B0%E1%BB%9Dng%208%2C%20G%C3%B2%20V%E1%BA%A5p%2C%20Th%C3%A0nh%20ph%E1%BB%91%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vietnam!5e0!3m2!1sen!2s!4v1689234567890!5m2!1sen!2s"
+                                className="w-full h-full filter grayscale invert-[90%] hue-rotate-[180deg] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                                style={{ border: 0 }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                title="Nexus Steam Store Location"
+                            />
+                        </div>
                     </div>
 
-                </div>
-            </div>
-
-            {/* 4. FOOTER LOGO */}
-            <div className="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-8 mt-12 mb-4">
-                <div className="flex items-center gap-2 text-cyan-400/50">
-                    <Sparkles className="w-4 h-4 text-purple-500/50" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em]">Nexus Connect Center</span>
                 </div>
             </div>
         </section>

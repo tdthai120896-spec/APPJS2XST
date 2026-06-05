@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ShoppingBag, Eye } from 'lucide-react'
+import { ShoppingBag, Gamepad2 } from 'lucide-react'
 import PurchaseModal from './PurchaseModal'
 import GameDetailModal from './GameDetailModal'
 
@@ -41,7 +41,7 @@ function GameCard({ game, onAddToCart }) {
                   setShowDetail(true);
                 }}
               >
-                <Eye className="h-6 w-6 md:h-7 md:w-7 stroke-[2.5]" />
+                <Gamepad2 className="h-6 w-6 md:h-7 md:w-7 stroke-[2.5]" />
               </div>
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#05070a] via-transparent to-transparent pointer-events-none" />

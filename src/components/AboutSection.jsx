@@ -4,7 +4,7 @@ import { Play, Sparkles, ShieldCheck, Banknote, Zap, Infinity as InfinityIcon } 
 // Đường dẫn chuẩn trỏ trực tiếp vào file video trong thư mục frontend/public/
 const BG_VIDEO = '/gaming-bg.mp4';
 
-// Component xử lý video nền tĩnh siêu mượt, tối ưu hóa phần cứng và bypass lỗi CORS
+// Component xử lý video nền tĩnh siêu mượt, tối ưu hóa phần cứng
 function BoomerangVideoBg({ src, className }) {
   return (
     <div className={className ?? 'absolute inset-0 w-full h-full'}>
@@ -24,96 +24,103 @@ function BoomerangVideoBg({ src, className }) {
 export default function AboutSection() {
   const benefits = [
     {
-      icon: <Banknote className="w-5 h-5 text-cyan-400 group-hover:text-white transition-colors" />, 
+      icon: <Banknote className="w-6 h-6 text-cyan-400 group-hover:text-white transition-colors" />, 
       title: "Giá Siêu Hạt Dẻ",
-      desc: "Trải nghiệm trọn vẹn bom tấn AAA với mức chi phí rẻ hơn hàng chục lần so với mua key trực tiếp trên Store."
+      desc: "Trải nghiệm trọn vẹn siêu phẩm AAA với chi phí chỉ bằng cốc cafe, rẻ hơn hàng chục lần so với mua key gốc."
     },
     {
-      icon: <InfinityIcon className="w-5 h-5 text-cyan-400 group-hover:text-white transition-colors" />,
+      icon: <InfinityIcon className="w-6 h-6 text-cyan-400 group-hover:text-white transition-colors" />,
       title: "Chơi Trọn Đời",
-      desc: "Kích hoạt chuẩn một lần duy nhất, bạn được lưu trữ dữ liệu game và trải nghiệm vĩnh viễn không giới hạn."
+      desc: "Kích hoạt chuẩn một lần duy nhất, dữ liệu lưu trữ đám mây cục bộ an toàn, chơi vĩnh viễn không giới hạn."
     },
     {
-      icon: <ShieldCheck className="w-5 h-5 text-cyan-400 group-hover:text-white transition-colors" />,
-      title: "Tiết Kiệm Tối Đa",
-      desc: "Không phải tốn quá nhiều tiền mua sắm game lãng phí, giải pháp kinh tế tuyệt đối cho game thủ đam mê cốt truyện."
+      icon: <ShieldCheck className="w-6 h-6 text-cyan-400 group-hover:text-white transition-colors" />,
+      title: "Bảo Hành Tận Tâm",
+      desc: "An tâm tuyệt đối với chính sách bảo hành dài hạn. Đội ngũ Nexus luôn sẵn sàng hỗ trợ bạn 24/7."
     },
     {
-      icon: <Zap className="w-5 h-5 text-cyan-400 group-hover:text-white transition-colors" />,
-      title: "Cấp Account Lập Tức",
-      desc: "Nhận thông tin tài khoản hoàn toàn tự động ngay sau khi hoàn tất quá trình quét mã thanh toán VietQR."
+      icon: <Zap className="w-6 h-6 text-cyan-400 group-hover:text-white transition-colors" />,
+      title: "Nhận Account Tức Thì",
+      desc: "Hệ thống cấp tài khoản tự động lập tức ngay sau khi hoàn tất quét mã thanh toán. Không cần chờ đợi!"
     }
   ];
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-between py-16 overflow-hidden rounded-3xl border border-cyan-500/10 bg-[#06060c] shadow-[0_0_50px_rgba(6,182,212,0.05)]">
-      {/* Lớp nền video kết hợp mã màu Tím Cyberpunk, giảm opacity để không bị rối chữ */}
-      <BoomerangVideoBg src={BG_VIDEO} className="absolute inset-0 w-full h-full opacity-20 mix-blend-screen pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#06060c]/90 via-transparent to-[#06060c]" />
+    <section className="relative w-full min-h-[90vh] flex flex-col justify-center py-20 overflow-hidden rounded-[2.5rem] border border-cyan-500/20 bg-[#05070a] shadow-[0_0_50px_rgba(6,182,212,0.15)] my-10">
+      
+      {/* 🌟 1. BACKGROUND VIDEO ĐÃ ĐƯỢC LÀM NỔI BẬT */}
+      {/* Tăng opacity lên 40-50% để video hiện rõ hơn */}
+      <BoomerangVideoBg src={BG_VIDEO} className="absolute inset-0 w-full h-full opacity-40 pointer-events-none mix-blend-lighten" />
+      
+      {/* Dùng Radial Gradient: Sáng rõ ở giữa (để lộ video), tối dần về 4 góc (để nổi bật chữ) */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_10%,#05070a_85%)] pointer-events-none" />
 
-      {/* Lớp Quầng Sáng Hệ Màu Mới: Xanh Neon & Tím Neon phát sáng ma mị */}
-      <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse duration-4000" />
-      <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-purple-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse duration-3000" />
+      {/* 🌟 2. QUẦNG SÁNG NEON CYBERPUNK CHỚP TẮT */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/20 rounded-full blur-[150px] pointer-events-none animate-pulse duration-1000" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[150px] pointer-events-none animate-pulse duration-3000" />
 
-      {/* Top/Hero Content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 mb-8">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/30 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(34,211,238,0.15)]">
-          <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-pulse" /> Kỷ Nguyên Steam Offline
-        </div>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center">
         
-        <h1
-          className="font-black uppercase text-[2.2rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] max-w-5xl leading-[1.05] tracking-normal bg-clip-text text-transparent bg-gradient-to-b from-white via-cyan-300 to-purple-500 drop-shadow-[0_0_30px_rgba(6,182,212,0.25)]"
-        >
-          Làm chủ thế giới game bom tấn{" "}
-          <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 pr-2">
-            tiết kiệm và <br className="hidden sm:block" /> nhận account tức thì
-          </span>
-        </h1>
-        
-        <p className="mt-6 text-cyan-100/50 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl font-medium tracking-wide">
-          Sở hữu ngay kho game bản quyền Steam khổng lồ. Giải pháp tối ưu giúp bạn chiến mượt mọi siêu phẩm <span className="text-white font-bold">AAA cốt truyện</span> mà không lo về giá.
-        </p>
-      </div>
-
-      {/* Center Layout: Grid 4 lợi ích lõi style Neon Glow */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 sm:px-8 my-auto">
-        {benefits.map((b, i) => (
-          <div 
-            key={i} 
-            className="p-6 rounded-2xl bg-[#0d0d16]/60 backdrop-blur-md border border-white/5 hover:border-cyan-500/30 hover:bg-[#111122]/80 transition-all duration-300 group shadow-2xl shadow-black/80 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]"
-          >
-            <div className="w-10 h-10 rounded-xl bg-cyan-950/40 flex items-center justify-center mb-4 group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:to-purple-500 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all border border-cyan-500/20 group-hover:border-transparent">
-              {b.icon}
-            </div>
-            <h3 className="text-white font-black uppercase tracking-tight text-base mb-2 group-hover:text-cyan-400 transition-colors">{b.title}</h3>
-            <p className="text-cyan-200/40 text-xs font-medium leading-relaxed group-hover:text-cyan-100/70 transition-colors">{b.desc}</p>
+        {/* 🌟 3. TIÊU ĐỀ (Đồng bộ font-black, italic và gradient như Hero) */}
+        <div className="flex flex-col items-center text-center mb-16">
+          <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/40 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+            <Sparkles className="w-4 h-4 text-cyan-300 animate-pulse" /> Kỷ Nguyên Steam Offline
           </div>
-        ))}
-      </div>
-
-      {/* Bottom Layout Elements */}
-      <div className="relative z-10 max-w-6xl w-full mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4 sm:px-8 mt-12">
-        {/* Left Side Info */}
-        <div className="max-w-xs">
-          <div className="flex items-center gap-2 text-cyan-400 mb-1.5 shadow-[0_0_10px_rgba(6,182,212,0.1)] w-max rounded-md">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-xs font-black uppercase tracking-wider">Nexus FlowEngine™</span>
-          </div>
-          <p className="text-cyan-200/30 text-[11px] leading-relaxed">
-            Hệ thống cấp phát tài khoản tự động, đồng bộ dữ liệu đám mây cục bộ an toàn, nhanh chóng ngay sau khi giao dịch.
+          
+          <h2 className="font-black uppercase italic text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-5xl leading-[1.1] tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+            Làm chủ thế giới <br className="hidden md:block" /> Game Bom Tấn
+          </h2>
+          <p className="mt-6 text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl font-medium tracking-wide">
+            Sở hữu ngay kho game bản quyền Steam khổng lồ. Giải pháp kinh tế hoàn hảo giúp bạn chiến mượt mọi siêu phẩm <span className="text-cyan-400 font-bold uppercase tracking-widest">AAA Cốt truyện</span>.
           </p>
         </div>
 
-        {/* Right Side Control */}
-        <div className="flex items-center gap-2 text-white/60 text-xs self-end md:self-auto group cursor-pointer">
-          <button className="flex items-center justify-center w-8 h-8 rounded-full bg-cyan-950/40 group-hover:bg-cyan-500 text-cyan-400 group-hover:text-black transition-all border border-cyan-500/20 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-            <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
-          </button>
-          <div className="flex flex-col">
-            <span className="font-bold uppercase tracking-wider text-white/80 group-hover:text-cyan-400 transition-colors">Trailer Store</span>
-            <span className="text-purple-400/50 text-[10px]">Duration 1:35</span>
-          </div>
+        {/* 🌟 4. GRID LỢI ÍCH (Cân đối 4 cột, viền sáng Neon) */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-16">
+          {benefits.map((b, i) => (
+            <div 
+              key={i} 
+              className="p-6 md:p-8 rounded-3xl bg-[#0b101a]/80 backdrop-blur-xl border border-white/5 hover:border-cyan-400/50 hover:bg-[#0b101a]/95 transition-all duration-500 group shadow-2xl hover:shadow-[0_0_30px_rgba(6,182,212,0.2)] hover:-translate-y-2 flex flex-col items-center text-center"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-cyan-950/50 flex items-center justify-center mb-5 group-hover:bg-cyan-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all duration-300 border border-cyan-500/20 group-hover:border-transparent">
+                {b.icon}
+              </div>
+              <h3 className="text-white font-black uppercase italic tracking-wider text-sm md:text-base mb-3 group-hover:text-cyan-400 transition-colors">
+                {b.title}
+              </h3>
+              <p className="text-gray-400 text-[11px] md:text-xs font-medium leading-relaxed group-hover:text-gray-300 transition-colors">
+                {b.desc}
+              </p>
+            </div>
+          ))}
         </div>
+
+        {/* 🌟 5. THANH THÔNG TIN BÊN DƯỚI (Phong cách bảng điều khiển HUD) */}
+        <div className="w-full max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 p-4 md:p-6 rounded-2xl bg-black/40 border border-white/5 backdrop-blur-md">
+          {/* Hệ thống thông báo */}
+          <div className="flex items-center gap-3">
+            <div className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </div>
+            <div className="flex flex-col text-left">
+              <span className="text-xs font-black uppercase text-white tracking-widest">Nexus FlowEngine™</span>
+              <span className="text-[10px] text-gray-400">Hệ thống cấp phát tài khoản tự động đang hoạt động</span>
+            </div>
+          </div>
+
+          {/* Nút xem Video Trailer */}
+          <button className="flex items-center gap-3 group px-4 py-2 rounded-xl bg-white/5 hover:bg-cyan-500/10 border border-white/5 hover:border-cyan-500/30 transition-all">
+            <div className="flex flex-col text-right">
+              <span className="text-[10px] font-bold uppercase text-gray-400 group-hover:text-cyan-400 transition-colors">Xem Trailer</span>
+              <span className="text-[9px] text-gray-500">Duration 1:35</span>
+            </div>
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-cyan-500/20 group-hover:bg-cyan-500 text-cyan-400 group-hover:text-black transition-all shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+              <Play className="w-3 h-3 fill-current ml-0.5" />
+            </div>
+          </button>
+        </div>
+
       </div>
     </section>
   );
