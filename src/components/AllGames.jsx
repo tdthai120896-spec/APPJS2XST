@@ -63,11 +63,11 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-25 group-hover:opacity-100 transition duration-500"></div>
         <div className="relative">
           <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none z-30">
-            <Search className="h-4 w-4 md:h-6 md:w-6 text-cyan-400" />
+            <Search className="h-5 w-5 md:h-6 md:w-6 text-cyan-400" />
           </div>
           <input
             type="text"
-            className="w-full bg-[#0b101a]/95 border-2 border-white/10 rounded-2xl py-3.5 md:py-5 pl-12 md:pl-14 pr-6 text-white text-xs md:text-base focus:outline-none focus:border-cyan-400/50 backdrop-blur-md"
+            className="w-full bg-[#0b101a]/95 border-2 border-white/10 rounded-2xl py-4 md:py-5 pl-14 pr-6 text-white text-sm md:text-base focus:outline-none focus:border-cyan-400/50 backdrop-blur-md"
             placeholder="Tìm tên game bạn muốn..."
             value={searchTerm}
             onChange={handleSearch}
@@ -75,33 +75,22 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
 
           {/* Khung hiển thị danh sách gợi ý nhanh khi gõ */}
           {suggestions.length > 0 && (
-            {/* 🛠️ FIX Z-INDEX: Hạ z-index xuống z-50 để không đè lên Modal */}
-            <div className="absolute top-full left-0 right-0 mt-3 bg-[#0b101a]/98 border border-cyan-500/40 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-xl z-50">
-              <div className="max-h-[300px] md:max-h-[350px] overflow-y-auto custom-scrollbar">
+            <div className="absolute top-full left-0 right-0 mt-3 bg-[#0b101a]/98 border border-cyan-500/40 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-xl" style={{ zIndex: 9999 }}>
+              <div className="max-h-[350px] overflow-y-auto custom-scrollbar">
                 {suggestions.map((game) => (
                   <button
                     key={game.title}
-                    onClick={(e) => {
-                      // 1. Mở modal thông tin game
-                      handleOpenModal(game);
-                      // 2. 🛠️ TRICK GIẢ LẬP SỰ KIỆN: Xóa trắng ô tìm kiếm để bảng gợi ý tự động ẩn đi
-                      if (handleSearch) {
-                        handleSearch({ target: { value: '' } });
-                      }
-                    }}
-                    // 🛠️ THU NHỎ UI MOBILE: Giảm padding (p-2.5) và khoảng cách (gap-3)
-                    className="w-full flex items-center gap-3 md:gap-4 p-2.5 md:p-4 hover:bg-cyan-500/10 border-b border-white/5 last:border-0 text-left transition-all group/item"
+                    onClick={() => handleOpenModal(game)}
+                    className="w-full flex items-center gap-4 p-3 md:p-4 hover:bg-cyan-500/10 border-b border-white/5 last:border-0 text-left transition-all group/item"
                   >
-                    {/* 🛠️ THU NHỎ ẢNH MOBILE: Giảm kích thước ảnh xuống h-10 w-7 */}
-                    <div className="relative h-10 w-7 md:h-14 md:w-10 shrink-0 overflow-hidden rounded-md md:rounded-lg border border-white/10 group-hover/item:border-cyan-500/50 transition-colors">
+                    <div className="relative h-12 w-9 md:h-14 md:w-10 shrink-0 overflow-hidden rounded-lg border border-white/10 group-hover/item:border-cyan-500/50 transition-colors">
                       <img src={game.poster} className="h-full w-full object-cover" alt="" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      {/* 🛠️ THU NHỎ FONT CHỮ: Giảm font size trên mobile */}
-                      <h4 className="font-black text-[10px] md:text-sm text-white uppercase italic truncate group-hover/item:text-cyan-400 transition-colors tracking-tight">
+                      <h4 className="font-black text-xs md:text-sm text-white uppercase italic truncate group-hover/item:text-cyan-400 transition-colors tracking-tight">
                         {game.title}
                       </h4>
-                      <p className="text-[8px] md:text-[10px] text-cyan-500/60 font-bold tracking-widest uppercase mt-0.5">
+                      <p className="text-[9px] md:text-[10px] text-cyan-500/60 font-bold tracking-widest uppercase">
                         Sẵn hàng • {game.price}
                       </p>
                     </div>
@@ -113,6 +102,10 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
           )}
         </div>
       </div>
+
+Tại giao trên giao diện mobile phần kết quả trả khá là to so với màn hình mobile nhờ bạn làm nhỏ lại
+
+Click vô vào kế quả game lại không bams được nút mua ngay
 
       {/* 🛠️ BỘ LỌC DANH MỤC NGANG (SCROLLABLE CATEGORY BAR) */}
       {/* 🛠️ BỘ LỌC DANH MỤC (TỰ ĐỘNG XUỐNG HÀNG) */}
