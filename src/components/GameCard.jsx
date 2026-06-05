@@ -70,7 +70,7 @@ function GameCard({ game, onAddToCart }) {
           </div>
 
           {/* 3. CỤM NÚT BẤM (Luôn nằm ở đáy thẻ) */}
-          <div className="px-3 pb-4 md:px-4 md:pb-5 flex flex-row gap-2 shrink-0">
+          <div className="px-1.5 pb-4 md:px-4 md:pb-5 flex flex-row gap-1 shrink-0">
 
             {/* NÚT GIỎ HÀNG (Nút phụ: Viền xanh dương, nền trong suốt) */}
             <button
