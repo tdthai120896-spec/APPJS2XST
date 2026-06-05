@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ShoppingBag, Gamepad2 } from 'lucide-react'
+import { ShoppingCart, Plus, Gamepad2 } from 'lucide-react'
 import PurchaseModal from './PurchaseModal'
 import GameDetailModal from './GameDetailModal'
 
@@ -69,33 +69,42 @@ function GameCard({ game, onAddToCart }) {
             </div>
           </div>
 
-          {/* 3. CỤM NÚT BẤM (Luôn nằm ở đáy thẻ) */}
-          <div className="px-1.5 pb-4 md:px-4 md:pb-5 flex flex-row gap-1 shrink-0">
+          {/* 3. CỤM NÚT BẤM (Đã sửa theo phong cách Shopee) */}
+<div className="px-3 pb-4 md:px-4 md:pb-5 flex flex-row items-center gap-2 shrink-0">
 
-            {/* NÚT GIỎ HÀNG (Nút phụ: Viền xanh dương, nền trong suốt) */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onAddToCart) onAddToCart(game);
-              }}
-              className="flex items-center justify-center gap-1 py-1.5 px-2 md:py-2 md:px-2 rounded-full bg-blue-600/20 border border-blue-500 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)] hover:text-white hover:bg-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all duration-300 active:scale-95 w-full flex-1 shrink-0"
-            >
-              <ShoppingBag className="h-3 w-3 md:h-3.5 md:w-3.5 stroke-[2.5]" />
-              <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-tighter truncate">Giỏ hàng</span>
-            </button>
+  {/* NÚT GIỎ HÀNG KIỂU SHOPEE: Chỉ giữ icon xe đẩy + dấu cộng, dạng hình tròn */}
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
+      if (onAddToCart) onAddToCart(game);
+    }}
+    className="relative flex items-center justify-center h-8 w-8 md:h-9 md:w-9 rounded-full bg-blue-600/20 border border-blue-500 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)] hover:text-white hover:bg-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all duration-300 active:scale-95 shrink-0"
+    title="Thêm vào giỏ hàng"
+  >
+    {/* Icon xe đẩy chính */}
+    <ShoppingCart className="h-4 w-4 md:h-4.5 md:w-4.5 stroke-[2]" />
+    
+    {/* Icon dấu cộng nhỏ nằm ở góc trên bên phải xe đẩy giống Shopee */}
+    <span className="absolute top-1 right-1 bg-blue-500 text-white rounded-full p-0.5 scale-75 origin-top-right">
+      <Plus className="h-2 w-2 stroke-[4]" />
+    </span>
+  </button>
 
-            {/* NÚT MUA NGAY (Nút chính: Nền Cyan đặc, phát sáng mạnh) */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowPurchase(true);
-              }}
-              className="flex items-center justify-center py-1.5 px-2 md:py-2 md:px-2 rounded-full bg-cyan-500 border border-cyan-400 text-[#05080c] shadow-[0_0_12px_rgba(6,182,212,0.5)] hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_rgba(34,211,238,0.8)] transition-all duration-300 active:scale-95 w-full flex-1 shrink-0"
-            >
-              <span className="text-[9px] md:text-[10px] font-black uppercase tracking-tighter truncate">Mua ngay</span>
-            </button>
+  {/* NÚT MUA NGAY: Bây giờ được kéo rộng ra (flex-1) chiếm trọn không gian còn lại */}
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
+      setShowPurchase(true);
+    }}
+    className="flex-1 flex items-center justify-center py-1.5 md:py-2 rounded-full bg-cyan-500 border border-cyan-400 text-[#05080c] shadow-[0_0_12px_rgba(6,182,212,0.5)] hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_rgba(34,211,238,0.8)] transition-all duration-300 active:scale-95"
+  >
+    <span className="text-[10px] md:text-xs font-black uppercase tracking-tight text-center whitespace-nowrap">
+      Mua ngay
+    </span>
+  </button>
 
-          </div>
+</div>
+
 
         </article>
       </div>
