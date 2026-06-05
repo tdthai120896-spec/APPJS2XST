@@ -100,14 +100,8 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
               </div>
             </div>
           )}
-
-
         </div>
       </div>
-
-Tại giao trên giao diện mobile phần kết quả trả khá là to so với màn hình mobile nhờ bạn làm nhỏ lại
-
-Click vô vào kế quả game lại không bams được nút mua ngay
 
       {/* 🛠️ BỘ LỌC DANH MỤC NGANG (SCROLLABLE CATEGORY BAR) */}
       {/* 🛠️ BỘ LỌC DANH MỤC (TỰ ĐỘNG XUỐNG HÀNG) */}
