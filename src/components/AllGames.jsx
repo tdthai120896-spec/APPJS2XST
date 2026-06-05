@@ -73,24 +73,34 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
             onChange={handleSearch}
           />
 
-          {/* Khung hiển thị danh sách gợi ý nhanh khi gõ */}
+                    {/* Khung hiển thị danh sách gợi ý nhanh khi gõ */}
           {suggestions.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-3 bg-[#0b101a]/98 border border-cyan-500/40 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-xl" style={{ zIndex: 9999 }}>
-              <div className="max-h-[350px] overflow-y-auto custom-scrollbar">
+            {/* 🛠️ Sửa z-index thành z-50 để không đè lên Modal */}
+            <div className="absolute top-full left-0 right-0 mt-3 bg-[#0b101a]/98 border border-cyan-500/40 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-xl z-50">
+              <div className="max-h-[300px] md:max-h-[450px] overflow-y-auto custom-scrollbar">
                 {suggestions.map((game) => (
                   <button
                     key={game.title}
-                    onClick={() => handleOpenModal(game)}
-                    className="w-full flex items-center gap-4 p-3 md:p-4 hover:bg-cyan-500/10 border-b border-white/5 last:border-0 text-left transition-all group/item"
+                    onClick={(e) => {
+                      handleOpenModal(game);
+                      // 🛠️ Xóa trắng input để bảng gợi ý tự động đóng lại
+                      if (handleSearch) {
+                        handleSearch({ target: { value: '' } });
+                      }
+                    }}
+                    {/* 🛠️ Thu nhỏ khoảng cách, padding trên mobile */}
+                    className="w-full flex items-center gap-3 md:gap-5 p-2.5 md:p-4 hover:bg-cyan-500/10 border-b border-white/5 last:border-0 text-left transition-all group/item"
                   >
-                    <div className="relative h-12 w-9 md:h-14 md:w-10 shrink-0 overflow-hidden rounded-lg border border-white/10 group-hover/item:border-cyan-500/50 transition-colors">
+                    {/* 🛠️ Thu nhỏ kích thước ảnh trên mobile */}
+                    <div className="relative h-10 w-7 md:h-14 md:w-10 shrink-0 overflow-hidden rounded-md md:rounded-lg border border-white/10 group-hover/item:border-cyan-500/50 transition-colors">
                       <img src={game.poster} className="h-full w-full object-cover" alt="" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-black text-xs md:text-sm text-white uppercase italic truncate group-hover/item:text-cyan-400 transition-colors tracking-tight">
+                      {/* 🛠️ Thu nhỏ cỡ chữ trên mobile */}
+                      <h4 className="font-black text-[10px] md:text-sm text-white uppercase italic truncate group-hover/item:text-cyan-400 transition-colors tracking-tight">
                         {game.title}
                       </h4>
-                      <p className="text-[9px] md:text-[10px] text-cyan-500/60 font-bold tracking-widest uppercase">
+                      <p className="text-[8px] md:text-[10px] text-cyan-500/60 font-bold tracking-widest uppercase mt-0.5">
                         Sẵn hàng • {game.price}
                       </p>
                     </div>
@@ -100,6 +110,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
               </div>
             </div>
           )}
+
         </div>
       </div>
 
