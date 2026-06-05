@@ -96,7 +96,7 @@ function Cart({ cartItems, onRemove }) {
                         key={`cart-item-${index}`} 
                         className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 group hover:border-white/10 transition-colors"
                       >
-                        <img src={item.poster} alt="" className="w-10 h-14 object-cover rounded-lg bg-white/5 shrink-0" />
+                        <img src={item.poster} alt="" loading="lazy" className="w-10 h-14 object-cover rounded-lg bg-white/5 shrink-0" />
                         <div className="flex-1 min-w-0">
                           <h4 className="text-xs md:text-sm font-bold text-white uppercase truncate">{item.title}</h4>
                           <span className="text-[10px] text-gray-500 uppercase tracking-wider">{item.genre || 'AAA Game'}</span>
