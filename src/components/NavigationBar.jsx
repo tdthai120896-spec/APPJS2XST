@@ -7,7 +7,7 @@ const NavigationBar = ({ currentView, handleNavigation }) => {
     { id: 'about', label: 'Giới Thiệu' },
     { id: 'guide', label: 'Hướng Dẫn' },
     { id: 'contact', label: 'Liên Hệ' },
-    { id: 'AllGames', label: 'Tất Cả Games' } // Đã bỏ cấu hình CTA sặc sỡ cũ
+    { id: 'AllGames', label: 'Tất Cả Games' }
   ];
 
   return (
@@ -35,10 +35,10 @@ const NavigationBar = ({ currentView, handleNavigation }) => {
             <button
               key={item.id}
               onClick={() => handleNavigation(item.id)}
-              className={`relative flex items-center justify-center text-[10px] xs:text-xs sm:text-sm font-black uppercase tracking-wide px-2.5 xs:px-3.5 sm:px-4 py-2 rounded-full transition-all duration-300 flex-1 sm:flex-none text-center border ${
+              className={`relative flex items-center justify-center text-[10px] xs:text-xs sm:text-sm font-black uppercase tracking-wide px-2.5 xs:px-3.5 sm:px-4 py-2 rounded-full transition-all duration-300 flex-1 sm:flex-none text-center border outline-none focus:outline-none focus:ring-0 ${
                 isActive
                   ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500 shadow-[0_0_15px_rgba(34,211,238,0.4)]'
-                  : 'text-gray-400 hover:text-white border-transparent'
+                  : 'bg-transparent text-gray-400 hover:text-white border-transparent'
               }`}
             >
               {/* Biểu tượng Gamepad nhảy tưng tưng chỉ hiển thị cạnh nút Tất Cả Games */}
