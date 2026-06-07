@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ShoppingCart, Plus, Gamepad2 } from 'lucide-react'
 import PurchaseModal from './PurchaseModal'
 import GameDetailModal from './GameDetailModal'
@@ -6,6 +6,24 @@ import GameDetailModal from './GameDetailModal'
 function GameCard({ game, onAddToCart }) {
   const [showPurchase, setShowPurchase] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
+  
+  // State quản lý việc hiển thị thông báo thêm vào giỏ hàng
+  const [showToast, setShowToast] = useState(false);
+
+  // Tự động đóng thông báo sau 1.2 giây
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => setShowToast(false), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
+
+  // Xử lý sự kiện click thêm giỏ hàng
+  const handleAddToCartClick = (e) => {
+    e.stopPropagation();
+    if (onAddToCart) onAddToCart(game);
+    setShowToast(true); // Kích hoạt popup
+  };
 
   return (
     <>
@@ -13,6 +31,17 @@ function GameCard({ game, onAddToCart }) {
         className="relative group cursor-pointer w-full h-full flex flex-col will-change-transform"
         onClick={() => setShowDetail(true)}
       >
+        {/* POPUP THÔNG BÁO TỐI GIẢN (Đặt ở giữa khu vực poster để dễ nhìn) */}
+        {showToast && (
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none animate-in fade-in zoom-in-95 duration-200">
+            <div className="bg-cyan-500 text-[#080d16] px-3.5 py-1.5 rounded-full shadow-[0_0_20px_rgba(6,182,212,0.6)] border border-cyan-300">
+              <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
+                Đã thêm giỏ hàng
+              </span>
+            </div>
+          </div>
+        )}
+
         {/* Hào quang Neon nhẹ nhàng phía sau khi Hover */}
         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/30 to-blue-500/30 rounded-[1.2rem] md:rounded-[1.6rem] blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
@@ -81,10 +110,7 @@ function GameCard({ game, onAddToCart }) {
 
             {/* NÚT THÊM GIỎ HÀNG (Obsidian Neon Style) */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onAddToCart) onAddToCart(game);
-              }}
+              onClick={handleAddToCartClick}
               className="relative flex items-center justify-center h-8 w-8 md:h-9.5 md:w-9.5 rounded-full bg-cyan-950/15 border border-cyan-500/30 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.05)] hover:text-[#080d16] hover:bg-cyan-500 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(6,182,212,0.45)] transition-all duration-300 active:scale-95 shrink-0 will-change-transform"
               title="Thêm vào giỏ hàng"
             >
