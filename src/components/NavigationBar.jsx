@@ -7,7 +7,7 @@ const NavigationBar = ({ currentView, handleNavigation }) => {
     { id: 'about', label: 'Giới Thiệu' },
     { id: 'guide', label: 'Hướng Dẫn' },
     { id: 'contact', label: 'Liên Hệ' },
-    { id: 'AllGames', label: 'Tất Cả Games' }
+    { id: 'AllGames', label: 'All Games' }
   ];
 
   return (
