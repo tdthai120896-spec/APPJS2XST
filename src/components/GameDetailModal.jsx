@@ -1,4 +1,3 @@
-{/* Nội dung trong mục con mắt */}
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ShieldCheck, HelpCircle, MessageSquare, Phone, ShoppingCart } from 'lucide-react';
@@ -23,122 +22,113 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
         'Sử dụng không thời hạn.'
     ];
 
-    // Đoạn mã CSS Style nhúng trực tiếp để tạo thanh cuộn Neon chuẩn Gaming
+    // Đoạn mã CSS Style tạo thanh cuộn Neon chuẩn Gaming siêu mượt
     const neonScrollbarStyle = `
       .gaming-scrollbar::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
+        width: 5px;
+        height: 5px;
       }
       .gaming-scrollbar::-webkit-scrollbar-track {
-        background: rgba(15, 18, 24, 0.5);
-        border-radius: 999px;
+        background: rgba(15, 18, 24, 0.4);
       }
       .gaming-scrollbar::-webkit-scrollbar-thumb {
-        background: linear-gradient(to bottom, #06b6d4, #3b82f6);
+        background: linear-gradient(to bottom, #06b6d4, #22d3ee);
         border-radius: 999px;
-        box-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
       }
-      .gaming-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(to bottom, #22d3ee, #60a5fa);
-      }
-      /* Ẩn thanh cuộn mặc định của trình duyệt để ép dùng giao diện gaming */
       .gaming-scrollbar {
         scrollbar-width: thin;
-        scrollbar-color: #06b6d4 rgba(15, 18, 24, 0.5);
+        scrollbar-color: #06b6d4 rgba(15, 18, 24, 0.4);
       }
     `;
 
-    // SỬ DỤNG CREATEPORTAL ĐỂ ĐẨY MODAL RA NGOÀI CÙNG DOM
     return createPortal(
         <div 
           className="fixed inset-0 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
-          style={{ zIndex: 999999 }} // Đảm bảo đè lên tất cả Navbar, Cart
+          style={{ zIndex: 999999 }} // Đè lên tất cả Navbar, Cart
         >
-            {/* Lớp nền mờ */}
-            <div className="fixed inset-0 bg-black/90 backdrop-blur-md" onClick={onClose} />
+            {/* Lớp nền mờ tối ưu hóa hiệu năng (Không dùng backdrop-blur đè nhau) */}
+            <div className="fixed inset-0 bg-black/85" onClick={onClose} />
 
             {/* Thẻ style nhúng cục bộ */}
             <style>{neonScrollbarStyle}</style>
 
-            {/* Khung nội dung chính - Tối ưu max-h cho mobile không bị cấn viền */}
-            <div className="gaming-scrollbar relative w-full max-w-3xl h-[95vh] md:h-auto md:max-h-[90vh] overflow-y-auto rounded-3xl border border-cyan-500/30 bg-[#0b101a] text-white p-5 sm:p-6 md:p-8 shadow-[0_0_50px_rgba(6,182,212,0.25)]">
+            {/* Khung nội dung chính - Obsidian Neon Style */}
+            <div className="gaming-scrollbar relative w-full max-w-3xl h-[90vh] md:h-auto md:max-h-[85vh] overflow-y-auto rounded-[1.5rem] md:rounded-[2rem] border border-cyan-500/20 bg-[#080d16] text-white p-4 sm:p-6 md:p-8 shadow-[0_0_40px_rgba(6,182,212,0.15)] flex flex-col justify-between">
 
-                {/* Nút đóng góc phải */}
+                {/* NÚT ĐÓNG GÓC PHẢI DI ĐỘNG & DESKTOP (Có viền định hình sang trọng) */}
                 <button
                     onClick={onClose}
-                    className="absolute top-3 right-3 md:top-5 md:right-5 p-2 bg-white/10 hover:bg-red-500 hover:text-white text-gray-300 rounded-full transition-colors z-50 backdrop-blur-md"
+                    className="absolute top-4 right-4 p-2 bg-black/50 border border-white/5 hover:bg-red-500 text-gray-400 hover:text-white rounded-full transition-all duration-300 z-50 shadow-md active:scale-95"
                 >
-                    <X className="h-5 w-5" />
+                    <X className="h-4 w-4 md:h-5 md:w-5" />
                 </button>
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 pt-6 md:pt-4">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 pt-4 md:pt-2">
 
-                    {/* CỘT TRÁI: HÌNH ẢNH GAME & NÚT MUA NGAY KÍCH HOẠT THANH TOÁN */}
+                    {/* ================= CỘT TRÁI: ẢNH, GIÁ & NÚT MUA (5/12 cột) ================= */}
                     <div className="md:col-span-5 flex flex-col gap-4">
-                        <div className="relative aspect-[3/4] w-full max-w-[200px] mx-auto md:max-w-none overflow-hidden rounded-2xl border border-white/10 shadow-2xl group">
+                        {/* Ảnh Poster game có bo góc và viền sáng mờ */}
+                        <div className="relative aspect-[3/4] w-full max-w-[180px] mx-auto md:max-w-none overflow-hidden rounded-2xl border border-cyan-500/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)] group">
                             <img
                                 src={game.poster}
                                 alt={game.title}
                                 className="h-full w-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#080d16]/80 via-transparent to-transparent pointer-events-none" />
                         </div>
 
-                        {/* GIÁ TIỀN NỔI BẬT */}
-                        <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-xl p-3 md:p-4 text-center">
-                            <p className="text-[10px] md:text-xs text-cyan-400 font-bold tracking-widest uppercase mb-1">Giá trải nghiệm</p>
-                            <p className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+                        {/* Thẻ hiển thị giá tối giản, sang trọng */}
+                        <div className="bg-[#0e1624] border border-cyan-500/10 rounded-2xl p-3 text-center">
+                            <p className="text-[10px] text-gray-400 font-bold tracking-widest uppercase mb-1">Giá trải nghiệm</p>
+                            <p className="text-xl md:text-2xl font-black text-cyan-400 tracking-wider">
                                 {game.price || '30.000đ'}
                             </p>
                         </div>
 
-                        {/* NÚT MUA NGAY LIÊN KẾT CHÉO SANG MODAL THANH TOÁN */}
-                        <div className="relative group/buyBtn w-full">
-                            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl blur opacity-70 group-hover/buyBtn:opacity-100 transition duration-300"></div>
-                            <button
-                                onClick={() => {
-                                    onClose();    // Đóng modal chi tiết
-                                    onBuyNow();   // Mở modal QR code của GameCard ngay lập tức
-                                }}
-                                className="relative w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-400 to-blue-500 text-black py-3 rounded-xl font-black uppercase tracking-wider text-sm hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]"
-                            >
-                                <ShoppingCart className="h-4 w-4 stroke-[2.5]" /> Mua ngay
-                            </button>
+                        {/* Nút Mua ngay (Thiết kế đồng bộ với GameCard) */}
+                        <div className="relative w-full">
+                          <button
+                              onClick={() => {
+                                  onClose();    // Đóng modal chi tiết
+                                  onBuyNow();   // Mở modal QR code của GameCard ngay lập tức
+                              }}
+                              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-[#080d16] py-3 rounded-full font-black uppercase tracking-widest text-xs shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.55)] transition-all duration-300 active:scale-[0.97] hover:scale-[1.01]"
+                          >
+                              <ShoppingCart className="h-4 w-4 stroke-[3]" /> Mua ngay
+                          </button>
                         </div>
                     </div>
 
-                    {/* CỘT PHẢI: NỘI DUNG CHI TIẾT */}
-                    <div className="md:col-span-7 flex flex-col justify-between space-y-6">
+                    {/* ================= CỘT PHẢI: THÔNG TIN CHI TIẾT & CHÍNH SÁCH (7/12 cột) ================= */}
+                    <div className="md:col-span-7 flex flex-col justify-between space-y-5">
                         <div>
-                            {/* Tên Game */}
-                            <h2 className="text-xl sm:text-2xl md:text-3xl font-black uppercase italic tracking-tight text-white mb-1">
+                            {/* Tên Game (Loại bỏ thuộc tính italic để tránh rối mắt trên Mobile) */}
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-wide text-white mb-1.5 leading-tight">
                                 {game.title}
                             </h2>
-                            <p className="text-[10px] sm:text-[11px] text-cyan-400 font-extrabold uppercase tracking-widest mb-3">
-                                Steam Offline Mode • {game.genre || 'AAA'}
+                            <p className="text-[10px] text-cyan-400 font-black uppercase tracking-widest mb-3.5 flex items-center gap-1.5 select-none">
+                              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_6px_rgba(6,182,212,1)]" />
+                              Steam Offline Mode • {game.genre || 'AAA'}
                             </p>
 
-                            {/* DÒNG CHỮ "MUA 1 ĐƯỢC 100" NHẤP NHÁY MÀU VÀNG NEON */}
-                            <div className="mb-4 p-3 rounded-xl bg-amber-500/5 border border-amber-400/40 shadow-[0_0_20px_rgba(245,158,11,0.2)] animate-pulse">
-                                <p className="text-xs font-medium leading-relaxed">
-                                    🎁 <span className="font-black uppercase tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-500 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]">
-                                        Mua 1 Được 100: TẶNG LÊN ĐẾN 100 GAMES
-                                    </span>
-                                    <br />
-                                    <span className="text-[10px] sm:text-[11px] text-amber-200/90 font-semibold mt-0.5 block">
-                                        Áp dụng tự động cho một số tài khoản ngẫu nhiên sau khi mua thành công!
-                                    </span>
+                            {/* Banner "Mua 1 Được 100" dạng Hologram tối giản */}
+                            <div className="mb-4 p-3 rounded-2xl bg-cyan-950/20 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.05)]">
+                                <p className="text-[10px] sm:text-xs font-bold leading-relaxed text-cyan-300 uppercase tracking-wider">
+                                    🎁 Mua 1 Được 100: TẶNG LÊN ĐẾN 100 GAMES
+                                </p>
+                                <p className="text-[9px] sm:text-[10px] text-gray-400 font-semibold mt-0.5 block leading-normal">
+                                    Tài khoản được gán kèm ngẫu nhiên loạt game siêu phẩm sau khi bạn mua thành công!
                                 </p>
                             </div>
 
-                            <hr className="border-white/10 mb-4" />
+                            <hr className="border-cyan-500/10 mb-4" />
 
-                            {/* Danh sách 8 gạch đầu dòng */}
-                            <ul className="space-y-2.5 sm:space-y-3">
+                            {/* Danh sách 8 chính sách dịch vụ */}
+                            <ul className="space-y-2.5">
                                 {policies.map((policy, idx) => (
-                                    <li key={idx} className="flex items-start gap-2 sm:gap-3 group">
-                                        <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                                        <span className="text-[11px] sm:text-sm font-medium text-gray-300 leading-relaxed group-hover:text-white transition-colors">
+                                    <li key={idx} className="flex items-start gap-2.5 group">
+                                        <ShieldCheck className="h-4 w-4 text-cyan-400 shrink-0 mt-0.5 group-hover:scale-105 transition-transform" />
+                                        <span className="text-[11px] sm:text-xs font-semibold text-gray-300 leading-normal group-hover:text-white transition-colors">
                                             {policy}
                                         </span>
                                     </li>
@@ -147,47 +137,44 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                         </div>
 
                         {/* KHU VỰC CONTACT LIÊN HỆ */}
-                        <div className="border-t border-white/10 pt-4 mt-4 md:mt-6">
-                            <div className="flex items-center gap-2 text-amber-400 mb-3">
-                                <HelpCircle className="h-4 w-4" />
-                                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wide">
-                                    Bạn có thắc mắc khác trước khi mua? Liên hệ ngay:
+                        <div className="border-t border-cyan-500/10 pt-4 mt-4">
+                            <div className="flex items-center gap-1.5 text-cyan-400/80 mb-3 select-none">
+                                <HelpCircle className="h-3.5 w-3.5" />
+                                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest">
+                                    Giải đáp thắc mắc trước khi thanh toán:
                                 </p>
                             </div>
 
-                            {/* 3 Nút Contact chia cột Grid cân đối cao cấp */}
+                            {/* 3 Nút liên hệ đồng bộ hóa thiết kế tối giản */}
                             <div className="grid grid-cols-3 gap-2">
                                 <div className="relative group/btn">
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
                                     <a
                                         href="https://www.facebook.com/profile.php?id=61558065130631"
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="relative flex items-center justify-center gap-1 sm:gap-1.5 px-1 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-blue-600/10 hover:bg-blue-600 border border-blue-600/30 text-blue-400 hover:text-white text-[9px] sm:text-[11px] font-bold uppercase tracking-wider transition-all"
+                                        className="relative flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-xl bg-[#0e1624] border border-cyan-500/15 text-cyan-400 hover:text-black hover:bg-cyan-500 hover:border-cyan-400 text-[10px] font-bold uppercase tracking-wider transition-all duration-300 active:scale-95"
                                     >
-                                        <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" /> Messenger
+                                        <MessageSquare className="h-3.5 w-3.5 shrink-0" /> Messenger
                                     </a>
                                 </div>
 
                                 <div className="relative group/btn">
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
                                     <a
                                         href="https://www.facebook.com/profile.php?id=61558065130631"
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="relative flex items-center justify-center gap-1 sm:gap-1.5 px-1 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-emerald-600/10 hover:bg-emerald-600 border border-emerald-600/30 text-emerald-400 hover:text-white text-[9px] sm:text-[11px] font-bold uppercase tracking-wider transition-all"
+                                        className="relative flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-xl bg-[#0e1624] border border-cyan-500/15 text-cyan-400 hover:text-black hover:bg-cyan-500 hover:border-cyan-400 text-[10px] font-bold uppercase tracking-wider transition-all duration-300 active:scale-95"
                                     >
-                                        <Phone className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" /> Zalo Chat
+                                        <Phone className="h-3.5 w-3.5 shrink-0" /> Zalo
                                     </a>
                                 </div>
 
                                 <div className="relative group/btn">
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl blur opacity-0 group-hover/btn:opacity-100 transition duration-300"></div>
                                     <a
                                         href="https://www.facebook.com/profile.php?id=61558065130631"
-                                        className="relative flex items-center justify-center gap-1 sm:gap-1.5 px-1 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-gradient-to-br from-[#00d2ff] to-cyan-500 text-[#031018] hover:brightness-110 font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition-all"
+                                        className="relative flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-[#080d16] hover:brightness-110 text-[10px] font-black uppercase tracking-wider transition-all active:scale-95"
                                     >
-                                        <Phone className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" /> Call
+                                        <Phone className="h-3.5 w-3.5 shrink-0" /> Gọi
                                     </a>
                                 </div>
                             </div>
@@ -198,7 +185,7 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
 
             </div>
         </div>,
-        document.body // Bắn DOM ra ngoài cùng
+        document.body
     );
 }
 
