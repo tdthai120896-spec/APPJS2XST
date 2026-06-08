@@ -15,7 +15,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
   };
 
   return (
-    <section className="relative min-h-[950px] md:min-h-[1050px] w-full flex flex-col items-center justify-between text-center pt-20 pb-12 overflow-hidden bg-[#05070a]">
+    <section className="relative min-h-[950px] md:min-h-[1050px] w-full flex flex-col items-center justify-between text-center pt-24 pb-12 overflow-hidden bg-[#030508]">
 
       {/* 🌟 CSS OPTIMIZED FOR HIGH PERFORMANCE (60FPS) */}
       <style>
@@ -27,21 +27,6 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           }
           .animate-breathe {
             animation: neonBreathe 4s ease-in-out infinite;
-          }
-
-          /* Hoạt ảnh biến dạng lỏng mượt mà cho Logo */
-          @keyframes liquid3D {
-            0%, 100% {
-              border-radius: 62% 38% 30% 70% / 55% 35% 65% 45%;
-              transform: rotate(0deg) translate3d(0,0,0);
-            }
-            50% {
-              border-radius: 40% 60% 70% 30% / 45% 55% 45% 55%;
-              transform: rotate(5deg) scale(1.02) translate3d(0,0,0);
-            }
-          }
-          .animate-liquid-3d {
-            animation: liquid3D 10s ease-in-out infinite;
           }
         `}
       </style>
@@ -70,73 +55,55 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
       )}
 
-      {/* VIDEO BACKGROUND (ĐÃ ĐƯỢC TỐI ƯU HÓA) */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover opacity-20 scale-100"
-        >
-          <source 
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4" 
-            type="video/mp4" 
-          />
-        </video>
-        {/* Lớp phủ chuyển màu sử dụng mã màu tối thay thế cho các hiệu ứng blur động */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#05070a]/95 via-[#05070a]/60 to-[#05070a]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,#05070a_98%)]" />
+      {/* BACKGROUND ĐEN/XANH NEON HOÀ HỢP TUYỆT ĐỐI VỚI VIDEO NỀN */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-[#030508]">
+        {/* Lưới tọa độ cyber mờ ảo */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(6,182,212,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.3)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        
+        {/* Hào quang trung tâm lan tỏa ôm lấy video giữa màn hình */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.1)_0%,transparent_65%)]" />
+        
+        {/* Gradient mờ dần nối tiếp vào phần chân trang tối */}
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#05070a] to-transparent" />
       </div>
 
       {/* KHUNG NỘI DUNG CHÍNH */}
       <div className="relative z-20 w-full max-w-xl mx-auto px-6 flex flex-col items-center justify-center my-auto">
         
-        {/* 2 & 4/ LOGO "STEAM OFFLINE 30K" 3D LIQUID HOÀNH TRÁNG */}
-        <div className="relative w-72 h-36 md:w-[340px] md:h-44 flex items-center justify-center mb-8 select-none group">
-          {/* Vòng hào quang phát sáng phía sau (Đã tối ưu để không gây lag) */}
-          <div className="absolute -inset-4 rounded-full bg-cyan-500/10 blur-2xl opacity-60 animate-breathe pointer-events-none will-change-transform"></div>
-
-          {/* Khung Gel Liquid 3D chuyển động */}
-          <div className="absolute inset-0 animate-liquid-3d bg-gradient-to-br from-cyan-600 via-[#071324] to-[#043152] border-2 border-cyan-400/80 shadow-[inset_0_4px_16px_rgba(255,255,255,0.25),0_15px_30px_rgba(6,182,212,0.45)] overflow-hidden will-change-[border-radius,transform]">
-            
-            {/* Hiệu ứng bóng sáng bên trong Gel lỏng */}
-            <div className="absolute -top-12 -left-12 w-48 h-48 bg-cyan-400/20 rounded-full blur-2xl animate-pulse pointer-events-none will-change-opacity"></div>
-            <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-blue-500/25 rounded-full blur-2xl animate-pulse pointer-events-none will-change-opacity"></div>
-
-            {/* Vệt sáng bóng 3D bề mặt thủy tinh */}
-            <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-[120px] pointer-events-none"></div>
-            <div className="absolute top-2.5 left-8 right-8 h-[2.5px] bg-gradient-to-r from-transparent via-white/50 to-transparent blur-[1px]"></div>
-          </div>
-
-          {/* Chữ hiển thị 3D dập nổi */}
-          <div className="relative z-10 flex flex-col items-center justify-center text-center transform group-hover:scale-105 transition-transform duration-500 will-change-transform">
-            <span className="text-[11px] md:text-xs font-black tracking-[0.35em] text-cyan-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] uppercase">
-              Steam Offline
-            </span>
-            <h2 
-              className="text-5xl md:text-6xl font-black italic tracking-tighter text-white uppercase mt-1"
-              style={{
-                textShadow: '0 1px 0 #06b6d4, 0 2px 0 #0891b2, 0 3px 0 #0284c7, 0 4px 0 #0369a1, 0 5px 0 #075985, 0 8px 16px rgba(6,182,212,0.8)'
-              }}
-            >
-              30.000đ
-            </h2>
-          </div>
-        </div>
-
         {/* TIÊU ĐỀ THƯƠNG HIỆU */}
-        <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-4 drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)] text-white">
+        <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)] text-white">
           NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.25)]">STEAM</span>
         </h1>
+
+        {/* KHUNG CONSOLE ĐỰNG VIDEO TRÌNH CHIẾU SANG TRỌNG */}
+        <div className="relative w-full max-w-[300px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden border border-cyan-500/20 bg-black/45 shadow-[0_0_35px_rgba(6,182,212,0.15)] group/video flex items-center justify-center">
+          {/* Vòng nhịp thở mờ ảo sau video */}
+          <div className="absolute -inset-4 rounded-full bg-cyan-500/5 blur-2xl opacity-40 animate-breathe pointer-events-none will-change-transform"></div>
+
+          {/* 4 Góc định vị laser công nghệ cao */}
+          <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-cyan-500/65"></div>
+          <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-cyan-500/65"></div>
+          <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-cyan-500/65"></div>
+          <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-cyan-500/65"></div>
+          
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover opacity-95 transition-all duration-500 group-hover/video:scale-[1.02]"
+          >
+            <source src="/gemini_generated_video_F8B04FBE.mp4" type="video/mp4" />
+          </video>
+        </div>
 
         {/* MÔ TẢ */}
         <p className="text-gray-300 text-sm md:text-base max-w-md mx-auto mb-8 leading-relaxed font-medium">
           Trải nghiệm kho game AAA đồ sộ, cài đặt đơn giản, bảo mật tối ưu và cập nhật liên tục.
         </p>
 
-        {/* THANH TÌM KIẾM (Đã loại bỏ backdrop-blur nặng nề) */}
+        {/* THANH TÌM KIẾM */}
         <div className="w-full mb-8">
           <SearchBar
             searchTerm={searchTerm}
@@ -146,8 +113,8 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           />
         </div>
 
-        {/* THỐNG KÊ (Đã loại bỏ backdrop-blur để tránh lag video) */}
-        <div className="grid grid-cols-3 gap-2 w-full max-w-md mx-auto p-1.5 rounded-xl bg-[#070b13]/95 border border-cyan-500/10 text-[10px] md:text-xs font-bold text-white/70 uppercase tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.05)]">
+        {/* THỐNG KÊ */}
+        <div className="grid grid-cols-3 gap-2 w-full max-w-md mx-auto p-1.5 rounded-xl bg-[#070b13]/95 border border-cyan-500/10 text-[10px] md:text-xs font-bold text-white/70 uppercase tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.05)] select-none">
           <div className="flex items-center justify-center gap-1.5 py-1.5 border-r border-white/5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping shrink-0" />
             <Users className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
@@ -164,7 +131,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
       </div>
 
-      {/* BANNER KHUYẾN MÃI (Đã loại bỏ backdrop-blur và tối ưu hóa blur neon) */}
+      {/* BANNER KHUYẾN MÃI DƯỚI ĐÁY */}
       <div className="w-full max-w-5xl px-4 md:px-8 mt-12 z-20">
         <div className="relative group/promo">
           <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl blur-xl opacity-20 pointer-events-none"></div>
