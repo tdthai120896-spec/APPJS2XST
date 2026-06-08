@@ -55,7 +55,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
       )}
 
-      {/* BACKGROUND ĐEN/XANH NEON HOÀ HỢP TUYỆT ĐỐI VỚI VIDEO NỀN */}
+      {/* BACKGROUND ĐEN/XANH NEON TỐI GIẢN */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-[#030508]">
         {/* Lưới tọa độ cyber mờ ảo */}
         <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(6,182,212,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.3)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
@@ -75,24 +75,15 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.25)]">STEAM</span>
         </h1>
 
-        {/* KHUNG CONSOLE ĐỰNG VIDEO TRÌNH CHIẾU SANG TRỌNG */}
-        <div className="relative w-full max-w-[300px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden border border-cyan-500/20 bg-black/45 shadow-[0_0_35px_rgba(6,182,212,0.15)] group/video flex items-center justify-center">
-          {/* Vòng nhịp thở mờ ảo sau video */}
-          <div className="absolute -inset-4 rounded-full bg-cyan-500/5 blur-2xl opacity-40 animate-breathe pointer-events-none will-change-transform"></div>
-
-          {/* 4 Góc định vị laser công nghệ cao */}
-          <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-cyan-500/65"></div>
-          <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-cyan-500/65"></div>
-          <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-cyan-500/65"></div>
-          <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-cyan-500/65"></div>
-          
+        {/* 1 & 2/ VIDEO KHÔNG KHUNG - HÒA NHẬP HOÀN TOÀN VÀO NỀN TỐI */}
+        <div className="relative w-full max-w-[300px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden bg-transparent flex items-center justify-center">
           <video
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
-            className="w-full h-full object-cover opacity-95 transition-all duration-500 group-hover/video:scale-[1.02]"
+            className="w-full h-full object-cover opacity-95"
           >
             <source src="/gemini_generated_video_F8B04FBE.mp4" type="video/mp4" />
           </video>
