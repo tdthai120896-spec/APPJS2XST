@@ -20,13 +20,22 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
       {/* 🌟 CSS OPTIMIZED FOR HIGH PERFORMANCE (60FPS) */}
       <style>
         {`
-          /* Tối ưu hóa: Hoạt ảnh chỉ thay đổi opacity/scale để GPU xử lý mượt mà, không dùng dynamic blur */
+          /* Tối ưu hóa: Hoạt ảnh nhịp thở cho quầng sáng nền */
           @keyframes neonBreathe {
-            0%, 100% { opacity: 0.35; transform: scale(0.97) translate3d(0,0,0); }
+            0%, 100% { opacity: 0.4; transform: scale(0.97) translate3d(0,0,0); }
             50% { opacity: 0.85; transform: scale(1.03) translate3d(0,0,0); }
           }
           .animate-breathe {
-            animation: neonBreathe 4s ease-in-out infinite;
+            animation: neonBreathe 5s ease-in-out infinite;
+          }
+
+          /* Hoạt ảnh lơ lửng nhẹ nhàng cho video Hologram */
+          @keyframes floatVideo {
+            0%, 100% { transform: translateY(0) translate3d(0,0,0); }
+            50% { transform: translateY(-8px) translate3d(0,0,0); }
+          }
+          .animate-float {
+            animation: floatVideo 6s ease-in-out infinite;
           }
         `}
       </style>
@@ -55,13 +64,13 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
       )}
 
-      {/* BACKGROUND ĐEN/XANH NEON TỐI GIẢN */}
+      {/* BACKGROUND ĐEN/XANH NEON TÍCH HỢP HIỆU ỨNG NHẬT THỰC (ECLIPSE GLOW) */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-[#030508]">
         {/* Lưới tọa độ cyber mờ ảo */}
         <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(6,182,212,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.3)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         
-        {/* Hào quang trung tâm lan tỏa ôm lấy video giữa màn hình */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.1)_0%,transparent_65%)]" />
+        {/* 🌟 HÀO QUANG NHẬT THỰC: Đen kịt ở tâm (0%-25%) để hòa hợp với video, tỏa dần ra xanh neon (50%-60%) và mờ dần */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#030508_25%,rgba(6,182,212,0.15)_50%,transparent_75%)] animate-breathe transform-gpu will-change-transform" />
         
         {/* Gradient mờ dần nối tiếp vào phần chân trang tối */}
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#05070a] to-transparent" />
@@ -75,8 +84,8 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.25)]">STEAM</span>
         </h1>
 
-        {/* 1 & 2/ VIDEO KHÔNG KHUNG - HÒA NHẬP HOÀN TOÀN VÀO NỀN TỐI */}
-        <div className="relative w-full max-w-[300px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden bg-transparent flex items-center justify-center">
+        {/* 1 & 2/ VIDEO KHÔNG KHUNG - TỰ TRÔI NỔI LƠ LỬNG TRÊN QUẦNG SÁNG */}
+        <div className="relative w-full max-w-[300px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden bg-transparent flex items-center justify-center animate-float transform-gpu">
           <video
             autoPlay
             loop
