@@ -94,7 +94,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
             preload="auto"
             className="w-full h-full object-cover opacity-95"
           >
-            <source src="/gemini_generated_video_F8B04FBE.mp4" type="video/mp4" />
+            <source src="/gemini_generated_video_F111.mp4" type="video/mp4" />
           </video>
         </div>
 
