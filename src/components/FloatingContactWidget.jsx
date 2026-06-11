@@ -1,9 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { MessageSquare, Phone, MessageCircle } from 'lucide-react'
 
+// Các chuỗi Base64 đã mã hóa để ẩn thông tin khỏi bot quét dữ liệu:
+const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA=' // https://zalo.me/0379332870
+const ENCODED_CALL = 'dGVsOjAzNzkzMzI4NzA=' // tel:0379332870
+
+// Bạn có thể chọn 1 trong 2 dòng Messenger dưới đây để sử dụng:
+const ENCODED_MESSENGER = 'aHR0cHM6Ly9tLm1lLzYxNTU4MDY1MTMwNjMx' // Gửi tin nhắn qua m.me/61558065130631
+// const ENCODED_MESSENGER = 'aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3Byb2ZpbGUucGhwP2lkPTYxNTU4MDY1MTMwNjMx' // Link Facebook cá nhân gốc
+
 function FloatingContactWidget() {
   const [isOpenMobile, setIsOpenMobile] = useState(false);
+  const [links, setLinks] = useState({ zalo: '#', messenger: '#', call: '#' });
   const widgetRef = useRef(null);
+
+  // Giải mã các liên kết sau khi component được mount trên client
+  useEffect(() => {
+    try {
+      setLinks({
+        zalo: window.atob(ENCODED_ZALO),
+        messenger: window.atob(ENCODED_MESSENGER),
+        call: window.atob(ENCODED_CALL)
+      });
+    } catch (error) {
+      console.error("Lỗi giải mã liên kết liên hệ:", error);
+    }
+  }, []);
 
   // Xử lý đóng widget trên mobile khi click ra ngoài màn hình
   useEffect(() => {
@@ -42,9 +64,9 @@ function FloatingContactWidget() {
       {/* MENU CON (Zalo, Messenger, Call) */}
       <div className={`flex flex-col items-end gap-4 mb-4 transition-all duration-300 ease-out ${activeMenuClasses}`}>
 
-      {/* NÚT ZALO */}
+        {/* NÚT ZALO */}
         <a
-          href="https://www.facebook.com/profile.php?id=61558065130631"
+          href={links.zalo}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-3 group/item"
@@ -59,7 +81,7 @@ function FloatingContactWidget() {
 
         {/* NÚT MESSENGER */}
         <a
-          href="https://www.facebook.com/profile.php?id=61558065130631" // Thay username page Messenger của bạn
+          href={links.messenger}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-3 group/item"
@@ -74,7 +96,7 @@ function FloatingContactWidget() {
 
         {/* NÚT GỌI ĐIỆN */}
         <a
-          href="https://www.facebook.com/profile.php?id=61558065130631" // Thay số hotline của bạn
+          href={links.call}
           className="flex items-center gap-3 group/item"
         >
           <span className="bg-[#0b0e14]/90 backdrop-blur-md border border-emerald-500/40 text-emerald-400 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all duration-300 group-hover/item:border-emerald-400 group-hover/item:text-emerald-300">
@@ -89,7 +111,6 @@ function FloatingContactWidget() {
 
       {/* NÚT LIÊN HỆ TỔNG */}
       <div className="relative mr-0.5">
-        {/* Lớp ánh sáng xanh neon tỏa ra xung quanh */}
         <div className="absolute -inset-1.5 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full blur-md opacity-70 group-hover:opacity-100 group-hover:scale-105 transition duration-500 animate-pulse"></div>
 
         <button
@@ -106,12 +127,9 @@ function FloatingContactWidget() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
 
-          {/* 🔴 CHẤM ĐỎ THÔNG BÁO NHẢY TƯNG TƯNG */}
           {!isOpenMobile && (
             <span className="absolute top-0 right-0 flex h-3.5 w-3.5 animate-bounce">
-              {/* Lớp màu đỏ mờ nhấp nháy phía sau (tạo cảm giác phát sóng) */}
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              {/* Chấm đỏ chính xịn xò */}
               <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-500 border border-black/80"></span>
             </span>
           )}

@@ -1,14 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { 
   X, MessageSquare, Monitor, Settings2, CheckCircle2, 
   ArrowDown, Facebook, Phone, PlayCircle, AlertTriangle 
 } from 'lucide-react'
 
+// Các chuỗi Base64 đã mã hóa thông tin liên hệ
+const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA=' // https://zalo.me/0379332870
+const ENCODED_CALL = 'dGVsOjAzNzkzMzI4NzA=' // tel:0379332870
+const ENCODED_FACEBOOK = 'aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3Byb2ZpbGUucGhwP2lkPTYxNTU4MDY1MTMwNjMx' // Trang Facebook cá nhân
+
 function PurchaseModal({ game, onClose }) {
-  // Khóa cuộn trang nền khi mở modal thanh toán
+  const [links, setLinks] = useState({ zalo: '#', messenger: '#', call: '#' });
+
+  // Khóa cuộn trang nền và xử lý giải mã liên kết trên client
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    
+    try {
+      setLinks({
+        zalo: window.atob(ENCODED_ZALO),
+        messenger: window.atob(ENCODED_FACEBOOK),
+        call: window.atob(ENCODED_CALL)
+      });
+    } catch (error) {
+      console.error("Lỗi giải mã liên kết:", error);
+    }
+
     return () => { document.body.style.overflow = 'unset'; };
   }, []);
 
@@ -126,7 +144,7 @@ function PurchaseModal({ game, onClose }) {
             {/* Hệ thống nút liên hệ (Zalo, Messenger, Call) */}
             <div className="grid grid-cols-3 gap-2">
               <a 
-                href="https://www.facebook.com/profile.php?id=61558065130631" 
+                href={links.zalo} 
                 target="_blank" 
                 rel="noreferrer" 
                 className="flex flex-col items-center justify-center w-full gap-1 rounded-xl bg-[#0e1624] py-2.5 text-[10px] font-extrabold text-blue-400 border border-blue-500/25 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all duration-300 shadow-[0_0_10px_rgba(59,130,246,0.1)] active:scale-95"
@@ -135,7 +153,7 @@ function PurchaseModal({ game, onClose }) {
               </a>
 
               <a 
-                href="https://www.facebook.com/profile.php?id=61558065130631" 
+                href={links.messenger} 
                 target="_blank" 
                 rel="noreferrer" 
                 className="flex flex-col items-center justify-center w-full gap-1 rounded-xl bg-[#0e1624] py-2.5 text-[10px] font-extrabold text-[#38bdf8] border border-[#38bdf8]/20 hover:bg-[#38bdf8] hover:text-black hover:border-[#38bdf8] transition-all duration-300 shadow-[0_0_10px_rgba(56,189,248,0.1)] active:scale-95"
@@ -144,7 +162,7 @@ function PurchaseModal({ game, onClose }) {
               </a>
 
               <a 
-                href="https://www.facebook.com/profile.php?id=61558065130631" 
+                href={links.call} 
                 className="flex flex-col items-center justify-center w-full gap-1 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 py-2.5 text-[10px] font-black text-[#031018] hover:brightness-110 shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all active:scale-95"
               >
                 <Phone className="h-4 w-4" /> Gọi điện
@@ -155,7 +173,6 @@ function PurchaseModal({ game, onClose }) {
         </div>
 
         {/* ================= CỘT PHẢI: VIDEO & HƯỚNG DẪN CHI TIẾT (ONBOARDING ZONE) ================= */}
-        {/* Trên PC sẽ cuộn độc lập thông qua class gaming-scrollbar */}
         <div className="gaming-scrollbar flex-1 bg-black/35 p-5 md:p-6 lg:p-8 md:overflow-y-auto flex flex-col gap-6">
           
           {/* Tiêu đề hướng dẫn */}
@@ -180,14 +197,13 @@ function PurchaseModal({ game, onClose }) {
             </div>
           </div>
 
-          {/* Quy trình cài đặt 4 Bước: Tự động đổi dạng hàng dọc trên Mobile & lưới ngang trên PC */}
+          {/* Quy trình cài đặt 4 Bước */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full">
             {miniSteps.map((step, i) => (
               <div 
                 key={i} 
                 className="group/step flex sm:flex-col items-center sm:text-center text-left gap-3 sm:gap-0 p-3.5 rounded-xl bg-white/[0.01] border border-cyan-500/10 hover:border-cyan-500/30 hover:bg-cyan-500/[0.02] hover:shadow-[0_0_15px_rgba(6,182,212,0.1)] transition-all duration-300"
               >
-                {/* Vòng tròn số bước */}
                 <div className="w-9 h-9 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 border border-cyan-500/20 group-hover/step:scale-105 group-hover/step:border-cyan-400 transition-all shrink-0 sm:mb-2.5">
                   {step.icon}
                 </div>
