@@ -5,14 +5,17 @@ import GameCard from './GameCard' // IMPORT TRỰC TIẾP GAMECARD
 function MarqueeGames({ games, onAddToCart }) {
   const [showToast, setShowToast] = useState(false);
   const containerRef = useRef(null);
-  const [isInteracting, setIsInteracting] = useState(false);
+  
+  // Sử dụng useRef để kiểm soát tương tác tức thời mà không cần re-render gây giật lag
   const isDragging = useRef(false);
+  const isHovered = useRef(false);
+  
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
 
   if (!games || games.length === 0) return null;
 
-  // 1 & 2/ THUẬT TOÁN TỰ ĐỘNG TRƯỢT 60FPS & ĐOÀN HÀNH KÉO RÊ TRÁI PHẢI VÔ HẠN
+  // THUẬT TOÁN TỰ ĐỘNG TRƯỢT TỪ TRÁI SANG PHẢI & TỰ ĐỘNG KHÔI PHỤC KHI THẢ TAY
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -20,15 +23,21 @@ function MarqueeGames({ games, onAddToCart }) {
     let animationId;
     const scrollSpeed = 0.8; // Tốc độ trượt tự động cực kỳ êm ái
 
+    // Thiết lập vị trí ban đầu ở giữa để tránh bị kịch biên khi chạy ngược chiều
+    const halfWidth = container.scrollWidth / 2;
+    if (container.scrollLeft === 0 && halfWidth > 0) {
+      container.scrollLeft = halfWidth;
+    }
+
     const animate = () => {
-      // Chỉ tự động chạy khi không có kéo rê chuột hoặc hover
-      if (!isDragging.current && !isInteracting) {
-        container.scrollLeft += scrollSpeed;
+      // Chỉ chạy tự động khi người dùng KHÔNG di chuột vào (Hover) và KHÔNG kéo vuốt (Drag)
+      if (!isDragging.current && !isHovered.current) {
+        container.scrollLeft -= scrollSpeed;
         
-        // Reset vòng lặp vô hạn khi trượt qua 1 nửa chiều dài
-        const halfWidth = container.scrollWidth / 2;
-        if (container.scrollLeft >= halfWidth) {
-          container.scrollLeft -= halfWidth;
+        // Reset vòng lặp vô hạn khi trượt về sát góc bên trái (0)
+        if (container.scrollLeft <= 0) {
+          const currentHalfWidth = container.scrollWidth / 2;
+          container.scrollLeft += currentHalfWidth;
         }
       }
       animationId = requestAnimationFrame(animate);
@@ -36,15 +45,26 @@ function MarqueeGames({ games, onAddToCart }) {
 
     animationId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationId);
-  }, [isInteracting]);
+  }, [games]);
 
-  // Xử lý kéo tay bằng chuột (Desktop)
+  // ================= XỬ LÝ SỰ KIỆN TRÊN DESKTOP (CHUỘT) =================
+  const handleMouseEnter = () => {
+    isHovered.current = true; // Dừng chạy khi di chuột vào để người dùng dễ đọc/click game
+  };
+
+  const handleMouseLeave = () => {
+    isHovered.current = false; // Chạy lại ngay lập tức khi di chuột ra ngoài
+    isDragging.current = false;
+    if (containerRef.current) {
+      containerRef.current.style.scrollBehavior = 'smooth';
+    }
+  };
+
   const handleMouseDown = (e) => {
     isDragging.current = true;
-    setIsInteracting(true);
     startX.current = e.pageX - containerRef.current.offsetLeft;
     scrollLeftStart.current = containerRef.current.scrollLeft;
-    containerRef.current.style.scrollBehavior = 'auto'; // Tắt mượt tạm thời để kéo tay bám dính hơn
+    containerRef.current.style.scrollBehavior = 'auto'; // Tắt cuộn mượt tạm thời để kéo tay bám dính hơn
   };
 
   const handleMouseMove = (e) => {
@@ -54,7 +74,6 @@ function MarqueeGames({ games, onAddToCart }) {
     const walk = (x - startX.current) * 1.5; // Hệ số bám tay khi vuốt kéo
     let newScrollLeft = scrollLeftStart.current - walk;
 
-    // Reset loop vô hạn trực tiếp ngay trong lúc kéo để không bị kịch biên
     const halfWidth = containerRef.current.scrollWidth / 2;
     if (newScrollLeft >= halfWidth) {
       newScrollLeft -= halfWidth;
@@ -69,21 +88,16 @@ function MarqueeGames({ games, onAddToCart }) {
     containerRef.current.scrollLeft = newScrollLeft;
   };
 
-  const handleMouseUpOrLeave = () => {
-    if (!isDragging.current) return;
+  const handleMouseUp = () => {
     isDragging.current = false;
-    containerRef.current.style.scrollBehavior = 'smooth';
-    
-    // Đợi 1.5 giây sau khi thả tay mới chạy tiếp
-    setTimeout(() => {
-      setIsInteracting(false);
-    }, 1500);
+    if (containerRef.current) {
+      containerRef.current.style.scrollBehavior = 'smooth';
+    }
   };
 
-  // Xử lý kéo tay bằng vuốt chạm (Mobile)
+  // ================= XỬ LÝ SỰ KIỆN TRÊN MOBILE (VUỐT CHẠM) =================
   const handleTouchStart = (e) => {
     isDragging.current = true;
-    setIsInteracting(true);
     startX.current = e.touches[0].pageX - containerRef.current.offsetLeft;
     scrollLeftStart.current = containerRef.current.scrollLeft;
     containerRef.current.style.scrollBehavior = 'auto';
@@ -110,11 +124,10 @@ function MarqueeGames({ games, onAddToCart }) {
   };
 
   const handleTouchEnd = () => {
-    isDragging.current = false;
-    containerRef.current.style.scrollBehavior = 'smooth';
-    setTimeout(() => {
-      setIsInteracting(false);
-    }, 1500);
+    isDragging.current = false; // Chạy lại ngay lập tức khi người dùng thả tay trên điện thoại
+    if (containerRef.current) {
+      containerRef.current.style.scrollBehavior = 'smooth';
+    }
   };
 
   // Hàm xử lý thêm vào giỏ và hiện thông báo Toast
@@ -178,17 +191,16 @@ function MarqueeGames({ games, onAddToCart }) {
         <div 
           ref={containerRef}
           className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing px-6 md:px-20 py-3"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUpOrLeave}
-          onMouseLeave={handleMouseUpOrLeave}
+          onMouseUp={handleMouseUp}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          onMouseEnter={() => setIsInteracting(true)}
         >
           {games.map((game, index) => (
-            /* 3/ KHUNG ĐỒNG BỘ GAMECARD: Đảm bảo chiều cao, tỷ lệ co giãn giống 100% Storefront */
             <div
               key={`marquee-${game.title}-${index}`}
               className="shrink-0 w-[180px] sm:w-[200px] md:w-[260px] flex flex-col h-full"
