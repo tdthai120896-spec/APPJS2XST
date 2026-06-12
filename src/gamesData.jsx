@@ -261,7 +261,7 @@ export const RAW_GAMES = {
     { title: "Raft", genre: "Ocean Raft Crafting", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg" }
   ],
   'Sports & Racing': [
-    { "title": "Forza Horizon 6", "genre": "Racing", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2443000/header.jpg" },
+    { "title": "Forza Horizon 6", "genre": "Racing", "price": "30.000đ", "poster": "https://cdn.forza.net/strapi-uploads/assets/Forza_Horizon_6_3840x2160_Hori_Final_ac7b0063ff.jpg" },
     { title: "Need for Speed™ Unbound", genre: "Arcade Street Racing", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1846380/header.jpg" },
     { title: "The Crew™ 2", genre: "Open World Driving Motorsports", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/646910/header.jpg" },
     { title: "WWE 2K24", genre: "Sports Wrestling Fighting", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2315690/header.jpg" },
