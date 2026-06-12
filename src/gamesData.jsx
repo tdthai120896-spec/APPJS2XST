@@ -23,6 +23,9 @@ export const RAW_GAMES = {
     { title: "Ghost of Tsushima DIRECTOR'S CUT", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg" },
     { title: "Sekiro: Shadows Die Twice", genre: "Souls-like", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg" },
     { title: "Red Dead Redemption 2", genre: "Action", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" },
+    { "title": "Death Stranding Director's Cut", "genre": "Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1850570/header.jpg" },
+    { "title": "Metro: Last Light Redux", "genre": "Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/287390/header.jpg" },
+    { "title": "Metro Exodus", "genre": "Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/412020/header.jpg" },
     { title: "Resident Evil 4 Remake", genre: "Horror Action", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/header.jpg" },
     { title: "Devil May Cry 5", genre: "Action", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/601150/header.jpg" },
     { title: "Left 4 Dead 2", genre: "Zombie Shooter", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/550/header.jpg" },
@@ -258,6 +261,7 @@ export const RAW_GAMES = {
     { title: "Raft", genre: "Ocean Raft Crafting", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg" }
   ],
   'Sports & Racing': [
+    { "title": "Forza Horizon 6", "genre": "Racing", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2443000/header.jpg" },
     { title: "Need for Speed™ Unbound", genre: "Arcade Street Racing", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1846380/header.jpg" },
     { title: "The Crew™ 2", genre: "Open World Driving Motorsports", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/646910/header.jpg" },
     { title: "WWE 2K24", genre: "Sports Wrestling Fighting", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2315690/header.jpg" },
