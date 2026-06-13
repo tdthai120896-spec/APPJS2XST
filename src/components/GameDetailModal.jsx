@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ShieldCheck, HelpCircle, MessageSquare, Phone, ShoppingCart } from 'lucide-react';
+import { X, ShieldCheck, HelpCircle, MessageSquare, MessageCircle, Phone, ShoppingCart } from 'lucide-react';
 
 // Chuỗi mã hóa Base64 cho thông tin liên hệ
 const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA='; // https://zalo.me/0379332870
@@ -162,7 +162,7 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                                 </p>
                             </div>
 
-                            {/* Hệ thống 3 nút liên hệ giải mã động */}
+                            {/* Hệ thống 3 nút liên hệ (Đã đồng bộ hóa biểu tượng) */}
                             <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
                                 <a
                                     href={links.messenger}
@@ -179,14 +179,14 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                                     rel="noreferrer"
                                     className="flex items-center justify-center gap-1 px-1 py-2.5 rounded-xl bg-[#0e1624] border border-cyan-500/15 text-cyan-400 hover:text-black hover:bg-cyan-500 hover:border-cyan-400 text-[9px] min-[375px]:text-[10px] font-bold uppercase tracking-wider transition-all duration-300 active:scale-95 text-center"
                                 >
-                                    <Phone className="h-3.5 w-3.5 shrink-0 hidden min-[360px]:block" /> Zalo
+                                    <MessageCircle className="h-3.5 w-3.5 shrink-0 hidden min-[360px]:block fill-current" /> Zalo
                                 </a>
 
                                 <a
                                     href={links.call}
                                     className="flex items-center justify-center gap-1 px-1 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-[#080d16] hover:brightness-110 text-[9px] min-[375px]:text-[10px] font-black uppercase tracking-wider transition-all active:scale-95 text-center"
                                 >
-                                    <Phone className="h-3.5 w-3.5 shrink-0 hidden min-[360px]:block" /> Gọi điện
+                                    <Phone className="h-3.5 w-3.5 shrink-0 hidden min-[360px]:block fill-current" /> Gọi điện
                                 </a>
                             </div>
                         </div>

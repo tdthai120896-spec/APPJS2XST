@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { 
-  X, MessageSquare, Monitor, Settings2, CheckCircle2, 
-  ArrowDown, Facebook, Phone, PlayCircle, AlertTriangle 
+  X, MessageSquare, MessageCircle, Monitor, Settings2, CheckCircle2, 
+  ArrowDown, Phone, PlayCircle, AlertTriangle 
 } from 'lucide-react'
 
 // Các chuỗi Base64 đã mã hóa thông tin liên hệ
@@ -137,11 +137,11 @@ function PurchaseModal({ game, onClose }) {
             <div className="mb-4 p-2 rounded-xl bg-cyan-500/5 border border-cyan-500/15 animate-pulse text-center">
               <p className="text-[10px] font-bold text-cyan-300 flex items-center justify-center gap-1">
                 <ArrowDown className="h-3 w-3 animate-bounce" />
-                Chuyển xong nhấn liên hệ nhận Account ngay!
+                Chuyển xong nhắn mình nhận Account ngay!
               </p>
             </div>
 
-            {/* Hệ thống nút liên hệ (Zalo, Messenger, Call) */}
+            {/* Hệ thống nút liên hệ (Đã đồng bộ biểu tượng chuẩn của Widget) */}
             <div className="grid grid-cols-3 gap-2">
               <a 
                 href={links.zalo} 
@@ -149,7 +149,7 @@ function PurchaseModal({ game, onClose }) {
                 rel="noreferrer" 
                 className="flex flex-col items-center justify-center w-full gap-1 rounded-xl bg-[#0e1624] py-2.5 text-[10px] font-extrabold text-blue-400 border border-blue-500/25 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all duration-300 shadow-[0_0_10px_rgba(59,130,246,0.1)] active:scale-95"
               >
-                <MessageSquare className="h-4 w-4" /> Zalo
+                <MessageCircle className="h-4 w-4 fill-current" /> Zalo
               </a>
 
               <a 
@@ -158,21 +158,21 @@ function PurchaseModal({ game, onClose }) {
                 rel="noreferrer" 
                 className="flex flex-col items-center justify-center w-full gap-1 rounded-xl bg-[#0e1624] py-2.5 text-[10px] font-extrabold text-[#38bdf8] border border-[#38bdf8]/20 hover:bg-[#38bdf8] hover:text-black hover:border-[#38bdf8] transition-all duration-300 shadow-[0_0_10px_rgba(56,189,248,0.1)] active:scale-95"
               >
-                <Facebook className="h-4 w-4" /> Messenger
+                <MessageSquare className="h-4 w-4" /> Messenger
               </a>
 
               <a 
                 href={links.call} 
                 className="flex flex-col items-center justify-center w-full gap-1 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 py-2.5 text-[10px] font-black text-[#031018] hover:brightness-110 shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all active:scale-95"
               >
-                <Phone className="h-4 w-4" /> Gọi điện
+                <Phone className="h-4 w-4 fill-current" /> Gọi điện
               </a>
             </div>
 
           </div>
         </div>
 
-        {/* ================= CỘT PHẢI: VIDEO & HƯỚNG DẪN CHI TIẾT (ONBOARDING ZONE) ================= */}
+        {/* ================= CỘT PHẢI: VIDEO & HƯỚNG DẪN CHI TIẾT ================= */}
         <div className="gaming-scrollbar flex-1 bg-black/35 p-5 md:p-6 lg:p-8 md:overflow-y-auto flex flex-col gap-6">
           
           {/* Tiêu đề hướng dẫn */}

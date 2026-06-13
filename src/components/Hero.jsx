@@ -50,7 +50,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
 
       {/* MODAL HIỂN THỊ GAMECARD */}
       {searchedGame && (
-        <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 animate-in fade-in duration-200 text-left">
+        <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/95 p-4 animate-in fade-in duration-200 text-left">
           <div className="absolute inset-0" onClick={() => setSearchedGame(null)}></div>
 
           <div className="relative z-10 w-[160px] min-[390px]:w-[180px] sm:w-[280px] md:w-[320px] animate-in zoom-in-95 duration-200 mt-4">
@@ -72,9 +72,9 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
       )}
 
-      {/* 🌟 HÌNH NỀN VÀ HIỆU ỨNG ÁNH SÁNG NEON TÍCH HỢP */}
+      {/* 🌟 HÌNH NỀN GỐC VÀ HIỆU ỨNG ÁNH SÁNG NEON TÍCH HỢP (TỐI ƯU HÒA TRỘN) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Hình nền mờ ảo hòa quyện vào giao diện tối */}
+        {/* Giữ nguyên hình nền gốc và hiệu ứng lọc của bạn */}
         <div 
           className="absolute inset-0 bg-[url('/background.jpg')] bg-cover bg-center opacity-25 mix-blend-luminosity"
           style={{ filter: 'brightness(0.5) contrast(1.15) saturate(0.9)' }}
@@ -83,27 +83,27 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         {/* Lưới tọa độ cyber huyền bí */}
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(rgba(6,182,212,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.25)_1px,transparent_1px)] bg-[size:45px_45px]"></div>
         
-        {/* Quầng sáng Neon nhịp thở (Eclipse Glow) tỏa rộng từ tâm */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,rgba(6,182,212,0.12)_45%,#030508_80%)] animate-breathe transform-gpu" />
+        {/* Quầng sáng Neon nhịp thở (Eclipse Glow) - Tâm tối màu tiệp với viền video */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#030508_20%,rgba(6,182,212,0.12)_50%,#030508_80%)] animate-breathe transform-gpu" />
         
         {/* Lớp phủ gradient mờ dần nối tiếp vào phần chân trang tối */}
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#05070a] via-[#030508]/80 to-transparent" />
       </div>
 
-      {/* KHUNG NỘI DUNG CHÍNH */}
-      <div className="relative z-20 w-full max-w-xl mx-auto px-6 flex flex-col items-center justify-center my-auto">
+      {/* KHUNG NỘI DUNG CHÍNH (🛠️ SỬA LỖI: Tăng lên z-30 để ô tìm kiếm nổi hẳn lên trên) */}
+      <div className="relative z-30 w-full max-w-xl mx-auto px-6 flex flex-col items-center justify-center my-auto">
         
         {/* NHÃN KHỞI CHẠY */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] mb-4 shadow-[0_0_15px_rgba(6,182,212,0.05)]">
+        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] mb-5 shadow-[0_0_15px_rgba(6,182,212,0.05)]">
           <Sparkles className="w-3.5 h-3.5 animate-pulse text-cyan-300" /> Next-gen gaming hub
         </div>
 
         {/* TIÊU ĐỀ THƯƠNG HIỆU */}
-        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-5 text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)]">
+        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)]">
           NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 drop-shadow-[0_0_25px_rgba(34,211,238,0.25)]">STEAM</span>
         </h1>
 
-        {/* KHUNG VIDEO HUD CÔNG NGHỆ */}
+        {/* KHUNG VIDEO HUD CÔNG NGHỆ GỐC (Giữ nguyên video của bạn) */}
         <div className="relative w-full max-w-[310px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden bg-black/40 border border-cyan-500/20 shadow-[0_0_40px_rgba(6,182,212,0.12)] flex items-center justify-center animate-float transform-gpu">
           {/* 4 Góc trang trí công nghệ viễn tưởng */}
           <div className="absolute top-2.5 left-2.5 w-4 h-4 border-t border-l border-cyan-400/40 rounded-tl-md z-10"></div>
@@ -128,8 +128,8 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           Trải nghiệm kho game AAA đồ sộ, cài đặt đơn giản, bảo mật tối ưu và cập nhật liên tục.
         </p>
 
-        {/* THANH TÌM KIẾM */}
-        <div className="w-full mb-8">
+        {/* THANH TÌM KIẾM (🛠️ SỬA LỖI: Thêm relative z-50 bao bọc ngoài cùng) */}
+        <div className="w-full mb-8 relative z-50">
           <SearchBar
             searchTerm={searchTerm}
             handleSearch={handleSearch}
@@ -141,7 +141,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         {/* THỐNG KÊ DẠNG GƯƠNG (GLASSMORPHIC) */}
         <div className="grid grid-cols-3 gap-2 w-full max-w-md mx-auto p-1.5 rounded-2xl bg-[#070b13]/40 backdrop-blur-md border border-cyan-500/10 text-[10px] md:text-xs font-bold text-white/70 uppercase tracking-wider shadow-[0_4px_25px_rgba(0,0,0,0.5)] select-none">
           <div className="flex items-center justify-center gap-1.5 py-2.5 border-r border-white/5">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+            <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0" />
             <Users className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
             <span className="text-gray-300 font-extrabold">1.2k+ Online</span>
           </div>
@@ -156,14 +156,14 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
       </div>
 
-      {/* BANNER KHUYẾN MÃI DƯỚI ĐÁY ĐƯỢC THIẾT KẾ LẠI */}
-      <div className="w-full max-w-5xl px-4 md:px-8 mt-12 z-20">
-        <div className="relative group/promo overflow-hidden rounded-3xl border border-cyan-500/20 bg-gradient-to-r from-cyan-950/20 via-[#070b13]/90 to-blue-950/20 p-6 md:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-cyan-500/40">
+      {/* BANNER KHUYẾN MÃI DƯỚI ĐÁY (🛠️ SỬA LỖI: Đặt về relative z-10 để nhường chỗ cho ô tìm kiếm nổi lên) */}
+      <div className="w-full max-w-5xl px-4 md:px-8 mt-12 z-10 relative">
+        <div className="relative group/promo overflow-hidden rounded-3xl border border-cyan-500/10 bg-gradient-to-r from-cyan-950/20 via-[#070b13]/90 to-blue-950/20 p-6 md:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-cyan-500/35">
           {/* Lớp hào quang lấp lánh nhẹ phía sau */}
           <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl blur opacity-35 group-hover/promo:opacity-50 transition duration-500 pointer-events-none"></div>
 
           <div className="relative flex flex-col items-center justify-center text-center z-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[10px] md:text-xs font-black uppercase tracking-[0.25em] text-cyan-400 mb-3 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-[10px] md:text-xs font-black uppercase tracking-[0.25em] text-cyan-400 mb-3 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
               <Sparkles className="h-3.5 w-3.5 text-cyan-300 animate-spin-slow" /> Sự kiện tri ân giới hạn
             </div>
             

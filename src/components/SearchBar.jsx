@@ -2,47 +2,71 @@ import React from 'react';
 import { Search, ChevronRight } from 'lucide-react';
 
 function SearchBar({ searchTerm, handleSearch, suggestions, onSelectGame }) {
+  const neonScrollbarStyle = `
+    .search-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .search-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .search-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(6, 182, 212, 0.3);
+      border-radius: 999px;
+    }
+    .search-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(6, 182, 212, 0.6);
+    }
+  `;
+
   return (
-    <div className="relative group mb-6 w-full max-w-xl mx-auto px-1">
-      {/* Hiệu ứng viền sáng neon */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-md opacity-25 group-hover:opacity-100 transition duration-500"></div>
+    /* Đảm bảo ô tìm kiếm nổi lên trên cùng */
+    <div className="relative z-50 group mb-8 w-full max-w-xl mx-auto px-2 select-none">
+      <style>{neonScrollbarStyle}</style>
+
+      {/* Viền sáng laser mỏng phản hồi khi Hover */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl blur-sm opacity-10 group-hover:opacity-35 transition-opacity duration-300 pointer-events-none"></div>
       
       <div className="relative">
-        <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none z-30">
-          <Search className="h-4 w-4 md:h-6 md:w-6 text-cyan-400" />
+        {/* 🛠️ SỬA LỖI: Đặt left-4 để căn lề kính lúp chuẩn hơn trên Mobile */}
+        <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none z-30">
+          <Search className="h-5 w-5 text-cyan-500/60 group-hover:text-cyan-400 transition-colors" />
         </div>
         
-        {/* Ô nhập liệu tìm kiếm (Font 16px chống tự động zoom trên iPhone) */}
+        {/* Ô nhập liệu chuẩn Spotlight */}
+        {/* 🛠️ SỬA LỖI: Thay thế pl-13 không hợp lệ bằng pl-12 để đẩy chữ lùi về sau kính lúp */}
         <input
           type="text"
-          className="w-full bg-[#0b101a]/95 border-2 border-white/10 rounded-2xl py-3.5 md:py-5 pl-12 md:pl-14 pr-6 text-white text-[16px] md:text-base focus:outline-none focus:border-cyan-400/50 backdrop-blur-md"
+          className="w-full bg-[#080d16] border border-cyan-500/20 rounded-2xl py-3.5 md:py-4.5 pl-12 md:pl-14 pr-6 text-white text-[16px] md:text-base placeholder-gray-500 focus:outline-none focus:border-cyan-400/40 focus:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300"
           placeholder="Tìm tên game bạn muốn..."
           value={searchTerm}
           onChange={handleSearch}
         />
 
-        {/* Khung danh sách kết quả gợi ý nhanh */}
+        {/* Khung danh sách kết quả gợi ý nhanh (Nền đặc 100%, z-50) */}
         {suggestions.length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-[#0b101a]/98 border border-cyan-500/40 rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-xl z-40">
-            <div className="max-h-[180px] md:max-h-[350px] overflow-y-auto custom-scrollbar">
+          <div className="absolute top-full left-0 right-0 mt-3 bg-[#080d16] border border-cyan-500/30 rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.98)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 z-50">
+            <div className="max-h-[200px] md:max-h-[350px] overflow-y-auto search-scrollbar p-1">
               {suggestions.map((game) => (
                 <button
                   key={game.title}
                   onClick={() => onSelectGame(game)}
-                  className="w-full flex items-center gap-2 md:gap-4 p-2 md:p-4 hover:bg-cyan-500/10 border-b border-white/5 last:border-0 text-left transition-all group/item"
+                  className="w-full flex items-center gap-3 p-3 hover:bg-cyan-500/10 rounded-xl border-b border-cyan-500/5 last:border-0 text-left transition-colors duration-200 group/item"
                 >
-                  <div className="relative h-8 w-6 md:h-14 md:w-10 shrink-0 overflow-hidden rounded md:rounded-lg border border-white/10 group-hover/item:border-cyan-500/50 transition-colors">
+                  {/* Poster thu nhỏ sắc nét */}
+                  <div className="relative h-11 w-8 shrink-0 overflow-hidden rounded-lg border border-cyan-500/10 group-hover/item:border-cyan-500/35 transition-colors">
                     <img src={game.poster} className="h-full w-full object-cover" alt="" />
                   </div>
+                  
+                  {/* Thông tin game tinh giản */}
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-black text-[9px] md:text-sm text-white uppercase italic truncate group-hover/item:text-cyan-400 transition-colors tracking-tight">
+                    <h4 className="font-extrabold text-xs md:text-sm text-gray-200 uppercase tracking-wide truncate group-hover/item:text-cyan-400 transition-colors">
                       {game.title}
                     </h4>
-                    <p className="text-[8px] md:text-[10px] text-cyan-500/60 font-bold tracking-widest uppercase mt-0.5">
+                    <p className="text-[9px] md:text-[10px] text-cyan-400/60 font-bold tracking-widest uppercase mt-0.5">
                       Sẵn hàng • {game.price}
                     </p>
                   </div>
-                  <ChevronRight className="h-3 w-3 md:h-5 md:w-5 text-gray-600 group-hover/item:text-cyan-400 group-hover/item:translate-x-1 transition-all" />
+                  <ChevronRight className="h-4 w-4 text-gray-600 group-hover/item:text-cyan-400 group-hover/item:translate-x-1 transition-all" />
                 </button>
               ))}
             </div>
