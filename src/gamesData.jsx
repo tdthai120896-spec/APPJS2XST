@@ -22,7 +22,7 @@ export const RAW_GAMES = {
     { title: "Black Myth: Wukong", genre: "Action RPG", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg" },
     { title: "Marvel's Spider-Man: Miles Morales", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817190/header.jpg" },
     { title: "Marvel's Spider-Man Remastered", genre: "Action", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/header.jpg" },
-    { title: "Marvel's Spider-Man 2", "genre": "Action Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2635900/header.jpg" },
+    { title: "Marvel's Spider-Man 2", "genre": "Action Adventure", "price": "30.000đ", "poster": "https://cdn.vietgame.asia/wp-content/uploads/20231020123025/marvels-spider-man-2-danh-gia-game.jpg" },
     { title: "God of War Ragnarok", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/header.jpg" },
     { title: "Horizon Zero Dawn", genre: "Action RPG", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1151640/header.jpg" },
     { title: "Ghost of Tsushima DIRECTOR'S CUT", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg" },
