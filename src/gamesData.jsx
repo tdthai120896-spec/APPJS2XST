@@ -1,4 +1,4 @@
-export const CATEGORY_META = [
+uexport const CATEGORY_META = [
   // 10 Danh mục mặc định ban đầu
   { key: 'Action', accent: 'from-cyan-400/30 to-blue-500/10' },
   { key: 'RPG', accent: 'from-fuchsia-400/25 to-purple-500/10' },
@@ -28,6 +28,7 @@ export const RAW_GAMES = {
     { title: "Ghost of Tsushima DIRECTOR'S CUT", genre: "Action Adventure", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg" },
     { title: "Sekiro: Shadows Die Twice", genre: "Souls-like", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg" },
     { title: "Dragon Ball: Sparking! ZERO", "genre": "Fighting", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1790080/header.jpg" },
+    { "title": "Lies of P", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1627720/header.jpg" },
     { "title": "DRAGON BALL FighterZ", "genre": "Fighting", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/678950/header.jpg" },
     { title: "Red Dead Redemption 2", genre: "Action", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" },
     { "title": "Death Stranding Director's Cut", "genre": "Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1850570/header.jpg" },
