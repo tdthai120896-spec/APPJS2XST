@@ -546,7 +546,7 @@ export const RAW_GAMES = {
     { title: "Moonlighter", genre: "Action RPG Shopkeeper Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/606150/header.jpg" },
     { title: "Blasphemous", genre: "Dark Gothic Metroidvania Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/header.jpg" },
     { title: "Blasphemous 2", genre: "Dark Gothic Metroidvania Rogue Sequel", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2114740/header.jpg" },
-    { title: "Returnal™", genre: "Sci-Fi Bullet Hell Action Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1649240/header.jpg" },
+    { title: "ReturnalTM", genre: "Sci-Fi Bullet Hell Action Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1649240/header.jpg" },
     { title: "Darkest Dungeon®", genre: "Gothic Turn-Based Stress Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/262060/header.jpg" }
   ],
   'Indie': [
@@ -824,7 +824,7 @@ export const RAW_GAMES = {
     { title: "Zombotron", genre: "2D Action Zombie Platformer", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/123880/header.jpg" }
   ],
   'Horror_Collection': [
-    { "title": "Dead by Daylight", "genre": "Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/381210/header.jpg" },
+    { title: "Dead by Daylight", "genre": "Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/381210/header.jpg" },
     { title: "Outlast", genre: "Asylum Survival Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/header.jpg" },
     { title: "Outlast 2", genre: "Wilderness Sectarian Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/header.jpg" },
     { title: "The Outlast Trials", genre: "Co-op Hardcore Trials Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/header.jpg" },
