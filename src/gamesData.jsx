@@ -153,7 +153,6 @@ export const RAW_GAMES = {
     { title: "Among Us", genre: "Casual Party Sci-Fi", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/945360/header.jpg" },
     { title: "Only Up!", genre: "Co-op Sky Platformer", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2439830/header.jpg" },
     { title: "Only Climb: Better Together", genre: "Co-op Sky Platformer Precision", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2500750/header.jpg" },
-    { title: "PAYDAY 2", genre: "Action Co-op Heist", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/218620/header.jpg" },
     { title: "Sniper Elite 4", genre: "Tactical Stealth Shooter", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/312660/header.jpg" },
     { title: "Dota 2", genre: "MOBA Action Strategy", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/header.jpg" },
     { title: "Just Cause 3", genre: "Action Open World Sandbox", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/225540/header.jpg" },
