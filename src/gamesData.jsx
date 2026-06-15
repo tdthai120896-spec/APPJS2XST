@@ -546,7 +546,7 @@ export const RAW_GAMES = {
     { title: "Moonlighter", genre: "Action RPG Shopkeeper Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/606150/header.jpg" },
     { title: "Blasphemous", genre: "Dark Gothic Metroidvania Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/header.jpg" },
     { title: "Blasphemous 2", genre: "Dark Gothic Metroidvania Rogue Sequel", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2114740/header.jpg" },
-    { title: "ReturnalTM", genre: "Sci-Fi Bullet Hell Action Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1649240/header.jpg" },
+    { title: "Returnal™", genre: "Sci-Fi Bullet Hell Action Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1649240/header.jpg" },
     { title: "Darkest Dungeon®", genre: "Gothic Turn-Based Stress Rogue", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/262060/header.jpg" }
   ],
   'Indie': [
