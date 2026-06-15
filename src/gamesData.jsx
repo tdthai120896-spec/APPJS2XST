@@ -824,6 +824,7 @@ export const RAW_GAMES = {
     { title: "Zombotron", genre: "2D Action Zombie Platformer", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/123880/header.jpg" }
   ],
   'Horror_Collection': [
+    { "title": "Dead by Daylight", "genre": "Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/381210/header.jpg" },
     { title: "Outlast", genre: "Asylum Survival Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/header.jpg" },
     { title: "Outlast 2", genre: "Wilderness Sectarian Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/header.jpg" },
     { title: "The Outlast Trials", genre: "Co-op Hardcore Trials Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/header.jpg" },
