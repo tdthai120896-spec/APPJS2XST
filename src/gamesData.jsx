@@ -1,4 +1,4 @@
-uexport const CATEGORY_META = [
+export const CATEGORY_META = [
   // 10 Danh mục mặc định ban đầu
   { key: 'Action', accent: 'from-cyan-400/30 to-blue-500/10' },
   { key: 'RPG', accent: 'from-fuchsia-400/25 to-purple-500/10' },
