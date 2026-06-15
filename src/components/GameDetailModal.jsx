@@ -83,9 +83,9 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 pt-4 md:pt-2">
 
                     {/* ================= CỘT TRÁI: ẢNH, GIÁ & NÚT MUA (5/12 cột) ================= */}
-                    <div className="md:col-span-5 flex flex-col gap-3 sm:gap-4">
-                        {/* Ảnh Poster game có bo góc tỉ lệ cân đối trên mọi màn hình di động */}
-                        <div className="relative aspect-[3/4] w-32 min-[375px]:w-36 md:w-full mx-auto overflow-hidden rounded-2xl border border-cyan-500/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)]">
+                    <div className="md:col-span-5 flex flex-col gap-4">
+                        {/* 🛠️ SỬA LỖI: Chuyển tỷ lệ ảnh sang aspect-[16/9] và căn rộng w-full đồng đều trên Mobile */}
+                        <div className="relative aspect-[16/9] w-full mx-auto overflow-hidden rounded-2xl border border-cyan-500/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)]">
                             <img
                                 src={game.poster}
                                 alt={game.title}
