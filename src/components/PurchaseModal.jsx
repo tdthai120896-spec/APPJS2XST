@@ -242,3 +242,4 @@ function PurchaseModal({ game, onClose }) {
 }
 
 export default PurchaseModal;
+
