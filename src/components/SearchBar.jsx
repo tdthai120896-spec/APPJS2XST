@@ -1,7 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Search, ChevronRight } from 'lucide-react';
 
 function SearchBar({ searchTerm, handleSearch, suggestions, onSelectGame }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const searchBarRef = useRef(null);
+
+  // 1. Tự động mở tab gợi ý khi danh sách suggestions có dữ liệu mới
+  useEffect(() => {
+    if (suggestions && suggestions.length > 0) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+  }, [suggestions]);
+
+  // 2. Xử lý đóng tab gợi ý khi người dùng click chuột ra ngoài vùng tìm kiếm
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // 3. Cho phép nhấn phím phím Escape (ESC) để đóng nhanh tab gợi ý
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const neonScrollbarStyle = `
     .search-scrollbar::-webkit-scrollbar {
       width: 4px;
@@ -19,37 +59,48 @@ function SearchBar({ searchTerm, handleSearch, suggestions, onSelectGame }) {
   `;
 
   return (
-    /* Đảm bảo ô tìm kiếm nổi lên trên cùng */
-    <div className="relative z-50 group mb-8 w-full max-w-xl mx-auto px-2 select-none">
+    /* Đảm bảo ô tìm kiếm nổi lên trên cùng bằng cách gán ref */
+    <div 
+      ref={searchBarRef} 
+      className="relative z-50 group mb-8 w-full max-w-xl mx-auto px-2 select-none"
+    >
       <style>{neonScrollbarStyle}</style>
 
       {/* Viền sáng laser mỏng phản hồi khi Hover */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl blur-sm opacity-10 group-hover:opacity-35 transition-opacity duration-300 pointer-events-none"></div>
       
       <div className="relative">
-        {/* 🛠️ SỬA LỖI: Đặt left-4 để căn lề kính lúp chuẩn hơn trên Mobile */}
+        {/* Kính lúp tìm kiếm */}
         <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none z-30">
           <Search className="h-5 w-5 text-cyan-500/60 group-hover:text-cyan-400 transition-colors" />
         </div>
         
         {/* Ô nhập liệu chuẩn Spotlight */}
-        {/* 🛠️ SỬA LỖI: Thay thế pl-13 không hợp lệ bằng pl-12 để đẩy chữ lùi về sau kính lúp */}
         <input
           type="text"
           className="w-full bg-[#080d16] border border-cyan-500/20 rounded-2xl py-3.5 md:py-4.5 pl-12 md:pl-14 pr-6 text-white text-[16px] md:text-base placeholder-gray-500 focus:outline-none focus:border-cyan-400/40 focus:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300"
           placeholder="Tìm tên game bạn muốn..."
           value={searchTerm}
           onChange={handleSearch}
+          onFocus={() => {
+            // Mở lại danh sách gợi ý nếu đã có sẵn dữ liệu và người dùng tập trung vào ô nhập liệu
+            if (suggestions && suggestions.length > 0) {
+              setIsOpen(true);
+            }
+          }}
         />
 
-        {/* Khung danh sách kết quả gợi ý nhanh (Nền đặc 100%, z-50) */}
-        {suggestions.length > 0 && (
+        {/* Khung danh sách kết quả gợi ý nhanh (Nền đặc 100%, chỉ hiển thị khi isOpen = true) */}
+        {isOpen && suggestions.length > 0 && (
           <div className="absolute top-full left-0 right-0 mt-3 bg-[#080d16] border border-cyan-500/30 rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.98)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 z-50">
             <div className="max-h-[200px] md:max-h-[350px] overflow-y-auto search-scrollbar p-1">
               {suggestions.map((game) => (
                 <button
                   key={game.title}
-                  onClick={() => onSelectGame(game)}
+                  onClick={() => {
+                    onSelectGame(game);
+                    setIsOpen(false); // Đóng danh sách ngay sau khi chọn game thành công
+                  }}
                   className="w-full flex items-center gap-3 p-3 hover:bg-cyan-500/10 rounded-xl border-b border-cyan-500/5 last:border-0 text-left transition-colors duration-200 group/item"
                 >
                   {/* Poster thu nhỏ sắc nét */}
