@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { 
-  ShoppingBag, X, Trash2, ArrowDown, MessageSquare, 
-  Facebook, Phone, CreditCard, Monitor, Settings2, 
-  CheckCircle2, PlayCircle, AlertTriangle 
+import {
+  ShoppingBag, X, Trash2, ArrowDown, MessageSquare,
+  Facebook, Phone, CreditCard, Monitor, Settings2,
+  CheckCircle2, PlayCircle, AlertTriangle
 } from 'lucide-react'
 
 function Cart({ cartItems, onRemove }) {
@@ -30,7 +30,7 @@ function Cart({ cartItems, onRemove }) {
 
   // Gộp lại thành chuỗi hoàn chỉnh và giới hạn tối đa 25 ký tự để tránh ngân hàng cắt chữ
   const fullAddInfo = `${shortGameTitles}`.substring(0, 25).trim();
-  
+
   const vietQRUrl = `https://img.vietqr.io/image/VCB-1014044533-compact.png?amount=${totalAmount}&addInfo=${encodeURIComponent(fullAddInfo)}&accountName=TRAN%20DINH%20THAI`;
 
   const miniSteps = [
@@ -89,7 +89,7 @@ function Cart({ cartItems, onRemove }) {
 
           {/* KHUNG MẸ CHÍNH */}
           <div className="relative w-full max-w-6xl h-[92vh] md:h-[85vh] overflow-y-auto md:overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-cyan-500/20 bg-[#080d16] shadow-[0_0_50px_rgba(6,182,212,0.15)] flex flex-col md:flex-row gaming-scrollbar">
-            
+
             {/* NÚT ĐÓNG MODAL */}
             <button
               onClick={() => setIsOpen(false)}
@@ -113,18 +113,24 @@ function Cart({ cartItems, onRemove }) {
                 ) : (
                   <div className="gaming-scrollbar grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[160px] md:max-h-[220px] overflow-y-auto pr-1 mb-6">
                     {cartItems.map((item, index) => (
-                      <div 
-                        key={`cart-item-${index}`} 
+                      <div
+                        key={`cart-item-${index}`}
                         className="flex items-center gap-3 p-3 rounded-xl bg-cyan-950/5 border border-cyan-500/10 hover:border-cyan-500/20 transition-all duration-300"
                       >
-                        <img src={item.poster} alt="" loading="lazy" className="w-10 h-14 object-cover rounded-lg bg-white/5 shrink-0" />
+                        <img
+                          src={getOptimizedMiniImage(item.poster)} // 🛠️ Áp dụng tối ưu ảnh mini trong giỏ hàng
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          className="w-10 h-14 object-cover rounded-lg bg-white/5 shrink-0"
+                        />
                         <div className="flex-1 min-w-0">
                           <h4 className="text-xs md:text-sm font-bold text-white uppercase truncate">{item.title}</h4>
                           <span className="text-[9px] text-cyan-400/60 uppercase tracking-widest font-semibold">{item.genre || 'AAA Game'}</span>
                         </div>
                         <div className="text-right shrink-0 flex items-center gap-2.5">
                           <span className="text-xs md:text-sm font-black text-cyan-400">{item.price}</span>
-                          <button 
+                          <button
                             onClick={() => onRemove(item.title)}
                             className="p-1.5 rounded-lg text-gray-500 hover:text-red-400 hover:bg-red-500/10 transition-colors"
                             title="Xóa khỏi giỏ hàng"
@@ -148,7 +154,7 @@ function Cart({ cartItems, onRemove }) {
                       <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-cyan-500"></div>
                       <img src={vietQRUrl} alt="Vietcombank QR" className="w-44 md:w-52 h-auto rounded-xl" />
                     </div>
-                    
+
                     {/* Bảng kê khai chi tiết biên nhận chuyển khoản */}
                     <div className="flex-1 w-full space-y-2.5 text-xs">
                       <span className="text-[10px] font-black text-cyan-400 uppercase tracking-widest flex items-center gap-1.5 select-none">
@@ -189,26 +195,26 @@ function Cart({ cartItems, onRemove }) {
                       <ArrowDown className="h-3 w-3 animate-bounce" /> Chuyển khoản xong, chọn 1 kênh liên hệ bên dưới để nhận Account ngay!
                     </p>
                   </div>
-                  
+
                   <div className="grid grid-cols-3 gap-2">
-                    <a 
-                      href="https://www.facebook.com/profile.php?id=61558065130631" 
-                      target="_blank" 
-                      rel="noreferrer" 
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61558065130631"
+                      target="_blank"
+                      rel="noreferrer"
                       className="flex flex-col items-center justify-center py-2.5 rounded-xl bg-[#0e1624] border border-cyan-500/20 text-[10px] font-bold text-cyan-400 hover:text-black hover:bg-cyan-500 hover:border-cyan-400 transition-all duration-300 active:scale-95 shadow-[0_0_10px_rgba(6,182,212,0.05)]"
                     >
                       <MessageSquare className="h-4 w-4 mb-1 shrink-0" /> Zalo Shop
                     </a>
-                    <a 
-                      href="https://www.facebook.com/profile.php?id=61558065130631" 
-                      target="_blank" 
-                      rel="noreferrer" 
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61558065130631"
+                      target="_blank"
+                      rel="noreferrer"
                       className="flex flex-col items-center justify-center py-2.5 rounded-xl bg-[#0e1624] border border-cyan-500/20 text-[10px] font-bold text-cyan-400 hover:text-black hover:bg-cyan-500 hover:border-cyan-400 transition-all duration-300 active:scale-95 shadow-[0_0_10px_rgba(6,182,212,0.05)]"
                     >
                       <Facebook className="h-4 w-4 mb-1 shrink-0 text-cyan-400 group-hover:text-black" /> Messenger
                     </a>
-                    <a 
-                      href="https://www.facebook.com/profile.php?id=61558065130631" 
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61558065130631"
                       className="flex flex-col items-center justify-center py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-[10px] font-black text-[#080d16] hover:brightness-110 shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all active:scale-95"
                     >
                       <Phone className="h-4 w-4 mb-1 shrink-0" /> Gọi Hotline

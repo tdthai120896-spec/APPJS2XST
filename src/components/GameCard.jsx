@@ -1,18 +1,36 @@
 import React from 'react'
 import { ShoppingCart, Plus, Gamepad2 } from 'lucide-react'
 
-function GameCard({ game, onAddToCart }) {
-  
-  // Phát sự kiện toàn cục để App.jsx nhận diện và mở Modal Khám phá
+// TỐI ƯU ẢNH: Tự động chuyển đổi toàn bộ ảnh Steam sang WebP siêu nhẹ qua Proxy CDN
+const getOptimizedImageUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('/') || url.startsWith('data:')) return url;
+  return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=320&output=webp&q=80`;
+};
+
+function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail }) {
+  const optimizedPoster = getOptimizedImageUrl(game.poster);
+
+  // Xử lý mở Modal chi tiết bằng cơ chế kết hợp: Prop hoặc phát Sự kiện toàn cục lên App.jsx
   const handleOpenDetail = (e) => {
-    e.stopPropagation();
-    window.dispatchEvent(new CustomEvent('open-detail-modal', { detail: game }));
+    if (e) e.stopPropagation();
+    if (onOpenDetail) {
+      onOpenDetail(game);
+    } else {
+      // Phát sự kiện toàn cục nếu cha không truyền prop (Đảm bảo hoạt động 100% trên mọi kệ game/marquee)
+      window.dispatchEvent(new CustomEvent('open-detail-modal', { detail: game }));
+    }
   };
 
-  // Phát sự kiện toàn cục để App.jsx nhận diện và mở Modal Thanh toán
+  // Xử lý mở Modal mua ngay bằng cơ chế kết hợp: Prop hoặc phát Sự kiện toàn cục lên App.jsx
   const handleOpenPurchase = (e) => {
-    e.stopPropagation();
-    window.dispatchEvent(new CustomEvent('open-purchase-modal', { detail: game }));
+    if (e) e.stopPropagation();
+    if (onBuyNow) {
+      onBuyNow(game);
+    } else {
+      // Phát sự kiện toàn cục nếu cha không truyền prop (Đảm bảo hoạt động 100% trên mọi kệ game/marquee)
+      window.dispatchEvent(new CustomEvent('open-purchase-modal', { detail: game }));
+    }
   };
 
   return (
@@ -25,10 +43,10 @@ function GameCard({ game, onAddToCart }) {
         {/* 1. ẢNH POSTER */}
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950 shrink-0">
           <img
-            src={game.poster}
+            src={optimizedPoster}
             alt={game.title}
-            loading="lazy"      
-            decoding="async"    
+            loading="lazy"     
+            decoding="async"   
             className="h-full w-full object-cover transition-transform duration-200 ease-out group-hover:scale-[1.03]"
             style={{
               backfaceVisibility: 'hidden',
@@ -37,7 +55,7 @@ function GameCard({ game, onAddToCart }) {
           />
           <div className="absolute inset-0 bg-black/15 group-hover:bg-black/50 transition-colors duration-200" />
 
-          {/* Nút Khám Phá */}
+          {/* Nút Khám Phá (Gamepad) */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 scale-90 group-hover:scale-100">
             <div
               className="p-2.5 rounded-full bg-[#080d16]/90 border border-cyan-400 text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.4)] hover:bg-cyan-500 hover:text-black hover:border-cyan-300 transition-colors duration-200"
