@@ -3,7 +3,7 @@ import { Sparkles, Users, Layers, ShieldCheck, X } from 'lucide-react'
 import GameCard from './GameCard'
 import SearchBar from './SearchBar';
 
-function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNavigation, onAddToCart }) {
+function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNavigation, onAddToCart, handleOpenPurchaseModal }) {
 
   const [searchedGame, setSearchedGame] = useState(null);
 
@@ -91,7 +91,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
 
               {/* Khung chứa GameCard với chiều cao đã được tối ưu để tránh bị cắt chữ */}
               <div className="h-[280px] min-[390px]:h-[310px] sm:h-[370px] md:h-[410px] w-full flex flex-col">
-                <GameCard game={searchedGame} onAddToCart={onAddToCart} />
+                <GameCard game={searchedGame} onAddToCart={onAddToCart} onOpenDetail={handleOpenModal} onBuyNow={handleOpenPurchaseModal} />
               </div>
             </div>
           </div>
@@ -102,15 +102,15 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Hình nền Wukong trải rộng chính giữa */}
         <div 
-          className="absolute inset-0 bg-[url('/background.jpg')] bg-cover bg-center opacity-[0.65] md:opacity-[0.80] transition-all duration-700 ease-out"
+          className="absolute inset-0 bg-[url('/background.webp')] bg-cover bg-center opacity-[0.65] md:opacity-[0.80] transition-all duration-700 ease-out"
           style={{ 
             filter: 'brightness(0.75) contrast(1.12) saturate(1.2)' 
           }}
         />
         
-        {/* Hai vùng sáng Neon Cyan / Blue cực lớn ở hai góc để tạo cảm giác đồng bộ với thân web */}
-        <div className="absolute top-[5%] left-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-cyan-500/12 blur-[100px] md:blur-[160px] rounded-full transform-gpu" />
-        <div className="absolute bottom-[15%] right-[-10%] w-[350px] h-[350px] md:w-[550px] md:h-[550px] bg-[#2563eb]/10 blur-[100px] md:blur-[140px] rounded-full transform-gpu" />
+        {/* 🛠️ TỐI ƯU HÓA: Ẩn các quầng sáng cực lớn trên Mobile để tránh làm lag GPU xử lý khung hình di động */}
+        <div className="hidden md:block absolute top-[5%] left-[-10%] w-[600px] h-[600px] bg-cyan-500/12 blur-[160px] rounded-full transform-gpu" />
+        <div className="hidden md:block absolute bottom-[15%] right-[-10%] w-[550px] h-[550px] bg-[#2563eb]/10 blur-[140px] rounded-full transform-gpu" />
 
         {/* Lưới tọa độ Cyber đổi màu sang Xanh Neon siêu mảnh */}
         <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(rgba(6,182,212,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.15)_1px,transparent_1px)] bg-[size:45px_45px]"></div>
@@ -147,7 +147,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b border-r border-cyan-400/40 rounded-br-md z-10"></div>
 
           {/* 
-            🛠️ TỐI ƯU LCP CỰC MẠNH:
+            🛠️ TỐI ƯU LCP CỰC MẠNH (ĐẠT CHUẨN APPLE):
             - Thay đổi preload="auto" thành preload="metadata" để trình duyệt không tải dữ liệu video nặng ngay lập tức.
             - Thiết lập poster="/background.jpg" để tận dụng hình ảnh Wukong đang có sẵn trong bộ nhớ đệm vẽ ngay màn hình đầu tiên, đưa thời gian Largest Contentful Paint (LCP) về mức lý tưởng (< 2s).
           */}
@@ -157,7 +157,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
             muted
             playsInline
             preload="metadata"
-            poster="/background.jpg"
+            poster="/background.webp"
             className="w-full h-full object-cover opacity-90"
           >
             <source src="/gemini_generated_video_27593B13.mp4" type="video/mp4" />
@@ -200,9 +200,8 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
       </div>
 
-      {/* BANNER KHUYẾN MÃI DƯỚI ĐÁY TÔNG XANH NEON (ĐÃ TÍCH HỢP HIỆU ỨNG CHỚP NHÁY THU HÚT) */}
+      {/* BANNER KHUYẾN MÃI DƯỚI ĐÁY TÔNG XANH NEON */}
       <div className="w-full max-w-5xl px-4 md:px-8 mt-12 z-10 relative">
-        {/* Sử dụng class animate-banner-flash để viền nhấp nháy phát sáng */}
         <div className="relative group/promo overflow-hidden rounded-3xl border bg-gradient-to-r from-cyan-950/20 via-[#070b13]/90 to-blue-950/20 p-6 md:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-cyan-500/35 animate-banner-flash">
           {/* Lớp hào quang lấp lánh nhẹ phía sau */}
           <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl blur opacity-35 group-hover/promo:opacity-50 transition duration-500 pointer-events-none"></div>
