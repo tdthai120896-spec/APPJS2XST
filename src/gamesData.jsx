@@ -29,6 +29,8 @@ export const RAW_GAMES = {
     { title: "Sekiro: Shadows Die Twice", genre: "Souls-like", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg" },
     { title: "Dragon Ball: Sparking! ZERO", "genre": "Fighting", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1790080/header.jpg" },
     { "title": "Hitman: World of Assassination", "genre": "Stealth", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659040/header.jpg" },
+{ "title": "Monster Hunter: World", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg" },
+{ "title": "Monster Hunter Stories 2: Wings of Ruin", "genre": "RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1277400/header.jpg" },
 { "title": "Hitman: Absolution", "genre": "Stealth", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/203140/header.jpg" },
 { "title": "Hitman: Blood Money", "genre": "Stealth", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/6860/header.jpg" },
 { "title": "Hitman: Contracts", "genre": "Stealth", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/247430/header.jpg" },
