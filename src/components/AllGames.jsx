@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react'; // 🛠️ Đã thêm useMemo
-import { Search, ChevronRight, ChevronLeft, X } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Search, ChevronRight, ChevronLeft } from 'lucide-react';
 import GameCard from './GameCard';
 import { RAW_GAMES, CATEGORY_META } from '../gamesData';
 import SearchBar from './SearchBar';
 
-function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggestions }) { 
+function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggestions, handleOpenModal, handleOpenPurchaseModal }) { 
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [searchedGame, setSearchedGame] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const gamesPerPage = 20;
 
@@ -14,8 +13,6 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
     setCurrentPage(1);
   }, [selectedCategory, searchTerm]);
 
-  // 🛠️ TỐI ƯU HÓA ĐỈNH CAO: Sử dụng useMemo + Set để giảm độ phức tạp từ O(N^2) xuống O(N)
-  // Xử lý mượt mà hơn 1200 game trong chưa đầy 2 mili-giây, chống đơ màn hình hoàn toàn
   const allUniqueGamesList = useMemo(() => {
     if (!RAW_GAMES) return [];
     const allGamesArray = Object.values(RAW_GAMES).flat();
@@ -42,13 +39,6 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
   const currentGamesList = filteredGamesList.slice(indexOfFirstGame, indexOfLastGame);
 
-  const handleSelectSuggestedGame = (game) => {
-    setSearchedGame(game); 
-    if (handleSearch) {
-      handleSearch({ target: { value: '' } }); 
-    }
-  };
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 300, behavior: 'smooth' }); 
@@ -56,26 +46,6 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
 
   return (
     <div className="w-full px-1 sm:px-0 relative select-none">
-      {/* MODAL HIỂN THỊ GAMECARD NHỎ GỌN */}
-      {searchedGame && (
-        <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/90 p-4 animate-in fade-in duration-200">
-          <div className="absolute inset-0" onClick={() => setSearchedGame(null)}></div>
-          <div className="relative z-10 w-[160px] min-[390px]:w-[180px] sm:w-[280px] md:w-[280px] animate-in zoom-in-95 duration-200 mt-4">
-            <div className="relative bg-[#05080c] rounded-[1.2rem] md:rounded-[1.6rem] border border-cyan-400/40 shadow-[0_0_15px_rgba(34,211,238,0.25)]">
-              <button
-                onClick={() => setSearchedGame(null)}
-                className="absolute -top-2 -right-2 md:-top-3 md:-right-3 z-50 bg-red-500 hover:bg-red-600 text-white rounded-full p-2 shadow-md transition-transform hover:scale-105"
-              >
-                <X className="h-4 w-4" />
-              </button>
-              <div className="h-[230px] min-[390px]:h-[250px] sm:h-[285px] md:h-[320px] w-full flex flex-col">
-                <GameCard game={searchedGame} onAddToCart={onAddToCart} />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Header */}
       <div className="flex justify-between items-center mb-8 border-b border-cyan-500/10 pb-4">
         <h2 className="text-sm md:text-2xl font-black uppercase tracking-wider text-white">
@@ -93,10 +63,10 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
         searchTerm={searchTerm}
         handleSearch={handleSearch}
         suggestions={suggestions}
-        onSelectGame={handleSelectSuggestedGame}
+        onSelectGame={handleOpenModal} // Sử dụng modal toàn cục thay vì modal cục bộ cũ
       />
 
-      {/* Cụm bộ lọc Category tối giản kiểu Apple Hub */}
+      {/* Cụm bộ lọc Category */}
       <div className="w-full mb-12">
         <div className="flex flex-wrap items-center justify-center gap-2 px-1">
           <button
@@ -126,19 +96,24 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
 
       {currentGamesList.length > 0 ? (
         <>
-          {/* Lưới sản phẩm bố cục Bento đồng bộ chiều cao */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-3 gap-y-6 md:gap-x-4 md:gap-y-6 grid-auto-rows-max">
             {currentGamesList.map((game, index) => (
               <div
                 key={index}
                 className="h-[195px] min-[390px]:h-[225px] sm:h-[240px] md:h-[285px] w-full flex flex-col rounded-[1.2rem] md:rounded-[1.6rem]"
               >
-                <GameCard game={game} onAddToCart={onAddToCart} />
+                {/* Truyền các callback đóng mở modal toàn cục từ App.jsx */}
+                <GameCard 
+                  game={game} 
+                  onAddToCart={onAddToCart} 
+                  onOpenDetail={handleOpenModal}
+                  onBuyNow={handleOpenPurchaseModal}
+                />
               </div>
             ))}
           </div>
 
-          {/* Phân trang tinh xảo */}
+          {/* Phân trang */}
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-2 mt-12 mb-6">
               <button

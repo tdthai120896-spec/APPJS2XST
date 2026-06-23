@@ -15,7 +15,7 @@ const AboutSection = lazy(() => import('./components/AboutSection'))
 const GuideSection = lazy(() => import('./components/GuideSection'))
 const Location = lazy(() => import('./components/Location'))
 const AllGames = lazy(() => import('./components/AllGames'))
-const GameModal = lazy(() => import('./components/GameModal'))
+const GameDetailModal = lazy(() => import('./components/GameDetailModal')) // 🛠️ Đổi sang GameDetailModal của bạn
 const PurchaseModal = lazy(() => import('./components/PurchaseModal'))
 const MarqueeGames = lazy(() => import('./components/MarqueeGames'))
 const CategoryShelf = lazy(() => import('./components/CategoryShelf'))
@@ -38,7 +38,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [currentView, setCurrentView] = useState('home');
 
-  // 🛠️ TỐI ƯU SÂU: Khởi tạo state rỗng cho dữ liệu game nặng ban đầu
+  // Khởi tạo state rỗng cho dữ liệu game nặng ban đầu
   const [deferredGames, setDeferredGames] = useState({ marquee: [], categories: [] });
 
   const allGames = useMemo(() => {
@@ -46,9 +46,8 @@ function App() {
     return Object.values(RAW_GAMES).flat();
   }, []);
 
-  // 🛠️ TỐI ƯU SÂU: Trì hoãn xử lý mảng và trộn game ngẫu nhiên
+  // Trì hoãn xử lý mảng và trộn game ngẫu nhiên
   useEffect(() => {
-    // Trì hoãn tính toán dữ liệu nặng 150ms sau khi trang chủ đã render xong phần khung chính (Hero)
     const timer = setTimeout(() => {
       if (!RAW_GAMES || !CATEGORY_META) return;
 
@@ -69,7 +68,7 @@ function App() {
           marquee: [...selected, ...selected]
         });
       }
-    }, 150); // Khoảng thời gian trì hoãn ngắn đủ để giải phóng CPU vẽ giao diện LCP trước
+    }, 150);
 
     return () => clearTimeout(timer);
   }, []);
@@ -105,17 +104,36 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [closeAllOverlays]);
 
-  const handleOpenModal = (game) => {
+  const handleOpenModal = useCallback((game) => {
     setSelectedGame(game);
     setSuggestions([]);
     setSearchTerm('');
     document.body.style.overflow = 'hidden';
-  };
+  }, []);
 
-  const handleOpenPurchaseModal = (game) => {
+  const handleOpenPurchaseModal = useCallback((game) => {
     setPurchaseGame(game);
     document.body.style.overflow = 'hidden';
-  };
+  }, []);
+
+  // 🛠️ TỐI ƯU CỰC MẠNH: Lắng nghe hệ thống sự kiện toàn cục phát từ GameCard
+  // Giúp mở Modal nhanh chóng, mượt mà từ bất kỳ kệ game hay thanh trượt nào
+  useEffect(() => {
+    const handleOpenPurchaseEvent = (e) => {
+      handleOpenPurchaseModal(e.detail);
+    };
+    const handleOpenDetailEvent = (e) => {
+      handleOpenModal(e.detail);
+    };
+
+    window.addEventListener('open-purchase-modal', handleOpenPurchaseEvent);
+    window.addEventListener('open-detail-modal', handleOpenDetailEvent);
+
+    return () => {
+      window.removeEventListener('open-purchase-modal', handleOpenPurchaseEvent);
+      window.removeEventListener('open-detail-modal', handleOpenDetailEvent);
+    };
+  }, [handleOpenPurchaseModal, handleOpenModal]);
 
   const handleSearch = (e) => {
     const value = e.target.value;
@@ -160,9 +178,8 @@ function App() {
 
           {currentView === 'home' && (
             <>
-              <Hero searchTerm={searchTerm} handleSearch={handleSearch} suggestions={suggestions} handleOpenModal={handleOpenModal} onAddToCart={handleAddToCart} />
+              <Hero searchTerm={searchTerm} handleSearch={handleSearch} suggestions={suggestions} handleOpenModal={handleOpenModal} onAddToCart={handleAddToCart} handleOpenPurchaseModal={handleOpenPurchaseModal} />
               
-              {/* Chỉ render phần Marquee và Shelves sau khi dữ liệu đã được tính toán chậm thành công */}
               <div className="space-y-24 pb-20 flex-grow">
                 <Suspense fallback={null}>
                   {deferredGames.marquee.length > 0 && (
@@ -224,8 +241,15 @@ function App() {
           <Footer />
           <FloatingContactWidget />
 
+          {/* Render các Modal toàn cục tải chậm */}
           <Suspense fallback={null}>
-            {selectedGame && <GameModal selectedGame={selectedGame} onClose={closeAllOverlays} />}
+            {selectedGame && (
+              <GameDetailModal 
+                game={selectedGame} 
+                onClose={closeAllOverlays} 
+                onBuyNow={() => handleOpenPurchaseModal(selectedGame)} 
+              />
+            )}
             {purchaseGame && <PurchaseModal game={purchaseGame} onClose={closeAllOverlays} />}
           </Suspense>
         </div>

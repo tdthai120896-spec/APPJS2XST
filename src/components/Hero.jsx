@@ -146,12 +146,18 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           <div className="absolute bottom-2.5 left-2.5 w-4 h-4 border-b border-l border-cyan-400/40 rounded-bl-md z-10"></div>
           <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b border-r border-cyan-400/40 rounded-br-md z-10"></div>
 
+          {/* 
+            🛠️ TỐI ƯU LCP CỰC MẠNH:
+            - Thay đổi preload="auto" thành preload="metadata" để trình duyệt không tải dữ liệu video nặng ngay lập tức.
+            - Thiết lập poster="/background.jpg" để tận dụng hình ảnh Wukong đang có sẵn trong bộ nhớ đệm vẽ ngay màn hình đầu tiên, đưa thời gian Largest Contentful Paint (LCP) về mức lý tưởng (< 2s).
+          */}
           <video
             autoPlay
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
+            poster="/background.jpg"
             className="w-full h-full object-cover opacity-90"
           >
             <source src="/gemini_generated_video_27593B13.mp4" type="video/mp4" />
