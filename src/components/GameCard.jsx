@@ -27,6 +27,8 @@ function GameCard({ game, onAddToCart }) {
           <img
             src={game.poster}
             alt={game.title}
+            loading="lazy"      
+            decoding="async"    
             className="h-full w-full object-cover transition-transform duration-200 ease-out group-hover:scale-[1.03]"
             style={{
               backfaceVisibility: 'hidden',
