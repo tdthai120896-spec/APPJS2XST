@@ -160,7 +160,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
             poster="/background.webp"
             className="w-full h-full object-cover opacity-90"
           >
-            <source src="/gemini_generated_video_27593B13.mp4" type="video/mp4" />
+            <source src="/gemini_generated_video_27593B13.webm" type="video/webm" />
           </video>
         </div>
 

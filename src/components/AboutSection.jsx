@@ -45,7 +45,7 @@ export default function AboutSection() {
     <section className="relative w-full min-h-[90vh] flex flex-col justify-center py-20 overflow-hidden rounded-[2rem] border border-cyan-500/20 bg-[#05070a] shadow-[0_0_50px_rgba(6,182,212,0.1)] my-10 select-none transform-gpu">
       
       {/* 1. BACKGROUND VIDEO (Tối ưu hóa độ đè hòa trộn) */}
-      <BoomerangVideoBg src="/gaming-bg.mp4" className="absolute inset-0 w-full h-full opacity-35 pointer-events-none mix-blend-lighten" />
+      <BoomerangVideoBg src="/gaming-bg.webm" className="absolute inset-0 w-full h-full opacity-35 pointer-events-none mix-blend-lighten" />
       
       {/* Lớp phủ Radial Gradient cân bằng của Apple giúp text nổi bật trên video */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#05070a_90%)] pointer-events-none" />
