@@ -3,8 +3,6 @@ import { useMemo, useState, useEffect, useCallback, lazy, Suspense } from 'react
 // Các Component nằm trên luồng tải chính (Critical Path) giữ nguyên import thông thường
 import NavigationBar from './components/NavigationBar'
 import Hero from './components/Hero'
-import MarqueeGames from './components/MarqueeGames'
-import CategoryShelf from './components/CategoryShelf'
 import Cart from './components/Cart'
 import Footer from './components/Footer'
 import FloatingContactWidget from './components/FloatingContactWidget'
@@ -12,13 +10,15 @@ import FloatingAllGames from './components/FloatingAllGames'
 
 import { RAW_GAMES, CATEGORY_META } from './gamesData'
 
-// 🛠️ TỐI ƯU 1: Tải chậm (Code Splitting) cho các trang phụ và modal để giảm kích thước bundle ban đầu
+// Tải chậm (Code Splitting) cho các trang phụ và modal để giảm kích thước bundle ban đầu
 const AboutSection = lazy(() => import('./components/AboutSection'))
 const GuideSection = lazy(() => import('./components/GuideSection'))
 const Location = lazy(() => import('./components/Location'))
 const AllGames = lazy(() => import('./components/AllGames'))
 const GameModal = lazy(() => import('./components/GameModal'))
 const PurchaseModal = lazy(() => import('./components/PurchaseModal'))
+const MarqueeGames = lazy(() => import('./components/MarqueeGames'))
+const CategoryShelf = lazy(() => import('./components/CategoryShelf'))
 
 // Component màn hình chờ tải mượt mà chuẩn tông màu Xanh Neon - Đen
 const PageLoadingFallback = () => (
@@ -37,6 +37,42 @@ function App() {
   const [purchaseGame, setPurchaseGame] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [currentView, setCurrentView] = useState('home');
+
+  // 🛠️ TỐI ƯU SÂU: Khởi tạo state rỗng cho dữ liệu game nặng ban đầu
+  const [deferredGames, setDeferredGames] = useState({ marquee: [], categories: [] });
+
+  const allGames = useMemo(() => {
+    if (!RAW_GAMES) return [];
+    return Object.values(RAW_GAMES).flat();
+  }, []);
+
+  // 🛠️ TỐI ƯU SÂU: Trì hoãn xử lý mảng và trộn game ngẫu nhiên
+  useEffect(() => {
+    // Trì hoãn tính toán dữ liệu nặng 150ms sau khi trang chủ đã render xong phần khung chính (Hero)
+    const timer = setTimeout(() => {
+      if (!RAW_GAMES || !CATEGORY_META) return;
+
+      // 1. Ánh xạ danh mục
+      const mappedCategories = CATEGORY_META.map(cat => ({
+        ...cat,
+        games: RAW_GAMES[cat.key] || []
+      }));
+
+      // 2. Trộn ngẫu nhiên game cho Marquee
+      const flattened = Object.values(RAW_GAMES).flat();
+      if (flattened.length > 0) {
+        const shuffled = [...flattened].sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, 20);
+        
+        setDeferredGames({
+          categories: mappedCategories,
+          marquee: [...selected, ...selected]
+        });
+      }
+    }, 150); // Khoảng thời gian trì hoãn ngắn đủ để giải phóng CPU vẽ giao diện LCP trước
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleAddToCart = useCallback((game) => {
     setCartItems((prevItems) => {
@@ -81,23 +117,6 @@ function App() {
     document.body.style.overflow = 'hidden';
   };
 
-  const categories = useMemo(() => {
-    if (!CATEGORY_META || !RAW_GAMES) return [];
-    return CATEGORY_META.map(cat => ({
-      ...cat,
-      games: RAW_GAMES[cat.key] || []
-    }));
-  }, []);
-
-  const allGames = useMemo(() => Object.values(RAW_GAMES).flat(), []);
-
-  const marqueeGames = useMemo(() => {
-    if (allGames.length === 0) return [];
-    const shuffled = [...allGames].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 20);
-    return [...selected, ...selected];
-  }, [allGames]);
-
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
@@ -111,7 +130,6 @@ function App() {
     }
   };
 
-  // Hàm điều hướng
   const handleNavigation = (view) => {
     setCurrentView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -123,7 +141,7 @@ function App() {
 
       <main className="relative min-h-screen bg-[#05070a] text-white selection:bg-cyan-500/30 overflow-x-hidden">
 
-        {/* BACKGROUND EFFECTS - 🛠️ TỐI ƯU 2: Ẩn bớt hiệu ứng CSS blur cực nặng trên thiết bị di động (md:block) */}
+        {/* BACKGROUND EFFECTS */}
         <div className="fixed inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none z-0" style={{ backgroundImage: 'url("/noise.png")', backgroundRepeat: 'repeat' }} />
         <div className="hidden md:block absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-cyan-600/15 blur-[180px] rounded-full pointer-events-none z-0" />
         <div className="hidden md:block fixed bottom-[-10%] right-[-5%] w-[700px] h-[700px] bg-blue-600/15 blur-[160px] rounded-full pointer-events-none z-0" />
@@ -143,22 +161,27 @@ function App() {
           {currentView === 'home' && (
             <>
               <Hero searchTerm={searchTerm} handleSearch={handleSearch} suggestions={suggestions} handleOpenModal={handleOpenModal} onAddToCart={handleAddToCart} />
+              
+              {/* Chỉ render phần Marquee và Shelves sau khi dữ liệu đã được tính toán chậm thành công */}
               <div className="space-y-24 pb-20 flex-grow">
-                <MarqueeGames
-                  games={marqueeGames}
-                  onGameClick={handleOpenModal}
-                  onAddToCart={handleAddToCart}
-                />
-                <section className="relative space-y-12">
-                  {categories.map((cat) => (
-                    <CategoryShelf key={cat.key} category={cat} onGameClick={handleOpenModal} onAddToCart={handleAddToCart} onBuyNow={handleOpenPurchaseModal} />
-                  ))}
-                </section>
+                <Suspense fallback={null}>
+                  {deferredGames.marquee.length > 0 && (
+                    <MarqueeGames
+                      games={deferredGames.marquee}
+                      onGameClick={handleOpenModal}
+                      onAddToCart={handleAddToCart}
+                    />
+                  )}
+                  <section className="relative space-y-12">
+                    {deferredGames.categories.map((cat) => (
+                      <CategoryShelf key={cat.key} category={cat} onGameClick={handleOpenModal} onAddToCart={handleAddToCart} onBuyNow={handleOpenPurchaseModal} />
+                    ))}
+                  </section>
+                </Suspense>
               </div>
             </>
           )}
 
-          {/* 🛠️ TỐI ƯU 3: Bọc các trang phụ trong Suspense để bóc tách tải code thông minh */}
           {currentView === 'about' && (
             <Suspense fallback={<PageLoadingFallback />}>
               <div className="flex-grow px-4 md:px-10 py-12 max-w-7xl mx-auto w-full">
@@ -201,7 +224,6 @@ function App() {
           <Footer />
           <FloatingContactWidget />
 
-          {/* 🛠️ TỐI ƯU 4: Chỉ render và tải file JS của Modal khi các biến trạng thái được kích hoạt thực tế */}
           <Suspense fallback={null}>
             {selectedGame && <GameModal selectedGame={selectedGame} onClose={closeAllOverlays} />}
             {purchaseGame && <PurchaseModal game={purchaseGame} onClose={closeAllOverlays} />}
