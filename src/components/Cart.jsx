@@ -1,9 +1,16 @@
 import React, { useState } from 'react'
-import {
-  ShoppingBag, X, Trash2, ArrowDown, MessageSquare,
-  Facebook, Phone, CreditCard, Monitor, Settings2,
-  CheckCircle2, PlayCircle, AlertTriangle
+import { 
+  ShoppingBag, X, Trash2, ArrowDown, MessageSquare, 
+  Facebook, Phone, CreditCard, Monitor, Settings2, 
+  CheckCircle2, PlayCircle, AlertTriangle 
 } from 'lucide-react'
+
+// 🛠️ ĐÃ THÊM: Định nghĩa hàm tối ưu hóa kích thước ảnh mini qua CDN cho giỏ hàng
+const getOptimizedMiniImage = (url) => {
+  if (!url) return '';
+  if (url.startsWith('/') || url.startsWith('data:')) return url;
+  return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=120&output=webp&q=80`;
+};
 
 function Cart({ cartItems, onRemove }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -118,7 +125,7 @@ function Cart({ cartItems, onRemove }) {
                         className="flex items-center gap-3 p-3 rounded-xl bg-cyan-950/5 border border-cyan-500/10 hover:border-cyan-500/20 transition-all duration-300"
                       >
                         <img
-                          src={getOptimizedMiniImage(item.poster)} // 🛠️ Áp dụng tối ưu ảnh mini trong giỏ hàng
+                          src={getOptimizedMiniImage(item.poster)}
                           alt=""
                           loading="lazy"
                           decoding="async"
@@ -245,8 +252,8 @@ function Cart({ cartItems, onRemove }) {
                     <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-cyan-500/20 bg-black shadow-xl">
                       <iframe
                         className="absolute inset-0 h-full w-full"
-                        src=""
-                        title="Hướng dẫn"
+                        src="https://www.youtube.com/embed/CcB3vbLEAOM?si=eB8GmzNhn4gxKz20"
+                        title="How to Play Steam Games Offline - TechTUTYT"
                         frameBorder="0"
                         allowFullScreen
                       ></iframe>
