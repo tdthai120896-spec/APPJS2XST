@@ -657,6 +657,8 @@ export const RAW_GAMES = {
     { title: "Little Nightmares", genre: "Puzzle Platformer Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/424840/header.jpg" },
     { title: "Little Nightmares II", genre: "Puzzle Platformer Horror Sequel", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/860510/header.jpg" },
     { title: "Little Nightmares III", genre: "Co-op Puzzle Platformer Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/244240/header.jpg" },
+    { "title": "Portal 2", "genre": "Puzzle-Platformer", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620/header.jpg" },
+{ "title": "Portal 2 - The Final Hours", "genre": "Documentary", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/104600/header.jpg" },
     { title: "The Witness", genre: "Open World Line Puzzle Masterpiece", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/210970/header.jpg" },
     { title: "Keep Talking and Nobody Explodes", genre: "Co-op Bomb Defusal", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/341800/header.jpg" },
     { title: "Half-Life: Alyx", genre: "VR FPS Masterpiece Sci-Fi", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/546560/header.jpg" },
