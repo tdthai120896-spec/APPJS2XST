@@ -13,26 +13,46 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
     setCurrentPage(1);
   }, [selectedCategory, searchTerm]);
 
+  // 🛠️ TỐI ƯU A-Z (1): Lọc trùng và sắp xếp danh sách tổng từ A-Z một lần duy nhất khi mở trang
   const allUniqueGamesList = useMemo(() => {
     if (!RAW_GAMES) return [];
     const allGamesArray = Object.values(RAW_GAMES).flat();
     const seen = new Set();
-    return allGamesArray.filter(game => {
+    const uniques = allGamesArray.filter(game => {
       const duplicate = seen.has(game.title);
       seen.add(game.title);
       return !duplicate;
     });
+    
+    // Thuật toán sắp xếp Alphabet chuẩn quốc tế (không phân biệt chữ hoa, chữ thường)
+    return uniques.sort((a, b) => a.title.localeCompare(b.title));
   }, []);
 
-  const getFilteredGames = () => {
-    let baseList = selectedCategory === 'All' ? allUniqueGamesList : (RAW_GAMES[selectedCategory] || []);
+  // 🛠️ TỐI ƯU A-Z (2): Sắp xếp sẵn từng danh mục nhỏ từ A-Z một lần duy nhất
+  const sortedCategoriesGames = useMemo(() => {
+    if (!RAW_GAMES) return {};
+    const sortedMap = {};
+    for (const category in RAW_GAMES) {
+      if (RAW_GAMES[category]) {
+        sortedMap[category] = [...RAW_GAMES[category]].sort((a, b) => 
+          a.title.localeCompare(b.title)
+        );
+      }
+    }
+    return sortedMap;
+  }, []);
+
+  // 🛠️ TỐI ƯU A-Z (3): Lọc tìm kiếm trên mảng đã được xếp sẵn từ trước, ngăn nghẽn CPU lúc tìm kiếm
+  const filteredGamesList = useMemo(() => {
+    let baseList = selectedCategory === 'All' 
+      ? allUniqueGamesList 
+      : (sortedCategoriesGames[selectedCategory] || []);
+      
     if (!searchTerm.trim()) return baseList;
     
     const searchLower = searchTerm.toLowerCase();
     return baseList.filter(game => game.title.toLowerCase().includes(searchLower));
-  };
-
-  const filteredGamesList = getFilteredGames();
+  }, [selectedCategory, searchTerm, allUniqueGamesList, sortedCategoriesGames]);
 
   const totalPages = Math.ceil(filteredGamesList.length / gamesPerPage);
   const indexOfLastGame = currentPage * gamesPerPage;
@@ -63,10 +83,10 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
         searchTerm={searchTerm}
         handleSearch={handleSearch}
         suggestions={suggestions}
-        onSelectGame={handleOpenModal} // Sử dụng modal toàn cục thay vì modal cục bộ cũ
+        onSelectGame={handleOpenModal}
       />
 
-      {/* Cụm bộ lọc Category */}
+      {/* Cụm bộ lọc Category tối giản kiểu Apple Hub */}
       <div className="w-full mb-12">
         <div className="flex flex-wrap items-center justify-center gap-2 px-1">
           <button
@@ -96,13 +116,13 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
 
       {currentGamesList.length > 0 ? (
         <>
+          {/* Lưới sản phẩm bố cục Bento đồng bộ chiều cao */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-3 gap-y-6 md:gap-x-4 md:gap-y-6 grid-auto-rows-max">
             {currentGamesList.map((game, index) => (
               <div
                 key={index}
                 className="h-[195px] min-[390px]:h-[225px] sm:h-[240px] md:h-[285px] w-full flex flex-col rounded-[1.2rem] md:rounded-[1.6rem]"
               >
-                {/* Truyền các callback đóng mở modal toàn cục từ App.jsx */}
                 <GameCard 
                   game={game} 
                   onAddToCart={onAddToCart} 
@@ -113,7 +133,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
             ))}
           </div>
 
-          {/* Phân trang */}
+          {/* Phân trang tinh xảo */}
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-2 mt-12 mb-6">
               <button
@@ -146,7 +166,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
 
               <button
                 disabled={currentPage === totalPages}
-                onClick={() => handlePageChange(currentPage + 1)}
+                onClick={() => handlePageChange(page+ 1)}
                 className="p-2 rounded-full border border-cyan-500/10 bg-transparent text-gray-400 hover:border-cyan-500/30 hover:text-cyan-400 disabled:opacity-20 disabled:pointer-events-none transition duration-200"
               >
                 <ChevronRight className="h-4 w-4" />
