@@ -146,6 +146,10 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           <div className="absolute bottom-2.5 left-2.5 w-4 h-4 border-b border-l border-cyan-400/40 rounded-bl-md z-10"></div>
           <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b border-r border-cyan-400/40 rounded-br-md z-10"></div>
 
+          {/* 
+            🛠️ ĐÃ CẬP NHẬT:
+            - Thay thế đuôi video từ .mp4 sang .webm và loại type tương ứng để tăng tốc độ tải.
+          */}
           <video
             autoPlay
             loop
@@ -155,16 +159,15 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
             poster="/background.jpg"
             className="w-full h-full object-cover opacity-90"
           >
-            <source src="/gemini_generated_video_27593B13.mp4" type="video/mp4" />
+            <source src="/gemini_generated_video_27593B13.webm" type="video/webm" />
           </video>
         </div>
 
         {/* 
-          MÔ TẢ MÀU XANH CYAN/NEON:
-          - Đã cập nhật nội dung quảng bá hệ thống thuê game bản quyền lâu dài chỉ từ 30K.
-          - Cam kết nói không với game crack/lậu, nhấn mạnh độ uy tín của Family Share.
+          🛠️ ĐÃ TỐI ƯU MÀU CHỮ:
+          - Chuyển từ text-cyan-400 sang text-cyan-400/80 để màu chữ dịu và sâu hơn, đỡ chói mắt.
         */}
-        <p className="text-cyan-400 text-xs sm:text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed font-semibold drop-shadow-[0_2px_10px_rgba(6,182,212,0.15)]">
+        <p className="text-cyan-400/80 text-xs sm:text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed font-semibold drop-shadow-[0_2px_10px_rgba(6,182,212,0.1)]">
           Thuê game bản quyền lâu dài chỉ từ 30K • Nói không với game crack, lậu <br className="hidden sm:block" />
           Trải nghiệm hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất.
         </p>
@@ -212,7 +215,6 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
               <Sparkles className="h-3.5 w-3.5 text-cyan-300 animate-spin-slow" /> Sự kiện tri ân giới hạn
             </div>
             
-            {/* 🛠️ ĐÃ CẬP NHẬT: Thay đổi từ Mua sang Thuê và Kích hoạt thành công */}
             <h2 className="text-xl md:text-3xl font-black uppercase tracking-tight leading-none mb-3 text-white select-none">
               🔥 Thuê 1 Được 100: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 font-black animate-text-glow">TẶNG KÈM LÊN ĐẾN 100 GAMES</span>
             </h2>
