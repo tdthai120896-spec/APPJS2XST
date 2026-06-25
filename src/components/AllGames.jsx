@@ -7,13 +7,21 @@ import SearchBar from './SearchBar';
 function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggestions, handleOpenModal, handleOpenPurchaseModal }) { 
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
+  const [isExpanded, setIsExpanded] = useState(false); // 🛠️ ĐÃ THÊM: Quản lý trạng thái đóng/mở rộng danh mục
   const gamesPerPage = 20;
 
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategory, searchTerm]);
 
-  // 🛠️ TỐI ƯU A-Z (1): Lọc trùng và sắp xếp danh sách tổng từ A-Z một lần duy nhất khi mở trang
+  // 🛠️ ĐÃ THÊM: Tự động trượt mở rộng danh mục nếu người dùng đang chọn một bộ lọc khác "Tất cả"
+  useEffect(() => {
+    if (selectedCategory !== 'All') {
+      setIsExpanded(true);
+    }
+  }, [selectedCategory]);
+
+  // TỐI ƯU A-Z: Lọc trùng và sắp xếp danh sách tổng từ A-Z một lần duy nhất khi mở trang
   const allUniqueGamesList = useMemo(() => {
     if (!RAW_GAMES) return [];
     const allGamesArray = Object.values(RAW_GAMES).flat();
@@ -24,11 +32,10 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
       return !duplicate;
     });
     
-    // Thuật toán sắp xếp Alphabet chuẩn quốc tế (không phân biệt chữ hoa, chữ thường)
     return uniques.sort((a, b) => a.title.localeCompare(b.title));
   }, []);
 
-  // 🛠️ TỐI ƯU A-Z (2): Sắp xếp sẵn từng danh mục nhỏ từ A-Z một lần duy nhất
+  // TỐI ƯU A-Z: Sắp xếp sẵn từng danh mục nhỏ từ A-Z một lần duy nhất
   const sortedCategoriesGames = useMemo(() => {
     if (!RAW_GAMES) return {};
     const sortedMap = {};
@@ -42,7 +49,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
     return sortedMap;
   }, []);
 
-  // 🛠️ TỐI ƯU A-Z (3): Lọc tìm kiếm trên mảng đã được xếp sẵn từ trước, ngăn nghẽn CPU lúc tìm kiếm
+  // TỐI ƯU A-Z: Lọc tìm kiếm trên mảng đã được xếp sẵn từ trước, ngăn nghẽn CPU lúc tìm kiếm
   const filteredGamesList = useMemo(() => {
     let baseList = selectedCategory === 'All' 
       ? allUniqueGamesList 
@@ -86,32 +93,49 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
         onSelectGame={handleOpenModal}
       />
 
-      {/* Cụm bộ lọc Category tối giản kiểu Apple Hub */}
-      <div className="w-full mb-12">
-        <div className="flex flex-wrap items-center justify-center gap-2 px-1">
-          <button
-            onClick={() => setSelectedCategory('All')}
-            className={`px-4 py-2 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider transition-all duration-300 ${selectedCategory === 'All'
-                ? 'bg-cyan-500 text-[#05080c] shadow-[0_0_15px_rgba(6,182,212,0.4)] border border-cyan-400'
-                : 'bg-transparent text-gray-400 border border-cyan-500/10 hover:border-cyan-500/30 hover:text-cyan-400'
-              }`}
-          >
-            Tất cả
-          </button>
-
-          {CATEGORY_META && CATEGORY_META.map((cat, index) => (
+      {/* Cụm bộ lọc Category tối giản có tính năng thu gọn/mở rộng */}
+      <div className="w-full mb-10 flex flex-col items-center">
+        {/* Khung bọc danh mục có hiệu ứng co giãn mượt mà, trên Mobile kịch trần 1 dòng (38px) */}
+        <div className={`w-full transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[500px]' : 'max-h-[38px] md:max-h-none'}`}>
+          <div className="flex flex-wrap items-center justify-center gap-2 px-1">
             <button
-              key={index}
-              onClick={() => setSelectedCategory(cat.key)}
-              className={`px-4 py-2 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider transition-all duration-300 ${selectedCategory === cat.key
+              onClick={() => setSelectedCategory('All')}
+              className={`px-4 py-2 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider transition-all duration-300 ${selectedCategory === 'All'
                   ? 'bg-cyan-500 text-[#05080c] shadow-[0_0_15px_rgba(6,182,212,0.4)] border border-cyan-400'
                   : 'bg-transparent text-gray-400 border border-cyan-500/10 hover:border-cyan-500/30 hover:text-cyan-400'
                 }`}
             >
-              {cat.key}
+              Tất cả
             </button>
-          ))}
+
+            {CATEGORY_META && CATEGORY_META.map((cat, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedCategory(cat.key)}
+                className={`px-4 py-2 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider transition-all duration-300 ${selectedCategory === cat.key
+                    ? 'bg-cyan-500 text-[#05080c] shadow-[0_0_15px_rgba(6,182,212,0.4)] border border-cyan-400'
+                    : 'bg-transparent text-gray-400 border border-cyan-500/10 hover:border-cyan-500/30 hover:text-cyan-400'
+                  }`}
+              >
+                {cat.key}
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* NÚT THAY ĐỔI ĐÓNG/MỞ DANH MỤC TRÊN MOBILE */}
+        {CATEGORY_META && CATEGORY_META.length > 2 && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="md:hidden mt-4 flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full border border-cyan-500/25 bg-cyan-500/5 text-cyan-400 text-[10px] font-black uppercase tracking-widest hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-200"
+          >
+            {isExpanded ? (
+              <>Thu gọn bớt ▲</>
+            ) : (
+              <>Xem tất cả danh mục ▼</>
+            )}
+          </button>
+        )}
       </div>
 
       {currentGamesList.length > 0 ? (
@@ -166,7 +190,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
 
               <button
                 disabled={currentPage === totalPages}
-                onClick={() => handlePageChange(page+ 1)}
+                onClick={() => handlePageChange(currentPage + 1)}
                 className="p-2 rounded-full border border-cyan-500/10 bg-transparent text-gray-400 hover:border-cyan-500/30 hover:text-cyan-400 disabled:opacity-20 disabled:pointer-events-none transition duration-200"
               >
                 <ChevronRight className="h-4 w-4" />
