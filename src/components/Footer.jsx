@@ -25,7 +25,7 @@ function Footer() {
               NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">STEAM</span>
             </div>
             <p className="text-sm leading-relaxed text-gray-400 mb-6">
-              Nền tảng cung cấp trải nghiệm game AAA bản quyền offline với mức giá tốt nhất. Cam kết bảo hành trọn đời, hỗ trợ tận tâm 24/7.
+              Thuê game bản quyền lâu dài chỉ từ 30K • Nói không với game crack, lậu. Trải nghiệm hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất.
             </p>
             <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20 w-fit">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>

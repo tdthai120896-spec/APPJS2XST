@@ -134,9 +134,9 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
 
         {/* TIÊU ĐỀ THƯƠNG HIỆU GRADIENT XANH NEON - TRẮNG */}
-        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)]">
-          NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 drop-shadow-[0_0_25px_rgba(34,211,238,0.25)]">STEAM</span>
-        </h1>
+        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] whitespace-nowrap">
+  NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 drop-shadow-[0_0_25px_rgba(34,211,238,0.25)]">STEAM</span>
+</h1>
 
         {/* KHUNG VIDEO HUD */}
         <div className="relative w-full max-w-[310px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden bg-black/40 border border-cyan-500/20 shadow-[0_0_40px_rgba(6,182,212,0.12)] flex items-center justify-center animate-subtle-float transform-gpu">
@@ -167,10 +167,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           🛠️ ĐÃ TỐI ƯU MÀU CHỮ:
           - Chuyển từ text-cyan-400 sang text-cyan-400/80 để màu chữ dịu và sâu hơn, đỡ chói mắt.
         */}
-        <p className="text-cyan-400/80 text-xs sm:text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed font-semibold drop-shadow-[0_2px_10px_rgba(6,182,212,0.1)]">
-          Thuê game bản quyền lâu dài chỉ từ 30K • Nói không với game crack, lậu <br className="hidden sm:block" />
-          Trải nghiệm hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất.
-        </p>
+        
 
         {/* THANH TÌM KIẾM */}
         <div className="w-full mb-8 relative z-50">
