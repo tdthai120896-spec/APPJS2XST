@@ -13,7 +13,7 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
     // Tự động khóa cuộn trang nền khi mở Modal và giải mã liên kết
     useEffect(() => {
         document.body.style.overflow = 'hidden';
-        
+
         try {
             setLinks({
                 zalo: window.atob(ENCODED_ZALO),
@@ -60,9 +60,9 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
     `;
 
     return createPortal(
-        <div 
-          className="fixed inset-0 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
-          style={{ zIndex: 999999 }}
+        <div
+            className="fixed inset-0 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
+            style={{ zIndex: 999999 }}
         >
             {/* Lớp nền tối */}
             <div className="fixed inset-0 bg-black/85" onClick={onClose} />
@@ -87,8 +87,10 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                         {/* 🛠️ SỬA LỖI: Chuyển tỷ lệ ảnh sang aspect-[16/9] và căn rộng w-full đồng đều trên Mobile */}
                         <div className="relative aspect-[16/9] w-full mx-auto overflow-hidden rounded-2xl border border-cyan-500/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)]">
                             <img
-                                src={game.poster}
+                                src={getOptimizedModalImage(game.poster)} // 🛠️ Áp dụng tối ưu ảnh trung tâm
                                 alt={game.title}
+                                loading="lazy"
+                                decoding="async"
                                 className="h-full w-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#080d16]/80 via-transparent to-transparent pointer-events-none" />
@@ -104,15 +106,15 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
 
                         {/* Nút Mua ngay */}
                         <div className="relative w-full">
-                          <button
-                              onClick={() => {
-                                  onClose();
-                                  onBuyNow();
-                              }}
-                              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-[#080d16] py-3 rounded-full font-black uppercase tracking-widest text-xs shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.55)] transition-all duration-300 active:scale-[0.97] hover:scale-[1.01]"
-                          >
-                              <ShoppingCart className="h-4 w-4 stroke-[3]" /> Mua ngay
-                          </button>
+                            <button
+                                onClick={() => {
+                                    onClose();
+                                    onBuyNow();
+                                }}
+                                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-[#080d16] py-3 rounded-full font-black uppercase tracking-widest text-xs shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.55)] transition-all duration-300 active:scale-[0.97] hover:scale-[1.01]"
+                            >
+                                <ShoppingCart className="h-4 w-4 stroke-[3]" /> Mua ngay
+                            </button>
                         </div>
                     </div>
 
@@ -124,8 +126,8 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                                 {game.title}
                             </h2>
                             <p className="text-[9px] sm:text-[10px] text-cyan-400 font-black uppercase tracking-widest mb-3 flex items-center gap-1.5 select-none">
-                              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_6px_rgba(6,182,212,1)]" />
-                              Steam Offline Mode • {game.genre || 'AAA'}
+                                <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_6px_rgba(6,182,212,1)]" />
+                                Steam Offline Mode • {game.genre || 'AAA'}
                             </p>
 
                             {/* Banner "Mua 1 Được 100" */}

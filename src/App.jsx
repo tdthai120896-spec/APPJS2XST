@@ -15,7 +15,7 @@ const AboutSection = lazy(() => import('./components/AboutSection'))
 const GuideSection = lazy(() => import('./components/GuideSection'))
 const Location = lazy(() => import('./components/Location'))
 const AllGames = lazy(() => import('./components/AllGames'))
-const GameDetailModal = lazy(() => import('./components/GameDetailModal')) // 🛠️ Đổi sang GameDetailModal của bạn
+const GameDetailModal = lazy(() => import('./components/GameDetailModal'))
 const PurchaseModal = lazy(() => import('./components/PurchaseModal'))
 const MarqueeGames = lazy(() => import('./components/MarqueeGames'))
 const CategoryShelf = lazy(() => import('./components/CategoryShelf'))
@@ -41,13 +41,15 @@ function App() {
   // Khởi tạo state rỗng cho dữ liệu game nặng ban đầu
   const [deferredGames, setDeferredGames] = useState({ marquee: [], categories: [] });
 
-  const allGames = useMemo(() => {
-    if (!RAW_GAMES) return [];
-    return Object.values(RAW_GAMES).flat();
+  // 🛠️ TỐI ƯU SÂU: Tính tổng số game bằng phương thức O(N) không dùng flat() tránh chiếm dụng RAM khi tải trang chủ
+  const totalGamesCount = useMemo(() => {
+    if (!RAW_GAMES) return 0;
+    return Object.values(RAW_GAMES).reduce((sum, catList) => sum + (catList?.length || 0), 0);
   }, []);
 
   // Trì hoãn xử lý mảng và trộn game ngẫu nhiên
   useEffect(() => {
+    // Trì hoãn tính toán dữ liệu nặng 600ms nhường CPU vẽ phần khung chính (Hero)
     const timer = setTimeout(() => {
       if (!RAW_GAMES || !CATEGORY_META) return;
 
@@ -68,7 +70,7 @@ function App() {
           marquee: [...selected, ...selected]
         });
       }
-    }, 150);
+    }, 600); // 🛠️ TỐI ƯU SÂU: Tăng từ 150ms lên 600ms giúp luồng xử lý chính mượt mà tối đa
 
     return () => clearTimeout(timer);
   }, []);
@@ -116,8 +118,7 @@ function App() {
     document.body.style.overflow = 'hidden';
   }, []);
 
-  // 🛠️ TỐI ƯU CỰC MẠNH: Lắng nghe hệ thống sự kiện toàn cục phát từ GameCard
-  // Giúp mở Modal nhanh chóng, mượt mà từ bất kỳ kệ game hay thanh trượt nào
+  // Lắng nghe hệ thống sự kiện toàn cục phát từ GameCard để mở các Modal
   useEffect(() => {
     const handleOpenPurchaseEvent = (e) => {
       handleOpenPurchaseModal(e.detail);
@@ -139,7 +140,9 @@ function App() {
     const value = e.target.value;
     setSearchTerm(value);
     if (value.trim().length > 0) {
-      const filtered = allGames.filter(game =>
+      // 🛠️ TỐI ƯU SÂU: Chỉ gộp mảng phẳng (flatten) khi người dùng thực hiện gõ chữ tìm kiếm thực tế
+      const flatList = Object.values(RAW_GAMES).flat();
+      const filtered = flatList.filter(game =>
         game.title.toLowerCase().includes(value.toLowerCase())
       ).slice(0, 6);
       setSuggestions(filtered);
@@ -170,7 +173,7 @@ function App() {
         {currentView !== 'AllGames' && (
           <FloatingAllGames
             onClick={() => handleNavigation('AllGames')}
-            totalGames={allGames.length.toString()}
+            totalGames={totalGamesCount.toString()}
           />
         )}
         
@@ -233,6 +236,7 @@ function App() {
                   handleSearch={handleSearch}
                   suggestions={suggestions}
                   handleOpenModal={handleOpenModal}
+                  handleOpenPurchaseModal={handleOpenPurchaseModal}
                 />
               </div>
             </Suspense>
