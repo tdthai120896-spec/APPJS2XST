@@ -102,13 +102,13 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Hình nền Wukong trải rộng chính giữa */}
         <div 
-          className="absolute inset-0 bg-[url('/background.webp')] bg-cover bg-center opacity-[0.65] md:opacity-[0.80] transition-all duration-700 ease-out"
+          className="absolute inset-0 bg-[url('/background.jpg')] bg-cover bg-center opacity-[0.65] md:opacity-[0.80] transition-all duration-700 ease-out"
           style={{ 
             filter: 'brightness(0.75) contrast(1.12) saturate(1.2)' 
           }}
         />
         
-        {/* 🛠️ TỐI ƯU HÓA: Ẩn các quầng sáng cực lớn trên Mobile để tránh làm lag GPU xử lý khung hình di động */}
+        {/* Hai vùng sáng Neon Cyan / Blue cực lớn ở hai góc để tạo cảm giác đồng bộ với thân web */}
         <div className="hidden md:block absolute top-[5%] left-[-10%] w-[600px] h-[600px] bg-cyan-500/12 blur-[160px] rounded-full transform-gpu" />
         <div className="hidden md:block absolute bottom-[15%] right-[-10%] w-[550px] h-[550px] bg-[#2563eb]/10 blur-[140px] rounded-full transform-gpu" />
 
@@ -146,27 +146,27 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           <div className="absolute bottom-2.5 left-2.5 w-4 h-4 border-b border-l border-cyan-400/40 rounded-bl-md z-10"></div>
           <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b border-r border-cyan-400/40 rounded-br-md z-10"></div>
 
-          {/* 
-            🛠️ TỐI ƯU LCP CỰC MẠNH (ĐẠT CHUẨN APPLE):
-            - Thay đổi preload="auto" thành preload="metadata" để trình duyệt không tải dữ liệu video nặng ngay lập tức.
-            - Thiết lập poster="/background.jpg" để tận dụng hình ảnh Wukong đang có sẵn trong bộ nhớ đệm vẽ ngay màn hình đầu tiên, đưa thời gian Largest Contentful Paint (LCP) về mức lý tưởng (< 2s).
-          */}
           <video
             autoPlay
             loop
             muted
             playsInline
             preload="metadata"
-            poster="/background.webp"
+            poster="/background.jpg"
             className="w-full h-full object-cover opacity-90"
           >
-            <source src="/gemini_generated_video_27593B13.webm" type="video/webm" />
+            <source src="/gemini_generated_video_27593B13.mp4" type="video/mp4" />
           </video>
         </div>
 
-        {/* MÔ TẢ MÀU XANH CYAN/NEON */}
-        <p className="text-cyan-400 text-sm md:text-base max-w-md mx-auto mb-8 leading-relaxed font-semibold drop-shadow-[0_2px_10px_rgba(6,182,212,0.15)]">
-          Trải nghiệm kho game AAA đồ sộ, cài đặt đơn giản, bảo mật tối ưu và cập nhật liên tục.
+        {/* 
+          MÔ TẢ MÀU XANH CYAN/NEON:
+          - Đã cập nhật nội dung quảng bá hệ thống thuê game bản quyền lâu dài chỉ từ 30K.
+          - Cam kết nói không với game crack/lậu, nhấn mạnh độ uy tín của Family Share.
+        */}
+        <p className="text-cyan-400 text-xs sm:text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed font-semibold drop-shadow-[0_2px_10px_rgba(6,182,212,0.15)]">
+          Thuê game bản quyền lâu dài chỉ từ 30K • Nói không với game crack, lậu <br className="hidden sm:block" />
+          Trải nghiệm hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất.
         </p>
 
         {/* THANH TÌM KIẾM */}
@@ -202,6 +202,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
 
       {/* BANNER KHUYẾN MÃI DƯỚI ĐÁY TÔNG XANH NEON */}
       <div className="w-full max-w-5xl px-4 md:px-8 mt-12 z-10 relative">
+        {/* Sử dụng class animate-banner-flash để viền nhấp nháy phát sáng */}
         <div className="relative group/promo overflow-hidden rounded-3xl border bg-gradient-to-r from-cyan-950/20 via-[#070b13]/90 to-blue-950/20 p-6 md:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-cyan-500/35 animate-banner-flash">
           {/* Lớp hào quang lấp lánh nhẹ phía sau */}
           <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl blur opacity-35 group-hover/promo:opacity-50 transition duration-500 pointer-events-none"></div>
@@ -211,12 +212,13 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
               <Sparkles className="h-3.5 w-3.5 text-cyan-300 animate-spin-slow" /> Sự kiện tri ân giới hạn
             </div>
             
+            {/* 🛠️ ĐÃ CẬP NHẬT: Thay đổi từ Mua sang Thuê và Kích hoạt thành công */}
             <h2 className="text-xl md:text-3xl font-black uppercase tracking-tight leading-none mb-3 text-white select-none">
-              🔥 Mua 1 Được 100: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 font-black animate-text-glow">TẶNG LÊN ĐẾN 100 GAMES</span>
+              🔥 Thuê 1 Được 100: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 font-black animate-text-glow">TẶNG KÈM LÊN ĐẾN 100 GAMES</span>
             </h2>
             
             <p className="text-[10px] md:text-xs text-gray-400 font-extrabold tracking-widest uppercase">
-              Áp dụng tự động cho một số tài khoản ngẫu nhiên sau khi mua thành công!
+              Áp dụng tự động cho một số tài khoản ngẫu nhiên sau khi kích hoạt thành công!
             </p>
           </div>
         </div>
