@@ -674,7 +674,7 @@ export const RAW_GAMES = {
     { "title": "Level Devil - Demo", "genre": "Platformer", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836260/header.jpg" },
     { "title": "Soul Land: Awakening World", "genre": "RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3015400/header.jpg" },
     { "title": "UNCHARTED: Legacy of Thieves Collection", "genre": "Action Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659040/header.jpg" },
-{ "title": "UNCHARTED 4: A Thief's End", "genre": "Action Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659040/header.jpg" },
+{ title: "UNCHARTED 4: A Thief's End", "genre": "Action Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659040/header.jpg" },
     { "title": "STALZONE", "genre": "Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2952860/header.jpg" },
     { title: "The Walking Dead: The Telltale Definitive Series", genre: "Emotional Choice Zombie Story", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1449690/header.jpg" },
     { title: "Danganronpa V3: Killing Harmony", genre: "Anime Detective Murder Mystery", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/567640/header.jpg" },
