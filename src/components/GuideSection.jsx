@@ -14,7 +14,7 @@ function GuideSection() {
     {
       icon: <UserPlus className="h-5 w-5 md:h-6 md:w-6 text-cyan-400" />,
       title: "Thanh toán thành công & Liên hệ cho Shop",
-      desc: "Tạo tài khoản nhanh chóng chỉ trong 30 giây bằng Email hoặc kết nối Google để bắt đầu hành trình.",
+      desc: "Thuê game & trãi nghiệm không giới hạn thời gian",
       badge: "Bước 1"
     },
     {
@@ -32,7 +32,7 @@ function GuideSection() {
     {
       icon: <CheckCircle2 className="h-5 w-5 md:h-6 md:w-6 text-emerald-400" />,
       title: "Tắt chế độ Sync Cloud và chuyển sang chế độ Offline",
-      desc: "Thông tin tài khoản game hoặc mã kích hoạt (Key) sẽ được gửi ngay vào mục 'Lịch sử' của bạn.",
+      desc: "Thao tác trên ứng dụng Steam",
       badge: "Bước 4"
     },
     {
