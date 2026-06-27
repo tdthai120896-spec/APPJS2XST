@@ -134,12 +134,19 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
 
         {/* TIÊU ĐỀ THƯƠNG HIỆU GRADIENT XANH NEON - TRẮNG */}
-        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] whitespace-nowrap">
-  NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 drop-shadow-[0_0_25px_rgba(34,211,238,0.25)]">STEAM</span>
-</h1>
-<span className="text-xl md:text-3xl text-yellow-400 font-semibold tracking-wider animate-pulse text-center leading-none drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">
-  (Thuê dài hạn, chơi không giới hạn)
-</span>
+        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] whitespace-nowrap">
+          NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 drop-shadow-[0_0_25px_rgba(34,211,238,0.25)]">STEAM</span>
+        </h1>
+
+        {/* 
+          🌟 SUBTITLE MỚI THÊM:
+          - Sử dụng dải màu vàng kim loại (Amber/Yellow) cao cấp sang trọng.
+          - Khoảng cách chữ giãn rộng tracking-[0.2em] đậm chất Apple.
+        */}
+        <p className="mt-4 mb-8 text-xs sm:text-sm md:text-base text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 font-extrabold tracking-[0.2em] uppercase drop-shadow-[0_2px_10px_rgba(234,179,8,0.2)] select-none">
+          Thuê dài hạn • Chơi không giới hạn
+        </p>
+
         {/* KHUNG VIDEO HUD */}
         <div className="relative w-full max-w-[310px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden bg-black/40 border border-cyan-500/20 shadow-[0_0_40px_rgba(6,182,212,0.12)] flex items-center justify-center animate-subtle-float transform-gpu">
           {/* 4 Góc trang trí công nghệ viễn tưởng */}
@@ -148,10 +155,6 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           <div className="absolute bottom-2.5 left-2.5 w-4 h-4 border-b border-l border-cyan-400/40 rounded-bl-md z-10"></div>
           <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b border-r border-cyan-400/40 rounded-br-md z-10"></div>
 
-          {/* 
-            🛠️ ĐÃ CẬP NHẬT:
-            - Thay thế đuôi video từ .mp4 sang .webm và loại type tương ứng để tăng tốc độ tải.
-          */}
           <video
             autoPlay
             loop
@@ -166,10 +169,13 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
 
         {/* 
-          🛠️ ĐÃ TỐI ƯU MÀU CHỮ:
-          - Chuyển từ text-cyan-400 sang text-cyan-400/80 để màu chữ dịu và sâu hơn, đỡ chói mắt.
+          MÔ TẢ MÀU XANH CYAN/NEON DỊU HƠN (text-cyan-400/80):
+          - Đã khôi phục đầy đủ bên dưới video.
         */}
-        
+        <p className="text-cyan-400/80 text-xs sm:text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed font-semibold drop-shadow-[0_2px_10px_rgba(6,182,212,0.1)]">
+          Thuê game bản quyền lâu dài chỉ từ 30K • Nói không với game crack, lậu <br className="hidden sm:block" />
+          Trải nghiệm hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất.
+        </p>
 
         {/* THANH TÌM KIẾM */}
         <div className="w-full mb-8 relative z-50">
@@ -204,7 +210,6 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
 
       {/* BANNER KHUYẾN MÃI DƯỚI ĐÁY TÔNG XANH NEON */}
       <div className="w-full max-w-5xl px-4 md:px-8 mt-12 z-10 relative">
-        {/* Sử dụng class animate-banner-flash để viền nhấp nháy phát sáng */}
         <div className="relative group/promo overflow-hidden rounded-3xl border bg-gradient-to-r from-cyan-950/20 via-[#070b13]/90 to-blue-950/20 p-6 md:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-cyan-500/35 animate-banner-flash">
           {/* Lớp hào quang lấp lánh nhẹ phía sau */}
           <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl blur opacity-35 group-hover/promo:opacity-50 transition duration-500 pointer-events-none"></div>
