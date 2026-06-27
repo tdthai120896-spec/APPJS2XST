@@ -134,18 +134,23 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </div>
 
         {/* TIÊU ĐỀ THƯƠNG HIỆU GRADIENT XANH NEON - TRẮNG */}
-        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] whitespace-nowrap">
+        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] whitespace-nowrap select-none">
           NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 drop-shadow-[0_0_25px_rgba(34,211,238,0.25)]">STEAM</span>
         </h1>
 
         {/* 
-          🌟 SUBTITLE MỚI THÊM:
-          - Sử dụng dải màu vàng kim loại (Amber/Yellow) cao cấp sang trọng.
-          - Khoảng cách chữ giãn rộng tracking-[0.2em] đậm chất Apple.
+          🛠️ CỤM TIÊU ĐỀ PHỤ THUÊ DÀI HẠN (Đã tối ưu kiểu dáng & đồng bộ tông Vàng Kim):
+          - Hàng 1: Thuê dài hạn • Chơi không giới hạn
+          - Hàng 2: Nói không với game crack, lậu • Hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất
         */}
-        <p className="mt-4 mb-8 text-xs sm:text-sm md:text-base text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 font-extrabold tracking-[0.2em] uppercase drop-shadow-[0_2px_10px_rgba(234,179,8,0.2)] select-none">
-          Thuê dài hạn • Chơi không giới hạn
-        </p>
+        <div className="flex flex-col items-center gap-2 mt-4 mb-8 select-none max-w-lg mx-auto">
+          <p className="text-xs sm:text-sm md:text-base text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 font-extrabold tracking-[0.2em] uppercase drop-shadow-[0_2px_10px_rgba(234,179,8,0.2)] leading-none">
+            Thuê dài hạn • Chơi không giới hạn
+          </p>
+          <p className="text-[9px] sm:text-[10.5px] md:text-[11.5px] text-transparent bg-clip-text bg-gradient-to-r from-amber-200/80 via-yellow-400/80 to-amber-500/80 font-semibold tracking-wide leading-normal px-2">
+            Nói không với game crack, lậu • Hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất
+          </p>
+        </div>
 
         {/* KHUNG VIDEO HUD */}
         <div className="relative w-full max-w-[310px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden bg-black/40 border border-cyan-500/20 shadow-[0_0_40px_rgba(6,182,212,0.12)] flex items-center justify-center animate-subtle-float transform-gpu">
@@ -167,15 +172,6 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
             <source src="/gemini_generated_video_27593B13.webm" type="video/webm" />
           </video>
         </div>
-
-        {/* 
-          MÔ TẢ MÀU XANH CYAN/NEON DỊU HƠN (text-cyan-400/80):
-          - Đã khôi phục đầy đủ bên dưới video.
-        */}
-        <p className="text-cyan-400/80 text-xs sm:text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed font-semibold drop-shadow-[0_2px_10px_rgba(6,182,212,0.1)]">
-          Thuê game bản quyền lâu dài chỉ từ 30K • Nói không với game crack, lậu <br className="hidden sm:block" />
-          Trải nghiệm hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất.
-        </p>
 
         {/* THANH TÌM KIẾM */}
         <div className="w-full mb-8 relative z-50">
@@ -210,6 +206,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
 
       {/* BANNER KHUYẾN MÃI DƯỚI ĐÁY TÔNG XANH NEON */}
       <div className="w-full max-w-5xl px-4 md:px-8 mt-12 z-10 relative">
+        {/* Sử dụng class animate-banner-flash để viền nhấp nháy phát sáng */}
         <div className="relative group/promo overflow-hidden rounded-3xl border bg-gradient-to-r from-cyan-950/20 via-[#070b13]/90 to-blue-950/20 p-6 md:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-cyan-500/35 animate-banner-flash">
           {/* Lớp hào quang lấp lánh nhẹ phía sau */}
           <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl blur opacity-35 group-hover/promo:opacity-50 transition duration-500 pointer-events-none"></div>
