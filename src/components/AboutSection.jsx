@@ -21,23 +21,23 @@ export default function AboutSection() {
   const benefits = [
     {
       icon: <Banknote className="w-5 h-5 text-cyan-400" />, 
-      title: "Giá Cực Tiết Kiệm",
+      title: "Thuê Cực Tiết Kiệm",
       desc: "Thưởng thức trọn vẹn mọi siêu phẩm AAA chỉ với chi phí bằng một cốc cafe, rẻ hơn hàng chục lần key gốc."
     },
     {
       icon: <InfinityIcon className="w-5 h-5 text-cyan-400" />,
-      title: "Sở Hữu Trọn Đời",
+      title: "Trãi nghiệm lâu dài",
       desc: "Kích hoạt một lần duy nhất, hỗ trợ lưu trữ đám mây cục bộ an toàn, chơi game vĩnh viễn không giới hạn."
     },
     {
       icon: <ShieldCheck className="w-5 h-5 text-cyan-400" />,
-      title: "Bảo Hành Trọn Đời",
+      title: "Bảo Hành dài hạn",
       desc: "An tâm tuyệt đối với chính sách bảo hành dài hạn. Đội ngũ kỹ thuật Nexus hỗ trợ tận tâm 24/7."
     },
     {
       icon: <Zap className="w-5 h-5 text-cyan-400" />,
-      title: "Cấp Acc Tự Động",
-      desc: "Hệ thống tự động cấp tài khoản lập tức ngay sau khi hoàn tất quét mã thanh toán, không độ trễ."
+      title: "Nhận tài khoản & truy cập tải game ngay",
+      desc: "Hệ thống tự động cấp tài khoản lập tức ngay sau khi hoàn tất thanh toán."
     }
   ];
 
