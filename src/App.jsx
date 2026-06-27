@@ -62,7 +62,7 @@ function App() {
       const flattened = Object.values(RAW_GAMES).flat();
       if (flattened.length > 0) {
         const shuffled = [...flattened].sort(() => 0.5 - Math.random());
-        const selected = shuffled.slice(0, 20);
+        const selected = shuffled.slice(0, 10);
         
         setDeferredGames({
           categories: mappedCategories,
