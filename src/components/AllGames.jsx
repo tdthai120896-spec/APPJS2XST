@@ -145,7 +145,7 @@ function AllGames({ onAddToCart, onBackToHome, searchTerm, handleSearch, suggest
             {currentGamesList.map((game, index) => (
               <div
                 key={index}
-                className="h-[195px] min-[390px]:h-[225px] sm:h-[240px] md:h-[285px] w-full flex flex-col rounded-[1.2rem] md:rounded-[1.6rem]"
+                className="h-[215px] min-[390px]:h-[240px] sm:h-[260px] md:h-[310px] w-full flex flex-col rounded-[1.2rem] md:rounded-[1.6rem]"
               >
                 <GameCard 
                   game={game} 
