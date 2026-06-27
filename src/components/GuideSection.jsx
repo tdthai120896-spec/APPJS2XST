@@ -26,13 +26,13 @@ function GuideSection() {
     {
       icon: <ShoppingCart className="h-5 w-5 md:h-6 md:w-6 text-purple-400" />,
       title: "Tải game bạn muốn",
-      desc: "Duyệt qua kho game đa dạng, nhấn 'Mua ngay' hoặc thêm vào giỏ hàng. Hệ thống xử lý đơn hàng tức thì.",
+      desc: "Duyệt qua kho game đa dạng, nhấn 'Thuê ngay' hoặc thêm vào giỏ hàng. Hệ thống xử lý đơn hàng tức thì.",
       badge: "Bước 3"
     },
     {
       icon: <CheckCircle2 className="h-5 w-5 md:h-6 md:w-6 text-emerald-400" />,
       title: "Tắt chế độ Sync Cloud và chuyển sang chế độ Offline",
-      desc: "Thông tin tài khoản game hoặc mã kích hoạt (Key) sẽ được gửi ngay vào mục 'Lịch sử mua hàng' của bạn.",
+      desc: "Thông tin tài khoản game hoặc mã kích hoạt (Key) sẽ được gửi ngay vào mục 'Lịch sử' của bạn.",
       badge: "Bước 4"
     },
     {
@@ -52,7 +52,7 @@ function GuideSection() {
       {/* Tiêu đề phần hướng dẫn */}
       <div className="text-center mb-16 relative z-10">
         <h2 className="text-3xl font-black uppercase italic tracking-tight sm:text-4xl text-white">
-          Hướng dẫn <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">mua game chi tiết</span>
+          Hướng dẫn <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">nhận game chi tiết</span>
         </h2>
         <p className="mt-3 text-xs md:text-sm text-white/40 uppercase tracking-widest max-w-md mx-auto">
           ⚡ Quy trình 5 bước đơn giản & Video trực quan để sở hữu game bản quyền siêu tốc
@@ -153,7 +153,7 @@ function GuideSection() {
 
           {/* Dòng text mô tả ngắn */}
           <p className="text-center text-[10px] text-white/20 uppercase tracking-widest leading-relaxed max-w-sm mx-auto">
-            ⚡ Khuyến nghị: Xem video kết hợp với quy trình các bước bên trái để có trải nghiệm mua sắm mượt mà nhất.
+            ⚡ Khuyến nghị: Xem video kết hợp với quy trình các bước bên trái để có trải nghiệm game mà nhất.
           </p>
         </div>
 
