@@ -41,7 +41,7 @@ function App() {
   // Khởi tạo state rỗng cho dữ liệu game nặng ban đầu
   const [deferredGames, setDeferredGames] = useState({ marquee: [], categories: [] });
 
-  // 🛠️ TỐI ƯU SÂU: Tính tổng số game bằng phương thức O(N) không dùng flat() tránh chiếm dụng RAM khi tải trang chủ
+  // 🛠️ TỐI ƯU SÂU: Đếm tổng số lượng game bằng reduce O(N) siêu nhẹ không tạo mảng mới
   const totalGamesCount = useMemo(() => {
     if (!RAW_GAMES) return 0;
     return Object.values(RAW_GAMES).reduce((sum, catList) => sum + (catList?.length || 0), 0);
@@ -70,7 +70,7 @@ function App() {
           marquee: [...selected, ...selected]
         });
       }
-    }, 600); // 🛠️ TỐI ƯU SÂU: Tăng từ 150ms lên 600ms giúp luồng xử lý chính mượt mà tối đa
+    }, 600); // Tăng thời gian delay lên 600ms giúp giải phóng luồng chính ban đầu
 
     return () => clearTimeout(timer);
   }, []);
@@ -140,7 +140,7 @@ function App() {
     const value = e.target.value;
     setSearchTerm(value);
     if (value.trim().length > 0) {
-      // 🛠️ TỐI ƯU SÂU: Chỉ gộp mảng phẳng (flatten) khi người dùng thực hiện gõ chữ tìm kiếm thực tế
+      // Chỉ gộp mảng phẳng (flatten) khi người dùng thực hiện gõ chữ tìm kiếm thực tế
       const flatList = Object.values(RAW_GAMES).flat();
       const filtered = flatList.filter(game =>
         game.title.toLowerCase().includes(value.toLowerCase())
@@ -171,6 +171,7 @@ function App() {
         <NavigationBar currentView={currentView} handleNavigation={handleNavigation} />
         
         {currentView !== 'AllGames' && (
+          /* 🛠️ TỐI ƯU SÂU: Sử dụng totalGamesCount tính toán trước thay vì mảng allGames cồng kềnh */
           <FloatingAllGames
             onClick={() => handleNavigation('AllGames')}
             totalGames={totalGamesCount.toString()}
@@ -194,7 +195,13 @@ function App() {
                   )}
                   <section className="relative space-y-12">
                     {deferredGames.categories.map((cat) => (
-                      <CategoryShelf key={cat.key} category={cat} onGameClick={handleOpenModal} onAddToCart={handleAddToCart} onBuyNow={handleOpenPurchaseModal} />
+                      <CategoryShelf 
+                        key={cat.key} 
+                        category={cat} 
+                        onGameClick={handleOpenModal} 
+                        onAddToCart={handleAddToCart} 
+                        onBuyNow={handleOpenPurchaseModal} 
+                      />
                     ))}
                   </section>
                 </Suspense>
