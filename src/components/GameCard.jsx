@@ -121,7 +121,7 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail }) {
               className="flex-1 flex items-center justify-center py-1.5 md:py-2 rounded-full bg-cyan-950/20 border border-cyan-500/30 text-cyan-400 font-black shadow-md hover:text-[#080d16] hover:bg-cyan-500 hover:border-cyan-400 transition-colors duration-200 transform-gpu active:scale-[0.98]"
             >
               <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-center whitespace-nowrap">
-                Thuê ngay
+                Nhận ngay
               </span>
             </button>
           </div>
