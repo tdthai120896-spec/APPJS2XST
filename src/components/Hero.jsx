@@ -137,7 +137,9 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] whitespace-nowrap">
   NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 drop-shadow-[0_0_25px_rgba(34,211,238,0.25)]">STEAM</span>
 </h1>
-
+<span className="text-xl md:text-3xl text-yellow-400 font-semibold tracking-wider animate-pulse text-center leading-none drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">
+  (Thuê dài hạn, chơi không giới hạn)
+</span>
         {/* KHUNG VIDEO HUD */}
         <div className="relative w-full max-w-[310px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden bg-black/40 border border-cyan-500/20 shadow-[0_0_40px_rgba(6,182,212,0.12)] flex items-center justify-center animate-subtle-float transform-gpu">
           {/* 4 Góc trang trí công nghệ viễn tưởng */}
