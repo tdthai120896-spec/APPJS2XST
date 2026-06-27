@@ -35,10 +35,17 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail }) {
 
   return (
     <div
-      className="relative group cursor-pointer w-full h-full flex flex-col transform-gpu will-change-transform"
+      className="relative group cursor-pointer w-full h-full flex flex-col transform-gpu"
       onClick={handleOpenDetail}
     >
-      <article className="relative w-full h-full overflow-hidden rounded-[1.2rem] md:rounded-[1.6rem] border border-slate-800/80 bg-[#080d16] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5 flex flex-col shadow-lg transform-gpu will-change-transform">
+      {/* 
+        🛠️ ĐÃ KHẮC PHỤC LỖI GIẬT TRÊN MOBILE:
+        1. Bỏ hoàn toàn "will-change-transform" trên danh sách lớn để tránh ngốn bộ nhớ VRAM của GPU di động.
+        2. Chuyển các hiệu ứng hover (group-hover) sang chỉ hoạt động trên Desktop (sử dụng md:group-hover).
+           Trên Mobile/iPhone (thiết bị cảm ứng không có con trỏ chuột), việc chạm tay chỉ kích hoạt mở modal trực tiếp 
+           đóng/mở dứt khoát không gây lag hay loạn cảm ứng.
+      */}
+      <article className="relative w-full h-full overflow-hidden rounded-[1.2rem] md:rounded-[1.6rem] border border-slate-800/80 bg-[#080d16] transition-transform duration-200 ease-out md:group-hover:-translate-y-1.5 flex flex-col shadow-lg transform-gpu">
 
         {/* 1. ẢNH POSTER */}
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950 shrink-0">
@@ -47,16 +54,16 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail }) {
             alt={game.title}
             loading="lazy"     
             decoding="async"   
-            className="h-full w-full object-cover transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] transform-gpu"
+            className="h-full w-full object-cover transition-transform duration-200 ease-out md:group-hover:scale-[1.03] transform-gpu"
             style={{
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
             }}
           />
-          <div className="absolute inset-0 bg-black/15 group-hover:bg-black/50 transition-colors duration-300" />
+          <div className="absolute inset-0 bg-black/15 md:group-hover:bg-black/50 transition-colors duration-200" />
 
-          {/* Nút Khám Phá */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none group-hover:pointer-events-auto transform-gpu">
+          {/* Nút Khám Phá (Gamepad) - Chỉ hiển thị trên Desktop (md:) để tránh lỗi loạn click trên Mobile */}
+          <div className="hidden md:flex absolute inset-0 items-center justify-center opacity-0 md:group-hover:opacity-100 scale-95 md:group-hover:scale-100 transition-[opacity,transform] duration-200 ease-out transform-gpu pointer-events-none md:group-hover:pointer-events-auto">
             <div
               className="p-2.5 rounded-full bg-[#080d16]/95 border border-cyan-400 text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.25)] hover:bg-cyan-500 hover:text-black hover:border-cyan-300 transition-[background-color,color,transform] duration-200 ease-out transform-gpu active:scale-90 cursor-pointer pointer-events-auto"
               onClick={handleOpenDetail}
@@ -91,7 +98,6 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail }) {
         </div>
 
         {/* 3. CỤM NÚT BẤM VÀ TEXT PHỤ CHỚP NHÁY */}
-        {/* Giảm nhẹ bottom padding (pb-2.5 / pb-3) và bổ sung gap-1.5 để chừa diện tích hiển thị gọn gàng */}
         <div className="px-3 pb-2.5 md:px-4 md:pb-3 flex flex-col gap-1.5 shrink-0 select-none">
           <div className="flex flex-row items-center gap-2 md:gap-2.5">
             {/* NÚT THÊM GIỎ HÀNG */}
@@ -115,15 +121,15 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail }) {
               className="flex-1 flex items-center justify-center py-1.5 md:py-2 rounded-full bg-cyan-950/20 border border-cyan-500/30 text-cyan-400 font-black shadow-md hover:text-[#080d16] hover:bg-cyan-500 hover:border-cyan-400 transition-colors duration-200 transform-gpu active:scale-[0.98]"
             >
               <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-center whitespace-nowrap">
-                Nhận ngay
+                Thuê ngay
               </span>
             </button>
           </div>
           
           {/* TEXT NHỎ NHẤP NHÁY BÊN DƯỚI */}
-          <span className="text-[8px] md:text-[9px] text-white-400 font-semibold tracking-wider animate-pulse text-center leading-none drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">
-  (Không giới hạn giờ chơi)
-</span>
+          <span className="text-[8px] md:text-[9px] text-white-400/90 font-semibold tracking-wider animate-pulse text-center leading-none">
+            (Không giới hạn giờ chơi)
+          </span>
         </div>
 
       </article>
