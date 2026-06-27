@@ -39,7 +39,7 @@ function MarqueeGames({ games }) {
           </div>
           <div>
             <h2 className="text-xl md:text-2xl font-black uppercase tracking-wide text-white">
-              Game ưa thích <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">được mua nhiều nhất</span>
+              Game ưa thích <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">được chọn nhiều nhất</span>
             </h2>
           </div>
         </div>
