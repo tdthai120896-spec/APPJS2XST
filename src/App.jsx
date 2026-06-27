@@ -41,7 +41,7 @@ function App() {
   // Khởi tạo state rỗng cho dữ liệu game nặng ban đầu
   const [deferredGames, setDeferredGames] = useState({ marquee: [], categories: [] });
 
-  // 🛠️ TỐI ƯU SÂU: Đếm tổng số lượng game bằng reduce O(N) siêu nhẹ không tạo mảng mới
+  // TỐI ƯU SÂU: Tính tổng số game bằng phương thức giảm mảng (reduce) O(N) tránh tốn RAM
   const totalGamesCount = useMemo(() => {
     if (!RAW_GAMES) return 0;
     return Object.values(RAW_GAMES).reduce((sum, catList) => sum + (catList?.length || 0), 0);
@@ -49,14 +49,13 @@ function App() {
 
   // Trì hoãn xử lý mảng và trộn game ngẫu nhiên
   useEffect(() => {
-    // Trì hoãn tính toán dữ liệu nặng 600ms nhường CPU vẽ phần khung chính (Hero)
     const timer = setTimeout(() => {
       if (!RAW_GAMES || !CATEGORY_META) return;
 
-      // 1. Ánh xạ danh mục
+      // 1. Ánh xạ danh mục và 🛠️ CHỈ LẤY TỐI ĐA 20 GAME ĐẠI DIỆN TRÊN TRANG CHỦ để giảm tải cho thiết bị
       const mappedCategories = CATEGORY_META.map(cat => ({
         ...cat,
-        games: RAW_GAMES[cat.key] || []
+        games: (RAW_GAMES[cat.key] || []).slice(0, 10)
       }));
 
       // 2. Trộn ngẫu nhiên game cho Marquee
@@ -70,7 +69,7 @@ function App() {
           marquee: [...selected, ...selected]
         });
       }
-    }, 600); // Tăng thời gian delay lên 600ms giúp giải phóng luồng chính ban đầu
+    }, 600); // Trì hoãn nhẹ 600ms giúp giải phóng luồng chính ban đầu
 
     return () => clearTimeout(timer);
   }, []);
@@ -171,7 +170,6 @@ function App() {
         <NavigationBar currentView={currentView} handleNavigation={handleNavigation} />
         
         {currentView !== 'AllGames' && (
-          /* 🛠️ TỐI ƯU SÂU: Sử dụng totalGamesCount tính toán trước thay vì mảng allGames cồng kềnh */
           <FloatingAllGames
             onClick={() => handleNavigation('AllGames')}
             totalGames={totalGamesCount.toString()}
