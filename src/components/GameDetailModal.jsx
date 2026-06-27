@@ -120,7 +120,7 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                               }}
                               className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-[#080d16] py-3 rounded-full font-black uppercase tracking-widest text-xs shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.55)] transition-all duration-300 active:scale-[0.97] hover:scale-[1.01]"
                           >
-                              <ShoppingCart className="h-4 w-4 stroke-[3]" /> Mua ngay
+                              <ShoppingCart className="h-4 w-4 stroke-[3]" /> Nhận ngay
                           </button>
                         </div>
                     </div>
@@ -140,7 +140,7 @@ function GameDetailModal({ game, onClose, onBuyNow }) {
                             {/* Banner "Mua 1 Được 100" */}
                             <div className="mb-3.5 p-3 rounded-2xl bg-cyan-950/20 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.05)]">
                                 <p className="text-[10px] sm:text-xs font-bold leading-normal text-cyan-300 uppercase tracking-wider">
-                                    🎁 Mua 1 Được 100: TẶNG LÊN ĐẾN 100 GAMES
+                                    🎁 Thuê 1 Được 100: TẶNG LÊN ĐẾN 100 GAMES
                                 </p>
                                 <p className="text-[9px] sm:text-[10px] text-gray-400 font-semibold mt-0.5 block leading-normal">
                                     Tài khoản được gán kèm ngẫu nhiên loạt game siêu phẩm sau khi bạn mua thành công!
