@@ -55,14 +55,10 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail }) {
           />
           <div className="absolute inset-0 bg-black/15 group-hover:bg-black/50 transition-colors duration-300" />
 
-          {/* 
-            Nút Khám Phá (Gamepad):
-            - Sử dụng pointer-events-none để tránh việc hover chập chờn khi di chuyển chuột nhanh.
-            - Thay thế transition-all bằng transition-[opacity,transform] để tối ưu hóa render trên màn hình di động.
-          */}
+          {/* Nút Khám Phá */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none group-hover:pointer-events-auto transform-gpu">
             <div
-              className="p-2.5 rounded-full bg-[#080d16]/95 border border-cyan-400 text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:bg-cyan-500 hover:text-black hover:border-cyan-300 transition-[background-color,color,transform] duration-200 ease-out transform-gpu active:scale-90 cursor-pointer pointer-events-auto"
+              className="p-2.5 rounded-full bg-[#080d16]/95 border border-cyan-400 text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.25)] hover:bg-cyan-500 hover:text-black hover:border-cyan-300 transition-[background-color,color,transform] duration-200 ease-out transform-gpu active:scale-90 cursor-pointer pointer-events-auto"
               onClick={handleOpenDetail}
             >
               <Gamepad2 className="h-5 w-5 md:h-5.5 md:w-5.5 stroke-[2]" />
@@ -94,32 +90,40 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail }) {
           </div>
         </div>
 
-        {/* 3. CỤM NÚT BẤM */}
-        <div className="px-3 pb-3 md:px-4 md:pb-4 flex flex-row items-center gap-2 md:gap-2.5 shrink-0 select-none">
-          {/* NÚT THÊM GIỎ HÀNG */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              if (onAddToCart) onAddToCart(game);
-            }}
-            className="relative flex items-center justify-center h-8 w-8 md:h-9.5 md:w-9.5 rounded-full bg-cyan-950/20 border border-cyan-500/30 text-cyan-400 shadow-md hover:text-[#080d16] hover:bg-cyan-500 hover:border-cyan-400 transition-colors duration-200 transform-gpu active:scale-90 shrink-0"
-            title="Thêm vào giỏ hàng"
-          >
-            <ShoppingCart className="h-4 w-4 md:h-[17px] md:w-[17px] stroke-[2]" />
-            <span className="absolute -top-0.5 -right-0.5 bg-cyan-400 text-[#080d16] rounded-full p-0.5 scale-[0.75] origin-top-right border border-[#080d16]">
-              <Plus className="h-2 w-2 stroke-[4]" />
-            </span>
-          </button>
+        {/* 3. CỤM NÚT BẤM VÀ TEXT PHỤ CHỚP NHÁY */}
+        {/* Giảm nhẹ bottom padding (pb-2.5 / pb-3) và bổ sung gap-1.5 để chừa diện tích hiển thị gọn gàng */}
+        <div className="px-3 pb-2.5 md:px-4 md:pb-3 flex flex-col gap-1.5 shrink-0 select-none">
+          <div className="flex flex-row items-center gap-2 md:gap-2.5">
+            {/* NÚT THÊM GIỎ HÀNG */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onAddToCart) onAddToCart(game);
+              }}
+              className="relative flex items-center justify-center h-8 w-8 md:h-9.5 md:w-9.5 rounded-full bg-cyan-950/20 border border-cyan-500/30 text-cyan-400 shadow-md hover:text-[#080d16] hover:bg-cyan-500 hover:border-cyan-400 transition-colors duration-200 transform-gpu active:scale-90 shrink-0"
+              title="Thêm vào giỏ hàng"
+            >
+              <ShoppingCart className="h-4 w-4 md:h-[17px] md:w-[17px] stroke-[2]" />
+              <span className="absolute -top-0.5 -right-0.5 bg-cyan-400 text-[#080d16] rounded-full p-0.5 scale-[0.75] origin-top-right border border-[#080d16]">
+                <Plus className="h-2 w-2 stroke-[4]" />
+              </span>
+            </button>
 
-          {/* NÚT MUA NGAY */}
-          <button
-            onClick={handleOpenPurchase}
-            className="flex-1 flex items-center justify-center py-1.5 md:py-2 rounded-full bg-cyan-950/20 border border-cyan-500/30 text-cyan-400 font-black shadow-md hover:text-[#080d16] hover:bg-cyan-500 hover:border-cyan-400 transition-colors duration-200 transform-gpu active:scale-[0.98]"
-          >
-            <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-center whitespace-nowrap">
-              Thuê ngay
-            </span>
-          </button>
+            {/* NÚT THUÊ NGAY */}
+            <button
+              onClick={handleOpenPurchase}
+              className="flex-1 flex items-center justify-center py-1.5 md:py-2 rounded-full bg-cyan-950/20 border border-cyan-500/30 text-cyan-400 font-black shadow-md hover:text-[#080d16] hover:bg-cyan-500 hover:border-cyan-400 transition-colors duration-200 transform-gpu active:scale-[0.98]"
+            >
+              <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-center whitespace-nowrap">
+                Thuê ngay
+              </span>
+            </button>
+          </div>
+          
+          {/* TEXT NHỎ NHẤP NHÁY BÊN DƯỚI */}
+          <span className="text-[8px] md:text-[9px] text-cyan-400/70 font-semibold tracking-wider animate-pulse text-center leading-none">
+            (Thuê lâu dài không giới hạn giờ chơi)
+          </span>
         </div>
 
       </article>
