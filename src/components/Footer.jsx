@@ -37,7 +37,7 @@ function Footer() {
           <div>
             <h3 className="mb-5 text-sm font-black text-white uppercase tracking-widest">Hỗ trợ khách hàng</h3>
             <ul className="flex flex-col space-y-3 text-sm text-gray-400">
-              {['Hướng dẫn mua hàng', 'Chính sách bảo hành', 'Câu hỏi thường gặp (FAQ)', 'Điều khoản dịch vụ'].map((item, i) => (
+              {['Hướng dẫn thuê tài khoản', 'Chính sách bảo hành', 'Câu hỏi thường gặp (FAQ)', 'Điều khoản dịch vụ'].map((item, i) => (
                 <li key={i}>
                   <a href="#" className="flex items-center gap-2 hover:text-cyan-400 transition-colors group">
                     <ChevronRight className="h-3.5 w-3.5 text-gray-600 group-hover:text-cyan-400 transition-colors" />
