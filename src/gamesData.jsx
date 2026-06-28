@@ -657,7 +657,7 @@ export const RAW_GAMES = {
     { title: "Little Nightmares", genre: "Puzzle Platformer Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/424840/header.jpg" },
     { title: "Little Nightmares II", genre: "Puzzle Platformer Horror Sequel", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/860510/header.jpg" },
     { title: "Little Nightmares III", genre: "Co-op Puzzle Platformer Horror", price: "30.000đ", poster: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/244240/header.jpg" },
-    { "title": "LEGO Batman: The Videogame", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/21000/header.jpg" },
+    { "title": "LEGO® Batman™: Legacy of the Dark Knight", "genre": "Action-Adventure", "price": "1.500.000đ", "poster": "https://image.api.playstation.com/vulcan/ap/rnd/202506/2800/8b663854737d2f9d78456213768130836526131494635672.jpg" },
 { "title": "Stellar Blade - Complete Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3119040/header.jpg" },
     { "title": "Atomic Heart", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/668580/header.jpg" },
 { "title": "Crimson Desert", "genre": "Action Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2932300/header.jpg" },
