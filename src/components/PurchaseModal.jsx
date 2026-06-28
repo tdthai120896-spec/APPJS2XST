@@ -10,6 +10,31 @@ const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA=' // https://zalo.me/0
 const ENCODED_CALL = 'dGVsOjAzNzkzMzI4NzA=' // tel:0379332870
 const ENCODED_FACEBOOK = 'aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3Byb2ZpbGUucGhwP2lkPTYxNTU4MDY1MTMwNjMx' // Trang Facebook cá nhân
 
+// 🛠️ ĐÃ THÊM: Hàm viết tắt thông minh (Giữ nguyên từ đầu tiên + Lấy chữ cái đầu các từ sau)
+const getGameInitials = (title) => {
+  if (!title) return '';
+  
+  const cleanTitle = title
+    .replace(/[-:]/g, ' ') 
+    .replace(/[^a-zA-Z0-9\s]/g, '') 
+    .trim();
+    
+  const words = cleanTitle.split(/\s+/);
+  
+  if (words.length <= 1) {
+    return cleanTitle.toUpperCase().replace(/\s+/g, '');
+  }
+  
+  const firstWord = words[0].toUpperCase();
+  
+  const remainingInitials = words
+    .slice(1)
+    .map(word => word.charAt(0).toUpperCase())
+    .join('');
+    
+  return `${firstWord}${remainingInitials}`;
+};
+
 function PurchaseModal({ game, onClose }) {
   const [links, setLinks] = useState({ zalo: '#', messenger: '#', call: '#' });
 
@@ -30,8 +55,12 @@ function PurchaseModal({ game, onClose }) {
     return () => { document.body.style.overflow = 'unset'; };
   }, []);
 
+  // 🛠️ ĐÃ CẬP NHẬT: Tạo nội dung chuyển khoản "Thue [Mã viết tắt game]" không dấu chuẩn xác
+  const initials = getGameInitials(game.title);
+  const addInfoText = `Thue ${initials}`;
   const rawPrice = game.price.replace(/\D/g, '');
-  const vietQRUrl = `https://img.vietqr.io/image/VCB-1014044533-compact.png?amount=${rawPrice}&addInfo=${encodeURIComponent(game.title)}&accountName=TRAN%20DINH%20THAI`;
+  
+  const vietQRUrl = `https://img.vietqr.io/image/VCB-1014044533-compact.png?amount=${rawPrice}&addInfo=${encodeURIComponent(addInfoText)}&accountName=TRAN%20DINH%20THAI`;
 
   const miniSteps = [
     { icon: <MessageSquare className="w-4 h-4" />, title: "BƯỚC 1", text: "Nhắn Shop Gửi Account" },
@@ -78,7 +107,6 @@ function PurchaseModal({ game, onClose }) {
         </button>
 
         {/* ================= CỘT TRÁI: KHU VỰC THANH TOÁN (TRANSACTION ZONE) ================= */}
-        {/* Sửa đổi padding sang p-4 để chừa không gian hiển thị viền cạnh khung trên điện thoại */}
         <div className="w-full md:w-[350px] p-4 sm:p-6 md:p-7 border-b md:border-b-0 md:border-r border-cyan-500/10 md:shrink-0 bg-[#080f1a] flex flex-col justify-between">
           <div className="text-center">
             
@@ -173,7 +201,6 @@ function PurchaseModal({ game, onClose }) {
         </div>
 
         {/* ================= CỘT PHẢI: VIDEO & HƯỚNG DẪN CHI TIẾT ================= */}
-        {/* Tối ưu hóa padding từ p-5 thành p-4 sm:p-6 md:p-8 để chống tràn khung lưới bước cài đặt */}
         <div className="gaming-scrollbar flex-1 bg-black/25 p-4 sm:p-6 md:p-8 md:overflow-y-auto flex flex-col gap-6">
           
           {/* Tiêu đề hướng dẫn */}
@@ -183,13 +210,13 @@ function PurchaseModal({ game, onClose }) {
             </div>
           </div>
 
-          {/* Video Hướng dẫn chi tiết đã chèn liên kết nhúng từ TechTUTYT */}
+          {/* Video Hướng dẫn chi tiết đã được phục hồi chính xác */}
           <div className="relative group/vidBox w-full">
             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl blur-md opacity-20 group-hover/vidBox:opacity-40 transition duration-500 pointer-events-none"></div>
             <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-cyan-500/20 bg-black shadow-2xl">
               <iframe
                 className="absolute inset-0 h-full w-full"
-                src="https://www.youtube.com/embed/CcB3vbLEAOM?si=eB8GmzNhn4gxKz20"
+                src="https://www.youtube.com/embed/S2p-tGOnVb0?autoplay=0&rel=0"
                 title="How to Play Steam Games Offline - TechTUTYT"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -198,7 +225,7 @@ function PurchaseModal({ game, onClose }) {
             </div>
           </div>
 
-          {/* Quy trình cài đặt 4 Bước (Đã xử lý khoảng cách đệm chống mất viền) */}
+          {/* Quy trình cài đặt 4 Bước */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full">
             {miniSteps.map((step, i) => (
               <div 
@@ -220,7 +247,7 @@ function PurchaseModal({ game, onClose }) {
             ))}
           </div>
 
-          {/* Khung Lưu Ý An Toàn (Warning Card) */}
+          {/* Khung Lưu Ý An Toàn */}
           <div className="rounded-2xl bg-red-950/20 p-4 md:p-5 border border-red-500/25 border-l-4 border-l-red-500 shadow-[0_0_20px_rgba(239,68,68,0.05)]">
             <div className="flex items-center gap-2 mb-1.5 text-red-500">
               <AlertTriangle className="h-4.5 w-4.5" />
