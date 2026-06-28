@@ -127,7 +127,7 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail }) {
           </div>
           
           {/* TEXT NHỎ NHẤP NHÁY BÊN DƯỚI */}
-          <span className="text-[8px] md:text-[9px] text-white-400/90 font-semibold tracking-wider animate-pulse text-center leading-none">
+          <span className="text-[8px] md:text-[9px] text-white-400/90 font-semibold tracking-wider text-center leading-none">
             (Không giới hạn giờ chơi)
           </span>
         </div>
