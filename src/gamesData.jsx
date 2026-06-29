@@ -236,6 +236,7 @@ export const RAW_GAMES = {
     { "title": "Grim Dawn", "genre": "Action Hack & Slash RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/219990/header.jpg" },
     { "title": "Hogwarts Legacy", "genre": "Fantasy Magic RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg" },
     { "title": "Kingdom Come: Deliverance", "genre": "Realistic Historical RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/379430/header.jpg" },
+    { "title": "Kingdom Come: Deliverance II", "genre": "RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/header.jpg" },
     { "title": "Kingdoms of Amalur: Re-Reckoning", "genre": "Fantasy Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1041720/header.jpg" },
     { "title": "Mass Effect™ Legendary Edition", "genre": "Sci-Fi RPG Trilogy", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1328670/header.jpg" },
     { "title": "NieR:Automata™", "genre": "Sci-Fi Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/524220/header.jpg" },
