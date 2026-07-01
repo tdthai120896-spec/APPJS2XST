@@ -178,7 +178,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
             </div>
             <div className="flex justify-between items-center pt-1.5">
               <span className="text-gray-400 font-medium">Thời hạn sử dụng</span>
-              <span className="text-white font-bold">Vô hạn (Trọn đời)</span>
+              <span className="text-white font-bold">Không giới hạn thời gian chơi</span>
             </div>
             <div className="flex gap-2 pt-2 border-t border-cyan-500/10">
               <span className="font-black text-amber-400 shrink-0">✔ Tiêu chuẩn:</span>
