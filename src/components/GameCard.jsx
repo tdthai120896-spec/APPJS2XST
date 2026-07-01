@@ -101,14 +101,14 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail, priority = false 
               onClick={handleOpenPurchase}
               className="flex-1 py-1.5 md:py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-cyan-500 hover:text-black transition-all active:scale-95"
             >
-              Thuê ngay
+              Nhận ngay
             </button>
           </div>
 
           {/* TEXT PHỤ: Đã tối ưu theo yêu cầu trước */}
-          <p className="text-[8px] md:text-[9px] text-white-400/60 font-black tracking-[0.1em] text-center shadow-sm">
-            (Không giới hạn giờ chơi)
-          </p>
+          <p className="text-[8px] md:text-[9px] text-white/100 font-black tracking-[0.1em] text-center leading-tight">
+    (Thuê không giới hạn giờ chơi)
+  </p>
         </div>
 
       </article>

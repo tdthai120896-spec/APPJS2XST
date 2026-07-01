@@ -23,7 +23,7 @@ const MarqueeGames = ({ games, onGameClick, onAddToCart, onBuyNow }) => {
                Tablet: h-[270px]
                Desktop: h-[350px]
             */
-            className="w-[150px] min-[390px]:w-[170px] sm:w-[200px] md:w-[260px] h-[220px] min-[390px]:h-[245px] sm:h-[270px] md:h-[350px] shrink-0 transition-transform duration-500"
+            className="w-[150px] min-[390px]:w-[170px] sm:w-[200px] md:w-[260px] h-[235px] min-[390px]:h-[260px] sm:h-[285px] md:h-[365px] shrink-0"
           >
             <GameCard 
               game={game} 

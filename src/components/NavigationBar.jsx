@@ -32,7 +32,7 @@ const NavigationBar = ({ currentView, handleNavigation, searchTerm, handleSearch
         ref={containerRef}
         className="pointer-events-auto w-full max-w-[550px] md:max-w-2xl flex flex-col bg-[#030712]/95 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] border border-cyan-500/20 shadow-2xl overflow-visible transition-all duration-300"
       >
-        <nav className="flex items-center justify-center p-1 md:p-1.5 gap-0.5 md:gap-1">
+        <nav className="flex items-center justify-center p-1 md:p-1.5 gap-0.5 md:gap-1 px-1.5 md:px-2" >
           {navLinks.map((item) => {
             const isActive = currentView === item.id;
             const isAllGames = item.id === 'AllGames';
@@ -61,7 +61,7 @@ const NavigationBar = ({ currentView, handleNavigation, searchTerm, handleSearch
 
         <div className="relative p-1.5 md:p-2 group">
           <div className="relative flex items-center">
-            <Search className="absolute left-4 w-3.5 h-3.5 text-cyan-500/40" />
+            <Search className="absolute left-4 w-3.5 h-3.5 text-white-500/40" />
             <input
               type="text"
               value={searchTerm}

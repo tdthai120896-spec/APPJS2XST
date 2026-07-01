@@ -97,7 +97,7 @@ function AllGames({ searchTerm, onAddToCart, onBackToHome, handleOpenModal, hand
           {currentGamesList.map((game, index) => (
             <div 
               key={game.title + index} 
-              className="relative h-[220px] min-[390px]:h-[245px] sm:h-[270px] md:h-[350px] w-full"
+              className="relative h-[235px] min-[390px]:h-[260px] sm:h-[285px] md:h-[365px] w-full"
             >
               <GameCard 
                 game={game} 
