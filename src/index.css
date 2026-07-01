@@ -15,15 +15,21 @@
   html {
     font-family: var(--font-sans);
     font-feature-settings: 'rlig' 1, 'calt' 1;
+    /* Tối ưu cuộn trên mobile */
+    -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
   }
 
   body {
     @apply antialiased bg-[#05070a] text-white;
+    /* Ngăn rung lắc khi animation chạy */
+    overflow-x: hidden;
   }
 
   * {
     box-sizing: border-box;
+    /* Giảm tải render shadow cho toàn bộ trang trên thiết bị yếu */
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -31,82 +37,85 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
-.hover-neon-cyan:hover {
-    box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
-  }
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
+  /* TỐI ƯU NEON: Chỉ hiện bóng đổ mạnh trên Desktop */
+  .hover-neon-cyan:hover {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+  @screen md {
+    .hover-neon-cyan:hover {
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+    }
+  }
+
+  /* TỐI ƯU PULSE RING: Sử dụng GPU */
   .pulse-ring {
-    animation: pulseRing 2.4s ease-in-out infinite;
+    animation: pulseRing 3s ease-in-out infinite;
+    transform: translateZ(0);
+    will-change: transform, opacity;
   }
 
   @keyframes pulseRing {
-    0% {
-      transform: scale(1);
-      opacity: 0.35;
-    }
-    70% {
-      transform: scale(1.45);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1.45);
-      opacity: 0;
-    }
+    0% { transform: scale(1); opacity: 0.35; }
+    70% { transform: scale(1.3); opacity: 0; }
+    100% { transform: scale(1.3); opacity: 0; }
   }
 
-  /* Tùy chỉnh thanh cuộn cho bảng kết quả tìm kiếm */
+  /* Tùy chỉnh thanh cuộn */
   .custom-scrollbar::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
   }
-
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 10px;
+    background: transparent;
   }
-
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #22d3ee, #2563eb);
+    background: rgba(34, 211, 238, 0.3);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #22d3ee;
-  }
-
-  /* Hiệu ứng đổ bóng Neon cho bảng tìm kiếm */
-  .search-shadow {
-    box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.3);
-  }
-
-  /* ================= CLASS HOẠT HỌA CHO DANH MỤC GAME CHẠY NGANG VÔ HẠN ================= */
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
+  /* TỐI ƯU MARQUEE: Quan trọng nhất để máy mát */
   .animate-marquee {
     display: flex;
     width: max-content;
-    animation: marquee 50s linear infinite; /* Tốc độ 50s vừa đủ chậm rãi, sang trọng để đọc tên game */
+    /* Ép chạy bằng GPU */
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    animation: marquee 60s linear infinite; 
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 
-  /* Rê chuột vào hàng game thì dừng lại */
-  .animate-marquee:hover {
-    animation-play-state: paused;
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
-  /* Lớp mặt nạ che mờ mịn màng ở 2 đầu rìa màn hình */
+  /* TỐI ƯU MASK GRADIENT: Chỉ bật trên Desktop vì mobile render cái này rất nóng */
   .mask-gradient {
-    mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  @screen md {
+    .mask-gradient {
+      mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+    }
+  }
+
+  /* GIẢM ĐỘ PHỨC TẠP SHADOW TRÊN MOBILE */
+  @media (max-width: 768px) {
+    .search-shadow, .shadow-2xl, .shadow-xl {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    }
+    
+    /* Làm chậm hoặc đơn giản hóa các animation pulse để tiết kiệm pin */
+    .animate-pulse {
+      animation-duration: 3s !important;
+    }
   }
 }
