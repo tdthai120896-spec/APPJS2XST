@@ -25,7 +25,7 @@ export const RAW_GAMES = {
     { "title": "ABO MANDO", "genre": "Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/474770/header.jpg" },
     { "title": "Absconding Zatwor", "genre": "Action Indie Casual", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/385000/header.jpg" },
     { "title": "The Last of Us Part I", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1888930/header.jpg" },
-{ "title": "The Last of Us Part II Remastered", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3120610/header.jpg" },
+{ "title": "The Last of Us Part II Remastered", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://cdn1.epicgames.com/offer/79d39109000a430588665796c9233633/EGS_TheLastofUsPartIIRemastered_NaughtyDog_S2_1200x1600-f65593c1d93540d998d839352e0a293b" },
     { "title": "Absoloot", "genre": "Action Platformer Casual", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/598230/header.jpg" },
     { "title": "Abyss Raiders: Uncharted", "genre": "Action/Strategy", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/348730/header.jpg" },
     { "title": "Ace Combat 7: Skies Unknown", "genre": "Flight Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/502500/header.jpg" },
