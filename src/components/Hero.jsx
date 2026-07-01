@@ -128,6 +128,19 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
       {/* KHUNG NỘI DUNG CHÍNH */}
       <div className="relative z-30 w-full max-w-xl mx-auto px-6 flex flex-col items-center justify-center my-auto">
         
+        {/* 
+          🛠️ THANH TÌM KIẾM (ĐÃ ĐƯA LÊN ĐẦU TIÊN - NGAY DƯỚI THANH ĐIỀU HƯỚNG CỐ ĐỊNH):
+          - Đặt ở trên cùng của Hero giúp người dùng tìm kiếm cực nhanh khi vừa vào web.
+        */}
+        <div className="w-full mb-10 relative z-50">
+          <SearchBar
+            searchTerm={searchTerm}
+            handleSearch={handleSearch}
+            suggestions={suggestions}
+            onSelectGame={handleSelectSuggestedGame}
+          />
+        </div>
+
         {/* NHÃN KHỞI CHẠY */}
         <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] mb-5 shadow-[0_0_15px_rgba(6,182,212,0.05)]">
           <Sparkles className="w-3.5 h-3.5 animate-pulse text-cyan-300" /> Next-gen gaming hub
@@ -138,11 +151,7 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 drop-shadow-[0_0_25px_rgba(34,211,238,0.25)]">STEAM</span>
         </h1>
 
-        {/* 
-          🛠️ 1, 2, 3, 4: BẢNG THÔNG TIN DỊCH VỤ TOÀN DIỆN (ĐÃ ĐƯỢC TRAU CHUỐT NGỮ NGHĨA CHUẨN PHÁP LUẬT)
-          - Thay thế hoàn toàn các dòng tiêu đề phụ và mô tả rời rạc cũ.
-          - Thiết kế dạng Bento Card kính mờ tối giản kết hợp viền sáng Cyan đồng bộ.
-        */}
+        {/* BẢNG THÔNG TIN DỊCH VỤ TOÀN DIỆN */}
         <div className="w-full max-w-lg mx-auto bg-[#070b13]/60 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-4 md:p-5 text-left space-y-3.5 my-6 shadow-[0_15px_40px_rgba(0,0,0,0.5)] select-none animate-in fade-in duration-500">
           
           {/* Tiêu đề bảng */}
@@ -159,58 +168,23 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
               <span className="font-extrabold text-cyan-400/80 shrink-0">✦ Hình thức:</span>
               <span>Cho <strong>THUÊ</strong> game trải nghiệm Offline (Cam kết tuân thủ quy định pháp luật, nói không với mua bán tài khoản ảo theo Nghị định từ 1/7).</span>
             </div>
-            <div className="flex gap-2 pt-2 border-t border-cyan-500/5">
-              <span className="font-extrabold text-cyan-400/80 shrink-0">✦ Thời hạn:</span>
-              <span>Không giới hạn thời gian chơi sau khi kích hoạt thành công.</span>
+            <div className="flex justify-between border-b border-cyan-500/5 pb-2">
+              <span className="text-gray-400 font-medium">Bảo hành</span>
+              <span className="text-cyan-400 font-bold">Trọn đời</span>
             </div>
-            <div className="flex gap-2 pt-2 border-t border-cyan-500/5">
-              <span className="font-extrabold text-cyan-400/80 shrink-0">✦ Đặc quyền:</span>
-              <span>Đồng giá 30.000đ/game (Tặng kèm nhiều tựa game siêu phẩm khác có sẵn trong cùng tài khoản).</span>
+            <div className="flex justify-between border-b border-cyan-500/5 pb-2">
+              <span className="text-gray-400 font-medium">Cung cấp tài khoản</span>
+              <span className="text-emerald-400 font-bold">Tự động 24/7</span>
             </div>
-            <div className="flex gap-2 pt-2 border-t border-cyan-500/5">
-              <span className="font-extrabold text-cyan-400/80 shrink-0">✦ Cam kết:</span>
-              <span>Hỗ trợ kỹ thuật chuyên nghiệp và bảo hành đầy đủ suốt quá trình thuê.</span>
+            <div className="flex justify-between items-center pt-1.5">
+              <span className="text-gray-400 font-medium">Thời hạn sử dụng</span>
+              <span className="text-white font-bold">Vô hạn (Trọn đời)</span>
             </div>
             <div className="flex gap-2 pt-2 border-t border-cyan-500/10">
               <span className="font-black text-amber-400 shrink-0">✔ Tiêu chuẩn:</span>
               <span className="font-bold text-amber-200/90">100% game bản quyền chính thống từ Steam — Tuyệt đối nói không với game crack hoặc lậu.</span>
             </div>
           </div>
-        </div>
-
-        {/* KHUNG VIDEO HUD */}
-        <div className="relative w-full max-w-[310px] sm:max-w-md md:max-w-lg aspect-video mb-8 rounded-2xl overflow-hidden bg-black/40 border border-cyan-500/20 shadow-[0_0_40px_rgba(6,182,212,0.12)] flex items-center justify-center animate-subtle-float transform-gpu">
-          {/* 4 Góc trang trí công nghệ viễn tưởng */}
-          <div className="absolute top-2.5 left-2.5 w-4 h-4 border-t border-l border-cyan-400/40 rounded-tl-md z-10"></div>
-          <div className="absolute top-2.5 right-2.5 w-4 h-4 border-t border-r border-cyan-400/40 rounded-tr-md z-10"></div>
-          <div className="absolute bottom-2.5 left-2.5 w-4 h-4 border-b border-l border-cyan-400/40 rounded-bl-md z-10"></div>
-          <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b border-r border-cyan-400/40 rounded-br-md z-10"></div>
-
-          {/* 
-            🛠️ ĐÃ CẬP NHẬT:
-            - Thay thế đuôi video từ .mp4 sang .webm và loại type tương ứng để tăng tốc độ tải.
-          */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="/background.jpg"
-            className="w-full h-full object-cover opacity-90"
-          >
-            <source src="/gemini_generated_video_27593B13.webm" type="video/webm" />
-          </video>
-        </div>
-
-        {/* THANH TÌM KIẾM */}
-        <div className="w-full mb-8 relative z-50">
-          <SearchBar
-            searchTerm={searchTerm}
-            handleSearch={handleSearch}
-            suggestions={suggestions}
-            onSelectGame={handleSelectSuggestedGame}
-          />
         </div>
 
         {/* THỐNG KÊ DẠNG KÍNH MỜ */}
