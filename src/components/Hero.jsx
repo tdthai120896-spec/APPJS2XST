@@ -139,17 +139,43 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
         </h1>
 
         {/* 
-          🛠️ CỤM TIÊU ĐỀ PHỤ THUÊ DÀI HẠN (Đã tối ưu kiểu dáng & đồng bộ tông Vàng Kim):
-          - Hàng 1: Thuê dài hạn • Chơi không giới hạn
-          - Hàng 2: Nói không với game crack, lậu • Hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất
+          🛠️ 1, 2, 3, 4: BẢNG THÔNG TIN DỊCH VỤ TOÀN DIỆN (ĐÃ ĐƯỢC TRAU CHUỐT NGỮ NGHĨA CHUẨN PHÁP LUẬT)
+          - Thay thế hoàn toàn các dòng tiêu đề phụ và mô tả rời rạc cũ.
+          - Thiết kế dạng Bento Card kính mờ tối giản kết hợp viền sáng Cyan đồng bộ.
         */}
-        <div className="flex flex-col items-center gap-2 mt-4 mb-8 select-none max-w-lg mx-auto">
-          <p className="text-xs sm:text-sm md:text-base text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 font-extrabold tracking-[0.2em] uppercase drop-shadow-[0_2px_10px_rgba(234,179,8,0.2)] leading-none">
-            Thuê dài hạn • Chơi không giới hạn
-          </p>
-          <p className="text-[9px] sm:text-[10.5px] md:text-[11.5px] text-transparent bg-clip-text bg-gradient-to-r from-amber-200/80 via-yellow-400/80 to-amber-500/80 font-semibold tracking-wide leading-normal px-2">
-            Nói không với game crack, lậu • Hệ thống Family Share uy tín, ổn định với chi phí tối ưu nhất
-          </p>
+        <div className="w-full max-w-lg mx-auto bg-[#070b13]/60 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-4 md:p-5 text-left space-y-3.5 my-6 shadow-[0_15px_40px_rgba(0,0,0,0.5)] select-none animate-in fade-in duration-500">
+          
+          {/* Tiêu đề bảng */}
+          <div className="border-b border-cyan-500/15 pb-2.5">
+            <span className="text-[10px] md:text-xs font-black uppercase text-cyan-400 tracking-wider flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)] animate-pulse" />
+              Dịch Vụ Thuê Game Steam Bản Quyền (Family Sharing)
+            </span>
+          </div>
+          
+          {/* Nội dung chi tiết các dòng */}
+          <div className="space-y-3 text-[10px] md:text-xs leading-relaxed text-gray-300">
+            <div className="flex gap-2">
+              <span className="font-extrabold text-cyan-400/80 shrink-0">✦ Hình thức:</span>
+              <span>Cho <strong>THUÊ</strong> game trải nghiệm Offline (Cam kết tuân thủ quy định pháp luật, nói không với mua bán tài khoản ảo theo Nghị định từ 1/7).</span>
+            </div>
+            <div className="flex gap-2 pt-2 border-t border-cyan-500/5">
+              <span className="font-extrabold text-cyan-400/80 shrink-0">✦ Thời hạn:</span>
+              <span>Không giới hạn thời gian chơi sau khi kích hoạt thành công.</span>
+            </div>
+            <div className="flex gap-2 pt-2 border-t border-cyan-500/5">
+              <span className="font-extrabold text-cyan-400/80 shrink-0">✦ Đặc quyền:</span>
+              <span>Đồng giá 30.000đ/game (Tặng kèm nhiều tựa game siêu phẩm khác có sẵn trong cùng tài khoản).</span>
+            </div>
+            <div className="flex gap-2 pt-2 border-t border-cyan-500/5">
+              <span className="font-extrabold text-cyan-400/80 shrink-0">✦ Cam kết:</span>
+              <span>Hỗ trợ kỹ thuật chuyên nghiệp và bảo hành đầy đủ suốt quá trình thuê.</span>
+            </div>
+            <div className="flex gap-2 pt-2 border-t border-cyan-500/10">
+              <span className="font-black text-amber-400 shrink-0">✔ Tiêu chuẩn:</span>
+              <span className="font-bold text-amber-200/90">100% game bản quyền chính thống từ Steam — Tuyệt đối nói không với game crack hoặc lậu.</span>
+            </div>
+          </div>
         </div>
 
         {/* KHUNG VIDEO HUD */}
@@ -160,6 +186,10 @@ function Hero({ searchTerm, handleSearch, suggestions, handleOpenModal, handleNa
           <div className="absolute bottom-2.5 left-2.5 w-4 h-4 border-b border-l border-cyan-400/40 rounded-bl-md z-10"></div>
           <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b border-r border-cyan-400/40 rounded-br-md z-10"></div>
 
+          {/* 
+            🛠️ ĐÃ CẬP NHẬT:
+            - Thay thế đuôi video từ .mp4 sang .webm và loại type tương ứng để tăng tốc độ tải.
+          */}
           <video
             autoPlay
             loop
