@@ -46,9 +46,8 @@ function FloatingContactWidget() {
   return (
     <div ref={widgetRef} className="fixed bottom-6 right-6 z-[99999] group flex flex-col items-end select-none">
       
-      {/* DANH SÁCH LIÊN HỆ ĐỒNG BỘ OBSIDIAN NEON */}
+      {/* DANH SÁCH LIÊN HỆ ĐỒNG BỘ OBSIDIAN NEON (Giữ nguyên) */}
       <div className={`flex flex-col items-end gap-3 mb-3.5 transition-all duration-300 ease-out ${activeMenuClasses}`}>
-
         {/* ZALO */}
         <a href={links.zalo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group/item">
           <span className="bg-[#080d16] border border-cyan-500/20 text-gray-300 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl transition-all duration-300 group-hover/item:border-cyan-400 group-hover/item:text-cyan-400">
@@ -78,18 +77,33 @@ function FloatingContactWidget() {
             <Phone className="w-4 h-4 fill-current" />
           </div>
         </a>
-
       </div>
 
-      {/* NÚT LIÊN HỆ TỔNG */}
+      {/* 🌟 NÚT LIÊN HỆ TỔNG (ĐÃ TỐI ƯU GIAO DIỆN MỚI) */}
       <div className="relative">
-        <div className="absolute -inset-1 bg-cyan-500/20 rounded-full blur-md opacity-70 group-hover:scale-105 transition-transform duration-300"></div>
+        {/* 1. Lớp hào quang nền sâu (Ambient Glow) */}
+        <div className="absolute -inset-2 bg-cyan-600/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        {/* 2. Vòng tròn nhấp nháy nhảy động (Ping Animation) - Màu Xanh cũ */}
+        <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-500 animate-ping opacity-25 pointer-events-none" />
+
+        {/* 3. Hào quang lỏng (Liquid Aura) - Gradient phát sáng nhẹ ở viền ngoài */}
+        <span className="absolute inset-[-2px] rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-cyan-600 opacity-60 animate-pulse blur-[1px] pointer-events-none group-hover:scale-110 transition-transform duration-500" />
+        
+        {/* 4. Nút bấm chính */}
         <button
           onClick={handleMainButtonClick}
-          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#080d16] border border-cyan-500/40 text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.2)] hover:border-cyan-400 active:scale-90 transition-all duration-200"
+          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#080d16] border border-cyan-500/40 text-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:border-cyan-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.5)] active:scale-90 transition-all duration-300 z-10 overflow-hidden"
         >
+          {/* Lớp phủ kính nhẹ trên mặt nút */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-40"></div>
+          
           <svg
-            className={`w-6 h-6 transition-transform duration-300 ${isOpenMobile ? 'rotate-45 text-red-400' : 'text-cyan-400'}`}
+            className={`w-7 h-7 transition-all duration-500 ${
+                isOpenMobile 
+                ? 'rotate-[135deg] text-rose-500 scale-110' 
+                : 'text-cyan-400 group-hover:scale-110'
+            }`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
