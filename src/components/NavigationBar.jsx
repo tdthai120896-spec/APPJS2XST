@@ -2,14 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, ChevronRight, Gamepad2 } from 'lucide-react';
 
-const NavigationBar = ({ 
-  currentView, 
-  handleNavigation, 
-  searchTerm, 
-  handleSearch, 
-  suggestions, 
-  onSelectGame 
-}) => {
+const NavigationBar = ({ currentView, handleNavigation, searchTerm, handleSearch, suggestions, onSelectGame }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -39,7 +32,6 @@ const NavigationBar = ({
         ref={containerRef}
         className="pointer-events-auto w-full max-w-[550px] md:max-w-2xl flex flex-col bg-[#030712]/95 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] border border-cyan-500/20 shadow-2xl overflow-visible transition-all duration-300"
       >
-        {/* PHẦN 1: NAVIGATION - Tối ưu cho Mobile */}
         <nav className="flex items-center justify-center p-1 md:p-1.5 gap-0.5 md:gap-1">
           {navLinks.map((item) => {
             const isActive = currentView === item.id;
@@ -49,14 +41,15 @@ const NavigationBar = ({
               <button
                 key={item.id}
                 onClick={() => handleNavigation(item.id)}
-                className={`relative flex items-center justify-center text-[9px] xs:text-[10px] md:text-xs font-black uppercase tracking-tight md:tracking-wider px-2 md:px-5 py-2 md:py-2.5 rounded-full transition-all duration-300 border outline-none ${
+                className={`relative flex items-center justify-center text-[9px] xs:text-[10px] md:text-xs font-black uppercase tracking-tight md:tracking-wider px-2.5 md:px-5 py-2 md:py-2.5 rounded-full transition-all duration-300 border outline-none ${
                   isActive
-                    ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40 shadow-[0_0_10px_rgba(34,211,238,0.2)]'
-                    : 'bg-transparent text-gray-500 hover:text-gray-200 border-transparent'
+                    ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.2)]'
+                    // 🛠️ FIX: CHỮ MÀU TRẮNG
+                    : 'bg-transparent text-white hover:text-cyan-400 border-transparent'
                 }`}
               >
                 {isAllGames && (
-                  <Gamepad2 className={`w-3 h-3 mr-1 hidden min-[400px]:block ${isActive ? 'animate-bounce text-cyan-400' : ''}`} />
+                  <Gamepad2 className={`w-3.5 h-3.5 mr-1.5 hidden min-[400px]:block ${isActive ? 'animate-bounce text-cyan-400' : ''}`} />
                 )}
                 <span className="whitespace-nowrap">{item.label}</span>
               </button>
@@ -66,21 +59,19 @@ const NavigationBar = ({
 
         <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
 
-        {/* PHẦN 2: INTEGRATED SEARCH BAR */}
         <div className="relative p-1.5 md:p-2 group">
           <div className="relative flex items-center">
-            <Search className="absolute left-4 w-3.5 h-3.5 text-cyan-1000/40 animate-text-glow" />
+            <Search className="absolute left-4 w-3.5 h-3.5 text-cyan-500/40" />
             <input
               type="text"
               value={searchTerm}
               onChange={handleSearch}
               onFocus={() => suggestions?.length > 0 && setIsSearchOpen(true)}
               placeholder="Tìm game nhanh..."
-              className="w-full bg-cyan-950/20 border border-cyan-500/10 rounded-full py-2 md:py-2.5 pl-10 pr-4 text-white text-xs md:text-sm focus:outline-none focus:border-cyan-500/40 transition-all duration-300 placeholder:text-gray-400 placeholder:italic placeholder:text-[10px] md:placeholder:text-xs"
+              className="w-full bg-cyan-950/10 border border-cyan-500/10 rounded-full py-2 md:py-2.5 pl-10 pr-4 text-white text-xs md:text-sm focus:outline-none focus:border-cyan-500/30 transition-all placeholder:text-gray-600"
             />
           </div>
 
-          {/* SUGGESTIONS DROPDOWN */}
           {isSearchOpen && suggestions?.length > 0 && (
             <div className="absolute top-[calc(100%+8px)] left-0 right-0 bg-[#070b14] border border-cyan-500/30 rounded-[1.2rem] shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-1 duration-200">
               <div className="max-h-[250px] md:max-h-[350px] overflow-y-auto p-1.5 custom-scrollbar">
@@ -88,16 +79,15 @@ const NavigationBar = ({
                   <button
                     key={game.title}
                     onClick={() => { onSelectGame(game); setIsSearchOpen(false); }}
-                    className="w-full flex items-center gap-3 p-2 hover:bg-cyan-500/10 rounded-lg transition-all group/item mb-1 last:mb-0"
+                    className="w-full flex items-center gap-3 p-2 hover:bg-cyan-500/10 rounded-lg transition-all group/item mb-1 last:mb-0 text-left"
                   >
                     <img src={game.poster} className="h-10 w-7 object-cover rounded border border-white/5" alt="" />
-                    <div className="flex-1 min-w-0 text-left">
-                      <h4 className="font-bold text-[10px] md:text-xs text-gray-200 uppercase truncate group-hover/item:text-cyan-400">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-bold text-[10px] md:text-xs text-gray-200 uppercase truncate group-hover:text-cyan-400">
                         {game.title}
                       </h4>
                       <p className="text-[9px] text-cyan-400/50 font-bold uppercase">{game.price}</p>
                     </div>
-                    <ChevronRight className="w-3 h-3 text-gray-600" />
                   </button>
                 ))}
               </div>

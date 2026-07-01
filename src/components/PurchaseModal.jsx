@@ -216,7 +216,7 @@ function PurchaseModal({ game, onClose }) {
             <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-cyan-500/20 bg-black shadow-2xl">
               <iframe
                 className="absolute inset-0 h-full w-full"
-                src="https://www.youtube.com/embed/S2p-tGOnVb0?autoplay=0&rel=0"
+                src="https://www.youtube.com/embed/CcB3vbLEAOM?si=eB8GmzNhn4gxKz20"
                 title="How to Play Steam Games Offline - TechTUTYT"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

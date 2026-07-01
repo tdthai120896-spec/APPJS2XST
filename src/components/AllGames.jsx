@@ -8,7 +8,7 @@ function AllGames({ searchTerm, onAddToCart, onBackToHome, handleOpenModal, hand
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
-  const gamesPerPage = 20;
+  const gamesPerPage = 15;
 
   useEffect(() => { setCurrentPage(1); }, [selectedCategory, searchTerm]);
 

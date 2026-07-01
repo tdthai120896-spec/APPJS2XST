@@ -618,7 +618,7 @@ export const RAW_GAMES = {
     { "title": "Heavy Rain", "genre": "Noir Crime Thriller Mystery", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222130/header.jpg" },
     { "title": "iScoot Demo", "genre": "Sports", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3317770/header.jpg" },
     { "title": "Keep Talking and Nobody Explodes", "genre": "Co-op Bomb Defusal", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/341800/header.jpg" },
-    { "title": "LEGO® Batman™: Legacy of the Dark Knight", "genre": "Action-Adventure", "price": "1.500.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215200/header.jpg" },
+    { "title": "LEGO® Batman™: Legacy of the Dark Knight", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215200/header.jpg" },
     { "title": "LEGO Batman: The Videogame", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/21000/header.jpg" },
     { "title": "Level Devil - Demo", "genre": "Platformer", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836260/header.jpg" },
     { "title": "Life is Strange™ Remastered", "genre": "Choice-driven Supernatural Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1265920/header.jpg" },

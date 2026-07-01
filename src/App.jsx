@@ -2,7 +2,6 @@
 import { useMemo, useState, useEffect, useCallback, lazy, Suspense } from 'react'
 import { X } from 'lucide-react'
 
-// Layout Components (Critical Path)
 import NavigationBar from './components/NavigationBar'
 import Hero from './components/Hero'
 import Cart from './components/Cart'
@@ -11,10 +10,8 @@ import FloatingContactWidget from './components/FloatingContactWidget'
 import FloatingAllGames from './components/FloatingAllGames'
 import GameCard from './components/GameCard'
 
-// Dữ liệu Game
 import { RAW_GAMES, CATEGORY_META } from './gamesData'
 
-// Lazy Loaded Components
 const AboutSection = lazy(() => import('./components/AboutSection'))
 const GuideSection = lazy(() => import('./components/GuideSection'))
 const Location = lazy(() => import('./components/Location'))
@@ -31,7 +28,6 @@ const PageLoadingFallback = () => (
 );
 
 function App() {
-  // --- STATES ---
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [selectedGame, setSelectedGame] = useState(null); 
@@ -41,7 +37,6 @@ function App() {
   const [currentView, setCurrentView] = useState('home');
   const [deferredGames, setDeferredGames] = useState({ marquee: [], categories: [] });
 
-  // --- TỐI ƯU DỮ LIỆU ---
   const totalGamesCount = useMemo(() => {
     if (!RAW_GAMES) return 0;
     return Object.values(RAW_GAMES).reduce((sum, catList) => sum + (catList?.length || 0), 0);
@@ -50,28 +45,21 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!RAW_GAMES || !CATEGORY_META) return;
-      // Lấy 10 game đại diện cho mỗi danh mục ở trang chủ
       const mappedCategories = CATEGORY_META.map(cat => ({ 
         ...cat, 
-        games: (RAW_GAMES[cat.key] || []).slice(0, 10) 
+        games: (RAW_GAMES[cat.key] || []).slice(0, 8) 
       }));
-      
       const flattened = Object.values(RAW_GAMES).flat();
       if (flattened.length > 0) {
-        // Trộn ngẫu nhiên 10 game cho Marquee
-        const selected = [...flattened].sort(() => 0.5 - Math.random()).slice(0, 10);
+        const selected = [...flattened].sort(() => 0.5 - Math.random()).slice(0, 12);
         setDeferredGames({ categories: mappedCategories, marquee: selected });
       }
-    }, 500);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
-  // --- HANDLERS (Sử dụng useCallback để tránh re-render) ---
   const handleAddToCart = useCallback((game) => {
-    setCartItems((prev) => {
-      if (prev.some(i => i.title.toLowerCase() === game.title.toLowerCase())) return prev;
-      return [...prev, game];
-    });
+    setCartItems((prev) => prev.some(i => i.title.toLowerCase() === game.title.toLowerCase()) ? prev : [...prev, game]);
   }, []);
 
   const handleRemoveFromCart = useCallback((title) => {
@@ -87,16 +75,10 @@ function App() {
   const handleSearch = useCallback((e) => {
     const value = e.target.value;
     setSearchTerm(value);
-    if (value.trim().length > 0) {
+    if (value.trim().length > 2) {
       if (currentView !== 'AllGames') {
         const flatList = Object.values(RAW_GAMES).flat();
-        // Lọc 6 gợi ý nhanh cho dropdown
-        const filtered = flatList.filter(g => 
-          g.title.toLowerCase().includes(value.toLowerCase())
-        ).slice(0, 6);
-        setSuggestions(filtered);
-      } else { 
-        setSuggestions([]); // Khi ở AllGames thì ẩn gợi ý, lọc trực tiếp lưới game
+        setSuggestions(flatList.filter(g => g.title.toLowerCase().includes(value.toLowerCase())).slice(0, 6));
       }
     } else { setSuggestions([]); }
   }, [currentView]);
@@ -107,50 +89,30 @@ function App() {
   }, []);
 
   const handleNavigation = useCallback((view) => {
-    setCurrentView(view); setSearchTerm(''); setSuggestions([]);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentView(view); 
+    setSearchTerm(''); 
+    setSuggestions([]);
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
-
-  const handleOpenPurchaseModal = useCallback((game) => {
-    setPurchaseGame(game);
-    setSearchedGame(null);
-    document.body.style.overflow = 'hidden';
-  }, []);
-
-  const handleOpenDetailModal = useCallback((game) => {
-    setSelectedGame(game);
-    setSearchedGame(null);
-    document.body.style.overflow = 'hidden';
-  }, []);
-
-  // ESC key to close modals
-  useEffect(() => {
-    const handleKeyDown = (e) => { if (e.key === 'Escape') closeAllOverlays(); };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [closeAllOverlays]);
 
   return (
     <>
-      {/* 1. GIỎ HÀNG (Z-INDEX 100) */}
       <Cart cartItems={cartItems} onRemove={handleRemoveFromCart} />
 
-      {/* 2. MODAL XEM NHANH TỪ TÌM KIẾM (Z-INDEX 2000) */}
       {searchedGame && (
-        <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 animate-in fade-in duration-300">
-          <div className="absolute inset-0 cursor-zoom-out" onClick={() => setSearchedGame(null)}></div>
-          <div className="relative z-10 w-[240px] md:w-[320px] animate-in zoom-in-95 duration-300">
-            <div className="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-[1.6rem] opacity-60 blur-md pointer-events-none"></div>
-            <div className="relative bg-[#05080c] rounded-[1.6rem] border border-cyan-400/45 shadow-2xl overflow-hidden">
-              <button onClick={() => setSearchedGame(null)} className="absolute top-3 right-3 z-50 bg-white/10 hover:bg-white/20 text-white rounded-full p-1.5 backdrop-blur-md transition-all">
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/95 p-4">
+          <div className="absolute inset-0" onClick={() => setSearchedGame(null)}></div>
+          <div className="relative z-10 w-[240px] md:w-[320px]">
+            <div className="relative bg-[#05080c] rounded-[1.6rem] border border-cyan-400/45 overflow-hidden shadow-2xl">
+              <button onClick={() => setSearchedGame(null)} className="absolute top-3 right-3 z-50 bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-all">
                 <X className="h-4 w-4" />
               </button>
               <div className="h-[320px] md:h-[410px] w-full">
                 <GameCard 
                   game={searchedGame} 
                   onAddToCart={handleAddToCart} 
-                  onOpenDetail={handleOpenDetailModal} 
-                  onBuyNow={handleOpenPurchaseModal} 
+                  onOpenDetail={(g) => setSelectedGame(g)} 
+                  onBuyNow={(g) => setPurchaseGame(g)} 
                 />
               </div>
             </div>
@@ -158,51 +120,37 @@ function App() {
         </div>
       )}
 
-      <main className="relative min-h-screen bg-[#05070a] text-white selection:bg-cyan-500/30 overflow-x-hidden">
+      <main className="relative min-h-screen bg-[#05070a] text-white overflow-x-hidden">
+        <div className="hidden md:block fixed inset-0 opacity-[0.03] pointer-events-none z-0" style={{ backgroundImage: 'url("/noise.png")' }} />
         
-        {/* HIỆU ỨNG NỀN */}
-        <div className="fixed inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none z-0" style={{ backgroundImage: 'url("/noise.png")' }} />
-        <div className="hidden md:block absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-cyan-600/10 blur-[180px] rounded-full pointer-events-none z-0" />
-
-        {/* 3. HEADER GỘP THỐNG NHẤT (Z-INDEX 1000) */}
         <NavigationBar 
-          currentView={currentView} 
-          handleNavigation={handleNavigation}
-          searchTerm={searchTerm} 
-          handleSearch={handleSearch}
-          suggestions={suggestions} 
-          onSelectGame={handleSelectSuggestedGame}
+          currentView={currentView} handleNavigation={handleNavigation}
+          searchTerm={searchTerm} handleSearch={handleSearch}
+          suggestions={suggestions} onSelectGame={handleSelectSuggestedGame}
         />
         
-        {currentView !== 'AllGames' && (
-          <FloatingAllGames onClick={() => handleNavigation('AllGames')} totalGames={totalGamesCount.toString()} />
-        )}
+        <FloatingAllGames onClick={() => handleNavigation('AllGames')} totalGames={totalGamesCount.toString()} />
         
-        {/* NỘI DUNG CHÍNH (pt-28/32 để trồi lên cao sát Header) */}
-        <div className="relative z-10 flex flex-col min-h-screen pt-28 md:pt-32">
-
+        <div className="relative z-10 flex flex-col min-h-screen pt-32 md:pt-36">
+          
+          {/* VIEW: TRANG CHỦ */}
           {currentView === 'home' && (
             <>
               <Hero />
-              <div className="space-y-16 pb-20 flex-grow">
+              <div className="space-y-12 pb-20 flex-grow">
                 <Suspense fallback={null}>
                   {deferredGames.marquee.length > 0 && (
                     <MarqueeGames 
-                        games={deferredGames.marquee} 
-                        onGameClick={handleOpenDetailModal} 
-                        onAddToCart={handleAddToCart}
-                        onBuyNow={handleOpenPurchaseModal}
+                      games={deferredGames.marquee} 
+                      onGameClick={(g) => setSelectedGame(g)} 
+                      onAddToCart={handleAddToCart}
+                      onBuyNow={(g) => setPurchaseGame(g)}
+                      priority={true}
                     />
                   )}
-                  <section className="space-y-16 px-4 md:px-10 max-w-[1600px] mx-auto w-full">
+                  <section className="space-y-12 px-4 md:px-10 max-w-[1600px] mx-auto w-full">
                     {deferredGames.categories.map((cat) => (
-                      <CategoryShelf 
-                        key={cat.key} 
-                        category={cat} 
-                        onGameClick={handleOpenDetailModal} 
-                        onAddToCart={handleAddToCart} 
-                        onBuyNow={handleOpenPurchaseModal} 
-                      />
+                      <CategoryShelf key={cat.key} category={cat} onGameClick={(g) => setSelectedGame(g)} onAddToCart={handleAddToCart} onBuyNow={(g) => setPurchaseGame(g)} />
                     ))}
                   </section>
                 </Suspense>
@@ -210,37 +158,39 @@ function App() {
             </>
           )}
 
+          {/* VIEW: ALL GAMES */}
           {currentView === 'AllGames' && (
             <Suspense fallback={<PageLoadingFallback />}>
               <div className="flex-grow px-4 pb-20 max-w-[1600px] mx-auto w-full">
-                <AllGames 
-                  searchTerm={searchTerm}
-                  onAddToCart={handleAddToCart} 
-                  onBackToHome={() => handleNavigation('home')} 
-                  handleOpenModal={handleOpenDetailModal} 
-                  handleOpenPurchaseModal={handleOpenPurchaseModal} 
-                />
+                <AllGames searchTerm={searchTerm} onAddToCart={handleAddToCart} onBackToHome={() => handleNavigation('home')} handleOpenModal={(g) => setSelectedGame(g)} handleOpenPurchaseModal={(g) => setPurchaseGame(g)} />
               </div>
             </Suspense>
           )}
 
-          {/* Các views khác giữ nguyên Suspense và Container */}
-          {currentView === 'about' && <Suspense fallback={<PageLoadingFallback />}><div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><AboutSection /></div></Suspense>}
-          {currentView === 'guide' && <Suspense fallback={<PageLoadingFallback />}><div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><GuideSection /></div></Suspense>}
-          {currentView === 'contact' && <Suspense fallback={<PageLoadingFallback />}><div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><Location /></div></Suspense>}
+          {/* 🛠️ FIX: BỔ SUNG CÁC SECTION DƯỚI ĐÂY */}
+          {currentView === 'about' && (
+            <Suspense fallback={<PageLoadingFallback />}>
+              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><AboutSection /></div>
+            </Suspense>
+          )}
 
+          {currentView === 'guide' && (
+            <Suspense fallback={<PageLoadingFallback />}>
+              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><GuideSection /></div>
+            </Suspense>
+          )}
+
+          {currentView === 'contact' && (
+            <Suspense fallback={<PageLoadingFallback />}>
+              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><Location /></div>
+            </Suspense>
+          )}
+          
           <Footer />
           <FloatingContactWidget />
 
-          {/* 4. MODAL TOÀN CỤC (Z-INDEX 3000) */}
           <Suspense fallback={null}>
-            {selectedGame && (
-              <GameDetailModal 
-                game={selectedGame} 
-                onClose={closeAllOverlays} 
-                onBuyNow={() => handleOpenPurchaseModal(selectedGame)} 
-              />
-            )}
+            {selectedGame && <GameDetailModal game={selectedGame} onClose={closeAllOverlays} onBuyNow={() => setPurchaseGame(selectedGame)} />}
             {purchaseGame && <PurchaseModal game={purchaseGame} onClose={closeAllOverlays} />}
           </Suspense>
         </div>
