@@ -1,15 +1,12 @@
 import React from 'react'
 import { ShoppingCart, Plus, Gamepad2 } from 'lucide-react'
 
-// TỐI ƯU ẢNH: ÉP định dạng WebP và giảm kích thước ảnh dựa trên thiết bị
 const getOptimizedImageUrl = (url) => {
   if (!url) return '';
   if (url.startsWith('/') || url.startsWith('data:')) return url;
-  // Giảm w=320 giúp file ảnh poster chỉ còn khoảng 15-20kb
   return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=320&output=webp&q=80`;
 };
 
-// 🛠️ THÊM PROP priority: Để phân biệt card nào nằm trên cùng (Hero/Marquee) và card nào ở dưới
 function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail, priority = false }) {
   const optimizedPoster = getOptimizedImageUrl(game.poster);
 
@@ -36,9 +33,9 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail, priority = false 
       className="relative group cursor-pointer w-full h-full flex flex-col transform-gpu"
       onClick={handleOpenDetail}
     >
-      <article className="relative w-full h-full overflow-hidden rounded-[1rem] md:rounded-[1.6rem] border border-white/5 bg-[#080d16] transition-all duration-300 md:group-hover:-translate-y-1.5 flex flex-col shadow-md md:hover:shadow-cyan-500/10 transform-gpu">
+      <article className="relative w-full h-full overflow-hidden rounded-[1rem] md:rounded-[1.6rem] border border-white/5 bg-[#080d16] transition-all duration-300 md:group-hover:-translate-y-1 flex flex-col shadow-lg transform-gpu">
 
-        {/* 1. ẢNH POSTER - Đã thêm hiệu ứng Discover */}
+        {/* 1. ẢNH POSTER & BIỂU TƯỢNG GAMEPAD */}
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950 shrink-0">
           <img
             src={optimizedPoster}
@@ -49,24 +46,22 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail, priority = false 
             className="h-full w-full object-cover transition-transform duration-500 md:group-hover:scale-[1.08] transform-gpu"
           />
 
-          {/* Lớp phủ màu tối mặc định */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080d16] via-transparent to-transparent opacity-60" />
+          {/* Lớp phủ Gradient mờ */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080d16] via-transparent to-transparent opacity-70" />
 
-          {/* 🌟 HIỆU ỨNG MỚI: Chỉ hiện trên Desktop khi Hover */}
-          <div className="hidden md:flex absolute inset-0 items-center justify-center bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-[2px]">
-            <div className="flex flex-col items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-              {/* Thay con mắt bằng biểu tượng Gamepad hoặc Search sắc nét */}
-              <div className="p-3 rounded-full bg-cyan-500 text-black shadow-[0_0_20px_rgba(6,182,212,0.5)]">
-                <Gamepad2 className="w-5 h-5 stroke-[2.5]" />
-              </div>
-              <span className="text-[10px] font-black text-white uppercase tracking-[0.2em] drop-shadow-md">
-                Xem chi tiết
-              </span>
+          {/* 🎮 BIỂU TƯỢNG TAY CẦM (GAMEPAD) */}
+          {/* Trên Desktop: Hiện giữa ảnh khi hover | Trên Mobile: Hiện góc nhỏ xinh xắn */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            {/* Icon cho Desktop (Hover mới hiện) */}
+            <div className="hidden md:flex p-3 rounded-full bg-cyan-500 text-black shadow-[0_0_20px_rgba(6,182,212,0.6)] opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-300">
+              <Gamepad2 className="w-6 h-6 stroke-[2.5]" />
+            </div>
+
+            {/* Icon cho Mobile (Hiện nhỏ ở góc trên bên phải để tạo điểm nhấn) */}
+            <div className="md:hidden absolute top-2 right-2 p-1.5 rounded-lg bg-black/40 backdrop-blur-md border border-white/10 text-cyan-400 opacity-80">
+              <Gamepad2 className="w-3.5 h-3.5 stroke-[2.5]" />
             </div>
           </div>
-
-          {/* Hiệu ứng Scanner Line chạy dọc ảnh khi hover */}
-          <div className="absolute inset-0 w-full h-[2px] bg-cyan-400/50 blur-[1px] -translate-y-full group-hover:animate-[scan_1.5s_ease-in-out_infinite] hidden md:block" />
         </div>
 
         {/* 2. KHỐI THÔNG TIN */}
@@ -82,14 +77,14 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail, priority = false 
             </span>
           </div>
 
-          <div className="mt-auto pt-2 flex justify-between items-end">
+          <div className="mt-auto pt-2">
             <span className="text-cyan-400 font-black text-xs md:text-sm tracking-tighter">
               {game.price}
             </span>
           </div>
         </div>
 
-        {/* 3. CỤM NÚT BẤM - ĐƠN GIẢN HÓA ĐỂ GIẢM NHIỆT */}
+        {/* 3. CỤM NÚT BẤM */}
         <div className="px-2.5 pb-2.5 md:px-4 md:pb-4 flex flex-col gap-2 shrink-0">
           <div className="flex flex-row items-center gap-2">
             <button
@@ -110,7 +105,8 @@ function GameCard({ game, onAddToCart, onBuyNow, onOpenDetail, priority = false 
             </button>
           </div>
 
-          <p className="text-[8px] md:text-[9px] text-white-400/60 font-black tracking-[0.1em] text-center">
+          {/* TEXT PHỤ: Đã tối ưu theo yêu cầu trước */}
+          <p className="text-[8px] md:text-[9px] text-white-400/60 font-black tracking-[0.1em] text-center shadow-sm">
             (Không giới hạn giờ chơi)
           </p>
         </div>
