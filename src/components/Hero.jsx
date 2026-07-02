@@ -78,7 +78,6 @@ function Hero() {
                 Chính sách &amp; Dịch vụ
               </h2>
             </div>
-            <span className="text-[9px] font-bold text-green-400/80 uppercase tracking-[0.3em]">(Family Sharing)</span>
           </div>
 
           {/* Nội dung chi tiết các mục dịch vụ */}
