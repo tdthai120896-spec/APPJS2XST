@@ -42,10 +42,32 @@ function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#030508] to-transparent" />
       </div>
 
-      {/* 3. MAIN CONTENT CONTAINER (Đã tối ưu khoảng cách đệm dọc dứt khoát) */}
+      {/* 3. MAIN CONTENT CONTAINER (Tối ưu khoảng cách dọc siêu gọn gàng cho Mobile) */}
       <div className="relative z-30 w-full max-w-2xl mx-auto px-5 flex flex-col items-center space-y-3.5 md:space-y-5">
 
-        {/* 🌟 4. BẢNG CHÍNH SÁCH & DỊCH VỤ (Đã thu gọn và làm nổi bật tiêu đề) */}
+        {/* 🌟 4. BẢNG ƯU ĐÃI VÀNG (Được đẩy lên đầu tiên để tăng sự chú ý của khách hàng) */}
+        <div className="w-full max-w-[480px] bg-gradient-to-br from-amber-600/30 via-amber-500/10 to-amber-900/30 backdrop-blur-xl border border-amber-500/40 rounded-xl p-3 flex items-center justify-between gap-3 animate-gold-glow relative overflow-hidden transform-gpu">
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_3s_infinite] pointer-events-none" />
+          
+          <div className="flex items-center gap-3 z-10">
+            <div className="h-9 w-9 md:h-11 md:w-11 rounded-lg bg-amber-500 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/20">
+              <Gift className="w-5 h-5 text-black font-black animate-bounce" />
+            </div>
+            <div className="text-left">
+              <h4 className="text-[8px] md:text-[10px] font-black text-amber-400 uppercase tracking-widest">Ưu đãi độc quyền</h4>
+              <p className="text-[13px] md:text-base text-white font-black leading-tight uppercase italic">
+                ĐỒNG GIÁ <span className="text-amber-400 text-lg md:text-xl tracking-tighter">30.000đ</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="text-right z-10">
+             <p className="text-[8px] font-bold text-amber-200/50 uppercase tracking-tighter">Bonus (Random)</p>
+             <p className="text-[10px] md:text-xs font-black text-white italic tracking-tight">+100 Games</p>
+          </div>
+        </div>
+
+        {/* 🌟 5. BẢNG CHÍNH SÁCH & DỊCH VỤ (Đặt ngay ngắn phía dưới bảng Ưu đãi) */}
         <div className="w-full max-w-[620px] bg-[#05080f]/80 backdrop-blur-2xl border border-cyan-500/25 rounded-2xl p-5 md:p-6 shadow-[0_24px_60px_rgba(0,0,0,0.65)] select-none">
           
           {/* Header Bảng dạng 1 hàng to rõ rệt */}
@@ -56,6 +78,7 @@ function Hero() {
                 Chính sách &amp; Dịch vụ
               </h2>
             </div>
+            <span className="text-[9px] font-bold text-green-400/80 uppercase tracking-[0.3em]">(Family Sharing)</span>
           </div>
 
           {/* Nội dung chi tiết các mục dịch vụ */}
@@ -100,28 +123,6 @@ function Hero() {
                 Bảo hành lâu dài, nói không với game crack lậu và không bản quyền.
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* 🌟 5. BẢNG ƯU ĐÃI VÀNG (Đặt ngay ngắn phía dưới bảng chính sách) */}
-        <div className="w-full max-w-[480px] bg-gradient-to-br from-amber-600/30 via-amber-500/10 to-amber-900/30 backdrop-blur-xl border border-amber-500/40 rounded-xl p-3 flex items-center justify-between gap-3 animate-gold-glow relative overflow-hidden">
-          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_3s_infinite] pointer-events-none" />
-          
-          <div className="flex items-center gap-3 z-10">
-            <div className="h-9 w-9 md:h-11 md:w-11 rounded-lg bg-amber-500 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/20">
-              <Gift className="w-5 h-5 text-black font-black animate-bounce" />
-            </div>
-            <div className="text-left">
-              <h4 className="text-[8px] md:text-[10px] font-black text-amber-400 uppercase tracking-widest">Ưu đãi độc quyền</h4>
-              <p className="text-[13px] md:text-base text-white font-black leading-tight uppercase italic">
-                ĐỒNG GIÁ <span className="text-amber-400 text-lg md:text-xl tracking-tighter">30.000đ</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="text-right z-10">
-             <p className="text-[8px] font-bold text-amber-200/50 uppercase tracking-tighter">Bonus (Random)</p>
-             <p className="text-[10px] md:text-xs font-black text-white italic tracking-tight">+100 Games</p>
           </div>
         </div>
 
