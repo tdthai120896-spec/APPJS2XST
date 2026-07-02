@@ -68,7 +68,7 @@ const NavigationBar = ({ currentView, handleNavigation, searchTerm, handleSearch
               onChange={handleSearch}
               onFocus={() => suggestions?.length > 0 && setIsSearchOpen(true)}
               placeholder="Tìm game nhanh..."
-              className="w-full bg-cyan-950/20 border border-cyan-400/30 rounded-full py-2 md:py-2.5 pl-10 pr-4 text-white text-xs md:text-sm focus:outline-none focus:border-cyan-300/50 transition-all placeholder:text-gray-400"
+              className="w-full bg-cyan-950/20 border border-cyan-400/30 rounded-full py-2 md:py-2.5 pl-10 pr-4 text-white italic text-xs md:text-sm focus:outline-none focus:border-cyan-300/50 transition-all placeholder:text-gray-400"
             />
           </div>
 
