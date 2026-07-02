@@ -98,7 +98,7 @@ function Hero() {
                 <ShieldCheck className="w-3 h-3 text-cyan-400" />
                 <h4 className="text-[9px] font-black text-cyan-100 uppercase tracking-tighter group-hover:text-cyan-400">Hình thức</h4>
               </div>
-              <p className="text-[10px] text-gray-400 leading-snug font-medium">Chia sẻ tài khoản Steam Family Sharing bản quyền</p>
+              <p className="text-[10px] text-gray-400 leading-snug font-medium">Thuê Game Steam (Family Sharing) đúng quy định từ 01/07/026</p>
             </div>
 
             {/* Mục 2 */}
