@@ -3,7 +3,7 @@ import { Sparkles, ShieldCheck, Clock, Gift, ScrollText } from 'lucide-react';
 
 function Hero() {
   return (
-    <section className="relative w-full flex flex-col items-center justify-start text-center pt-2 md:pt-4 pb-8 overflow-hidden bg-[#030508]">
+    <section className="relative w-full flex flex-col items-center justify-start text-center pt-8 md:pt-12 pb-12 overflow-hidden bg-[#030508]">
       {/* 1. CSS ANIMATIONS */}
       <style>
         {`
@@ -43,19 +43,92 @@ function Hero() {
       </div>
 
       {/* 3. MAIN CONTENT CONTAINER */}
-      <div className="relative z-30 w-full max-w-xl mx-auto px-5 flex flex-col items-center space-y-3 md:space-y-5">
+      <div className="relative z-30 w-full max-w-2xl mx-auto px-5 flex flex-col items-center space-y-6 md:space-y-8">
         
         {/* Nhãn nhỏ */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em]">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 text-[10px] font-black uppercase tracking-[0.2em] shadow-sm select-none">
           <Sparkles className="w-2.5 h-2.5 animate-pulse text-cyan-300" /> Nexus Premium Service
         </div>
 
-        {/* Tiêu đề Thương hiệu */}
-        <h1 className="text-4xl md:text-8xl font-black tracking-tighter text-white select-none leading-none">
-          NEXUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500">STEAM</span>
-        </h1>
+        {/* 🌟 4. BẢNG CHÍNH SÁCH DỊCH VỤ (Đã đưa lên đầu, thiết kế lớn & uy tín hơn) */}
+        <div className="w-full max-w-[620px] bg-[#05080f]/80 backdrop-blur-2xl border border-cyan-500/25 rounded-2xl p-5 md:p-7 shadow-[0_24px_60px_rgba(0,0,0,0.65)] select-none">
+          
+          {/* Header Bảng */}
+          <div className="flex flex-col items-center gap-1.5 mb-5 pb-3 border-b border-white/5">
+            <div className="flex items-center gap-2">
+              <ScrollText className="w-4.5 h-4.5 text-cyan-400" />
+              <h2 className="text-xs md:text-sm font-black uppercase tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-white to-cyan-100 drop-shadow-sm italic">
+                Dịch vụ chia sẻ Game bản quyền
+              </h2>
+            </div>
+            <span className="text-[10px] font-bold text-green-400/80 uppercase tracking-[0.3em]">(Family Sharing)</span>
+          </div>
 
-        {/* 🌟 4. BẢNG ƯU ĐÃI VÀNG (Gọn nhẹ & Hook) */}
+          {/* Nội dung chi tiết */}
+          <div className="flex flex-col gap-4 text-left">
+            {/* Mục 1: Hình thức */}
+            <div className="flex flex-col sm:flex-row gap-2.5 p-3.5 md:p-4 rounded-xl bg-white/[0.01] border border-white/5 hover:border-cyan-500/35 transition-all duration-300 group transform-gpu">
+              <div className="flex items-center gap-2 shrink-0 sm:w-28">
+                <ShieldCheck className="w-4 h-4 text-cyan-400" />
+                <h4 className="text-[11px] font-black text-cyan-100 uppercase tracking-wider group-hover:text-cyan-400 transition-colors">Hình thức</h4>
+              </div>
+              <p className="text-[11px] md:text-xs text-neutral-300 leading-relaxed font-medium flex-1">
+                Tài khoản cho thuê trải nghiệm Offline thông qua chức năng chính thống Steam Family Sharing. Cam kết không kinh doanh tài khoản ảo.
+              </p>
+            </div>
+
+            {/* Mục 2: Thời gian */}
+            <div className="flex flex-col sm:flex-row gap-2.5 p-3.5 md:p-4 rounded-xl bg-white/[0.01] border border-white/5 hover:border-blue-500/35 transition-all duration-300 group transform-gpu">
+              <div className="flex items-center gap-2 shrink-0 sm:w-28">
+                <Clock className="w-4 h-4 text-blue-400" />
+                <h4 className="text-[11px] font-black text-blue-100 uppercase tracking-wider group-hover:text-blue-400 transition-colors">Thời gian</h4>
+              </div>
+              <p className="text-[11px] md:text-xs text-neutral-300 leading-relaxed font-medium flex-1">
+                Không giới hạn thời gian chơi game sau khi kích hoạt/thuê thành công.
+              </p>
+            </div>
+
+            {/* Mục 3: Cam kết pháp lý */}
+            <div className="flex flex-col sm:flex-row gap-2.5 p-3.5 md:p-4 rounded-xl bg-white/[0.01] border border-white/5 hover:border-emerald-500/35 transition-all duration-300 group transform-gpu">
+              <div className="flex items-center gap-2 shrink-0 sm:w-28">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <h4 className="text-[11px] font-black text-emerald-100 uppercase tracking-wider group-hover:text-emerald-400 transition-colors">Cam kết</h4>
+              </div>
+              <p className="text-[11px] md:text-xs text-neutral-300 leading-relaxed font-medium flex-1">
+                Bảo hành &amp; Hỗ trợ kỹ thuật chuyên nghiệp 24/7. Nói không với game crack, lậu, không bản quyền. Cam kết tuân thủ nghiêm ngặt quy định pháp luật và không kinh doanh vật phẩm ảo theo{' '}
+                <a 
+                  href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Luat-An-ninh-mang-2018-351405.aspx" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-cyan-400 hover:text-cyan-300 underline font-bold transition-colors"
+                >
+                  Luật An ninh mạng 2018
+                </a>{' '}
+                và{' '}
+                <a 
+                  href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Nghi-dinh-72-2013-ND-CP-quan-ly-cung-cap-su-dung-dich-vu-internet-thong-tin-tren-mang-202870.aspx" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-cyan-400 hover:text-cyan-300 underline font-bold transition-colors"
+                >
+                  Nghị định 174/2026/NĐ-CP
+                </a>{' '}
+                (được sửa đổi bổ sung bởi{' '}
+                <a 
+                  href="https://vanban.chinhphu.vn/?pageid=27160&docid=218185&classid=1&typegroupid=4" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-cyan-400 hover:text-cyan-300 underline font-bold transition-colors"
+                >
+                  Nghị định 174/2026/NĐ-CP
+                </a>
+                ).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* 🌟 5. BẢNG ƯU ĐÃI VÀNG (Đặt ngay ngắn phía dưới bảng chính sách) */}
         <div className="w-full max-w-[480px] bg-gradient-to-br from-amber-600/30 via-amber-500/10 to-amber-900/30 backdrop-blur-xl border border-amber-500/40 rounded-xl p-3 flex items-center justify-between gap-3 animate-gold-glow relative overflow-hidden">
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_3s_infinite] pointer-events-none" />
           
@@ -74,50 +147,6 @@ function Hero() {
           <div className="text-right z-10">
              <p className="text-[8px] font-bold text-amber-200/50 uppercase tracking-tighter">Bonus (Random)</p>
              <p className="text-[10px] md:text-xs font-black text-white italic tracking-tight">+100 Games</p>
-          </div>
-        </div>
-
-        {/* 🌟 5. BẢNG CHÍNH SÁCH (Policy Table - Đã thu gọn cực đẹp) */}
-        <div className="w-full max-w-[500px] bg-[#05080f]/80 backdrop-blur-2xl border border-cyan-500/20 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-          
-          {/* Header Bảng */}
-          <div className="flex flex-col items-center gap-1.5 mb-4 pb-3 border-b border-white/5">
-            <div className="flex items-center gap-2">
-              <ScrollText className="w-3.5 h-3.5 text-cyan-400" />
-              <h2 className="text-[11px] md:text-[13px] font-black uppercase tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-white to-cyan-100 drop-shadow-sm italic">
-                Dịch vụ thuê Game bản quyền
-              </h2>
-            </div>
-            <span className="text-[9px] font-bold text-green-100/60 uppercase tracking-[0.3em]">(Family Sharing)</span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-            {/* Mục 1 */}
-            <div className="flex flex-col gap-1 text-left p-2.5 rounded-xl bg-white/[0.02] border border-white/5 group hover:border-cyan-500/30 transition-all duration-300">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-3 h-3 text-cyan-400" />
-                <h4 className="text-[9px] font-black text-cyan-100 uppercase tracking-tighter group-hover:text-cyan-400">Hình thức</h4>
-              </div>
-              <p className="text-[10px] text-gray-400 leading-snug font-medium">Tài khoản cho thuê theo chức năng Steam Family Sharing. </p>
-            </div>
-
-            {/* Mục 2 */}
-            <div className="flex flex-col gap-1 text-left p-2.5 rounded-xl bg-white/[0.02] border border-white/5 group hover:border-blue-500/30 transition-all duration-300">
-              <div className="flex items-center gap-2">
-                <Clock className="w-3 h-3 text-blue-400" />
-                <h4 className="text-[9px] font-black text-blue-100 uppercase tracking-tighter group-hover:text-blue-400">Thời gian</h4>
-              </div>
-              <p className="text-[10px] text-gray-400 leading-snug font-medium">Không giới thời gian chơi game sau khi thuê.</p>
-            </div>
-
-            {/* Mục 3 */}
-            <div className="flex flex-col gap-1 text-left p-2.5 rounded-xl bg-white/[0.02] border border-white/5 group hover:border-emerald-500/30 transition-all duration-300">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-3 h-3 text-emerald-400" />
-                <h4 className="text-[9px] font-black text-emerald-100 uppercase tracking-tighter group-hover:text-emerald-400">Cam kết</h4>
-              </div>
-              <p className="text-[10px] text-gray-400 leading-snug font-medium">Bảo hành & Hỗ trợ tận tịnh. Nói không với game crack, lậu, không bản quyền. Không mua bán, trao đổi vậy phẩm ảo dưới mọi hình thức tuân thủ Luật An ninh mạng 2018 và Nghị định 72/2013/NĐ-CP (được sửa đổi bởi Nghị định 27/2018/NĐ-CP). </p>
-            </div>
           </div>
         </div>
 
