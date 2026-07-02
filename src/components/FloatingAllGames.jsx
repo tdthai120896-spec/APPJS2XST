@@ -3,7 +3,7 @@ import { Gamepad2 } from 'lucide-react';
 
 function FloatingAllGames({ onClick, totalGames = "500" }) {
   return (
-    <div className="fixed right-4 md:right-8 top-[30%] -translate-y-1/2 z-[100] pointer-events-none">
+    <div className="fixed right-4 md:right-8 top-[45%] -translate-y-1/2 z-[100] pointer-events-none">
       
       {/* 🌟 CSS ANIMATIONS CỦA RIÊNG NÚT NÀY */}
       <style>
