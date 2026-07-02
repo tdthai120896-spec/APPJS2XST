@@ -98,7 +98,7 @@ function Hero() {
                 <ShieldCheck className="w-3 h-3 text-cyan-400" />
                 <h4 className="text-[9px] font-black text-cyan-100 uppercase tracking-tighter group-hover:text-cyan-400">Hình thức</h4>
               </div>
-              <p className="text-[10px] text-gray-400 leading-snug font-medium">Thuê Game Steam (Family Sharing) đúng quy định từ 01/07/026</p>
+              <p className="text-[10px] text-gray-400 leading-snug font-medium">Tài khoản cho thuê theo chức năng Steam Family Sharing. </p>
             </div>
 
             {/* Mục 2 */}
@@ -116,7 +116,7 @@ function Hero() {
                 <ShieldCheck className="w-3 h-3 text-emerald-400" />
                 <h4 className="text-[9px] font-black text-emerald-100 uppercase tracking-tighter group-hover:text-emerald-400">Cam kết</h4>
               </div>
-              <p className="text-[10px] text-gray-400 leading-snug font-medium">Bảo hành & Hỗ trợ tận tịnh. Nói không với game crack, lậu, không bản quyền</p>
+              <p className="text-[10px] text-gray-400 leading-snug font-medium">Bảo hành & Hỗ trợ tận tịnh. Nói không với game crack, lậu, không bản quyền. Không mua bán, trao đổi vậy phẩm ảo dưới mọi hình thức tuân thủ Luật An ninh mạng 2018 và Nghị định 72/2013/NĐ-CP (được sửa đổi bởi Nghị định 27/2018/NĐ-CP). </p>
             </div>
           </div>
         </div>
