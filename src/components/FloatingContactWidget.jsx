@@ -43,7 +43,7 @@ function FloatingContactWidget() {
         }, 500);
 
         return () => clearTimeout(unmountTimer);
-      }, 3000);
+      }, 6000);
 
       return () => clearTimeout(fadeTimer);
     }, 1500);
@@ -116,28 +116,29 @@ function FloatingContactWidget() {
           - Vị trí mới: Nằm ở phía trên nút liên hệ chính (bottom-[72px]) và trải dọc căn lề phải (right-0) sang trái [3].
           - Giao diện: Chuyển đổi hoàn toàn sang màu Trắng Hiện Đại kiểu Apple kính mờ nổi bật (border-white/15, bg-[#0d0d11]/95) [3].
         */}
+        {shouldRenderPromo{/* 🛠️ POPUP MÀU VÀNG KIM CHUẨN HERO GOLD CARD */}
         {shouldRenderPromo && (
           <div 
-            className={`absolute right-0 bottom-[72px] flex items-center gap-3 bg-[#0d0d11]/95 border border-white/15 rounded-2xl p-3.5 shadow-[0_32px_64px_rgba(0,0,0,0.85)] text-left w-72 md:w-80 transition-all duration-500 ease-in-out backdrop-blur-md z-[1000] transform-gpu ${
+            className={`absolute right-0 bottom-[72px] flex items-center gap-3 bg-[#0d0a05]/95 border border-amber-500/30 rounded-2xl p-3.5 shadow-[0_32px_64px_rgba(0,0,0,0.85),0_0_20px_rgba(251,191,36,0.15)] text-left w-72 md:w-80 transition-all duration-500 ease-in-out backdrop-blur-md z-[1000] transform-gpu ${
               isPromoVisible 
                 ? "opacity-100 translate-y-0 scale-100" 
                 : "opacity-0 translate-y-4 scale-95 pointer-events-none"
             }`}
           >
-            {/* Lớp phủ mờ ánh bạc tinh tế phía sau */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-white/10 to-transparent rounded-2xl blur-md opacity-40 pointer-events-none"></div>
+            {/* Lớp phủ mờ ánh vàng hổ phách sang trọng phía sau */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/10 to-transparent rounded-2xl blur-md opacity-40 pointer-events-none"></div>
             
-            {/* Khối icon gây sự chú ý màu Trắng Bạc phát sáng nhẹ */}
-            <div className="relative shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 border border-white/20 text-white">
-              <span className="absolute inset-0 rounded-lg bg-white/10 animate-ping opacity-60" />
-              <Sparkles className="w-4 h-4 text-white animate-pulse" />
+            {/* Khối icon màu Vàng Gold phát sáng động */}
+            <div className="relative shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-400/30 text-amber-400">
+              <span className="absolute inset-0 rounded-lg bg-amber-400/20 animate-ping opacity-60" />
+              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
             </div>
             
-            {/* Nội dung thông báo màu trắng/bạc tương phản cao */}
+            {/* Nội dung thông báo màu vàng/hổ phách tương phản cao */}
             <div className="relative flex flex-col min-w-0">
-              <span className="text-[9px] font-black uppercase text-white/50 tracking-wider">Đặc Quyền Premium</span>
+              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider">Đặc Quyền Premium</span>
               <p className="text-[10.5px] md:text-[11.5px] font-semibold leading-normal text-neutral-300 mt-0.5">
-                Thuê <strong className="text-white">01 game chính</strong> + nhận kèm thêm cực nhiều <strong className="text-white underline decoration-white/20">game phụ AAA</strong> siêu phẩm hoàn toàn miễn phí!
+                Thuê <strong className="text-amber-200">01 game chính</strong> + nhận kèm thêm loạt <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong> siêu phẩm hoàn toàn miễn phí!
               </p>
             </div>
           </div>
