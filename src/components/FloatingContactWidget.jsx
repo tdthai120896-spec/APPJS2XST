@@ -151,7 +151,7 @@ function FloatingContactWidget() {
             
             {/* Nội dung thông báo màu vàng/hổ phách xuống dòng cực kỳ cân đối */}
             <div className="relative flex flex-col min-w-0">
-              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider leading-none">Đặc Quyền Premium</span>
+              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider leading-none">Siêu Sale 30K</span>
               <p className="text-[10px] md:text-[11px] font-semibold leading-normal text-neutral-300 mt-1.5">
                 Thuê <strong className="text-white font-bold">01 game chính</strong><br />
                 nhận kèm loạt <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong><br />
