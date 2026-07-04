@@ -26,14 +26,14 @@ function FloatingContactWidget() {
     }
   }, []);
 
-  // Trình kích hoạt tự động mở và ẩn từ từ sau 3 giây của Promo Tooltip
+  // Trình kích hoạt tự động mở và ẩn từ từ sau 6 giây của Promo Tooltip
   useEffect(() => {
     // Chờ 1.5 giây sau khi tải trang để luồng chính ổn định, sau đó hiện popup
     const startTimer = setTimeout(() => {
       setShouldRenderPromo(true);
       setIsPromoVisible(true);
 
-      // Kích hoạt hiệu ứng từ từ biến mất (fade out) sau khi hiển thị đủ 3 giây
+      // 🛠️ ĐÃ CẬP NHẬT: Kích hoạt hiệu ứng từ từ biến mất sau khi hiển thị đủ 6 giây (6000ms)
       const fadeTimer = setTimeout(() => {
         setIsPromoVisible(false);
 
@@ -43,7 +43,7 @@ function FloatingContactWidget() {
         }, 500);
 
         return () => clearTimeout(unmountTimer);
-      }, 6000);
+      }, 6000); 
 
       return () => clearTimeout(fadeTimer);
     }, 1500);
@@ -72,9 +72,27 @@ function FloatingContactWidget() {
     ? "opacity-100 translate-y-0 pointer-events-auto"
     : "md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:pointer-events-auto opacity-0 translate-y-4 pointer-events-none";
 
+  // 🛠️ ĐÃ THÊM: Hoạt ảnh nhịp thở Vàng Kim cao cấp đồng bộ bảng Hero giúp gây chú ý tối đa
+  const popupAnimationsStyle = `
+    @keyframes goldPopupGlow {
+      0%, 100% { 
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85), 0 0 10px rgba(251, 191, 36, 0.15); 
+        border-color: rgba(251, 191, 36, 0.25); 
+      }
+      50% { 
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), 0 0 25px rgba(251, 191, 36, 0.45); 
+        border-color: rgba(251, 191, 36, 0.75); 
+      }
+    }
+    .animate-gold-popup-glow {
+      animation: goldPopupGlow 2.5s infinite ease-in-out;
+    }
+  `;
+
   return (
     <div ref={widgetRef} className="fixed bottom-6 right-6 z-[99999] group flex flex-col items-end select-none">
-      
+      <style>{popupAnimationsStyle}</style>
+
       {/* DANH SÁCH LIÊN HỆ ĐỒNG BỘ OBSIDIAN NEON */}
       <div className={`flex flex-col items-end gap-3 mb-3.5 transition-all duration-300 ease-out ${activeMenuClasses}`}>
         {/* ZALO */}
@@ -108,28 +126,26 @@ function FloatingContactWidget() {
         </a>
       </div>
 
-      {/* 🌟 NÚT LIÊN HỆ TỔNG & POPUP KHUYẾN MÃI TỰ ĐỘNG BIẾN MẤT */}
+      {/* NÚT LIÊN HỆ TỔNG & POPUP KHUYẾN MÃI TỰ ĐỘNG BIẾN MẤT */}
       <div className="relative flex items-center justify-end">
 
         {/* 
           🛠️ ĐÃ CẬP NHẬT: 
-          - Vị trí mới: Nằm ở phía trên nút liên hệ chính (bottom-[72px]) và trải dọc căn lề phải (right-0) sang trái [3].
-          - Giao diện: Chuyển đổi hoàn toàn sang màu Trắng Hiện Đại kiểu Apple kính mờ nổi bật (border-white/15, bg-[#0d0d11]/95) [3].
+          - Vị trí: Nằm trên Mobile và Desktop, trượt nhẹ nhàng hướng từ dưới lên trên.
+          - Màu sắc: Tông màu Vàng Kim loại Pro đồng bộ bảng Ưu đãi Hero.
+          - Hiệu ứng: Chèn class 'animate-gold-glow' giúp bảng tự động phát sáng nhịp thở.
         */}
-        {shouldRenderPromo{/* 🛠️ POPUP MÀU VÀNG KIM CHUẨN HERO GOLD CARD */}
         {shouldRenderPromo && (
-          <div 
-            className={`absolute right-0 bottom-[72px] flex items-center gap-3 bg-[#0d0a05]/95 border border-amber-500/30 rounded-2xl p-3.5 shadow-[0_32px_64px_rgba(0,0,0,0.85),0_0_20px_rgba(251,191,36,0.15)] text-left w-72 md:w-80 transition-all duration-500 ease-in-out backdrop-blur-md z-[1000] transform-gpu ${
-              isPromoVisible 
-                ? "opacity-100 translate-y-0 scale-100" 
-                : "opacity-0 translate-y-4 scale-95 pointer-events-none"
-            }`}
-          >
-            {/* Lớp phủ mờ ánh vàng hổ phách sang trọng phía sau */}
+          <div className={`absolute bottom-[130%] right-0 w-[88vw] sm:w-[320px] rounded-2xl border bg-[#05080f]/95 backdrop-blur-md p-4 transition-all duration-500 ease-in-out z-[1000] transform-gpu animate-gold-popup-glow ${
+            isPromoVisible 
+              ? "opacity-100 translate-y-0 scale-100" 
+              : "opacity-0 translate-y-4 scale-95 pointer-events-none"
+          }`}>
+            {/* Lớp phủ mờ ánh vàng hổ phách phía sau */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/10 to-transparent rounded-2xl blur-md opacity-40 pointer-events-none"></div>
             
             {/* Khối icon màu Vàng Gold phát sáng động */}
-            <div className="relative shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-400/30 text-amber-400">
+            <div className="relative shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-400/30 text-amber-400 mb-2">
               <span className="absolute inset-0 rounded-lg bg-amber-400/20 animate-ping opacity-60" />
               <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
             </div>
@@ -138,7 +154,7 @@ function FloatingContactWidget() {
             <div className="relative flex flex-col min-w-0">
               <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider">Đặc Quyền Premium</span>
               <p className="text-[10.5px] md:text-[11.5px] font-semibold leading-normal text-neutral-300 mt-0.5">
-                Thuê <strong className="text-amber-200">01 game chính</strong> + nhận kèm thêm loạt <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong> siêu phẩm hoàn toàn miễn phí!
+                Thuê <strong className="text-white">01 game chính</strong> + nhận kèm thêm loạt <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong> siêu phẩm hoàn toàn miễn phí!
               </p>
             </div>
           </div>
