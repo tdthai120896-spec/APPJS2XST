@@ -33,7 +33,7 @@ function FloatingContactWidget() {
       setShouldRenderPromo(true);
       setIsPromoVisible(true);
 
-      // 🛠️ ĐÃ CẬP NHẬT: Kích hoạt hiệu ứng từ từ biến mất sau khi hiển thị đủ 6 giây (6000ms)
+      // Kích hoạt hiệu ứng từ từ biến mất sau khi hiển thị đủ 6 giây (6000ms)
       const fadeTimer = setTimeout(() => {
         setIsPromoVisible(false);
 
@@ -72,7 +72,7 @@ function FloatingContactWidget() {
     ? "opacity-100 translate-y-0 pointer-events-auto"
     : "md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:pointer-events-auto opacity-0 translate-y-4 pointer-events-none";
 
-  // 🛠️ ĐÃ THÊM: Hoạt ảnh nhịp thở Vàng Kim cao cấp đồng bộ bảng Hero giúp gây chú ý tối đa
+  // Hoạt ảnh nhịp thở Vàng Kim cao cấp đồng bộ bảng Hero giúp gây chú ý tối đa
   const popupAnimationsStyle = `
     @keyframes goldPopupGlow {
       0%, 100% { 
@@ -131,12 +131,11 @@ function FloatingContactWidget() {
 
         {/* 
           🛠️ ĐÃ CẬP NHẬT: 
-          - Vị trí: Nằm trên Mobile và Desktop, trượt nhẹ nhàng hướng từ dưới lên trên.
-          - Màu sắc: Tông màu Vàng Kim loại Pro đồng bộ bảng Ưu đãi Hero.
-          - Hiệu ứng: Chèn class 'animate-gold-glow' giúp bảng tự động phát sáng nhịp thở.
+          - Tinh gọn kích thước: Rộng bằng 1/3 màn hình (w-[28vw]), giới hạn tối thiểu 220px tránh vỡ chữ [3].
+          - Text xuống dòng: Thêm các thẻ <br /> ngắt quãng thông minh để chia văn bản thành 3 dòng cực kỳ gọn gàng [1].
         */}
         {shouldRenderPromo && (
-          <div className={`absolute bottom-[130%] right-0 w-[88vw] sm:w-[320px] rounded-2xl border bg-[#05080f]/95 backdrop-blur-md p-4 transition-all duration-500 ease-in-out z-[1000] transform-gpu animate-gold-popup-glow ${
+          <div className={`absolute bottom-[130%] right-0 w-[28vw] min-w-[220px] max-w-[250px] rounded-2xl border bg-[#05080f]/95 backdrop-blur-md p-3.5 transition-all duration-500 ease-in-out z-[1000] transform-gpu animate-gold-popup-glow ${
             isPromoVisible 
               ? "opacity-100 translate-y-0 scale-100" 
               : "opacity-0 translate-y-4 scale-95 pointer-events-none"
@@ -145,16 +144,18 @@ function FloatingContactWidget() {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/10 to-transparent rounded-2xl blur-md opacity-40 pointer-events-none"></div>
             
             {/* Khối icon màu Vàng Gold phát sáng động */}
-            <div className="relative shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-400/30 text-amber-400 mb-2">
+            <div className="relative shrink-0 flex items-center justify-center w-7 h-7 rounded-lg bg-amber-500/10 border border-amber-400/30 text-amber-400 mb-2.5">
               <span className="absolute inset-0 rounded-lg bg-amber-400/20 animate-ping opacity-60" />
-              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
             </div>
             
-            {/* Nội dung thông báo màu vàng/hổ phách tương phản cao */}
+            {/* Nội dung thông báo màu vàng/hổ phách xuống dòng cực kỳ cân đối */}
             <div className="relative flex flex-col min-w-0">
-              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider">Đặc Quyền Premium</span>
-              <p className="text-[10.5px] md:text-[11.5px] font-semibold leading-normal text-neutral-300 mt-0.5">
-                Thuê <strong className="text-white">01 game chính</strong> + nhận kèm thêm loạt <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong> siêu phẩm hoàn toàn miễn phí!
+              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider leading-none">Đặc Quyền Premium</span>
+              <p className="text-[10px] md:text-[11px] font-semibold leading-normal text-neutral-300 mt-1.5">
+                Thuê <strong className="text-white font-bold">01 game chính</strong><br />
+                nhận kèm loạt <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong><br />
+                siêu phẩm hoàn toàn miễn phí!
               </p>
             </div>
           </div>
@@ -172,7 +173,7 @@ function FloatingContactWidget() {
         {/* Nút bấm chính */}
         <button
           onClick={handleMainButtonClick}
-          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#080d16] border border-cyan-500/40 text-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:border-cyan-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.5)] active:scale-90 transition-all duration-300 z-10 overflow-hidden"
+          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#080d16] border border-cyan-400/40 text-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:border-cyan-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.5)] active:scale-90 transition-all duration-300 z-10 overflow-hidden"
         >
           {/* Lớp phủ kính nhẹ trên mặt nút */}
           <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-40"></div>
