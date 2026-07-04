@@ -16,7 +16,7 @@ export const CATEGORY_META = [
 
 export const RAW_GAMES = {
   "Action": [
-    { "title": "007 First Light", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3768760/header.jpg" },
+    { "title": "007 First Light", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3768760/dbe86ebd2edb4c77d113e9e2feefeb90189fabc9/header.jpg?t=1782807423"},
     { "title": "1 vs 1 : Global Operations", "genre": "Action Fighting PvP", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/598230/header.jpg" },
     { "title": "12 is Better Than 6", "genre": "Action Top-down Shooter", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/410110/header.jpg" },
     { "title": "28 Waves Later", "genre": "Action Top-down Horde", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/474770/header.jpg" },
