@@ -153,10 +153,7 @@ function FloatingContactWidget() {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/10 to-transparent rounded-2xl blur-md opacity-40 pointer-events-none"></div>
             
             {/* Khối icon màu Vàng Gold phát sáng động */}
-            <div className="relative shrink-0 flex items-center justify-center w-7 h-7 rounded-lg bg-amber-500/10 border border-amber-400/30 text-amber-400 mb-2.5">
-              <span className="absolute inset-0 rounded-lg bg-amber-400/20 animate-ping opacity-60" />
-              <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-            </div>
+          
             
             {/* Nội dung thông báo màu vàng/hổ phách xuống dòng cực kỳ cân đối */}
             <div className="relative flex flex-col min-w-0">
