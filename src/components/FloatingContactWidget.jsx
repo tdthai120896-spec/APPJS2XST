@@ -26,29 +26,39 @@ function FloatingContactWidget() {
     }
   }, []);
 
-  // Trình kích hoạt tự động mở và ẩn từ từ sau 6 giây của Promo Tooltip
+  // 🛠️ TỐI ƯU SÂU: Thiết lập hệ thống vòng lặp đệ quy (Recursive Timeout Loop) vô hạn
   useEffect(() => {
-    // Chờ 1.5 giây sau khi tải trang để luồng chính ổn định, sau đó hiện popup
-    const startTimer = setTimeout(() => {
-      setShouldRenderPromo(true);
-      setIsPromoVisible(true);
+    let timerId;
 
-      // Kích hoạt hiệu ứng từ từ biến mất sau khi hiển thị đủ 6 giây (6000ms)
-      const fadeTimer = setTimeout(() => {
-        setIsPromoVisible(false);
+    const runPromoLoop = () => {
+      // Bước 1: Chờ 3 giây đầu tiên kể từ khi vào trang (hoặc sau khi ẩn bản cũ)
+      timerId = setTimeout(() => {
+        setShouldRenderPromo(true);
+        setIsPromoVisible(true);
 
-        // Hủy hẳn việc render trong DOM sau khi hoạt ảnh mờ dần hoàn tất (500ms)
-        const unmountTimer = setTimeout(() => {
-          setShouldRenderPromo(false);
-        }, 500);
+        // Bước 2: Hiển thị rực rỡ và nhấp nháy trong 6 giây
+        timerId = setTimeout(() => {
+          setIsPromoVisible(false);
 
-        return () => clearTimeout(unmountTimer);
-      }, 6000); 
+          // Bước 3: Đợi thêm 0.5 giây để hoạt ảnh mờ dần hoàn tất, sau đó hủy render trong DOM
+          timerId = setTimeout(() => {
+            setShouldRenderPromo(false);
 
-      return () => clearTimeout(fadeTimer);
-    }, 1500);
+            // Bước 4: Gọi lại chính nó để bắt đầu vòng lặp mới sau khi dọn dẹp
+            runPromoLoop();
+          }, 500);
 
-    return () => clearTimeout(startTimer);
+        }, 6000);
+
+      }, 3000);
+    };
+
+    runPromoLoop();
+
+    // Dọn dẹp sạch các timer khi người dùng rời trang để tránh rò rỉ bộ nhớ (Memory Leak)
+    return () => {
+      clearTimeout(timerId);
+    };
   }, []);
 
   useEffect(() => {
@@ -131,8 +141,7 @@ function FloatingContactWidget() {
 
         {/* 
           🛠️ ĐÃ CẬP NHẬT: 
-          - Tinh gọn kích thước: Rộng bằng 1/3 màn hình (w-[28vw]), giới hạn tối thiểu 220px tránh vỡ chữ [3].
-          - Text xuống dòng: Thêm các thẻ <br /> ngắt quãng thông minh để chia văn bản thành 3 dòng cực kỳ gọn gàng [1].
+          - Tự động hiện sau 3 giây, giữ trong 6 giây, và tự động tuần hoàn vô hạn sau mỗi 3 giây ẩn.
         */}
         {shouldRenderPromo && (
           <div className={`absolute bottom-[130%] right-0 w-[28vw] min-w-[220px] max-w-[250px] rounded-2xl border bg-[#05080f]/95 backdrop-blur-md p-3.5 transition-all duration-500 ease-in-out z-[1000] transform-gpu animate-gold-popup-glow ${
@@ -151,7 +160,7 @@ function FloatingContactWidget() {
             
             {/* Nội dung thông báo màu vàng/hổ phách xuống dòng cực kỳ cân đối */}
             <div className="relative flex flex-col min-w-0">
-              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider leading-none">Siêu Sale 30K</span>
+              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider leading-none">SIÊU SALE HÈ 30K</span>
               <p className="text-[10px] md:text-[11px] font-semibold leading-normal text-neutral-300 mt-1.5">
                 Thuê <strong className="text-white font-bold">01 game chính</strong><br />
                 nhận kèm loạt <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong><br />
@@ -173,7 +182,7 @@ function FloatingContactWidget() {
         {/* Nút bấm chính */}
         <button
           onClick={handleMainButtonClick}
-          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#080d16] border border-cyan-400/40 text-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:border-cyan-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.5)] active:scale-90 transition-all duration-300 z-10 overflow-hidden"
+          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#080d16] border border-cyan-500/40 text-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:border-cyan-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.5)] active:scale-90 transition-all duration-300 z-10 overflow-hidden"
         >
           {/* Lớp phủ kính nhẹ trên mặt nút */}
           <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-40"></div>
