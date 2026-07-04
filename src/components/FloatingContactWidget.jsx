@@ -10,7 +10,7 @@ function FloatingContactWidget() {
   const [links, setLinks] = useState({ zalo: '#', messenger: '#', call: '#' });
   const widgetRef = useRef(null);
 
-  // 🛠️ TỐI ƯU SÂU: Quản lý trạng thái tự động đóng/mở & trượt mượt mà của Popup Quảng cáo
+  // Quản lý trạng thái tự động đóng/mở & trượt mượt mà của Popup Quảng cáo
   const [shouldRenderPromo, setShouldRenderPromo] = useState(false);
   const [isPromoVisible, setIsPromoVisible] = useState(false);
 
@@ -26,7 +26,7 @@ function FloatingContactWidget() {
     }
   }, []);
 
-  // 🛠️ TỐI ƯU SÂU: Trình kích hoạt tự động mở và ẩn từ từ sau 3 giây của Promo Tooltip
+  // Trình kích hoạt tự động mở và ẩn từ từ sau 3 giây của Promo Tooltip
   useEffect(() => {
     // Chờ 1.5 giây sau khi tải trang để luồng chính ổn định, sau đó hiện popup
     const startTimer = setTimeout(() => {
@@ -111,29 +111,33 @@ function FloatingContactWidget() {
       {/* 🌟 NÚT LIÊN HỆ TỔNG & POPUP KHUYẾN MÃI TỰ ĐỘNG BIẾN MẤT */}
       <div className="relative flex items-center justify-end">
 
-        {/* 🛠️ ĐÃ THÊM: Popup tự động kích hoạt, trượt ngang mượt mà và mờ dần ra sau 3 giây */}
+        {/* 
+          🛠️ ĐÃ CẬP NHẬT: 
+          - Vị trí mới: Nằm ở phía trên nút liên hệ chính (bottom-[72px]) và trải dọc căn lề phải (right-0) sang trái [3].
+          - Giao diện: Chuyển đổi hoàn toàn sang màu Trắng Hiện Đại kiểu Apple kính mờ nổi bật (border-white/15, bg-[#0d0d11]/95) [3].
+        */}
         {shouldRenderPromo && (
           <div 
-            className={`absolute right-[70px] bottom-0 flex items-center gap-2.5 bg-[#080d16]/95 border border-cyan-500/30 rounded-2xl p-3.5 shadow-[0_10px_35px_rgba(6,182,212,0.2)] text-left w-72 md:w-80 transition-all duration-500 ease-in-out backdrop-blur-md z-[1000] transform-gpu ${
+            className={`absolute right-0 bottom-[72px] flex items-center gap-3 bg-[#0d0d11]/95 border border-white/15 rounded-2xl p-3.5 shadow-[0_32px_64px_rgba(0,0,0,0.85)] text-left w-72 md:w-80 transition-all duration-500 ease-in-out backdrop-blur-md z-[1000] transform-gpu ${
               isPromoVisible 
-                ? "opacity-100 translate-x-0 scale-100" 
-                : "opacity-0 translate-x-4 scale-95 pointer-events-none"
+                ? "opacity-100 translate-y-0 scale-100" 
+                : "opacity-0 translate-y-4 scale-95 pointer-events-none"
             }`}
           >
-            {/* Lớp bóng mờ nhẹ màu xanh phía sau */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-2xl blur-md opacity-50 pointer-events-none"></div>
+            {/* Lớp phủ mờ ánh bạc tinh tế phía sau */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-white/10 to-transparent rounded-2xl blur-md opacity-40 pointer-events-none"></div>
             
-            {/* Khối icon gây sự chú ý nhấp nháy chuẩn Apple */}
-            <div className="relative shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-400/30 text-cyan-400">
-              <span className="absolute inset-0 rounded-lg bg-cyan-400/20 animate-ping opacity-75" />
-              <Sparkles className="w-4 h-4 text-cyan-300 animate-pulse" />
+            {/* Khối icon gây sự chú ý màu Trắng Bạc phát sáng nhẹ */}
+            <div className="relative shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 border border-white/20 text-white">
+              <span className="absolute inset-0 rounded-lg bg-white/10 animate-ping opacity-60" />
+              <Sparkles className="w-4 h-4 text-white animate-pulse" />
             </div>
             
-            {/* Nội dung thông báo rút gọn 2 dòng */}
+            {/* Nội dung thông báo màu trắng/bạc tương phản cao */}
             <div className="relative flex flex-col min-w-0">
-              <span className="text-[9px] font-black uppercase text-cyan-400 tracking-wider">Mách nhỏ bạn</span>
+              <span className="text-[9px] font-black uppercase text-white/50 tracking-wider">Đặc Quyền Premium</span>
               <p className="text-[10.5px] md:text-[11.5px] font-semibold leading-normal text-neutral-300 mt-0.5">
-                Gói <strong className="text-white">30K</strong> bao gồm thuê <strong className="text-white">01 game chính</strong> + được tặng kèm thêm cực nhiều <strong className="text-emerald-400 font-bold">game phụ AAA</strong> siêu phẩm!
+                Thuê <strong className="text-white">01 game chính</strong> + nhận kèm thêm cực nhiều <strong className="text-white underline decoration-white/20">game phụ AAA</strong> siêu phẩm hoàn toàn miễn phí!
               </p>
             </div>
           </div>
