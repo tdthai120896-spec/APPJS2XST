@@ -1021,6 +1021,13 @@ export const RAW_GAMES = {
     { "title": "Life is Strange Series", "genre": "Story Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1265920/header.jpg" },
     { "title": "Little Nightmares", "genre": "Horror Platformer", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/424840/header.jpg" },
     { "title": "The Walking Dead: Telltale Definitive Series", "genre": "Zombie Story Choice", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1449690/header.jpg" },
+    { "title": "Tomb Raider: Legend", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/7000/header.jpg" },
+{ "title": "Tomb Raider: Anniversary", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/8000/header.jpg" },
+{ "title": "Tomb Raider: Underworld", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/8140/header.jpg" },
+{ "title": "Tomb Raider (2013)", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/203160/header.jpg" },
+{ "title": "Rise of the Tomb Raider", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391220/header.jpg" },
+{ "title": "Shadow of the Tomb Raider: Definitive Edition", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/750920/header.jpg" },
+{ "title": "The Last of Us Part II Remastered", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://cdn1.epicgames.com/offer/79d39109000a430588665796c9233633/EGS_TheLastofUsPartIIRemastered_NaughtyDog_S2_1200x1600-f65593c1d93540d998d839352e0a293b" },
     { "title": "The Witness", "genre": "Open World Puzzle", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/210970/header.jpg" }
   ]
 }; // Kết thúc object RAW_GAMES
