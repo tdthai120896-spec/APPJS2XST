@@ -164,7 +164,7 @@ function FloatingContactWidget() {
             
             {/* Nội dung thông báo màu vàng/hổ phách xuống dòng có icon và text Pro */}
             <div className="relative flex flex-col min-w-0 space-y-1.5">
-              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider leading-none">Đặc Quyền Premium</span>
+              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider leading-none">SIÊU SALE HOT - CHỈ 30K</span>
               <div className="text-[10px] md:text-[11px] font-semibold leading-normal text-neutral-300 space-y-1">
                 <span className="flex items-center gap-1.5">
                   <Gamepad2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
