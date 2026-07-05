@@ -172,7 +172,7 @@ function FloatingContactWidget() {
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Gift className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  tặng kèm <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong>
+                  Tặng <strong className="text-amber-300 underline decoration-amber-500/20"> đến 100 games khác miễn phí</strong>
                 </span>
                 <span className="text-[9px] md:text-[10px] text-emerald-400 font-bold tracking-wide block pl-5 uppercase select-none">
                   ✓ Trải nghiệm trọn vẹn!
