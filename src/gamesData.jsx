@@ -149,7 +149,7 @@ export const RAW_GAMES = {
   ],
   "RPG": [
     { "title": "Elden Ring", "genre": "Souls-like Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" },
-    { "title": "Elden Ring Nightreign", "genre": "Action RPG Expansion", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" },
+    { "title": "Elden Ring Nightreign", "genre": "Action RPG Expansion", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2622380/header.jpg?t=1773099036" },
     { "title": "Final Fantasy VII Remake Intergrade", "genre": "Action RPG JRPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1462040/header.jpg" },
     { "title": "Final Fantasy VII Rebirth", "genre": "JRPG Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1462040/header.jpg" },
     { "title": "FINAL FANTASY XV", "genre": "JRPG Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/637650/header.jpg" },
@@ -949,7 +949,7 @@ export const RAW_GAMES = {
     { "title": "Drive Beyond Horizons", "genre": "Racing", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3081070/header.jpg" },
     { "title": "DUBIUM", "genre": "Sci-Fi Social Deduction", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1832500/header.jpg" },
     { "title": "EA Play subscription", "genre": "Service/Subscription", "price": "30.000đ", "poster": "https://via.placeholder.com/460x215/000000/FFFFFF?text=EA+Play" },
-    { "title": "EA SPORTS FC 26", "genre": "Sports Football", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3233810/header.jpg" },
+    { "title": "EA SPORTS FC 26", "genre": "Sports Football", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3405690/64d362e71693f1ec7023f52ab94026f9a0d4fbed/header.jpg?t=1783095306" },
     { "title": "Elder Scrolls Series", "genre": "Open World RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg" },
     { "title": "Elyon", "genre": "Action MMORPG", "price": "30.000đ", "poster": "https://via.placeholder.com/460x215/000000/FFFFFF?text=Elyon" },
     { "title": "Epic Games", "genre": "Launcher", "price": "30.000đ", "poster": "https://via.placeholder.com/460x215/000000/FFFFFF?text=Epic+Games" },
