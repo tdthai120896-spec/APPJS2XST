@@ -16,7 +16,7 @@ export const CATEGORY_META = [
 
 export const RAW_GAMES = {
   "Action": [
-    { "title": "007 First Light", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3768760/dbe86ebd2edb4c77d113e9e2feefeb90189fabc9/header.jpg?t=1782807423"},
+    { "title": "007 First Light", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3768760/dbe86ebd2edb4c77d113e9e2feefeb90189fabc9/header.jpg?t=1782807423" },
     { "title": "1 vs 1 : Global Operations", "genre": "Action Fighting PvP", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/598230/header.jpg" },
     { "title": "12 is Better Than 6", "genre": "Action Top-down Shooter", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/410110/header.jpg" },
     { "title": "28 Waves Later", "genre": "Action Top-down Horde", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/474770/header.jpg" },
@@ -605,6 +605,12 @@ export const RAW_GAMES = {
     { "title": "WWE 2K24", "genre": "Sports Wrestling Fighting", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2315690/header.jpg" }
   ],
   "MMO/MOBA": [
+    { "title": "Atlantica Global", "genre": "Turn-Based MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1155050/header.jpg" },
+    { "title": "Atlantica Online", "genre": "Tactical MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1155050/header.jpg" },
+    { "title": "Avabel Online", "genre": "Action MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1130700/header.jpg" },
+    { "title": "Bannerlord Online", "genre": "Sandbox Medieval MMO", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261550/header.jpg" },
+    { "title": "Battlerite Royale", "genre": "MOBA Battle Royale", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/879160/header.jpg" },
+    { "title": "Black Desert", "genre": "Advanced Action MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582660/header.jpg" },
     { "title": "4Story", "genre": "Classic MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1042300/header.jpg" },
     { "title": "AdventureQuest 3D", "genre": "Cross-Platform MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/424380/header.jpg" },
     { "title": "Aika Online", "genre": "PvP MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1000/header.jpg" },
@@ -613,12 +619,6 @@ export const RAW_GAMES = {
     { "title": "Apex Legends", "genre": "Hero Battle Royale", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/header.jpg" },
     { "title": "ArcheWorld", "genre": "Blockchain MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1000/header.jpg" },
     { "title": "Arthdal Chronicles", "genre": "Open World MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1000/header.jpg" },
-    { "title": "Atlantica Global", "genre": "Turn-Based MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1155050/header.jpg" },
-    { "title": "Atlantica Online", "genre": "Tactical MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1155050/header.jpg" },
-    { "title": "Avabel Online", "genre": "Action MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1130700/header.jpg" },
-    { "title": "Bannerlord Online", "genre": "Sandbox Medieval MMO", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261550/header.jpg" },
-    { "title": "Battlerite Royale", "genre": "MOBA Battle Royale", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/879160/header.jpg" },
-    { "title": "Black Desert", "genre": "Advanced Action MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582660/header.jpg" },
     { "title": "Black Squad", "genre": "Military FPS MMO", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/550650/header.jpg" },
     { "title": "Bless Online", "genre": "Fantasy MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/681660/header.jpg" },
     { "title": "Closers", "genre": "Anime Action MMORPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/215830/header.jpg" },
@@ -705,7 +705,7 @@ export const RAW_GAMES = {
     { "title": "Vampire Survivors", "genre": "Gothic Horde Bullet Hell", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1794680/header.jpg" }
   ],
   "Horror_Collection": [
-    { "title": "Alan Wake 2", "genre": "Psychological Horror", "price": "30.000đ", "poster": "https://cdn2.unrealengine.com/egs-alan-wake-2-standard-edition-carousel-desktop-1248x702-861694901.jpg" },
+    { "title": "Alan Wake 2", "genre": "Psychological Horror", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/108710/9c1728f937c2a7e632b447b02e442f6a5d88515c/header.jpg?t=1769717716" },
     { "title": "Alone in the Dark", "genre": "Action Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1310410/header.jpg" },
     { "title": "Amnesia: The Dark Descent", "genre": "Survival Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/57300/header.jpg" },
     { "title": "Amnesia: A Machine for Pigs", "genre": "Industrial Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/239200/header.jpg" },
@@ -900,7 +900,7 @@ export const RAW_GAMES = {
     { "title": "Portal 2", "genre": "Puzzle-Platformer", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620/header.jpg" },
     { "title": "Tabletop Simulator", "genre": "Physics Sandbox Board Game", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286160/header.jpg" },
     { "title": "The Henry Stickmin Collection", "genre": "Funny Choice Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1089980/header.jpg" },
-      { "title": "A Plague Tale: Requiem", "genre": "Action Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1182900/header.jpg" },
+    { "title": "A Plague Tale: Requiem", "genre": "Action Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1182900/header.jpg" },
     { "title": "Absolum", "genre": "Action Indie", "price": "30.000đ", "poster": "https://via.placeholder.com/460x215/000000/FFFFFF?text=Absolum" },
     { "title": "Arena Online", "genre": "MMO Action", "price": "30.000đ", "poster": "https://via.placeholder.com/460x215/000000/FFFFFF?text=Arena+Online" },
     { "title": "Arma 2", "genre": "Military Sim", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/33900/header.jpg" },
@@ -1020,13 +1020,12 @@ export const RAW_GAMES = {
     { "title": "Little Nightmares", "genre": "Horror Platformer", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/424840/header.jpg" },
     { "title": "The Walking Dead: Telltale Definitive Series", "genre": "Zombie Story Choice", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1449690/header.jpg" },
     { "title": "Tomb Raider: Legend", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/7000/header.jpg" },
-{ "title": "Tomb Raider: Anniversary", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/8000/header.jpg" },
-{ "title": "Tomb Raider: Underworld", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/8140/header.jpg" },
-{ "title": "Tomb Raider (2013)", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/203160/header.jpg" },
-{ "title": "Rise of the Tomb Raider", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391220/header.jpg" },
-{ "title": "Shadow of the Tomb Raider: Definitive Edition", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/750920/header.jpg" },
-{ "title": "The Last of Us Part II Remastered", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://cdn1.epicgames.com/offer/79d39109000a430588665796c9233633/EGS_TheLastofUsPartIIRemastered_NaughtyDog_S2_1200x1600-f65593c1d93540d998d839352e0a293b" },
+    { "title": "Tomb Raider: Anniversary", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/8000/header.jpg" },
+    { "title": "Tomb Raider: Underworld", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/8140/header.jpg" },
+    { "title": "Tomb Raider (2013)", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/203160/header.jpg" },
+    { "title": "Rise of the Tomb Raider", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391220/header.jpg" },
+    { "title": "Shadow of the Tomb Raider: Definitive Edition", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/750920/header.jpg" },
+    { "title": "The Last of Us Part II Remastered", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://cdn1.epicgames.com/offer/79d39109000a430588665796c9233633/EGS_TheLastofUsPartIIRemastered_NaughtyDog_S2_1200x1600-f65593c1d93540d998d839352e0a293b" },
     { "title": "The Witness", "genre": "Open World Puzzle", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/210970/header.jpg" }
   ]
 }; // Kết thúc object RAW_GAMES
-  
