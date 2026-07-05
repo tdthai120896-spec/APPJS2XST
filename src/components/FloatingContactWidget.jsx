@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { MessageSquare, Phone, MessageCircle, Sparkles } from 'lucide-react'
+import { MessageSquare, Phone, MessageCircle, Sparkles, Gamepad2, Gift } from 'lucide-react'
 
 const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA='
 const ENCODED_CALL = 'dGVsOjAzNzkzMzI4NzA='
@@ -26,12 +26,12 @@ function FloatingContactWidget() {
     }
   }, []);
 
-  // 🛠️ TỐI ƯU SÂU: Thiết lập hệ thống vòng lặp đệ quy (Recursive Timeout Loop) vô hạn
+  // Thiết lập hệ thống vòng lặp đệ quy (Recursive Timeout Loop) vô hạn cho Popup
   useEffect(() => {
     let timerId;
 
     const runPromoLoop = () => {
-      // Bước 1: Chờ 3 giây đầu tiên kể từ khi vào trang (hoặc sau khi ẩn bản cũ)
+      // Bước 1: Chờ 3 giây đầu tiên kể từ khi vào trang
       timerId = setTimeout(() => {
         setShouldRenderPromo(true);
         setIsPromoVisible(true);
@@ -55,7 +55,7 @@ function FloatingContactWidget() {
 
     runPromoLoop();
 
-    // Dọn dẹp sạch các timer khi người dùng rời trang để tránh rò rỉ bộ nhớ (Memory Leak)
+    // Dọn dẹp sạch các timer khi người dùng rời trang để tránh rò rỉ bộ nhớ
     return () => {
       clearTimeout(timerId);
     };
@@ -99,12 +99,15 @@ function FloatingContactWidget() {
     }
   `;
 
+  // 🛠️ TỐI ƯU UX: Popup tự động ẩn mượt mà nếu người dùng chủ động bấm mở rộng menu liên hệ
+  const isPromoCurrentlyVisible = isPromoVisible && !isOpenMobile;
+
   return (
     <div ref={widgetRef} className="fixed bottom-6 right-6 z-[99999] group flex flex-col items-end select-none">
       <style>{popupAnimationsStyle}</style>
 
-      {/* DANH SÁCH LIÊN HỆ ĐỒNG BỘ OBSIDIAN NEON */}
-      <div className={`flex flex-col items-end gap-3 mb-3.5 transition-all duration-300 ease-out ${activeMenuClasses}`}>
+      {/* DANH SÁCH LIÊN HỆ ĐỒNG BỘ OBSIDIAN NEON (Z-Index đặt z-[1010] để luôn đè lên Popup quảng cáo) */}
+      <div className={`flex flex-col items-end gap-3 mb-3.5 transition-all duration-300 ease-out z-[1010] ${activeMenuClasses}`}>
         {/* ZALO */}
         <a href={links.zalo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group/item">
           <span className="bg-[#080d16] border border-cyan-500/20 text-gray-300 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl transition-all duration-300 group-hover/item:border-cyan-400 group-hover/item:text-cyan-400">
@@ -141,11 +144,12 @@ function FloatingContactWidget() {
 
         {/* 
           🛠️ ĐÃ CẬP NHẬT: 
-          - Tự động hiện sau 3 giây, giữ trong 6 giây, và tự động tuần hoàn vô hạn sau mỗi 3 giây ẩn.
+          - Tinh gọn kích thước: Rộng bằng 1/3 màn hình (w-[28vw]), giới hạn tối thiểu 220px [3].
+          - Text xuống dòng & Chèn thêm icon: Thêm icon Gamepad2 và Gift có màu neon rực rỡ để thu hút [3].
         */}
         {shouldRenderPromo && (
           <div className={`absolute bottom-[130%] right-0 w-[28vw] min-w-[220px] max-w-[250px] rounded-2xl border bg-[#05080f]/95 backdrop-blur-md p-3.5 transition-all duration-500 ease-in-out z-[1000] transform-gpu animate-gold-popup-glow ${
-            isPromoVisible 
+            isPromoCurrentlyVisible 
               ? "opacity-100 translate-y-0 scale-100" 
               : "opacity-0 translate-y-4 scale-95 pointer-events-none"
           }`}>
@@ -153,16 +157,27 @@ function FloatingContactWidget() {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/10 to-transparent rounded-2xl blur-md opacity-40 pointer-events-none"></div>
             
             {/* Khối icon màu Vàng Gold phát sáng động */}
-          
+            <div className="relative shrink-0 flex items-center justify-center w-7 h-7 rounded-lg bg-amber-500/10 border border-amber-400/30 text-amber-400 mb-2.5">
+              <span className="absolute inset-0 rounded-lg bg-amber-400/20 animate-ping opacity-60" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+            </div>
             
-            {/* Nội dung thông báo màu vàng/hổ phách xuống dòng cực kỳ cân đối */}
-            <div className="relative flex flex-col min-w-0">
-              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider leading-none">SIÊU SALE HÈ 30K</span>
-              <p className="text-[10px] md:text-[11px] font-semibold leading-normal text-neutral-300 mt-1.5">
-                Thuê <strong className="text-white font-bold">01 game chính</strong><br />
-                nhận kèm loạt <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong><br />
-                siêu phẩm hoàn toàn miễn phí!
-              </p>
+            {/* Nội dung thông báo màu vàng/hổ phách xuống dòng có icon và text Pro */}
+            <div className="relative flex flex-col min-w-0 space-y-1.5">
+              <span className="text-[9px] font-black uppercase text-amber-400 tracking-wider leading-none">Đặc Quyền Premium</span>
+              <div className="text-[10px] md:text-[11px] font-semibold leading-normal text-neutral-300 space-y-1">
+                <span className="flex items-center gap-1.5">
+                  <Gamepad2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                  Thuê <strong className="text-white">01 game chính</strong>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Gift className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  tặng kèm <strong className="text-amber-300 underline decoration-amber-500/20">game phụ AAA</strong>
+                </span>
+                <span className="text-[9px] md:text-[10px] text-emerald-400 font-bold tracking-wide block pl-5 uppercase select-none">
+                  ✓ Trải nghiệm trọn vẹn!
+                </span>
+              </div>
             </div>
           </div>
         )}
