@@ -60,7 +60,7 @@ function PurchaseModal({ game, onClose }) {
   const addInfoText = `Thue ${initials}`;
   const rawPrice = game.price.replace(/\D/g, '');
   
-  const vietQRUrl = `https://img.vietqr.io/image/VCB-1014044533-compact.png?amount=${rawPrice}&addInfo=${encodeURIComponent(addInfoText)}&accountName=TRAN%20DINH%20THAI`;
+  const vietQRUrl = ``;
 
   const miniSteps = [
     { icon: <MessageSquare className="w-4 h-4" />, title: "BƯỚC 1", text: "Nhắn Shop Gửi Account" },
