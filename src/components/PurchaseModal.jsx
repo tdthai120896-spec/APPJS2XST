@@ -137,11 +137,11 @@ function PurchaseModal({ game, onClose }) {
             <div className="space-y-2 mb-4 text-left bg-black/50 p-4 rounded-xl border border-cyan-500/10">
               <div className="flex justify-between items-center text-xs">
                 <span className="text-gray-400 uppercase tracking-wider font-semibold text-[9px]">Chủ TK</span>
-                <span className="text-white font-black text-xs md:text-sm">TRAN DINH THAI</span>
+                <span className="text-white font-black text-xs md:text-sm">Liên hệ</span>
               </div>
               <div className="flex justify-between items-center pt-2 border-t border-cyan-500/10 text-xs">
                 <span className="text-gray-400 uppercase tracking-wider font-semibold text-[9px]">Số TK (VCB)</span>
-                <span className="text-cyan-400 font-bold font-mono text-xs md:text-sm">1014044533</span>
+                <span className="text-cyan-400 font-bold font-mono text-xs md:text-sm">Liên hệ</span>
               </div>
               <div className="flex justify-between items-center pt-2 border-t border-cyan-500/10">
                 <span className="text-gray-400 uppercase tracking-wider font-semibold text-[9px]">Số tiền</span>
