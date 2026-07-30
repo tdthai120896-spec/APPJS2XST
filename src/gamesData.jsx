@@ -452,7 +452,7 @@ export const RAW_GAMES = {
     { "title": "Life is Feudal: MMO", "genre": "Medieval Hardcore Survival", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1000/header.jpg" },
     { "title": "No Man's Sky", "genre": "Procedural Space Survival", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/275850/header.jpg" },
     { "title": "Once Human", "genre": "Supernatural Sandbox Survival", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2139420/header.jpg" },
-    { "title": "Palworld", "genre": "Monster Taming Survival", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg" },
+    { "title": "Palworld 1.0", "genre": "Monster Taming Survival", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg" },
     { "title": "Project Zomboid", "genre": "Hardcore Zombie Survival", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/108600/header.jpg" },
     { "title": "Raft", "genre": "Ocean Raft Survival", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg" },
     { "title": "Rust", "genre": "Multiplayer PvP Survival", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/header.jpg" },
