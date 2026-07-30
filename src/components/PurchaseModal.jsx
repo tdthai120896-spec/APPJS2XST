@@ -8,7 +8,7 @@ import {
 // Các chuỗi Base64 đã mã hóa thông tin liên hệ
 const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA=' // https://zalo.me/0379332870
 const ENCODED_CALL = 'dGVsOjAzNzkzMzI4NzA=' // tel:0379332870
-const ENCODED_FACEBOOK = 'aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3Byb2ZpbGUucGhwP2lkPTYxNTU4MDY1MTMwNjMx' // Trang Facebook cá nhân
+const ENCODED_FACEBOOK = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA' // Trang Facebook cá nhân
 
 // 🛠️ ĐÃ THÊM: Hàm viết tắt thông minh (Giữ nguyên từ đầu tiên + Lấy chữ cái đầu các từ sau)
 const getGameInitials = (title) => {
