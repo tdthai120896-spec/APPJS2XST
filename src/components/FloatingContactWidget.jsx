@@ -3,8 +3,7 @@ import { MessageSquare, Phone, MessageCircle, Sparkles, Gamepad2, Gift } from 'l
 
 const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA='
 const ENCODED_CALL = 'dGVsOjAzNzkzMzI4NzA='
-const ENCODED_MESSENGER = 'SFR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3NoYXJlLzE5QTFxNm1hUlQvP21pYmV4dGlkPXd3WElmcg==
-';
+const ENCODED_MESSENGER = 'aHR0cHM6Ly9mYy5saW5rLzE5QTFxNm1h';
 
 function FloatingContactWidget() {
   const [isOpenMobile, setIsOpenMobile] = useState(false);
