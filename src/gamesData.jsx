@@ -79,7 +79,7 @@ export const RAW_GAMES = {
     { "title": "Brave Dungeon", "genre": "Action Dungeon Crawl", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/493340/header.jpg" },
     { "title": "Break Into Zatwor", "genre": "Action Casual Heist", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/385000/header.jpg" },
     { "title": "Broken Dreams", "genre": "Action Top-down Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1190000/header.jpg" },
-    { "title": "Bully: Scholarship Edition", "genre": "School Sandbox Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/11020/header.jpg" },
+    { "title": "Bully: Scholarship Edition", "genre": "School Sandbox Action", "price": "30.000đ", "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRayzzF1zX72W3g4Qz3y3VeQomIz9yRwr9dYdept76wVA&s" },
     { "title": "Bunker 58", "genre": "Action FPS Survival", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1250410/header.jpg" },
     { "title": "Bunnyrama", "genre": "Action Puzzle Platformer", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1250410/header.jpg" },
     { "title": "Bunny Guys!", "genre": "Action Parkour Ragdoll", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2555300/header.jpg" },
