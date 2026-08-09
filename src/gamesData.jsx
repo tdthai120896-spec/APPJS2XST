@@ -318,6 +318,7 @@ export const RAW_GAMES = {
   "Strategy": [
     { "title": "A Total War Saga: TROY", "genre": "Grand Strategy RTS", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1099410/header.jpg" },
     { "title": "Against the Storm", "genre": "Rogue-lite City Builder", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1336490/header.jpg" },
+    { "title": "RimWorld", "genre": "Simulation", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/294100/header.jpg" },
     { "title": "Age of Empires II: Definitive Edition", "genre": "Classic RTS History", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/813780/header.jpg" },
     { "title": "Age of Empires IV", "genre": "Classic RTS History", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466860/header.jpg" },
     { "title": "Age of Mythology: Retold", "genre": "RTS Classic Myth", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1934680/header.jpg" },
