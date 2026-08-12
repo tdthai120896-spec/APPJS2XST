@@ -14,7 +14,7 @@ function BoomerangVideoBg({ src, className }) {
         loop
         muted
         playsInline
-        preload="metadata" // Tải nhẹ metadata để bảo toàn tốc độ load trang
+        preload="metadata" // Tối ưu hóa tải chậm
       />
     </div>
   );
@@ -22,46 +22,58 @@ function BoomerangVideoBg({ src, className }) {
 
 export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
   
-  // 🛠️ TỰ ĐỘNG LỌC RA 30 SIÊU PHẨM GAME HOT NHẤT TỪ GAMESDATA
+  // 🛠️ TỐI ƯU & PHÒNG THỦ: Tự động lọc ra 30 siêu phẩm Game Hot an toàn tuyệt đối, chống crash
   const hotGamesList = useMemo(() => {
-    if (!RAW_GAMES) return [];
-    
-    // Gộp phẳng toàn bộ game từ các danh mục
-    const allGamesArray = Object.values(RAW_GAMES).flat();
-    
-    // Từ khóa ưu tiên các game siêu bom tấn để đưa lên hàng đầu
-    const hotKeywords = [
-      'wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
-      'gta', 'grand theft auto', 'elden ring', 'cyberpunk', 'hogwarts',
-      'resident evil', 'last of us', 'dragon ball', 'horizon'
-    ];
+    try {
+      if (!RAW_GAMES) return [];
+      
+      // Gộp phẳng toàn bộ game từ các danh mục
+      const allGamesArray = Object.values(RAW_GAMES).flat();
+      if (!allGamesArray || allGamesArray.length === 0) return [];
+      
+      // Danh sách từ khóa ưu tiên
+      const hotKeywords = [
+        'wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
+        'gta', 'grand theft auto', 'elden ring', 'cyberpunk', 'hogwarts',
+        'resident evil', 'last of us', 'dragon ball', 'horizon'
+      ];
 
-    // Lọc trùng lặp game dựa trên title
-    const seen = new Set();
-    const uniqueGames = allGamesArray.filter(game => {
-      const duplicate = seen.has(game.title);
-      seen.add(game.title);
-      return !duplicate;
-    });
+      // Lọc trùng lặp game dựa trên title có kiểm tra an toàn dữ liệu
+      const seen = new Set();
+      const uniqueGames = allGamesArray.filter(game => {
+        if (!game || !game.title) return false; // 🛠️ Nếu game bị thiếu tiêu đề, bỏ qua không xử lý
+        const duplicate = seen.has(game.title);
+        seen.add(game.title);
+        return !duplicate;
+      });
 
-    // Sắp xếp ưu tiên các tựa game chứa từ khóa hot lên đầu trang
-    const prioritized = uniqueGames.sort((a, b) => {
-      const aHot = hotKeywords.some(keyword => a.title.toLowerCase().includes(keyword));
-      const bHot = hotKeywords.some(keyword => b.title.toLowerCase().includes(keyword));
-      if (aHot && !bHot) return -1;
-      if (!aHot && bHot) return 1;
-      return 0;
-    });
+      // Sắp xếp ưu tiên các tựa game chứa từ khóa hot lên đầu trang
+      const prioritized = uniqueGames.sort((a, b) => {
+        const aTitle = a.title ? a.title.toLowerCase() : '';
+        const bTitle = b.title ? b.title.toLowerCase() : '';
+        
+        const aHot = hotKeywords.some(keyword => aTitle.includes(keyword));
+        const bHot = hotKeywords.some(keyword => bTitle.includes(keyword));
+        
+        if (aHot && !bHot) return -1;
+        if (!aHot && bHot) return 1;
+        return 0;
+      });
 
-    // Chỉ lấy tối đa 30 game hot đại diện cho trang này
-    return prioritized.slice(0, 30);
+      // Chỉ lấy tối đa 30 game hot đại diện
+      return prioritized.slice(0, 30);
+    } catch (error) {
+      // 🛠️ Nếu có lỗi bất ngờ từ dữ liệu gốc, ghi log và trả về mảng rỗng thay vì làm sập trang web
+      console.error("Lỗi khi xử lý danh sách game hot:", error);
+      return [];
+    }
   }, []);
 
   return (
     <section className="relative w-full min-h-[90vh] flex flex-col justify-start items-center py-16 overflow-hidden rounded-[2rem] border border-cyan-500/20 bg-[#05070a] shadow-[0_0_50px_rgba(6,182,212,0.1)] my-10 select-none transform-gpu">
       
-      {/* 1. BACKGROUND VIDEO */}
-      <BoomerangVideoBg src="/gaming-bg.webm" className="absolute inset-0 w-full h-full opacity-25 pointer-events-none mix-blend-lighten" />
+      {/* 1. BACKGROUND VIDEO (Sử dụng mp4 gốc để tránh lỗi chưa có file webm) */}
+      <BoomerangVideoBg src="/gaming-bg.mp4" className="absolute inset-0 w-full h-full opacity-25 pointer-events-none mix-blend-lighten" />
       
       {/* Lớp phủ cân bằng của Apple giúp text nổi bật trên video */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#05070a_90%)] pointer-events-none" />
@@ -96,7 +108,7 @@ export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
               >
                 <GameCard 
                   game={game} 
-                  onAddToCart={onAddToCart}
+                  onAddToCart={onAddToCart} 
                   onOpenDetail={onOpenDetail}
                   onBuyNow={onBuyNow}
                 />
@@ -105,7 +117,7 @@ export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
           </div>
         ) : (
           <div className="text-center py-20">
-            <p className="text-gray-500 text-sm">Không tìm thấy dữ liệu game hot.</p>
+            <p className="text-gray-500 text-sm">Đang tải danh sách game hot...</p>
           </div>
         )}
 
