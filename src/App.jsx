@@ -158,14 +158,17 @@ function App() {
             </>
           )}
 
-          {/* VIEW: ALL GAMES */}
-          {currentView === 'AllGames' && (
-            <Suspense fallback={<PageLoadingFallback />}>
-              <div className="flex-grow px-4 pb-20 max-w-[1600px] mx-auto w-full">
-                <AllGames searchTerm={searchTerm} onAddToCart={handleAddToCart} onBackToHome={() => handleNavigation('home')} handleOpenModal={(g) => setSelectedGame(g)} handleOpenPurchaseModal={(g) => setPurchaseGame(g)} />
-              </div>
-            </Suspense>
-          )}
+          {currentView === 'about' && (
+  <Suspense fallback={<PageLoadingFallback />}>
+    <div className="flex-grow px-4 md:px-10 py-12 max-w-7xl mx-auto w-full">
+      <AboutSection 
+        onAddToCart={handleAddToCart}
+        onOpenDetail={handleOpenModal}
+        onBuyNow={handleOpenPurchaseModal}
+      />
+    </div>
+  </Suspense>
+)}
 
           {/* 🛠️ FIX: BỔ SUNG CÁC SECTION DƯỚI ĐÂY */}
           {currentView === 'about' && (
