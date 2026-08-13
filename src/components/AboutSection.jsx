@@ -1,69 +1,55 @@
 import React, { useMemo } from 'react';
-import { Sparkles, Flame } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import GameCard from './GameCard';
 import { RAW_GAMES } from '../gamesData';
 
-// Component Video nền mờ tối giản
-function BoomerangVideoBg({ src, className }) {
-  return (
-    <div className={className ?? 'absolute inset-0 w-full h-full'}>
-      <video
-        src={src}
-        className="w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata" // Tải nhẹ metadata để bảo toàn tốc độ load trang
-      />
-    </div>
-  );
-}
-
 export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
   
-  // 🛠️ TỰ ĐỘNG LỌC RA 30 SIÊU PHẨM GAME HOT NHẤT TỪ GAMESDATA
+  // TỰ ĐỘNG LỌC RA 30 SIÊU PHẨM GAME HOT NHẤT TỪ GAMESDATA (Có kiểm tra phòng thủ tránh crash)
   const hotGamesList = useMemo(() => {
-    if (!RAW_GAMES) return [];
-    
-    // Gộp phẳng toàn bộ game từ các danh mục
-    const allGamesArray = Object.values(RAW_GAMES).flat();
-    
-    // Từ khóa ưu tiên các game siêu bom tấn để đưa lên hàng đầu
-    const hotKeywords = [
-      'wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
-      'gta', 'grand theft auto', 'elden ring', 'cyberpunk', 'hogwarts',
-      'resident evil', 'last of us', 'dragon ball', 'horizon'
-    ];
+    try {
+      if (!RAW_GAMES) return [];
+      
+      const allGamesArray = Object.values(RAW_GAMES).flat();
+      if (!allGamesArray || allGamesArray.length === 0) return [];
+      
+      const hotKeywords = [
+        'wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
+        'gta', 'grand theft auto', 'elden ring', 'cyberpunk', 'hogwarts',
+        'resident evil', 'last of us', 'dragon ball', 'horizon'
+      ];
 
-    // Lọc trùng lặp game dựa trên title
-    const seen = new Set();
-    const uniqueGames = allGamesArray.filter(game => {
-      const duplicate = seen.has(game.title);
-      seen.add(game.title);
-      return !duplicate;
-    });
+      const seen = new Set();
+      const uniqueGames = allGamesArray.filter(game => {
+        if (!game || !game.title) return false; // Tránh lỗi thiếu tiêu đề trong data
+        const duplicate = seen.has(game.title);
+        seen.add(game.title);
+        return !duplicate;
+      });
 
-    // Sắp xếp ưu tiên các tựa game chứa từ khóa hot lên đầu trang
-    const prioritized = uniqueGames.sort((a, b) => {
-      const aHot = hotKeywords.some(keyword => a.title.toLowerCase().includes(keyword));
-      const bHot = hotKeywords.some(keyword => b.title.toLowerCase().includes(keyword));
-      if (aHot && !bHot) return -1;
-      if (!aHot && bHot) return 1;
-      return 0;
-    });
+      const prioritized = uniqueGames.sort((a, b) => {
+        const aTitle = a.title ? a.title.toLowerCase() : '';
+        const bTitle = b.title ? b.title.toLowerCase() : '';
+        
+        const aHot = hotKeywords.some(keyword => aTitle.includes(keyword));
+        const bHot = hotKeywords.some(keyword => bTitle.includes(keyword));
+        
+        if (aHot && !bHot) return -1;
+        if (!aHot && bHot) return 1;
+        return 0;
+      });
 
-    // Chỉ lấy tối đa 30 game hot đại diện cho trang này
-    return prioritized.slice(0, 30);
+      return prioritized.slice(0, 30);
+    } catch (error) {
+      console.error("Lỗi khi xử lý danh sách game hot:", error);
+      return [];
+    }
   }, []);
 
   return (
     <section className="relative w-full min-h-[90vh] flex flex-col justify-start items-center py-16 overflow-hidden rounded-[2rem] border border-cyan-500/20 bg-[#05070a] shadow-[0_0_50px_rgba(6,182,212,0.1)] my-10 select-none transform-gpu">
       
-      {/* 1. BACKGROUND VIDEO */}
-      <BoomerangVideoBg src="/gaming-bg.webm" className="absolute inset-0 w-full h-full opacity-25 pointer-events-none mix-blend-lighten" />
-      
-      {/* Lớp phủ cân bằng của Apple giúp text nổi bật trên video */}
+      {/* 1. LỚP PHỦ GRADIENT TỐI GIẢN */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#05070a_90%)] pointer-events-none" />
 
       {/* 2. QUẦNG SÁNG NEON TĨNH KHÔNG GÂY LAG */}
@@ -86,7 +72,7 @@ export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
           </p>
         </div>
 
-        {/* 4. LƯỚI SẢN PHẨM BENTO 3 CỘT TRÊN DESKTOP (Đã đồng bộ chiều cao Card) */}
+        {/* 4. LƯỚI SẢN PHẨM BENTO 3 CỘT TRÊN DESKTOP */}
         {hotGamesList.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-6 md:gap-x-6 md:gap-y-8 w-full max-w-5xl">
             {hotGamesList.map((game, index) => (
@@ -96,7 +82,7 @@ export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
               >
                 <GameCard 
                   game={game} 
-                  onAddToCart={onAddToCart}
+                  onAddToCart={onAddToCart} 
                   onOpenDetail={onOpenDetail}
                   onBuyNow={onBuyNow}
                 />
@@ -105,7 +91,7 @@ export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
           </div>
         ) : (
           <div className="text-center py-20">
-            <p className="text-gray-500 text-sm">Không tìm thấy dữ liệu game hot.</p>
+            <p className="text-gray-500 text-sm">Đang tải danh sách game hot...</p>
           </div>
         )}
 
