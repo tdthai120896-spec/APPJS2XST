@@ -168,17 +168,12 @@ function App() {
 )}
 
 
+          {/* 🛠️ FIX: BỔ SUNG CÁC SECTION DƯỚI ĐÂY */}
           {currentView === 'about' && (
-  <Suspense fallback={<PageLoadingFallback />}>
-    <div className="flex-grow px-4 md:px-10 py-12 max-w-7xl mx-auto w-full">
-      <AboutSection 
-        onAddToCart={handleAddToCart}
-        onOpenDetail={handleOpenModal}
-        onBuyNow={handleOpenPurchaseModal}
-      />
-    </div>
-  </Suspense>
-)}
+            <Suspense fallback={<PageLoadingFallback />}>
+              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><AboutSection /></div>
+            </Suspense>
+          )}
 
           {currentView === 'guide' && (
             <Suspense fallback={<PageLoadingFallback />}>
