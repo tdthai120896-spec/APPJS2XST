@@ -171,7 +171,9 @@ function App() {
           {/* 🛠️ FIX: BỔ SUNG CÁC SECTION DƯỚI ĐÂY */}
           {currentView === 'about' && (
             <Suspense fallback={<PageLoadingFallback />}>
-              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><AboutSection /></div>
+              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><AboutSection />
+                <about onAddToCart={handleAddToCart} handleOpenModal={(g) => setSelectedGame(g)} handleOpenPurchaseModal={(g) => setPurchaseGame(g)} />
+                </div>
             </Suspense>
           )}
 
