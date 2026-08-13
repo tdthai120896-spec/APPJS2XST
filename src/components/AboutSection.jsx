@@ -3,22 +3,6 @@ import { Sparkles, Flame } from 'lucide-react';
 import GameCard from './GameCard';
 import { RAW_GAMES } from '../gamesData';
 
-// Component Video nền mờ tối giản
-function BoomerangVideoBg({ src, className }) {
-  return (
-    <div className={className ?? 'absolute inset-0 w-full h-full'}>
-      <video
-        src={src}
-        className="w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata" // Tải nhẹ metadata để bảo toàn tốc độ load trang
-      />
-    </div>
-  );
-}
 
 export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
   
