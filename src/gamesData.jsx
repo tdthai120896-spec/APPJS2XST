@@ -16,8 +16,8 @@ export const CATEGORY_META = [
 
 export const RAW_GAMES = {
   "Action": [
-    { "title": "Beast of Reincarnation - Deluxe Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3119040/header.jpg" },
-{ "title": "Mortal Shell II: Devout Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3119040/header.jpg" },
+    { "title": "Beast of Reincarnation - Deluxe Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4146830/a2891b2845bcb43aad5fd371ed5e0a79c1c42f8d/capsule_616x353.jpg?t=1785801564" },
+{ "title": "Mortal Shell II: Devout Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2584270/5b6a6b59c4f857165987b15fc116e5b3a06427dc/capsule_616x353.jpg?t=1786999199" },
     { "title": "007 First Light", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3768760/dbe86ebd2edb4c77d113e9e2feefeb90189fabc9/header.jpg?t=1782807423" },
     { "title": "1 vs 1 : Global Operations", "genre": "Action Fighting PvP", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/598230/header.jpg" },
     { "title": "12 is Better Than 6", "genre": "Action Top-down Shooter", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/410110/header.jpg" },
