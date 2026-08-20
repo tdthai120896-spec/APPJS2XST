@@ -8,7 +8,7 @@ const NavigationBar = ({ currentView, handleNavigation, searchTerm, handleSearch
 
   const navLinks = [
     { id: 'home', label: 'Trang Chủ' },
-    { id: 'about', label: 'Giới Thiệu' },
+    { id: 'about', label: 'Game Hot🔥' },
     { id: 'guide', label: 'Hướng Dẫn' },
     { id: 'contact', label: 'Liên Hệ' },
     { id: 'AllGames', label: 'All Games' }
