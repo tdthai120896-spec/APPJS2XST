@@ -12,9 +12,9 @@ export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
       if (!allGamesArray || allGamesArray.length === 0) return [];
       
       const hotKeywords = [
-        'wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
+        'Reincarnation','Mortal Shell','wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
         'gta', 'grand theft auto', 'elden ring', 'cyberpunk', 'hogwarts',
-        'resident evil', 'last of us', 'dragon ball','Reincarnation','Mortal Shell', 'horizon'
+        'resident evil', 'last of us', 'dragon ball', 'horizon'
       ];
 
       const seen = new Set();
