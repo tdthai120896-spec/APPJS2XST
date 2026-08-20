@@ -16,6 +16,8 @@ export const CATEGORY_META = [
 
 export const RAW_GAMES = {
   "Action": [
+    { "title": "Beast of Reincarnation - Deluxe Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3119040/header.jpg" },
+{ "title": "Mortal Shell II: Devout Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3119040/header.jpg" },
     { "title": "007 First Light", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3768760/dbe86ebd2edb4c77d113e9e2feefeb90189fabc9/header.jpg?t=1782807423" },
     { "title": "1 vs 1 : Global Operations", "genre": "Action Fighting PvP", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/598230/header.jpg" },
     { "title": "12 is Better Than 6", "genre": "Action Top-down Shooter", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/410110/header.jpg" },
@@ -707,6 +709,7 @@ export const RAW_GAMES = {
   ],
   "Horror_Collection": [
     { "title": "Alan Wake 2", "genre": "Psychological Horror", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/108710/9c1728f937c2a7e632b447b02e442f6a5d88515c/header.jpg?t=1769717716" },
+    { "title": "No, I'm not a Human", "genre": "Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3180070/header.jpg" },
     { "title": "Alone in the Dark", "genre": "Action Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1310410/header.jpg" },
     { "title": "Amnesia: The Dark Descent", "genre": "Survival Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/57300/header.jpg" },
     { "title": "Amnesia: A Machine for Pigs", "genre": "Industrial Horror", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/239200/header.jpg" },
