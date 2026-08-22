@@ -12,10 +12,8 @@ export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
       if (!allGamesArray || allGamesArray.length === 0) return [];
       
       const hotKeywords = [
-        'Reincarnation','Mortal Shell','wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
-        'gta', 'grand theft auto', 'elden ring', 'cyberpunk', 'hogwarts',
-        'resident evil','palworld', 'horizon','wuchang'
-      ];
+        'reincarnation','mortal shell','wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
+        'gta', 'grand theft auto', 'elden ring', 'cyberpunk', 'hogwarts','palworld', 'horizon','wuchang'];
 
       const seen = new Set();
       const uniqueGames = allGamesArray.filter(game => {
