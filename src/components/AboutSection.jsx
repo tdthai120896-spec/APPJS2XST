@@ -14,7 +14,7 @@ export default function AboutSection({ onAddToCart, onOpenDetail, onBuyNow }) {
       const hotKeywords = [
         'Reincarnation','Mortal Shell','wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
         'gta', 'grand theft auto', 'elden ring', 'cyberpunk', 'hogwarts',
-        'resident evil', 'last of us', 'dragon ball', 'horizon'
+        'resident evil',palworld, 'horizon'
       ];
 
       const seen = new Set();
