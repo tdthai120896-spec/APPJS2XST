@@ -4,7 +4,7 @@ import { X, ShieldCheck, HelpCircle, MessageSquare, MessageCircle, Phone, Shoppi
 
 // Chuỗi mã hóa Base64 cho thông tin liên hệ
 const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA='; // https://zalo.me/0379332870
-const ENCODED_MESSENGER = 'aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3Byb2ZpbGUucGhwP2lkPTYxNTU4MDY1MTMwNjMx'; // Link FB cá nhân
+const ENCODED_MESSENGER = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA'; // Link FB cá nhân
 const ENCODED_CALL = 'dGVsOjAzNzkzMzI4NzA='; // tel:0379332870
 
 // 🛠️ ĐÃ THÊM: Hàm nén ảnh và tự động chuyển sang WebP (giới hạn chiều rộng 640px cho Modal sắc nét)
