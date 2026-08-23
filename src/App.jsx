@@ -30,9 +30,9 @@ const PageLoadingFallback = () => (
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [selectedGame, setSelectedGame] = useState(null); 
-  const [purchaseGame, setPurchaseGame] = useState(null); 
-  const [searchedGame, setSearchedGame] = useState(null); 
+  const [selectedGame, setSelectedGame] = useState(null);
+  const [purchaseGame, setPurchaseGame] = useState(null);
+  const [searchedGame, setSearchedGame] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [currentView, setCurrentView] = useState('home');
   const [deferredGames, setDeferredGames] = useState({ marquee: [], categories: [] });
@@ -45,9 +45,9 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!RAW_GAMES || !CATEGORY_META) return;
-      const mappedCategories = CATEGORY_META.map(cat => ({ 
-        ...cat, 
-        games: (RAW_GAMES[cat.key] || []).slice(0, 8) 
+      const mappedCategories = CATEGORY_META.map(cat => ({
+        ...cat,
+        games: (RAW_GAMES[cat.key] || []).slice(0, 8)
       }));
       const flattened = Object.values(RAW_GAMES).flat();
       if (flattened.length > 0) {
@@ -89,8 +89,8 @@ function App() {
   }, []);
 
   const handleNavigation = useCallback((view) => {
-    setCurrentView(view); 
-    setSearchTerm(''); 
+    setCurrentView(view);
+    setSearchTerm('');
     setSuggestions([]);
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
@@ -108,11 +108,11 @@ function App() {
                 <X className="h-4 w-4" />
               </button>
               <div className="h-[320px] md:h-[410px] w-full">
-                <GameCard 
-                  game={searchedGame} 
-                  onAddToCart={handleAddToCart} 
-                  onOpenDetail={(g) => setSelectedGame(g)} 
-                  onBuyNow={(g) => setPurchaseGame(g)} 
+                <GameCard
+                  game={searchedGame}
+                  onAddToCart={handleAddToCart}
+                  onOpenDetail={(g) => setSelectedGame(g)}
+                  onBuyNow={(g) => setPurchaseGame(g)}
                 />
               </div>
             </div>
@@ -122,17 +122,17 @@ function App() {
 
       <main className="relative min-h-screen bg-[#05070a] text-white overflow-x-hidden">
         <div className="hidden md:block fixed inset-0 opacity-[0.03] pointer-events-none z-0" style={{ backgroundImage: 'url("/noise.png")' }} />
-        
-        <NavigationBar 
+
+        <NavigationBar
           currentView={currentView} handleNavigation={handleNavigation}
           searchTerm={searchTerm} handleSearch={handleSearch}
           suggestions={suggestions} onSelectGame={handleSelectSuggestedGame}
         />
-        
+
         <FloatingAllGames onClick={() => handleNavigation('AllGames')} totalGames={totalGamesCount.toString()} />
-        
+
         <div className="relative z-10 flex flex-col min-h-screen pt-32 md:pt-36">
-          
+
           {/* VIEW: TRANG CHỦ */}
           {currentView === 'home' && (
             <>
@@ -140,9 +140,9 @@ function App() {
               <div className="space-y-12 pb-20 flex-grow">
                 <Suspense fallback={null}>
                   {deferredGames.marquee.length > 0 && (
-                    <MarqueeGames 
-                      games={deferredGames.marquee} 
-                      onGameClick={(g) => setSelectedGame(g)} 
+                    <MarqueeGames
+                      games={deferredGames.marquee}
+                      onGameClick={(g) => setSelectedGame(g)}
                       onAddToCart={handleAddToCart}
                       onBuyNow={(g) => setPurchaseGame(g)}
                       priority={true}
@@ -159,21 +159,25 @@ function App() {
           )}
 
           {/* VIEW: ALL GAMES */}
-{currentView === 'AllGames' && (
-  <Suspense fallback={<PageLoadingFallback />}>
-    <div className="flex-grow px-4 pb-20 max-w-[1600px] mx-auto w-full">
-      <AllGames searchTerm={searchTerm} onAddToCart={handleAddToCart} onBackToHome={() => handleNavigation('home')} handleOpenModal={(g) => setSelectedGame(g)} handleOpenPurchaseModal={(g) => setPurchaseGame(g)} />
-    </div>
-  </Suspense>
-)}
+          {currentView === 'AllGames' && (
+            <Suspense fallback={<PageLoadingFallback />}>
+              <div className="flex-grow px-4 pb-20 max-w-[1600px] mx-auto w-full">
+                <AllGames searchTerm={searchTerm} onAddToCart={handleAddToCart} onBackToHome={() => handleNavigation('home')} handleOpenModal={(g) => setSelectedGame(g)} handleOpenPurchaseModal={(g) => setPurchaseGame(g)} />
+              </div>
+            </Suspense>
+          )}
 
 
-          {/* 🛠️ FIX: BỔ SUNG CÁC SECTION DƯỚI ĐÂY */}
+          {/* VIEW: GIỚI THIỆU - ĐÃ ÁP DỤNG LOGIC GIỐNG ALLGAMES */}
           {currentView === 'about' && (
             <Suspense fallback={<PageLoadingFallback />}>
-              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><AboutSection />
-                <about onAddToCart={handleAddToCart} handleOpenModal={(g) => setSelectedGame(g)} handleOpenPurchaseModal={(g) => setPurchaseGame(g)} />
-                </div>
+              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full">
+                <AboutSection 
+                   onAddToCart={handleAddToCart} 
+                   handleOpenModal={(g) => setSelectedGame(g)} 
+                   handleOpenPurchaseModal={(g) => setPurchaseGame(g)} 
+                />
+              </div>
             </Suspense>
           )}
 
@@ -188,7 +192,7 @@ function App() {
               <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><Location /></div>
             </Suspense>
           )}
-          
+
           <Footer />
           <FloatingContactWidget />
 
