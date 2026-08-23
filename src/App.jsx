@@ -21,11 +21,7 @@ const PurchaseModal = lazy(() => import('./components/PurchaseModal'))
 const MarqueeGames = lazy(() => import('./components/MarqueeGames'))
 const CategoryShelf = lazy(() => import('./components/CategoryShelf'))
 
-const PageLoadingFallback = () => (
-  <div className="flex-grow flex items-center justify-center py-24 w-full bg-[#05070a]">
-    <div className="w-10 h-10 rounded-full border-2 border-cyan-500/10 border-t-cyan-500 animate-spin" />
-  </div>
-);
+const PageLoadingFallback = () => <div className="min-h-screen bg-[#0a0f1e]" />;
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -54,7 +50,7 @@ function App() {
         const selected = [...flattened].sort(() => 0.5 - Math.random()).slice(0, 12);
         setDeferredGames({ categories: mappedCategories, marquee: selected });
       }
-    }, 1000);
+    }, 800); // Tăng lên 800ms để Hero load mượt trước
     return () => clearTimeout(timer);
   }, []);
 
@@ -89,9 +85,7 @@ function App() {
   }, []);
 
   const handleNavigation = useCallback((view) => {
-    setCurrentView(view);
-    setSearchTerm('');
-    setSuggestions([]);
+    setCurrentView(view); setSearchTerm(''); setSuggestions([]);
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
 
@@ -99,31 +93,37 @@ function App() {
     <>
       <Cart cartItems={cartItems} onRemove={handleRemoveFromCart} />
 
+      {/* MODAL SEARCH QUICKET */}
       {searchedGame && (
-        <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/95 p-4">
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 animate-in fade-in duration-300">
           <div className="absolute inset-0" onClick={() => setSearchedGame(null)}></div>
-          <div className="relative z-10 w-[240px] md:w-[320px]">
-            <div className="relative bg-[#05080c] rounded-[1.6rem] border border-cyan-400/45 overflow-hidden shadow-2xl">
-              <button onClick={() => setSearchedGame(null)} className="absolute top-3 right-3 z-50 bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-all">
+          <div className="relative z-10 w-[260px] md:w-[320px] animate-in zoom-in-95 duration-300">
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-[1.6rem] opacity-60 blur-md pointer-events-none"></div>
+            <div className="relative bg-[#080d16] rounded-[1.6rem] border border-cyan-400/45 shadow-2xl overflow-hidden">
+              <button onClick={() => setSearchedGame(null)} className="absolute top-3 right-3 z-50 bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-all text-white">
                 <X className="h-4 w-4" />
               </button>
-              <div className="h-[320px] md:h-[410px] w-full">
-                <GameCard
-                  game={searchedGame}
-                  onAddToCart={handleAddToCart}
-                  onOpenDetail={(g) => setSelectedGame(g)}
-                  onBuyNow={(g) => setPurchaseGame(g)}
-                />
+              <div className="h-[340px] md:h-[410px] w-full">
+                <GameCard game={searchedGame} onAddToCart={handleAddToCart} onOpenDetail={(g) => setSelectedGame(g)} onBuyNow={(g) => setPurchaseGame(g)} />
               </div>
             </div>
           </div>
         </div>
       )}
 
-      <main className="relative min-h-screen bg-[#05070a] text-white overflow-x-hidden">
-        <div className="hidden md:block fixed inset-0 opacity-[0.03] pointer-events-none z-0" style={{ backgroundImage: 'url("/noise.png")' }} />
+      <main className="relative min-h-screen bg-[#080b14] text-white selection:bg-cyan-500/30 overflow-x-hidden">
+        
+        {/* 🌟 LỚP ÁNH SÁNG MÔI TRƯỜNG (MAKES THE WEB BRIGHTER) */}
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+          {/* Quầng sáng Cyan bên trái */}
+          <div className="absolute top-[-10%] left-[-5%] w-[800px] h-[800px] bg-cyan-600/10 blur-[150px] rounded-full opacity-60" />
+          {/* Quầng sáng Blue bên phải */}
+          <div className="absolute bottom-[10%] right-[-10%] w-[700px] h-[700px] bg-blue-700/10 blur-[130px] rounded-full opacity-40" />
+          {/* Noise texture nhẹ cho cảm giác Cinematic */}
+          <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay" style={{ backgroundImage: 'url("/noise.png")' }} />
+        </div>
 
-        <NavigationBar
+        <NavigationBar 
           currentView={currentView} handleNavigation={handleNavigation}
           searchTerm={searchTerm} handleSearch={handleSearch}
           suggestions={suggestions} onSelectGame={handleSelectSuggestedGame}
@@ -131,24 +131,24 @@ function App() {
 
         <FloatingAllGames onClick={() => handleNavigation('AllGames')} totalGames={totalGamesCount.toString()} />
 
-        <div className="relative z-10 flex flex-col min-h-screen pt-32 md:pt-36">
+        <div className="relative z-10 flex flex-col min-h-screen pt-28 md:pt-32">
 
           {/* VIEW: TRANG CHỦ */}
           {currentView === 'home' && (
             <>
               <Hero />
-              <div className="space-y-12 pb-20 flex-grow">
+              <div className="space-y-16 pb-20 flex-grow">
                 <Suspense fallback={null}>
                   {deferredGames.marquee.length > 0 && (
-                    <MarqueeGames
-                      games={deferredGames.marquee}
-                      onGameClick={(g) => setSelectedGame(g)}
+                    <MarqueeGames 
+                      games={deferredGames.marquee} 
+                      onGameClick={(g) => setSelectedGame(g)} 
                       onAddToCart={handleAddToCart}
                       onBuyNow={(g) => setPurchaseGame(g)}
                       priority={true}
                     />
                   )}
-                  <section className="space-y-12 px-4 md:px-10 max-w-[1600px] mx-auto w-full">
+                  <section className="space-y-16 px-4 md:px-10 max-w-[1600px] mx-auto w-full">
                     {deferredGames.categories.map((cat) => (
                       <CategoryShelf key={cat.key} category={cat} onGameClick={(g) => setSelectedGame(g)} onAddToCart={handleAddToCart} onBuyNow={(g) => setPurchaseGame(g)} />
                     ))}
@@ -167,35 +167,23 @@ function App() {
             </Suspense>
           )}
 
-
-          {/* VIEW: GIỚI THIỆU - ĐÃ ÁP DỤNG LOGIC GIỐNG ALLGAMES */}
+          {/* VIEW: GIỚI THIỆU */}
           {currentView === 'about' && (
             <Suspense fallback={<PageLoadingFallback />}>
               <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full">
-                <AboutSection 
-                   onAddToCart={handleAddToCart} 
-                   handleOpenModal={(g) => setSelectedGame(g)} 
-                   handleOpenPurchaseModal={(g) => setPurchaseGame(g)} 
-                />
+                <AboutSection onAddToCart={handleAddToCart} handleOpenModal={(g) => setSelectedGame(g)} handleOpenPurchaseModal={(g) => setPurchaseGame(g)} />
               </div>
             </Suspense>
           )}
 
-          {currentView === 'guide' && (
-            <Suspense fallback={<PageLoadingFallback />}>
-              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><GuideSection /></div>
-            </Suspense>
-          )}
-
-          {currentView === 'contact' && (
-            <Suspense fallback={<PageLoadingFallback />}>
-              <div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><Location /></div>
-            </Suspense>
-          )}
+          {/* CÁC VIEW KHÁC */}
+          {currentView === 'guide' && <Suspense fallback={<PageLoadingFallback />}><div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><GuideSection /></div></Suspense>}
+          {currentView === 'contact' && <Suspense fallback={<PageLoadingFallback />}><div className="flex-grow px-4 py-12 max-w-7xl mx-auto w-full"><Location /></div></Suspense>}
 
           <Footer />
           <FloatingContactWidget />
 
+          {/* MODALS */}
           <Suspense fallback={null}>
             {selectedGame && <GameDetailModal game={selectedGame} onClose={closeAllOverlays} onBuyNow={() => setPurchaseGame(selectedGame)} />}
             {purchaseGame && <PurchaseModal game={purchaseGame} onClose={closeAllOverlays} />}

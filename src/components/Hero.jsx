@@ -34,12 +34,17 @@ function Hero() {
 
       {/* 2. BACKGROUND */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div 
-          className="absolute inset-0 bg-[url('/background.jpg')] bg-cover bg-center opacity-[0.5] md:opacity-[0.7]" 
-          style={{ filter: 'brightness(0.4) contrast(1.2)' }} 
+        {/* Ảnh nền có độ sáng cao hơn chút */}
+        <div
+          className="absolute inset-0 bg-[url('/background.jpg')] bg-cover bg-center opacity-[0.6]"
+          style={{ filter: 'brightness(0.6) contrast(1.1) saturate(1.2)' }}
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.08)_0%,#030508_85%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#030508] to-transparent" />
+
+        {/* 🛠️ THÊM LỚP PHỦ NÀY: Giúp vùng trung tâm sáng bừng lên */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(34,211,238,0.1)_0%,transparent_60%)]" />
+
+        {/* Gradient chuyển mượt xuống phần thân */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#060912] to-transparent" />
       </div>
 
       {/* 3. MAIN CONTENT CONTAINER (Tối ưu khoảng cách dọc siêu gọn gàng cho Mobile) */}
@@ -48,7 +53,7 @@ function Hero() {
         {/* 🌟 4. BẢNG ƯU ĐÃI VÀNG (Được đẩy lên đầu tiên để tăng sự chú ý của khách hàng) */}
         <div className="w-full max-w-[480px] bg-gradient-to-br from-amber-600/30 via-amber-500/10 to-amber-900/30 backdrop-blur-xl border border-amber-500/40 rounded-xl p-3 flex items-center justify-between gap-3 animate-gold-glow relative overflow-hidden transform-gpu">
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_3s_infinite] pointer-events-none" />
-          
+
           <div className="flex items-center gap-3 z-10">
             <div className="h-9 w-9 md:h-11 md:w-11 rounded-lg bg-amber-500 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/20">
               <Gift className="w-5 h-5 text-black font-black animate-bounce" />
@@ -62,14 +67,14 @@ function Hero() {
           </div>
 
           <div className="text-right z-10">
-             <p className="text-[8px] font-bold text-amber-200/50 uppercase tracking-tighter">Bonus (Random)</p>
-             <p className="text-[10px] md:text-xs font-black text-white italic tracking-tight">+100 Games</p>
+            <p className="text-[8px] font-bold text-amber-200/50 uppercase tracking-tighter">Bonus (Random)</p>
+            <p className="text-[10px] md:text-xs font-black text-white italic tracking-tight">+100 Games</p>
           </div>
         </div>
 
         {/* 🌟 5. BẢNG CHÍNH SÁCH & DỊCH VỤ (Đặt ngay ngắn phía dưới bảng Ưu đãi) */}
         <div className="w-full max-w-[620px] bg-[#05080f]/80 backdrop-blur-2xl border border-cyan-500/25 rounded-2xl p-5 md:p-6 shadow-[0_24px_60px_rgba(0,0,0,0.65)] select-none">
-          
+
           {/* Header Bảng dạng 1 hàng to rõ rệt */}
           <div className="flex flex-col items-center gap-1.5 mb-4 pb-3 border-b border-white/5">
             <div className="flex items-center gap-2">
@@ -90,10 +95,10 @@ function Hero() {
               </div>
               <p className="text-[11px] md:text-xs text-neutral-300 leading-relaxed font-medium flex-1">
                 Tài khoản cho thuê trải nghiệm Offline thông qua chức năng chính thống Steam Family Sharing. Cam kết không kinh doanh tài khoản ảo và tuân thủ pháp luật theo{' '}
-                <a 
-                  href="https://vanban.chinhphu.vn/?pageid=27160&docid=218185&classid=1&typegroupid=4" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://vanban.chinhphu.vn/?pageid=27160&docid=218185&classid=1&typegroupid=4"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-cyan-400 hover:text-cyan-300 underline font-bold transition-colors"
                 >
                   Nghị định 174/2026/NĐ-CP

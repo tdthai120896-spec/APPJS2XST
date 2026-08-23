@@ -107,6 +107,20 @@
     }
   }
 
+@layer base {
+  body {
+    /* Thay đổi màu nền từ đen tuyền sang Xanh Đen sâu để có chiều sâu */
+    background-color: #0a0f1a; 
+    background-image: 
+      /* Lưới tọa độ mờ */
+      linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    color: white;
+  }
+}
+
+
   /* GIẢM ĐỘ PHỨC TẠP SHADOW TRÊN MOBILE */
   @media (max-width: 768px) {
     .search-shadow, .shadow-2xl, .shadow-xl {
@@ -124,3 +138,4 @@
   100% { top: 100%; opacity: 0; }
 }
 }
+
