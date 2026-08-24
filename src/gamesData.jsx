@@ -40,6 +40,7 @@ export const RAW_GAMES = {
     { "title": "Aliens: Fireteam Elite", "genre": "Co-op Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1549970/header.jpg" },
     { "title": "Alpacapaca Dash", "genre": "Casual Runner Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/209170/header.jpg" },
     { "title": "Altar Guardian", "genre": "Action Hack & Slash", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/202990/header.jpg" },
+    { "title": "World War Z", "genre": "Shooter", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/699130/header.jpg" },
     { "title": "Arma 3", "genre": "Tactical Military Action Sim", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/107410/header.jpg" },
     { "title": "Armored Core VI Fires of Rubicon", "genre": "Mecha Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1888160/header.jpg" },
     { "title": "Armored Gear", "genre": "Action Mech Defense", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/476600/header.jpg" },
@@ -1037,7 +1038,7 @@ export const RAW_GAMES = {
     { "title": "Tomb Raider (2013)", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/203160/header.jpg" },
     { "title": "Rise of the Tomb Raider", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391220/header.jpg" },
     { "title": "Shadow of the Tomb Raider: Definitive Edition", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/750920/header.jpg" },
-    { "title": "The Last of Us Part II Remastered", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://cdn1.epicgames.com/offer/79d39109000a430588665796c9233633/EGS_TheLastofUsPartIIRemastered_NaughtyDog_S2_1200x1600-f65593c1d93540d998d839352e0a293b" },
+    { "title": "The Last of Us Part II Remastered", "genre": "Action-Adventure", "price": "30.000đ", "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRzZa8f_0Y2VAbDsiy-jPnB2inkfI8eWNyLNmTSYYVcQ&s=10" },
     { "title": "The Witness", "genre": "Open World Puzzle", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/210970/header.jpg" }
   ]
 }; // Kết thúc object RAW_GAMES
