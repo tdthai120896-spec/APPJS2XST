@@ -1,208 +1,189 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ShieldCheck, HelpCircle, MessageSquare, MessageCircle, Phone, ShoppingCart } from 'lucide-react';
+import { X, ShieldCheck, MessageSquare, MessageCircle, Phone, ShoppingCart, Loader2, Play, BookOpen, Info, Gift } from 'lucide-react';
 
-// Chuỗi mã hóa Base64 cho thông tin liên hệ
-const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA='; // https://zalo.me/0379332870
-const ENCODED_MESSENGER = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA'; // Link FB cá nhân
-const ENCODED_CALL = 'dGVsOjAzNzkzMzI4NzA='; // tel:0379332870
+const ENCODED_ZALO = 'aHR0cHM6Ly96YWxvLm1lLzAzNzkzMzI4NzA=';
+const ENCODED_MESSENGER = 'aHR0cHM6Ly9tLm1lLzYxNTU4MDY1MTMwNjMx';
+const ENCODED_CALL = 'dGVsOjAzNzkzMzI4NzA=';
 
-// 🛠️ ĐÃ THÊM: Hàm nén ảnh và tự động chuyển sang WebP (giới hạn chiều rộng 640px cho Modal sắc nét)
-const getOptimizedModalImage = (url) => {
+const getOptimizedModalImage = (url, width = 800) => {
     if (!url) return '';
     if (url.startsWith('/') || url.startsWith('data:')) return url;
-    return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=640&output=webp&q=80`;
+    return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=${width}&output=webp&q=80`;
 };
 
 function GameDetailModal({ game, onClose, onBuyNow }) {
     const [links, setLinks] = useState({ zalo: '#', messenger: '#', call: '#' });
+    const [steamAppId, setSteamAppId] = useState(null);
+    const [loadingSteam, setLoadingSteam] = useState(true);
+    const [activeTab, setActiveTab] = useState('info'); 
+    const [mainImage, setMainImage] = useState(game.poster);
 
-    // Tự động khóa cuộn trang nền khi mở Modal và giải mã liên kết
+    const fetchSteamAppId = async (title) => {
+        try {
+            const searchUrl = `https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent(title)}&l=english&cc=US`;
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(searchUrl)}`;
+            const response = await fetch(proxyUrl);
+            const rawData = await response.json();
+            const data = JSON.parse(rawData.contents);
+            if (data?.items?.length > 0) return data.items[0].id;
+        } catch (error) { console.error(error); }
+        return null;
+    };
+
     useEffect(() => {
         document.body.style.overflow = 'hidden';
-        
-        try {
-            setLinks({
-                zalo: window.atob(ENCODED_ZALO),
-                messenger: window.atob(ENCODED_MESSENGER),
-                call: window.atob(ENCODED_CALL)
-            });
-        } catch (error) {
-            console.error("Lỗi giải mã liên kết:", error);
-        }
-
+        setMainImage(game.poster);
+        const initModal = async () => {
+            setLoadingSteam(true);
+            const id = await fetchSteamAppId(game.title);
+            if (id) setSteamAppId(id);
+            setLoadingSteam(false);
+            try {
+                setLinks({
+                    zalo: window.atob(ENCODED_ZALO),
+                    messenger: window.atob(ENCODED_MESSENGER),
+                    call: window.atob(ENCODED_CALL)
+                });
+            } catch (e) {}
+        };
+        initModal();
         return () => { document.body.style.overflow = 'unset'; };
-    }, []);
+    }, [game]);
+
+    const steamAssets = steamAppId ? {
+        background: `https://cdn.akamai.steamstatic.com/steam/apps/${steamAppId}/page_bg_generated_v6b.jpg`,
+        screenshots: [
+            `https://cdn.akamai.steamstatic.com/steam/apps/${steamAppId}/ss_1.1920x1080.jpg`,
+            `https://cdn.akamai.steamstatic.com/steam/apps/${steamAppId}/ss_2.1920x1080.jpg`,
+            `https://cdn.akamai.steamstatic.com/steam/apps/${steamAppId}/ss_3.1920x1080.jpg`,
+        ]
+    } : null;
+
+    const policies = [
+        'Đăng nhập tài khoản & chơi Offline.',
+        'Sử dụng vĩnh viễn, bảo hành trọn đời.',
+        'Truy cập đầy đủ Workshop & Mods.',
+        'Hỗ trợ Cloud Gaming (Geforce Now...).'
+    ];
 
     if (!game) return null;
 
-    const policies = [
-        'Game bản quyền update đầy đủ.',
-        'Dạng thuê tài khoản steam chỉ cần đăng nhập và chơi.',
-        'Trước khi chơi cần chuyển Steam sang chế độ Offline.',
-        'Không đổi được email và mật khẩu.',
-        'Được quyền truy cập Workshop.',
-        'Đăng nhập được vào các nền tảng cloud gaming.',
-        'Hỗ trợ cài đặt và bảo hành trong suốt quá trình chơi game.',
-        'Sử dụng không thời hạn.'
-    ];
-
-    // Đoạn mã CSS Style tạo thanh cuộn Neon mượt mà
-    const neonScrollbarStyle = `
-      .gaming-scrollbar::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-      }
-      .gaming-scrollbar::-webkit-scrollbar-track {
-        background: rgba(15, 18, 24, 0.4);
-      }
-      .gaming-scrollbar::-webkit-scrollbar-thumb {
-        background: linear-gradient(to bottom, #06b6d4, #22d3ee);
-        border-radius: 999px;
-      }
-      .gaming-scrollbar {
-        scrollbar-width: thin;
-        scrollbar-color: #06b6d4 rgba(15, 18, 24, 0.4);
-      }
-    `;
-
     return createPortal(
-        <div 
-          className="fixed inset-0 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
-          style={{ zIndex: 999999 }}
-        >
-            {/* Lớp nền tối */}
-            <div className="fixed inset-0 bg-black/85" onClick={onClose} />
+        <div className="fixed inset-0 flex items-center justify-center p-2 sm:p-4 z-[999999] animate-in fade-in duration-300">
+            <div className="fixed inset-0 bg-black/90 backdrop-blur-sm" onClick={onClose} />
 
-            <style>{neonScrollbarStyle}</style>
+            <div className="relative w-full max-w-4xl h-[90vh] md:h-auto md:max-h-[90vh] overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] border border-white/10 bg-[#05070a] text-white shadow-2xl flex flex-col transform-gpu">
+                
+                {/* HEADER CỐ ĐỊNH */}
+                <div className="relative z-20 flex justify-between items-center p-4 md:p-6 border-b border-white/5 bg-black/40 backdrop-blur-md">
+                    <div className="text-left">
+                        <h2 className="text-lg md:text-2xl font-black uppercase tracking-tighter italic text-cyan-400">
+                            {game.title}
+                        </h2>
+                        <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">
+                           🔥 {game.price} • {game.genre}
+                        </p>
+                    </div>
+                    <button onClick={onClose} className="p-2 rounded-full bg-white/5 hover:bg-rose-500 transition-all shadow-lg text-white"><X className="w-5 h-5" /></button>
+                </div>
 
-            {/* Khung nội dung chính - Phong cách Apple Card bo tròn hiện đại */}
-            <div className="gaming-scrollbar relative w-[92vw] sm:w-[85vw] md:w-full md:max-w-3xl h-fit max-h-[86dvh] md:max-h-[85vh] overflow-y-auto rounded-[2rem] border border-cyan-500/20 bg-[#080d16] text-white p-5 sm:p-6 md:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.8)] flex flex-col justify-between">
-
-                {/* NÚT ĐÓNG GÓC PHẢI DI ĐỘNG & DESKTOP */}
-                <button
-                    onClick={onClose}
-                    className="absolute top-4 right-4 p-2 bg-black/50 border border-white/5 hover:bg-red-500 text-gray-400 hover:text-white rounded-full transition-all duration-300 z-50 shadow-md active:scale-95"
-                >
-                    <X className="h-4 w-4 md:h-5 md:w-5" />
-                </button>
-
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 pt-4 md:pt-2">
-
-                    {/* ================= CỘT TRÁI: ẢNH, GIÁ & NÚT MUA (5/12 cột) ================= */}
-                    <div className="md:col-span-5 flex flex-col gap-4">
-                        {/* Khung ảnh tỉ lệ 16:9 sắc nét đã qua tối ưu WebP */}
-                        <div className="relative aspect-[16/9] w-full mx-auto overflow-hidden rounded-2xl border border-cyan-500/10 shadow-[0_4px_15px_rgba(0,0,0,0.5)]">
-                            <img
-                                src={getOptimizedModalImage(game.poster)} // 🛠️ Áp dụng nén WebP động tại đây
-                                alt={game.title}
-                                loading="lazy"
-                                decoding="async"
-                                className="h-full w-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#080d16]/80 via-transparent to-transparent pointer-events-none" />
+                {/* CONTENT AREA */}
+                <div className="relative z-10 flex-grow overflow-y-auto custom-scrollbar flex flex-col md:flex-row">
+                    
+                    {/* CỘT TRÁI: ẢNH & SCREENSHOTS */}
+                    <div className="w-full md:w-[45%] p-4 md:p-6 bg-black/20 flex flex-col gap-4">
+                        <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-slate-900">
+                            <img src={getOptimizedModalImage(mainImage)} className="w-full h-full object-cover" alt="" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                         </div>
 
-                        {/* Thẻ hiển thị giá tối giản */}
-                        <div className="bg-[#0e1624] border border-cyan-500/10 rounded-2xl p-2.5 text-center">
-                            <p className="text-[9px] text-gray-400 font-bold tracking-widest uppercase mb-0.5">Giá trải nghiệm</p>
-                            <p className="text-lg md:text-2xl font-black text-cyan-400 tracking-wider leading-none">
-                                {game.price || '30.000đ'}
-                            </p>
-                        </div>
-
-                        {/* Nút Mua ngay */}
-                        <div className="relative w-full">
-                          <button
-                              onClick={() => {
-                                  onClose();
-                                  onBuyNow();
-                              }}
-                              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-[#080d16] py-3 rounded-full font-black uppercase tracking-widest text-xs shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.55)] transition-all duration-300 active:scale-[0.97] hover:scale-[1.01]"
-                          >
-                              <ShoppingCart className="h-4 w-4 stroke-[3]" /> Nhận ngay
-                          </button>
-                        </div>
+                        {steamAssets && (
+                            <div className="grid grid-cols-4 gap-2">
+                                {[game.poster, ...steamAssets.screenshots].map((img, i) => (
+                                    <button key={i} onClick={() => setMainImage(img)} className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${mainImage === img ? 'border-cyan-400 scale-95' : 'border-transparent opacity-40'}`}>
+                                        <img src={getOptimizedModalImage(img, 200)} className="w-full h-full object-cover" alt="" />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
-                    {/* ================= CỘT PHẢI: THÔNG TIN CHI TIẾT & CHÍNH SÁCH (7/12 cột) ================= */}
-                    <div className="md:col-span-7 flex flex-col justify-between space-y-4 sm:space-y-5">
-                        <div>
-                            {/* Tên Game */}
-                            <h2 className="text-lg sm:text-2xl md:text-3xl font-black uppercase tracking-wide text-white mb-1 leading-tight">
-                                {game.title}
-                            </h2>
-                            <p className="text-[9px] sm:text-[10px] text-cyan-400 font-black uppercase tracking-widest mb-3 flex items-center gap-1.5 select-none">
-                              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_6px_rgba(6,182,212,1)]" />
-                              Steam Offline Mode • {game.genre || 'AAA'}
-                            </p>
-
-                            {/* Banner "Mua 1 Được 100" */}
-                            <div className="mb-3.5 p-3 rounded-2xl bg-cyan-950/20 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.05)]">
-                                <p className="text-[10px] sm:text-xs font-bold leading-normal text-cyan-300 uppercase tracking-wider">
-                                    🎁 Thuê 1 Được 100: TẶNG LÊN ĐẾN 100 GAMES
-                                </p>
-                                <p className="text-[9px] sm:text-[10px] text-gray-400 font-semibold mt-0.5 block leading-normal">
-                                    Tài khoản được gán kèm ngẫu nhiên loạt game siêu phẩm sau khi bạn mua thành công!
-                                </p>
-                            </div>
-
-                            <hr className="border-cyan-500/10 mb-3" />
-
-                            {/* Danh sách chính sách dịch vụ */}
-                            <ul className="space-y-2">
-                                {policies.map((policy, idx) => (
-                                    <li key={idx} className="flex items-start gap-2 group">
-                                        <ShieldCheck className="h-4 w-4 text-cyan-400 shrink-0 mt-0.5 group-hover:scale-105 transition-transform" />
-                                        <span className="text-[11px] sm:text-xs font-semibold text-gray-300 leading-normal group-hover:text-white transition-colors">
-                                            {policy}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
+                    {/* CỘT PHẢI: TABS NỘI DUNG */}
+                    <div className="w-full md:w-[55%] p-4 md:p-6 flex flex-col min-h-[380px]">
+                        {/* Tab Switcher */}
+                        <div className="flex gap-2 p-1 bg-white/5 rounded-xl mb-5 border border-white/5">
+                            <button onClick={() => setActiveTab('info')} className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-[10px] font-black uppercase transition-all ${activeTab === 'info' ? 'bg-cyan-500 text-black' : 'text-gray-400 hover:text-white'}`}>
+                                <Info className="w-3.5 h-3.5" /> Thông tin
+                            </button>
+                            <button onClick={() => setActiveTab('guide')} className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-[10px] font-black uppercase transition-all ${activeTab === 'guide' ? 'bg-cyan-500 text-black' : 'text-gray-400 hover:text-white'}`}>
+                                <Play className="w-3.5 h-3.5" /> Video & HD
+                            </button>
                         </div>
 
-                        {/* KHU VỰC CONTACT LIÊN HỆ */}
-                        <div className="border-t border-cyan-500/10 pt-3.5 mt-3">
-                            <div className="flex items-center gap-1.5 text-cyan-400/80 mb-2.5 select-none">
-                                <HelpCircle className="h-3.5 w-3.5" />
-                                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest">
-                                    Giải đáp thắc mắc trước khi thanh toán:
-                                </p>
+                        {/* TAB THÔNG TIN */}
+                        {activeTab === 'info' && (
+                            <div className="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
+                                
+                                {/* 🌟 QUÀ TẶNG CHỚP NHÁY - ĐÃ ĐẨY LÊN CAO NHẤT */}
+                                <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.15)] animate-pulse">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <div className="h-5 w-5 bg-amber-500 rounded-md flex items-center justify-center">
+                                            <Gift className="w-3.5 h-3.5 text-black font-black" />
+                                        </div>
+                                        <h4 className="text-[10px] font-black text-amber-400 uppercase tracking-widest">Ưu đãi kèm theo</h4>
+                                    </div>
+                                    <p className="text-[12px] text-white font-black leading-tight italic">
+                                        TẶNG KÈM NGẪU NHIÊN <span className="text-amber-400 underline decoration-amber-500/50">LÊN ĐẾN 100 GAMES</span> BẢN QUYỀN KHÁC!
+                                    </p>
+                                </div>
+
+                                {/* LIST QUY ĐỊNH */}
+                                <div className="space-y-2.5">
+                                    <h4 className="text-[9px] font-black text-gray-500 uppercase tracking-[0.2em] px-1">Quy định dịch vụ</h4>
+                                    {policies.map((p, i) => (
+                                        <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                                            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                                            <span className="text-[11px] font-bold text-gray-300 leading-tight">{p}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
+                        )}
 
-                            {/* Hệ thống 3 nút liên hệ (Đã đồng bộ hóa biểu tượng) */}
-                            <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
-                                <a
-                                    href={links.messenger}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="flex items-center justify-center gap-1 px-1 py-2.5 rounded-xl bg-[#0e1624] border border-cyan-500/15 text-cyan-400 hover:text-black hover:bg-cyan-500 hover:border-cyan-400 text-[9px] min-[375px]:text-[10px] font-bold uppercase tracking-wider transition-all duration-300 active:scale-95 text-center"
-                                >
-                                    <MessageSquare className="h-3.5 w-3.5 shrink-0 hidden min-[360px]:block" /> Messenger
-                                </a>
-
-                                <a
-                                    href={links.zalo}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="flex items-center justify-center gap-1 px-1 py-2.5 rounded-xl bg-[#0e1624] border border-cyan-500/15 text-cyan-400 hover:text-black hover:bg-cyan-500 hover:border-cyan-400 text-[9px] min-[375px]:text-[10px] font-bold uppercase tracking-wider transition-all duration-300 active:scale-95 text-center"
-                                >
-                                    <MessageCircle className="h-3.5 w-3.5 shrink-0 hidden min-[360px]:block fill-current" /> Zalo
-                                </a>
-
-                                <a
-                                    href={links.call}
-                                    className="flex items-center justify-center gap-1 px-1 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-[#080d16] hover:brightness-110 text-[9px] min-[375px]:text-[10px] font-black uppercase tracking-wider transition-all active:scale-95 text-center"
-                                >
-                                    <Phone className="h-3.5 w-3.5 shrink-0 hidden min-[360px]:block fill-current" /> Gọi điện
-                                </a>
+                        {/* TAB HƯỚNG DẪN */}
+                        {activeTab === 'guide' && (
+                            <div className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-300">
+                                <div className="aspect-video w-full rounded-xl overflow-hidden border border-white/10 bg-black shadow-inner">
+                                    <iframe 
+                                        key="guide-video"
+                                        className="w-full h-full"
+                                        src="https://www.youtube.com/embed/CcB3vbLEAOM?si=eB8GmzNhn4gxKz20" 
+                                        title="HD Steam Offline"
+                                        frameBorder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowFullScreen
+                                    />
+                                </div>
+                                <div className="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/10 space-y-2 text-left">
+                                    <h4 className="text-[10px] font-black text-cyan-400 uppercase flex items-center gap-2 italic"><BookOpen className="w-3.5 h-3.5" /> 3 Bước kích hoạt</h4>
+                                    <p className="text-[11px] text-gray-300 font-bold leading-relaxed">
+                                        1. Đăng nhập tài khoản Nexus <br/>
+                                        2. Tải game về máy <br/>
+                                        3. Chọn "Go Offline" và chơi vĩnh viễn.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-
+                        )}
                     </div>
                 </div>
 
+                {/* 🌟 FOOTER: 3 NÚT LIÊN HỆ SIÊU NỔI BẬT */}
+                <div className="relative z-20 p-4 md:p-6 bg-black/60 backdrop-blur-2xl border-t border-white/10 flex flex-col gap-4">
+                    <button onClick={() => { onClose(); onBuyNow(); }} className="w-full py-3.5 md:py-4 rounded-2xl bg-cyan-500 text-black font-black uppercase tracking-[0.2em] text-xs md:text-sm shadow-[0_0_40px_rgba(6,182,212,0.4)] hover:bg-cyan-400 hover:scale-[1.01] transition-all flex items-center justify-center gap-3">
+                        <ShoppingCart className="w-5 h-5 stroke-[3]" /> Nhận tài khoản ngay
+                    </button>
+                </div>
             </div>
         </div>,
         document.body
