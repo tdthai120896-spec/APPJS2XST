@@ -40,6 +40,7 @@ export const RAW_GAMES = {
     { "title": "Aliens: Fireteam Elite", "genre": "Co-op Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1549970/header.jpg" },
     { "title": "Alpacapaca Dash", "genre": "Casual Runner Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/209170/header.jpg" },
     { "title": "Altar Guardian", "genre": "Action Hack & Slash", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/202990/header.jpg" },
+    { "title": "World War Z", "genre": "Shooter", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/699130/header.jpg" },
     { "title": "Arma 3", "genre": "Tactical Military Action Sim", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/107410/header.jpg" },
     { "title": "Armored Core VI Fires of Rubicon", "genre": "Mecha Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1888160/header.jpg" },
     { "title": "Armored Gear", "genre": "Action Mech Defense", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/476600/header.jpg" },
