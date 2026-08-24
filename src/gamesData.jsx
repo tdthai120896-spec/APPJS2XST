@@ -33,6 +33,7 @@ export const RAW_GAMES = {
     { "title": "Ace Combat 7: Skies Unknown", "genre": "Flight Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/502500/header.jpg" },
     { "title": "Adventures of Hooi", "genre": "Action Platformer Classic", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/551220/header.jpg" },
     { "title": "Adventures On The Polluted Islands", "genre": "Action Adventure Classic", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/474770/header.jpg" },
+    { "title": "Schedule I", "genre": "Action Adventure Classic", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3164500/header.jpg?t=1785744977" },    
     { "title": "Aeonic", "genre": "Action Adventure Retro", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/725350/header.jpg" },
     { "title": "Age of Steel: Recharge", "genre": "RTS Defense Action", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/42700/header.jpg" },
     { "title": "Aircraft War X", "genre": "Action Shoot 'em up", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/202970/header.jpg" },
