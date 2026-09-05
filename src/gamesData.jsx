@@ -16,6 +16,7 @@ export const CATEGORY_META = [
 
 export const RAW_GAMES = {
   "Action": [
+    { "title": "Onimusha: Way of Sword", "genre": "Action-Adventure", "price": "45.000đ", "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Onimusha_Way_of_the_Sword.jpg/250px-Onimusha_Way_of_the_Sword.jpg" },
     { title: "The Blood Of Dawnwalker", genre: "Action", price: "30.000đ", poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1rcW2ENmp1B3Mz8k8wTaKdNidd1NhH7FCEff3LrcaIQ&s" },
     { "title": "Beast of Reincarnation - Deluxe Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4146830/a2891b2845bcb43aad5fd371ed5e0a79c1c42f8d/capsule_616x353.jpg?t=1785801564" },
     { "title": "Mortal Shell II: Devout Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2584270/5b6a6b59c4f857165987b15fc116e5b3a06427dc/capsule_616x353.jpg?t=1786999199" },
