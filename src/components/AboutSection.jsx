@@ -12,7 +12,7 @@ export default function AboutSection({ onAddToCart, handleOpenModal, handleOpenP
       
       const hotKeywords = [
         'reincarnation', 'mortal shell', 'wukong', 'spider', 'red dead', 'god of war', 'tsushima', 'sekiro',
-        'gta', 'grand theft auto', 'elden ring', 'cyberpunk', 'hogwarts', 'palworld', 'horizon', 'wuchang'];
+        'dawnwalker', 'onymusha', 'elden ring', 'cyberpunk', 'hogwarts', 'palworld', 'horizon', 'wuchang'];
 
       const seen = new Set();
       const uniqueGames = allGamesArray.filter(game => {
