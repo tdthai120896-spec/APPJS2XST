@@ -16,6 +16,8 @@ export const CATEGORY_META = [
 
 export const RAW_GAMES = {
   "Action": [
+    { "title": "Control Resonant", "genre": "Action-Adventure", "price": "45.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3669870/d2c7e4d021ce81d9712ce7983efa9327fe29fece/capsule_616x353.jpg" },
+{ "title": "Silent Hill: Townfall", "genre": "Survival Horror", "price": "45.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1636440/7786de9407a63dd4917f2d16844f429007b0a0e0/capsule_616x353.jpg" },
     { "title": "Beast of Reincarnation - Deluxe Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4146830/a2891b2845bcb43aad5fd371ed5e0a79c1c42f8d/capsule_616x353.jpg?t=1785801564" },
     { "title": "Mortal Shell II: Devout Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2584270/5b6a6b59c4f857165987b15fc116e5b3a06427dc/capsule_616x353.jpg?t=1786999199" },
     { "title": "007 First Light", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3768760/dbe86ebd2edb4c77d113e9e2feefeb90189fabc9/header.jpg?t=1782807423" },
