@@ -16,8 +16,8 @@ export const CATEGORY_META = [
 
 export const RAW_GAMES = {
   "Action": [
-    { "title": "Control Resonant", "genre": "Action-Adventure", "price": "45.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3669870/d2c7e4d021ce81d9712ce7983efa9327fe29fece/capsule_616x353.jpg" },
-    { "title": "Silent Hill: Townfall", "genre": "Survival Horror", "price": "45.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1636440/7786de9407a63dd4917f2d16844f429007b0a0e0/capsule_616x353.jpg" },
+    { "title": "Control Resonant", "genre": "Action-Adventure", "price": "40.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3669870/d2c7e4d021ce81d9712ce7983efa9327fe29fece/capsule_616x353.jpg" },
+    { "title": "Silent Hill: Townfall", "genre": "Survival Horror", "price": "40.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1636440/7786de9407a63dd4917f2d16844f429007b0a0e0/capsule_616x353.jpg" },
     { "title": "Onimusha: Way of Sword", "genre": "Action-Adventure", "price": "45.000đ", "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Onimusha_Way_of_the_Sword.jpg/250px-Onimusha_Way_of_the_Sword.jpg" },
     { "title": "The Blood Of Dawnwalker", "genre": "Action", "price": "30.000đ", "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1rcW2ENmp1B3Mz8k8wTaKdNidd1NhH7FCEff3LrcaIQ&s" },
     { "title": "Beast of Reincarnation - Deluxe Edition", "genre": "Action RPG", "price": "30.000đ", "poster": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4146830/a2891b2845bcb43aad5fd371ed5e0a79c1c42f8d/capsule_616x353.jpg?t=1785801564" },
