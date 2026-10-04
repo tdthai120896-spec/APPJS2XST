@@ -994,7 +994,6 @@ export const RAW_GAMES = {
     { "title": "Grand Theft Auto: The Trilogy", "genre": "Action Crime", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1546970/header.jpg" },
     { "title": "Greed Is Good", "genre": "Dungeon Crawler", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2460480/header.jpg" },
     { "title": "Ground War: Tanks", "genre": "Tank MMO", "price": "30.000đ", "poster": "https://via.placeholder.com/460x215/000000/FFFFFF?text=Ground+War+Tanks" },
-    { "title": "GTA 5 Online", "genre": "Action Multiplayer", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" },
     { "title": "Guardians of Ember", "genre": "Action RPG MMO", "price": "30.000đ", "poster": "https://via.placeholder.com/460x215/000000/FFFFFF?text=Guardians+of+Ember" },
     { "title": "Hades 2", "genre": "Roguelike Mythology", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/header.jpg" },
     { "title": "Half-Life Alyx", "genre": "VR Action FPS", "price": "30.000đ", "poster": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/546560/header.jpg" },
